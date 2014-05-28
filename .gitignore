@@ -15,3 +15,6 @@ nbproject/
 *.jar
 *.war
 *.ear
+
+# README
+README.md
