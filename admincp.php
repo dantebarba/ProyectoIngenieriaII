@@ -20,7 +20,7 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar autor</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="comprobaciones.php" class="form-horizontal" role="form">
+                    <form method="post" action="autorcp.php" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label for="inputNombre" class="col-lg-2 control-label">Nombre</label>
                             <div class="col-lg-10">
@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label for="inputNombre" class="col-lg-2 control-label">Nombre</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control"id="inputNombre">
+                                <input type="text" class="form-control" id="inputNombre" name="inputNombre">
                             </div>
                         </div>
                     </form>
