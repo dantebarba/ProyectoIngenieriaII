@@ -9,9 +9,24 @@
         <link href="theme.css" rel="stylesheet">
         <title>Cookbook</title>
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
+        <script type="text/javascript" language="javascript">
+            
+            function tiene_letras(nombre) {
+                var letras = "abcdefghyjklmnñopqrstuvwxyz";
+                nombre = nombre.toLowerCase();
+                for (i = 0; i < nombre.length; i++) {
+                    if (letras.indexOf(nombre.charAt(i), 0) === -1) {
+                        alert('ERROR. Solo se pueden ingresar letras');
+                        return false;
+                    }
+                }
+                return true;
+            }
+        </script>
     </head>
 
-    <?php include 'header.php';
+    <?php
+    include 'header.php';
     include 'modalAutor.php';
     include 'modalEditorial.php';
     include 'modalCategoria.php;';
@@ -19,15 +34,13 @@
     ?>
     <body>
         <div class="page-header">
-            <h1>Panel de administrador<small>  Agregar/modificar/eliminar/listar: autores, editoriales, categorias, libros</small></h1>
+            <h1>Panel de administrador</h1>
         </div>
         <div class="panel panel-primary"> <div class="panel-heading">
                 <h3 class="panel-title">Autores</h3>
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn  btn-success" data-toggle="modal" data-target="#agregarAutor">Agregar</button>
-                    <button type='button'class="btn btn-warning">Modificar</button>
-                    <button type='button'class="btn btn-danger">Eliminar</button>
                     <button type="button"class="btn btn-primary">Listar</button>
                 </ul>
             </div></div>
@@ -36,8 +49,6 @@
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarEditorial">Agregar</button>
-                    <button type='button'class="btn btn-warning">Modificar</button>
-                    <button type='button'class="btn btn-danger">Eliminar</button>
                     <button type="button"class="btn btn-primary">Listar</button>
                 </ul>
             </div></div>
@@ -46,22 +57,19 @@
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn  btn-success" data-toggle="modal" data-target="#agregarCategoria">Agregar</button>
-                    <button type='button'class="btn btn-warning">Modificar</button>
-                    <button type='button'class="btn btn-danger">Eliminar</button>
                     <button type="button"class="btn btn-primary">Listar</button>
                 </ul>
             </div></div>
+        <!--
         <div class="panel panel-primary"> <div class="panel-heading">
                 <h3 class="panel-title">Libros</h3>
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarLibro">Agregar</button>
                     <button type='button'class="btn btn-warning">Modificar</button>
-                    <button type='button'class="btn btn-danger">Eliminar</button>
-                    <button type="button"class="btn btn-primary">Listar</button>
-                </ul>
+                   </ul>
             </div></div>
-
+        -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js"></script>
     </body>

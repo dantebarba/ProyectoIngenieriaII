@@ -6,11 +6,11 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar autor</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="comprobaciones.php" class="form-horizontal" role="form">
+                    <form method="post" onsubmit="return tiene_letras(document.forms['inputNombre']['nombre'].value)" id= "inputNombre" action="comprobaciones.php" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label for="inputNombre" class="col-lg-2 control-label">Nombre</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputNombre">
+                                <input type="text" class="form-control" id="nombre" name="inputNombre">
                             </div>
                         </div>
                         <div class="modal-footer">
