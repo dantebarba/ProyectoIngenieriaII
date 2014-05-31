@@ -37,17 +37,23 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     <!-- Modal -->
-
+    <script type="text/javascript">
+        function logout() {
+            window.location.href="/login.php?mode=logout";
+        }
+    </script>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.php">Cookbook</a> </div>
             <ul class="nav navbar-nav navbar-right"><?php
-                if (isset($_COOKIE['usuario'])) {
+                if (isset($_COOKIE['username']) and ($_COOKIE['username'] != '')) {
                     echo "<li><a href="."#".">Carrito</a></li>";
-                    echo '<li><a <span style="float: right;">Bienvenido '.$_COOKIE["usuario"].'<button type="button"
-                        class="btn btn-success btn-xs" ='. FILTER_INPUT(INPUT_SERVER, 'HTTP_RANGE').'/login.php?mode=logout'.
+                    echo '<li><a <span style="float: right;">Bienvenido '.$_COOKIE["username"].' - <button type="button"
+                        class="btn btn-success btn-xs" onClick="logout()"'.
                         '>Log out</button></span></a></li>';
+                    
+                //echo '<span style="float: right;">Hola ' . $_SESSION['user'] . '! - <small><a href="http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . '/login.php?mode=logout">cerrar sesi&oacute;n</a></small> - <small><a href="http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . '/newpass.php">Cambiar la contraseña</a></small></span>';
                 }
                 else {
                     echo "<li><a href="."registrar.php".">Registrarse</a></li>";

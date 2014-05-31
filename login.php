@@ -1,15 +1,11 @@
 <?php
-session_start();
     if (filter_input(INPUT_GET, 'mode') == 'logout'){
-        session_start();
-        session_unset();
-        session_destroy();
-        if(isset($_COOKIE['usuario'])) {
-            unset($_COOKIE['usuario']);
-            setcookie('usuario', '', time() - 3600); // empty value and old timestamp
+        if (isset($_COOKIE['username'])) {
+            unset($_COOKIE['username']);
+            setcookie('username', '', 1); // empty value and old timestamp
         }
         header("Location: index.php");
-        die();
+        exit();
     }
     
 include 'dbconnection.php'; 
@@ -37,11 +33,12 @@ if (mysql_num_rows($rows) == 0) {
     die('you should be gone by now');
 }
 elseif  ($user == $resultado['username'] and $pass == $resultado['password']) {
+    //session_start();
     /* voy a tener que usar Cookies porque el servidor no
      * me permite usar session, puede que haya un problema de permisos
      * o que la session se cancele por orden del servidor
      */
-    setcookie("usuario", $resultado['username'], time()+3600,"/","ingenieriaii.url.ph");
+    setcookie('username', $resultado['username'], time()+3600);
     $_SESSION['status'] = 'logged';
     $_SESSION['user'] = $user;
     if ($resultado['isAdmin']) {
