@@ -1,8 +1,13 @@
 <?php
+session_start();
     if (filter_input(INPUT_GET, 'mode') == 'logout'){
         session_start();
         session_unset();
         session_destroy();
+        if(isset($_COOKIE['usuario'])) {
+            unset($_COOKIE['usuario']);
+            setcookie('usuario', '', time() - 3600); // empty value and old timestamp
+        }
         header("Location: index.php");
         die();
     }
@@ -13,6 +18,7 @@ $user = filter_input(INPUT_POST, 'user');
 $pass = filter_input(INPUT_POST, 'password');
 
 $link = connectdb();
+
 
 include 'queries.php';
 
@@ -31,11 +37,15 @@ if (mysql_num_rows($rows) == 0) {
     die('you should be gone by now');
 }
 elseif  ($user == $resultado['username'] and $pass == $resultado['password']) {
-    session_start();
+    /* voy a tener que usar Cookies porque el servidor no
+     * me permite usar session, puede que haya un problema de permisos
+     * o que la session se cancele por orden del servidor
+     */
+    setcookie("usuario", $resultado['username'], time()+3600,"/","ingenieriaii.url.ph");
     $_SESSION['status'] = 'logged';
     $_SESSION['user'] = $user;
     if ($resultado['isAdmin']) {
-        header("Location: admincp.php");
+        header("Location: administrador/admincp.php");
         $_SESSION['type'] = 'admin';
         mysqli_close($link);
     }
@@ -45,7 +55,7 @@ elseif  ($user == $resultado['username'] and $pass == $resultado['password']) {
         // usuario registrado
         header("Location: index.php");
         }
-    die();
+    exit();
 } else {
     //die('Contraseña incorrecta - <a href="' . 'http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . '/index.php' . '">reintentar</a>');
     mysqli_close($link);
