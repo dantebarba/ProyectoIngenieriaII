@@ -41,8 +41,11 @@
         function logout() {
             window.location.href="/login.php?mode=logout";
         }
+        function register() {
+            window.location.href="registrar.php"
+        }
     </script>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="main-navbar">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.php">Cookbook</a> </div>
@@ -50,14 +53,15 @@
                 if (isset($_COOKIE['username']) and ($_COOKIE['username'] != '')) {
                     echo "<li><a href="."#".">Carrito</a></li>";
                     echo '<li><a <span style="float: right;">Bienvenido '.$_COOKIE["username"].' - <button type="button"
-                        class="btn btn-success btn-xs" onClick="logout()"'.
+                        class="btn btn-danger btn-xs" onClick="logout()"'.
                         '>Log out</button></span></a></li>';
                     
                 //echo '<span style="float: right;">Hola ' . $_SESSION['user'] . '! - <small><a href="http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . '/login.php?mode=logout">cerrar sesi&oacute;n</a></small> - <small><a href="http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . '/newpass.php">Cambiar la contraseña</a></small></span>';
                 }
                 else {
-                    echo "<li><a href="."registrar.php".">Registrarse</a></li>";
-                    echo'<li><a <span style="float: right;">No est&aacute;s conectado - '
+                    include registrar.php;
+                    echo '<li><a <span style="float: right;"> <button type="button" class="btn btn-primary btn-xs" onClick=register()>Registrarse</button></span></a></li>';
+                    echo '<li><a <span style="float: right;">No est&aacute;s conectado - '
                         . '<button type="button" class="btn btn-success btn-xs" data-toggle="modal" '
                         . 'data-target="#login">Log in</button></span></a></li>';
                 }
@@ -66,3 +70,4 @@
 
         </div>
     </div>
+</body>

@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,7 +9,6 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-
         <title>Cookbook</title>
 
         <!-- Bootstrap core CSS -->
