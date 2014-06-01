@@ -6,7 +6,7 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar Categoria</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreEtiqueta']['nombreEtiqueta'].value)" id="inputNombre" action="comprobaciones.php" class="form-horizontal" role="form">
+                    <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreEtiqueta']['nombreEtiqueta'].value)" id="inputNombreEtiqueta" action="comprobaciones.php" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Etiqueta</label>
                             <div class="col-lg-10">

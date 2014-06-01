@@ -37,10 +37,10 @@
 
     <?php
     include '../header.php';
+    include 'modalCategoria.php';
     include 'modalEditorial.php';
     include 'modalAutor.php';
     include 'modalLibro.php';
-    include 'modalCategoria';
     ?>
     <body>
         <div class="page-header">
@@ -58,7 +58,7 @@
                 <h3 class="panel-title">Categorias</h3>
             </div><div class="panel-body">
                 <ul>
-                    <button type='button'class="btn btn-success" data-toggle="modal" data-target="#addCategoria">Agregar</button>
+                    <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarCategoria">Agregar</button>
                     <button type="button"class="btn btn-primary">Listar</button>
                 </ul>
             </div></div>
