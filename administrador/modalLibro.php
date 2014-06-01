@@ -6,7 +6,7 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar Libro</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" id="inputLibro" onsubmit="return tiene_numeros(document.forms['inputLibro']['inputPaginas'].value)" role="form">
                         <div class="form-group">
                             <label for="inputPaginas" class="col-lg-2 control-label">Páginas</label>
                             <div class="col-lg-10">
