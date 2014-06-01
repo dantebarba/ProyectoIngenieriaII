@@ -6,11 +6,11 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-        <link href="theme.css" rel="stylesheet">
+        <link href="../theme.css" rel="stylesheet">
         <title>Cookbook</title>
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
         <script type="text/javascript" language="javascript">
-            
+
             function tiene_letras(nombre) {
                 var letras = "abcdefghyjklmnñopqrstuvwxyz";
                 nombre = nombre.toLowerCase();
@@ -22,17 +22,32 @@
                 }
                 return true;
             }
+            function tiene_numeros(nombre) {
+                var numeros = "0123456789";
+                for (i = 0; i < nombre.length; i++) {
+                    if (numeros.indexOf(numeros.charAt(i), 0) === -1) {
+                        alert('ERROR. Solo se pueden ingresar numeros');
+                        return false;
+                    }
+                }
+                return true;
+            }
         </script>
     </head>
 
     <?php
-    include 'header.php';
-    include 'modalAutor.php';
+    include '../header.php';
+    include 'modalCategoria.php';
     include 'modalEditorial.php';
-    include 'modalCategoria.php;';
+    include 'modalAutor.php';
     include 'modalLibro.php';
     ?>
     <body>
+        <script type="text/javascript">
+            function redirect () {
+                window.location.href = "listarAutor.php";
+        }
+        </script>
         <div class="page-header">
             <h1>Panel de administrador</h1>
         </div>
@@ -41,6 +56,14 @@
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn  btn-success" data-toggle="modal" data-target="#agregarAutor">Agregar</button>
+                    <button type="button" class="btn btn-primary" onClick="redirect()">Listar</button>
+                </ul>
+            </div></div>
+        <div class="panel panel-primary"> <div class="panel-heading">
+                <h3 class="panel-title">Categorias</h3>
+            </div><div class="panel-body">
+                <ul>
+                    <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarCategoria">Agregar</button>
                     <button type="button"class="btn btn-primary">Listar</button>
                 </ul>
             </div></div>
@@ -52,14 +75,7 @@
                     <button type="button"class="btn btn-primary">Listar</button>
                 </ul>
             </div></div>
-        <div class="panel panel-primary"> <div class="panel-heading">
-                <h3 class="panel-title">Categorias</h3>
-            </div><div class="panel-body">
-                <ul>
-                    <button type='button'class="btn  btn-success" data-toggle="modal" data-target="#agregarCategoria">Agregar</button>
-                    <button type="button"class="btn btn-primary">Listar</button>
-                </ul>
-            </div></div>
+
         <!--
         <div class="panel panel-primary"> <div class="panel-heading">
                 <h3 class="panel-title">Libros</h3>

@@ -44,7 +44,12 @@ function q_isPresentCategoria($nombre) {};
 
 function q_isPresentLibro($book) {};
 
-function q_listAutor($nombre, $rangemax=0) {}; // lista todos los autores hasta
+function q_listAutor($rangemax=1000) {
+    $query='SELECT * FROM autores LIMIT 0 , '.$rangemax;
+    return mysql_query($query);
+    
+} 
+// lista todos los autores hasta
 // $rangemax, valor por defecto lista toda la base de datos
 function q_listEditorial($nombre, $rangemax=0) {};
 
