@@ -8,6 +8,9 @@
  
   <title>List of Student</title><!-- Bootstrap core CSS -->
   <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://ingenieriaii.url.ph/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+  <link href="http://ingenieriaii.url.ph/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
 <?php include 'modalAutor.php' ?>
 <body>
