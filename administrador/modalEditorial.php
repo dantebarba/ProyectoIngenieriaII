@@ -1,4 +1,4 @@
- <div class="modal fade" id="agregarEditorial" tabindex="-1" role="dialog" aria-labelledby=addAutor aria-hidden="true">
+ <div class="modal fade" id="agregarEditorial" tabindex="-1" role="dialog" aria-labelledby=addEditorial aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

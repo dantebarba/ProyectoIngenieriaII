@@ -37,9 +37,9 @@
 
     <?php
     include '../header.php';
+    include 'modalAutor.php';
     include 'modalCategoria.php';
     include 'modalEditorial.php';
-    include 'modalAutor.php';
     include 'modalLibro.php';
     ?>
     <body>
