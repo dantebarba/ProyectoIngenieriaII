@@ -37,9 +37,9 @@
 
     <?php
     include '../header.php';
+    include 'modalAutor.php';
     include 'modalCategoria.php';
     include 'modalEditorial.php';
-    include 'modalAutor.php';
     include 'modalLibro.php';
     ?>
     <body>
@@ -56,7 +56,7 @@
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn  btn-success" data-toggle="modal" data-target="#agregarAutor">Agregar</button>
-                    <button type="button" class="btn btn-primary" onClick="redirect()">Listar</button>
+                    <button type="button" class="btn btn-primary">Listar</button>
                 </ul>
             </div></div>
         <div class="panel panel-primary"> <div class="panel-heading">
