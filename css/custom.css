@@ -1,0 +1,32 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 01/06/2014, 17:20:37
+    Author     : Admin
+*/
+
+#lista>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+  background: -moz-linear-gradient(top,  rgba(200,94,199,0.44) 88%, rgba(200,94,199,0.44) 89%, rgba(171,75,166,0.44) 99%, rgba(168,73,163,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(88%,rgba(200,94,199,0.44)), color-stop(89%,rgba(200,94,199,0.44)), color-stop(99%,rgba(171,75,166,0.44)), color-stop(100%,rgba(168,73,163,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(200,94,199,0.44) 88%,rgba(200,94,199,0.44) 89%,rgba(171,75,166,0.44) 99%,rgba(168,73,163,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(200,94,199,0.44) 88%,rgba(200,94,199,0.44) 89%,rgba(171,75,166,0.44) 99%,rgba(168,73,163,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(200,94,199,0.44) 88%,rgba(200,94,199,0.44) 89%,rgba(171,75,166,0.44) 99%,rgba(168,73,163,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(200,94,199,0.44) 88%,rgba(200,94,199,0.44) 89%,rgba(171,75,166,0.44) 99%,rgba(168,73,163,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70c85ec7', endColorstr='#a849a3',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+#lista td:hover { cursor: pointer; }
+#listarBody { padding-top: 70px; }
+
+.bg{background: -moz-linear-gradient(top,  rgba(200,94,199,0.44) 88%, rgba(200,94,199,0.44) 89%, rgba(171,75,166,0.44) 99%, rgba(168,73,163,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(88%,rgba(200,94,199,0.44)), color-stop(89%,rgba(200,94,199,0.44)), color-stop(99%,rgba(171,75,166,0.44)), color-stop(100%,rgba(168,73,163,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(200,94,199,0.44) 88%,rgba(200,94,199,0.44) 89%,rgba(171,75,166,0.44) 99%,rgba(168,73,163,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(200,94,199,0.44) 88%,rgba(200,94,199,0.44) 89%,rgba(171,75,166,0.44) 99%,rgba(168,73,163,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(200,94,199,0.44) 88%,rgba(200,94,199,0.44) 89%,rgba(171,75,166,0.44) 99%,rgba(168,73,163,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(200,94,199,0.44) 88%,rgba(200,94,199,0.44) 89%,rgba(171,75,166,0.44) 99%,rgba(168,73,163,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70c85ec7', endColorstr='#a849a3',GradientType=0 ); /* IE6-9 */}
