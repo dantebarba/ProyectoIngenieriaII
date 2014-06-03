@@ -16,7 +16,7 @@ function q_getautor($nombre) {};
 
 function q_getcompra($nombre) {};
 
-function q_addAutor($nombre) {};
+function q_addAutor($nombre) 
 {
     $query="INSERT INTO autores (nombre) VALUES ('$nombre')";
     mysql_query($query) or die(mysql_error());

@@ -6,11 +6,11 @@
  * and open the template in the editor.
  */
 
-function addAutor($name) {
+function addAutor($nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    q_addAutor($link, $name);
+    q_addAutor($nombre);
     mysql_close($link);
 }
 
@@ -23,13 +23,15 @@ function updateAutor($id, $nombre) {
 }
 
 
-if(isset($_POST["inputNombre"])) {
-    addAutor($_POST['inputNombre']);
+if (isset($_POST["inputAutor"])) {
+    addAutor($_POST['inputAutor']);
     header('Location: admincp.php');
+    exit();
 }
 elseif (isset($_POST["idAutor"])) {
     updateAutor($_POST['idAutor'], $_POST['editNombre']);
     header('Location: listarAutor.php');
+    exit();
 }
 
 
