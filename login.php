@@ -4,6 +4,10 @@
             unset($_COOKIE['username']);
             setcookie('username', '', 1); // empty value and old timestamp
         }
+        if (isset($_COOKIE['isAdmin'])) {
+            unset($_COOKIE['isAdmin']);
+            setcookie('isAdmin', '', 1);
+        }
         header("Location: index.php");
         exit();
     }
@@ -39,11 +43,12 @@ elseif  ($user == $resultado['username'] and $pass == $resultado['password']) {
      * o que la session se cancele por orden del servidor
      */
     setcookie('username', $resultado['username'], time()+3600);
-    $_SESSION['status'] = 'logged';
-    $_SESSION['user'] = $user;
+//    $_SESSION['status'] = 'logged';
+//    $_SESSION['user'] = $user;
     if ($resultado['isAdmin']) {
+        setcookie('isAdmin', $resultado['isAdmin'], time()+3600);
         header("Location: administrador/admincp.php");
-        $_SESSION['type'] = 'admin';
+//        $_SESSION['type'] = 'admin';
         mysqli_close($link);
     }
     else {

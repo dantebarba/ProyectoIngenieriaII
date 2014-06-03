@@ -48,12 +48,13 @@
                 <a class="navbar-brand" href="http://ingenieriaii.url.ph/">Cookbook</a> </div>
             <ul class="nav navbar-nav navbar-right"><?php
                 if (isset($_COOKIE['username']) and ($_COOKIE['username'] != '')) {
+                    if (isset($_COOKIE['isAdmin']) && ($_COOKIE['isAdmin'] != '')) {
+                        echo "<li><a href='"."administrador/admincp.php"."'>Admin CP</a></li>";
+                    }
                     echo "<li><a href="."#".">Carrito</a></li>";
                     echo '<li><a <span style="float: right;">Bienvenido '.$_COOKIE["username"].' - <button type="button"
                         class="btn btn-success btn-xs" onClick="logout()"'.
                         '>Log out</button></span></a></li>';
-                    
-                //echo '<span style="float: right;">Hola ' . $_SESSION['user'] . '! - <small><a href="http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . '/login.php?mode=logout">cerrar sesi&oacute;n</a></small> - <small><a href="http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . '/newpass.php">Cambiar la contraseña</a></small></span>';
                 }
                 else {
                     echo "<li><a href="."registrar.php".">Registrarse</a></li>";
