@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php include 'header.php'; ?>
-  <head>
-    <script> src="js/jquery-2.1.1.min.js" type="text/javascript"</script>
-      <script>
-        $(window).resize(function () { 
-        $('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);
-            });
-
-        $(window).load(function () { 
-        $('body').css('padding-top', parseInt($('#main-navbar').css("height"))+10);        
-        });
-      </script>  
+  <head> 
     <meta charset="utf-8">
     <title>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    <script src="http://ingenieriaii.url.ph/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css"
     rel="stylesheet">
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
+    <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
+          rel="stylesheet">
+    <link href="http://ingenieriaii.url.ph/css/custom.css"
     rel="stylesheet">
+    <script type="text/javascript">
+        $(document).on("change", "#isDpto", function() {
+           if ($("#isDpto").val() === 'yes') {
+               $("#departamento").prop('disabled', false);
+           }
+           else {
+               $("#departamento").prop("disabled", true);
+           }
+       });
+    </script>
   </head>
   
   
-  <body>
+  <body id="registrarse">
     <div class="container" >
-      <div class="row">
-      </div>
       <div class="row" id="mainForm">
+          <div class="col-md-2">
+              
+          </div>
         <div class="col-md-4">
           <h3>
             Registrar nuevo usuario
           </h3>
-          <form>
+          <form id="mainData">
             <div class="form-group">
               <label>
                 Usuario
@@ -87,31 +92,31 @@
             <label>
               DNI
             </label>
-            <input type="text" class="form-control">
+              <input type="text" class="form-control" placeholder="40555222">
           </div>
          </form>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
           <h3>
             Domicilio
           </h3>
           <p>
             Complete los campos.
           </p>
-          <form>
+          <form id="addressData">
             <div class="form-group">
               <label>
                 <div class="form-group">
                   <label>
                     Telefono fijo
                   </label>
-                  <input type="text" class="form-control" value="01144421111" name="tel">
+                    <input type="text" class="form-control" placeholder="01143331212" name="tel">
                 </div>
                 <div class="form-group">
                   <label>
                     Telefono celular
                   </label>
-                  <input type="text" class="form-control" value="0221552111" name="telcel">
+                  <input type="text" class="form-control" placeholder="0221552111" name="telcel">
                 </div>
                 Localidad
               </label>
@@ -122,19 +127,19 @@
             <label>
               Calle
             </label>
-            <input type="text" class="form-control" name="calle">
+            <input type="text" class="form-control" name="calle" placeholder="Av. Libertador">
           </div>
           <div class="form-group">
             <label>
               Numero
             </label>
-            <input type="text" class="form-control" name="numero">
+            <input type="text" class="form-control" name="numero" placeholder="4311">
           </div>
           <div class="form-group">
             <label>
               ¿Su domicilio es un departamento?
             </label>
-            <select class="form-control" name="isDepartamento">
+            <select class="form-control" name="isDepartamento" id="isDpto" >
               <option value="no">
                 No
               </option>
@@ -149,7 +154,7 @@
             <label>
               Nro. de departamento
             </label>
-            <input type="text" class="form-control" name="departamento">
+              <input type="text" class="form-control" disabled  id="departamento" name="departamento" placeholder="3A">
           </div>
           <div class="form-group">
             <label>
@@ -167,12 +172,12 @@
           </div>
           <div class="form-group">
           </div>
-          </form>
-        </div>
-          
+          </form>   
       </div>
-     
-
+          <div class="col-md-4">
+              
+          </div>
+      </div>
       <div class="panel panel-default">
         <div class="panel-heading">
         </div>
@@ -189,13 +194,6 @@
             </div>
         </div>
       </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
-    >
-    </script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"
-    >
-    </script>
+    
   </body>
-
 </html>

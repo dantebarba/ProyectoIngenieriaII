@@ -1,10 +1,3 @@
- 
-<script type="text/javascript">
-    // ACA VA EL SCRIPT DE UPDATE, se le pasa a la DB los nuevos
-    // datos
-    // tambien se puede hacer con php (seria lo ideal)
-
-</script> 
 
 <div class="modal fade" id="editarAutor" tabindex="-1" role="dialog" aria-labelledby=editAutor aria-hidden="true">
      <div class="modal-dialog">
@@ -14,20 +7,20 @@
                     <h4 class="modal-title" id="labelEditar">Editar Autor</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreAutor']['nombreAutor'].value)" id="inputNombreAutor" action="autorcp.php" class="form-horizontal" role="form">
+                    <form method="post" name="autorForm" onsubmit="return tiene_letras(document.forms['inputNombreAutor']['nombreAutor'].value)" id="inputNombreAutor" action="autorcp.php" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label class="col-lg-2 control-label">ID</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="idAutor" readonly style="background-color:lightgray">
+                                <input type="text" class="form-control" id="idAutor" readonly style="background-color:lightgray" name="idAutor">
                             </div>
                             <label class="col-lg-2 control-label" >Nombre</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="nombreAutor">
+                                <input type="text" class="form-control" id="nombreAutor" name="editNombre">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" onClick="updateAutor()">Aceptar</button>
+                            <button type="submit" class="btn btn-primary" ">Aceptar</button>
                         </div>
                     </form>
                 </div>
@@ -55,7 +48,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" onClick="addAutor()">Agregar</button>
+                            <button type="submit" class="btn btn-primary">Agregar</button>
                         </div>
                     </form>
                 </div>
