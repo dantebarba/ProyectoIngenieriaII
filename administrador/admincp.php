@@ -56,7 +56,11 @@
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn  btn-success" data-toggle="modal" data-target="#agregarAutor">Agregar</button>
+<<<<<<< HEAD
+                    <button type="button" class="btn btn-primary">Listar</button>
+=======
                     <button type="button" class="btn btn-primary" onclick="redirect()">Listar</button>
+>>>>>>> 8bcdcc199f9270ff4489d83d004a73a01850e6b2
                 </ul>
             </div></div>
         <div class="panel panel-primary"> <div class="panel-heading">
