@@ -45,7 +45,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="http://ingenieriaii.url.ph/">Cookbook</a> </div>
+                <a class="navbar-brand" href="http://ingenieriaii.url.ph/index.php">Cookbook</a> </div>
             <ul class="nav navbar-nav navbar-right"><?php
                 if (isset($_COOKIE['username']) and ($_COOKIE['username'] != '')) {
                     if (isset($_COOKIE['isAdmin']) && ($_COOKIE['isAdmin'] != '')) {
