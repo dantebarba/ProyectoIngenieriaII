@@ -1,9 +1,7 @@
-<?php
-if (!($_COOKIE['isAdmin'] != '')) {
-    echo 'error de permisos';
-    die();
-}
-?>
+
+
+
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
