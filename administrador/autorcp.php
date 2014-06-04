@@ -22,30 +22,28 @@ function updateAutor($id, $nombre) {
     mysql_close($link);
 }
 
-function q_delAutor($nombre) {
+function delAutor($id) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    q_removeAutor($nombre);
+    q_removeAutor($id);
     mysql_close($link);
 }
 
 
-if (isset($_POST["inputAutor"])) {
+if (isset($_POST["inputDataAutor"])) {
     addAutor($_POST['inputAutor']);
     header('Location: admincp.php');
     exit();
 }
-elseif (isset($_POST["idAutor"])) {
+elseif (isset($_POST["editDataAutor"])) {
     updateAutor($_POST['idAutor'], $_POST['editNombre']);
     header('Location: listarAutor.php');
     exit();
-} elseif (isset($_POST["delAutor"])){ // button name
-       
-        q_delAutor($_POST['autorNombre']); 
-        header('Location: listarAutor.php');
-        exit();
-       
- }
+} elseif (isset($_POST["deleteDataAutor"])){ // button name
+    delAutor($_POST['idAutor']); 
+    header('Location: listarAutor.php');
+    exit();
+}
 
 
