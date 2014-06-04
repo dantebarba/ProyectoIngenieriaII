@@ -1,25 +1,81 @@
- <div class="modal fade" id="agregarCategoria" tabindex="-1" role="dialog" aria-labelledby=addCategoria aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Categoria</h4>
-                </div>
-                <div class="modal-body">
-                    <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreEtiqueta']['nombreEtiqueta'].value)" id="inputNombreEtiqueta" action="comprobaciones.php" class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">Etiqueta</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" id="nombreEtiqueta">
-                            </div>
+
+<div class="modal fade" id="editarCategoria" tabindex="-1" role="dialog" aria-labelledby=editCategory aria-hidden="true">
+    <div class="modal-dialog"> 
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="labelEditar">Editar Categoria</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" name="editDataCategoria" onsubmit="return tiene_letras(document.forms['inputNombreCategoria']['nombreCategoria'].value)" id="editDataCategoria" action="categoriacp.php" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" >ID </label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="editar_nombreCategoria" name="editar_nombreCategoria">
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Agregar</button>
-                        </div>
-                    </form>
-                </div>
-                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" >Aceptar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
+</div>
+
+
+
+<div class="modal fade" id="agregarCategoria" tabindex="-1" role="dialog" aria-labelledby=addCategoria aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Agregar Categoria</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreEtiqueta']['nombreEtiqueta'].value)" id="inputNombreEtiqueta" action="comprobaciones.php" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Etiqueta</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="nombreEtiqueta">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="eliminarCategoria" tabindex="-1" role="dialog" aria-labelledby=deleteCategory aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="labelEditar">Eliminar Categoria</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="deleteDataAutor" name="deleteDataCategoria" onsubmit="return tiene_letras(document.forms['inputNombreCategoria']['nombreCategoria'].value)"  action="categoriacp.php" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">ID</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" readonly style="background-color:lightgray" id="editar_nombreCategoria" name="editar_nombreCategoria">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-danger"  >Eliminar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
