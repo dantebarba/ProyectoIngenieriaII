@@ -1,3 +1,9 @@
+<?php
+if (!($_COOKIE['isAdmin'] != '')) {
+    echo 'error de permisos';
+    die();
+}
+?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -44,9 +50,10 @@
     ?>
     <body>
         <script type="text/javascript">
-            function redirect () {
-                window.location.href = "listarAutor.php";
-        }
+            function redirect(target) {
+                window.location.href = target;
+            }
+            
         </script>
         <div class="page-header">
             <h1>Panel de administrador</h1>
@@ -56,7 +63,7 @@
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn  btn-success" data-toggle="modal" data-target="#agregarAutor">Agregar</button>
-                    <button type="button" class="btn btn-primary" onclick="redirect()">Listar</button>
+                    <button type="button" class="btn btn-primary" onclick="redirect('listarAutor.php')">Listar</button>
                 </ul>
             </div></div>
         <div class="panel panel-primary"> <div class="panel-heading">
@@ -64,7 +71,7 @@
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarCategoria">Agregar</button>
-                    <button type="button"class="btn btn-primary">Listar</button>
+                    <button type="button"class="btn btn-primary" onclick="redirect('listarCategoria.php')">Listar</button>
                 </ul>
             </div></div>
         <div class="panel panel-primary"> <div class="panel-heading">
@@ -72,7 +79,7 @@
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarEditorial">Agregar</button>
-                    <button type="button"class="btn btn-primary">Listar</button>
+                    <button type="button"class="btn btn-primary" onclick="redirect('listarEditorial.php')">Listar</button>
                 </ul>
             </div></div>
 

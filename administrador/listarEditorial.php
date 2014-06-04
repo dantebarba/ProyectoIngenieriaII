@@ -7,11 +7,11 @@
         <meta content="" name="author">
         <link href="" rel="shortcut icon">
 
-        <title>Listado de Autores</title><!-- Bootstrap core CSS -->
+        <title>Listado de Editoriales</title><!-- Bootstrap core CSS -->
         <script src="http://ingenieriaii.url.ph/js/jquery-2.1.1.min.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                var fields = ['idAutor', 'nombreAutor'];
+                var fields = ['idEditorial', 'nombreEditorial'];
                 var item = {}; // los dict son igual a python
                 $('table.table-striped tbody tr').on('click', function() {
                     $(this).closest('table').find('td').removeClass('bg');
@@ -23,7 +23,7 @@
                     }
                 });
                 //$("#openEditarAutor").click(function () {
-                $(document).on("click", "#openEditarAutor", function() {
+                $(document).on("click", "#openEditarEditorial", function() {
                     for (i = 0; i < fields.length; i++) {
                         $(".modal-body #" + fields[i]).val(item[fields[i]]);
                     }
@@ -32,7 +32,7 @@
                     //it is superfluous to have to manually call the modal.
                     // $('#addBookDialog').modal('show');
                 });
-                 $(document).on("click", "#openEliminarAutor", function() {
+                 $(document).on("click", "#openEliminarEditorial", function() {
                     for (i = 0; i < fields.length; i++) {
                         $(".modal-body #" + fields[i]).val(item[fields[i]]);
                     }
@@ -75,13 +75,13 @@
                             $i = 0;
                             $id = 'row' . $i;
 
-                            $result = q_listAutor(5) or die('Error en la consulta a la base de datos' . mysql_error());
+                            $result = q_listEditorial(5) or die('Error en la consulta a la base de datos' . mysql_error());
                             // limitado a 5 por cuestiones de prueba
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
-                                echo '<td id=' . 'idAutor' . '>' . $row['idAutor'] . '</td>';
-                                echo '<td id=' . 'nombreAutor' . '>' . $row['nombre'] . '</td>';
+                                echo '<td id=' . 'idEditorial' . '>' . $row['idEditorial'] . '</td>';
+                                echo '<td id=' . 'nombreEditorial' . '>' . $row['nombre'] . '</td>';
                                 $i++;
                             }
                             mysql_close($link);
@@ -90,9 +90,9 @@
                     </table>
                 </div>
                 <div class="col-md-2">
-                    <button type="button" class="btn btn-default" id="openEditarAutor" onClick="$('#editarAutor').modal('show')">Editar Autor</button>
+                    <button type="button" class="btn btn-default" id="openEditarEditorial" onClick="$('#editarEditorial').modal('show')">Editar Editorial</button>
                     <p></p>
-                    <button type="button" class="btn btn-danger" id="openEliminarAutor" onClick="$('#eliminarAutor').modal('show')">Eliminar Autor</button> 
+                    <button type="button" class="btn btn-danger" id="openEliminarEditorial" onClick="$('#eliminarEditorial').modal('show')">Eliminar Editorial</button> 
                 </div>
             </div> <!-- /row -->
         </div><!-- /container -->
