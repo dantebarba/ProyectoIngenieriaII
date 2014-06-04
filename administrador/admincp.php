@@ -1,3 +1,9 @@
+<?php
+if (!($_COOKIE['isAdmin'] != '')) {
+    echo 'error de permisos';
+    die();
+}
+?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -44,9 +50,9 @@
     ?>
     <body>
         <script type="text/javascript">
-            function redirect () {
+            function redirect() {
                 window.location.href = "listarAutor.php";
-        }
+            }
         </script>
         <div class="page-header">
             <h1>Panel de administrador</h1>
