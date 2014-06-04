@@ -1,5 +1,8 @@
 <?php
-
+if (!($_COOKIE['isAdmin'] != '')) {
+    echo 'error de permisos';
+    die();
+}
 /* 
 // NO PONER ID's IGUALES A DOS OBJETOS HTML
 // NO PONER ID's IGUALES A DOS OBJETOS HTML

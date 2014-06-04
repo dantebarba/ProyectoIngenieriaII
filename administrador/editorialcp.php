@@ -1,5 +1,8 @@
 <?php
-
+if (!($_COOKIE['isAdmin'] != '')) {
+    echo 'error de permisos';
+    die();
+}
 function addEditorial($nombre) {
     include '../dbconnection.php';
     $link = connectdb();
