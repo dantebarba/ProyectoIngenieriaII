@@ -8,7 +8,7 @@
                     <h4 class="modal-title" id="labelEditar">Editar Autor</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" name="autorForm" onsubmit="return tiene_letras(document.forms['inputNombreAutor']['nombreAutor'].value)" id="editDataAutor" action="autorcp.php" class="form-horizontal" role="form">
+                    <form method="post" name="autorForm" onsubmit="return tiene_letras(document.forms['inputNombreAutor']['nombreAutor'].value)" id="inputNombreAutor" action="autorcp.php" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label class="col-lg-2 control-label">ID</label>
                             <div class="col-lg-10">
@@ -40,7 +40,7 @@
                     <h4 class="modal-title" id="addAutorTitle">Agregar autor</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreAutor']['nombreAutor'].value)" id="inputDataAutor" action="autorcp.php" class="form-horizontal" role="form">
+                    <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreAutor']['nombreAutor'].value)" id="inputNombreAutor" action="autorcp.php" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Nombre</label>
                             <div class="col-lg-10">
@@ -57,7 +57,6 @@
             </div>
         </div>
     </div>
-
 <div class="modal fade" id="eliminarAutor" tabindex="-1" role="dialog" aria-labelledby=deleteAutor aria-hidden="true">
      <div class="modal-dialog">
             <div class="modal-content">
@@ -66,20 +65,20 @@
                     <h4 class="modal-title" id="labelEditar">Eliminar Autor</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" name="autorForm" onsubmit="return tiene_letras(document.forms['inputNombreAutor']['nombreAutor'].value)" id="deleteDataAutor" action="autorcp.php" class="form-horizontal" role="form">
+                    <form method="post" name="autorForm" onsubmit="return tiene_letras(document.forms['inputNombreAutor']['nombreAutor'].value)" id="inputNombreAutor" action="autorcp.php" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label class="col-lg-2 control-label">ID</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="idAutor" readonly style="background-color:lightgray" name="idAutor">
+                                <input type="text" class="form-control" id="delAutor" readonly style="background-color:lightgray" name="delAutor">
                             </div>
                             <label class="col-lg-2 control-label" >Nombre</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="nombreAutor" name="deleteNombre">
+                                <input type="text" class="form-control" id="nombreAutor" readonly style="background-color:lightgray" name="autorNombre">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-danger" >Eliminar</button>
+                            <button type="submit" class="btn btn-danger"  >Eliminar</button>
                         </div>
                     </form>
                 </div>

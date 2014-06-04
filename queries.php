@@ -36,19 +36,11 @@ function q_updateAutor ($id, $nombre) {
     mysql_query($query) or die(mysql_error());
 }
 
-function q_updateEditorial ($id, $nombre) {
-    $query="UPDATE editorales SET nombre='$nombre' WHERE ".$id."=idEditorial";
-    mysql_query($query) or die(mysql_error());
-}
-
-function q_updateCategoria ($id, $nombre) {
-    $query="UPDATE etiquetas SET nombre='$nombre' WHERE ".$id."=nombre";
-    mysql_query($query) or die(mysql_error());
-}
-
-function q_removeAutor($idAutor) { // elimina el autor segun $nombre, no hace
+function q_removeAutor($nomAutor) { // elimina el autor segun $nombre, no hace
 // comprobaciones, da error
-    $query="DELETE FROM autores WHERE idAutor=".$idAutor;
+   // echo "entro a la tercer func";
+   // echo "$nomAutor";
+    $query="DELETE FROM autores WHERE nombre='$nomAutor'";
     mysql_query($query) or die(mysql_error());
 }
 
@@ -77,24 +69,20 @@ function q_listAutor($rangemax=1000) {
 } 
 // lista todos los autores hasta
 // $rangemax, valor por defecto lista toda la base de datos
-function q_listEditorial($rangemax=1000) {
-    $query='SELECT * FROM editoriales LIMIT 0 , '.$rangemax;
-    return mysql_query($query);
-    
-};
+function q_listEditorial($nombre, $rangemax=0) {};
 
-function q_listCategoria($rangemax=1000) {};
+function q_listCategoria($nombre, $rangemax=0) {};
  
-function q_isAdminUsuario($username) {};
+function q_isAdminUsuario($nombre) {};
 // devuelve verdadero o falso si el usuario $nombre es admin o no, el usuario DEBE
 // existir FIXME: esta consulta podria no existir
-function q_libroViewAutor($ISBN) {};
+function q_libroViewAutor($book) {};
 
-function q_libroViewEditorial($ISBN) {};
+function q_libroViewEditorial($book) {};
 
-function q_libroViewCategoria($ISBN) {};
+function q_libroViewCategoria($book) {};
 
-function q_isDisponibleLibro($ISBN) {};
+function q_isDisponibleLibro($book) {};
 
 
 
