@@ -34,9 +34,13 @@
                 <div class="modal-body">
                     <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreEditorial']['nombreEditorial'].value)" id="editDataEditorial" action="editorialcp.php" class="form-horizontal" role="form">
                         <div class="form-group">
+                            <label class="col-lg-2 control-label">ID</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="idEditorial" name="idEditorial">
+                            </div>
                             <label class="col-lg-2 control-label">Nombre</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="nombreEditorial" name="editNombre">
+                                <input type="text" class="form-control" id="nombreEditorial" name="nombreEditorial">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -50,7 +54,7 @@
         </div>
     </div>
 
- <div class="modal fade" id="editarEditorial" tabindex="-1" role="dialog" aria-labelledby=deleteEditorial aria-hidden="true">
+ <div class="modal fade" id="eliminarEditorial" tabindex="-1" role="dialog" aria-labelledby=deleteEditorial aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -60,9 +64,13 @@
                 <div class="modal-body">
                     <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreEditorial']['nombreEditorial'].value)" id="deleteDataEditorial" action="editorialcp.php" class="form-horizontal" role="form">
                         <div class="form-group">
+                            <label class="col-lg-2 control-label">ID</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="idEditorial" name="idEditorial">
+                            </div>
                             <label class="col-lg-2 control-label">Nombre</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="nombreEditorial" name="deleteNombre">
+                                <input type="text" class="form-control" id="nombreEditorial" name="nombreEditorial">
                             </div>
                         </div>
                         <div class="modal-footer">

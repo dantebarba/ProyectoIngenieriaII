@@ -1,4 +1,4 @@
-
+ 
 <html>
     <head>
         <meta charset="utf-8">
@@ -24,18 +24,17 @@
                 });
                 //$("#openEditarAutor").click(function () {
                 $(document).on("click", "#openEditarAutor", function() {
-                    for (i = 0; i < fields.length; i++) {
-                        $(".modal-body #" + fields[i]).val(item[fields[i]]);
-                    }
+                    $(".modal-body #editar_idAutor").val(item['idAutor']);
+                    $(".modal-body #editar_nombreAutor").val(item['nombreAutor']);
                     // anda okey
                     //As pointed out in comments, 
                     //it is superfluous to have to manually call the modal.
                     // $('#addBookDialog').modal('show');
                 });
                  $(document).on("click", "#openEliminarAutor", function() {
-                    for (i = 0; i < fields.length; i++) {
-                        $(".modal-body #" + fields[i]).val(item[fields[i]]);
-                    }
+                     $(".modal-body #eliminar_idAutor").val(item['idAutor']);
+                    $(".modal-body #eliminar_nombreAutor").val(item['nombreAutor']);
+
                 });
             });
         </script>

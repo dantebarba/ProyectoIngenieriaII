@@ -31,7 +31,7 @@ if (isset($_POST["inputDataEditorial"])) { // Para agregar
     exit();
 }
 elseif (isset($_POST["editDataEditorial"])) { // Para editar
-    updateEditorial($_POST['idEditorial'], $_POST['editNombre']);
+    updateEditorial($_POST['idEditorial'], $_POST['nombreEditorial']);
     header('Location: listarEditorial.php');
     exit();
 } 

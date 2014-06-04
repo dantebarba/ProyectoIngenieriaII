@@ -25,7 +25,7 @@ function q_addEditorial ($nombre){
     $query="INSERT INTO editoriales (nombre) VALUES ('$nombre')";
     mysql_query($query) or die(mysql_error());
 };
-
+ 
 function q_addCategoria ($nombre){
     $query="INSERT INTO etiquetas (nombre) VALUES ('$nombre')";
     mysql_query($query) or die(mysql_error());
@@ -45,9 +45,6 @@ function q_updateCategoria ($id, $nombre) {
 }
 
 function q_removeAutor($id) { // elimina el autor segun $ID, no hace
-// comprobaciones, da error
-   // echo "entro a la tercer func";
-   // echo "$nomAutor";
     $query="DELETE FROM autores WHERE idAutor='$id'";
     mysql_query($query) or die(mysql_error());
 }

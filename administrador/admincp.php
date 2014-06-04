@@ -62,7 +62,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 <h3 class="panel-title">Autores</h3>
             </div><div class="panel-body">
                 <ul>
-                    <button type='button'class="btn  btn-success" data-toggle="modal" data-target="#agregarAutor">Agregar</button>
+                    <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarAutor">Agregar</button>
                     <button type="button" class="btn btn-primary" onclick="redirect('listarAutor.php')">Listar</button>
                 </ul>
             </div></div>
