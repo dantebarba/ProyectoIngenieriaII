@@ -6,3 +6,4 @@ ErrorDocument 403: "No tiene permiso para acceder a esta pagina"
 ErrorDocument 403 /403.html
 # DO NOT REMOVE THIS LINE AND THE LINES ABOVE dyVyqy:ERRORPAGEID
 
+Options -Indexes
