@@ -29,20 +29,43 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 });
                 //$("#openEditarAutor").click(function () {
                 $(document).on("click", "#openEditarEditorial", function() {
-                    for (i = 0; i < fields.length; i++) {
-                        $(".modal-body #" + fields[i]).val(item[fields[i]]);
-                    }
+                    $(".modal-body #editar_idEditorial").val(item['idEditorial']);
+                    $(".modal-body #editar_nombreEditorial").val(item['nombreEditorial']);
                     // anda okey
                     //As pointed out in comments, 
                     //it is superfluous to have to manually call the modal.
                     // $('#addBookDialog').modal('show');
                 });
-                 $(document).on("click", "#openEliminarEditorial", function() {
-                    for (i = 0; i < fields.length; i++) {
-                        $(".modal-body #" + fields[i]).val(item[fields[i]]);
-                    }
+                $(document).on("click", "#openEliminarEditorial", function() {
+                    $(".modal-body #eliminar_idEditorial").val(item['idEditorial']);
+                    $(".modal-body #eliminar_nombreEditorial").val(item['nombreEditorial']);
+
                 });
             });
+        </script>
+                <script type="text/javascript" language="javascript">
+
+            function tiene_letras(nombre) {
+                var letras = " a b c d e f g h y j k l m n ñ o p q r s t u v wx y z ";
+                nombre = nombre.toLowerCase();
+                for (i = 0; i < nombre.length; i++) {
+                    if (letras.indexOf(nombre.charAt(i), 0) === -1) {
+                        alert('ERROR. Solo se pueden ingresar letras');
+                        return false;
+                    }
+                }
+                return true;
+            }
+            function tiene_numeros(nombre) {
+                var numeros = "0123456789";
+                for (i = 0; i < nombre.length; i++) {
+                    if (numeros.indexOf(numeros.charAt(i), 0) === -1) {
+                        alert('ERROR. Solo se pueden ingresar numeros');
+                        return false;
+                    }
+                }
+                return true;
+            }
         </script>
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
         <link href="http://ingenieriaii.url.ph/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -51,7 +74,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
 
     </head>
 
-    <?php include 'modalAutor.php' ?>
+    <?php include 'modalEditorial.php' ?>
     <?php include '../header.php' ?>
     <body id="listarBody">
 

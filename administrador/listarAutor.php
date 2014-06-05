@@ -1,4 +1,4 @@
- <?php
+<?php
 if (!($_COOKIE['isAdmin'] != '')) {
     echo 'error de permisos';
     die();
@@ -36,8 +36,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     //it is superfluous to have to manually call the modal.
                     // $('#addBookDialog').modal('show');
                 });
-                 $(document).on("click", "#openEliminarAutor", function() {
-                     $(".modal-body #eliminar_idAutor").val(item['idAutor']);
+                $(document).on("click", "#openEliminarAutor", function() {
+                    $(".modal-body #eliminar_idAutor").val(item['idAutor']);
                     $(".modal-body #eliminar_nombreAutor").val(item['nombreAutor']);
 
                 });
@@ -50,7 +50,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <script type="text/javascript" language="javascript">
 
             function tiene_letras(nombre) {
-                var letras = "abcdefghyjklmnñopqrstuvwxyz ";
+                var letras = " a b c d e f g h y j k l m n ñ o p q r s t u v w x y z ";
                 nombre = nombre.toLowerCase();
                 for (i = 0; i < nombre.length; i++) {
                     if (letras.indexOf(nombre.charAt(i), 0) === -1) {

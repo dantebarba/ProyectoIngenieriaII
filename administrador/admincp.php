@@ -18,7 +18,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <script type="text/javascript" language="javascript">
 
             function tiene_letras(nombre) {
-                var letras = "abcdefghyjklmnñopqrstuvwxyz ";
+                var letras = " a b c d e f g h y j k l m n ñ o p q r s t u v w x y z ";
                 nombre = nombre.toLowerCase();
                 for (i = 0; i < nombre.length; i++) {
                     if (letras.indexOf(nombre.charAt(i), 0) === -1) {
