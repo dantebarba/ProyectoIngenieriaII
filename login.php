@@ -3,6 +3,8 @@
         if (isset($_COOKIE['username'])) {
             unset($_COOKIE['username']);
             setcookie('username', '', 1); // empty value and old timestamp
+            unset($_COOKIE['password']);
+            setcookie('password', '', 1);
         }
         if (isset($_COOKIE['isAdmin'])) {
             unset($_COOKIE['isAdmin']);
@@ -43,6 +45,7 @@ elseif  ($user == $resultado['username'] and $pass == $resultado['password']) {
      * o que la session se cancele por orden del servidor
      */
     setcookie('username', $resultado['username'], time()+3600);
+    setcookie('password', $resultado['password'], time()+3600);
 //    $_SESSION['status'] = 'logged';
 //    $_SESSION['user'] = $user;
     if ($resultado['isAdmin']) {

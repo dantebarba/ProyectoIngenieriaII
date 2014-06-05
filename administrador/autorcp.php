@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 
 if (!($_COOKIE['isAdmin'] != '')) {
     echo 'error de permisos';
@@ -8,6 +9,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
   // NO PONER ID's IGUALES A DOS OBJETOS HTML
 
  */
+=======
+>>>>>>> 128fadcf92579fd2d4b4a69c54f2f3bf910732d9
 
 function addAutor($nombre) {
     echo 'llego';
@@ -69,7 +72,10 @@ exit();
 //    exit();
 //}
 
+<<<<<<< HEAD
 // NO PONER ID's IGUALES A DOS OBJETOS HTML
 // NO PONER ID's IGUALES A DOS OBJETOS HTML
 
+=======
+>>>>>>> 128fadcf92579fd2d4b4a69c54f2f3bf910732d9
 
