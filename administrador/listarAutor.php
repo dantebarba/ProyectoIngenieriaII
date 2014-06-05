@@ -47,7 +47,30 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <link href="http://ingenieriaii.url.ph/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js" type="text/javascript"></script>
         <link href="http://ingenieriaii.url.ph/css/custom.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" language="javascript">
 
+            function tiene_letras(nombre) {
+                var letras = "abcdefghyjklmnñopqrstuvwxyz ";
+                nombre = nombre.toLowerCase();
+                for (i = 0; i < nombre.length; i++) {
+                    if (letras.indexOf(nombre.charAt(i), 0) === -1) {
+                        alert('ERROR. Solo se pueden ingresar letras');
+                        return false;
+                    }
+                }
+                return true;
+            }
+            function tiene_numeros(nombre) {
+                var numeros = "0123456789";
+                for (i = 0; i < nombre.length; i++) {
+                    if (numeros.indexOf(numeros.charAt(i), 0) === -1) {
+                        alert('ERROR. Solo se pueden ingresar numeros');
+                        return false;
+                    }
+                }
+                return true;
+            }
+        </script>
     </head>
 
     <?php include 'modalAutor.php' ?>

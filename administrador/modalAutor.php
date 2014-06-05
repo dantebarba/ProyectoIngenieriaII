@@ -8,7 +8,7 @@
                 <h4 class="modal-title" id="labelEditar">Editar Autor</h4>
             </div>
             <div class="modal-body">
-                <form method="post" name="editDataAutor" onsubmit="return tiene_letras(document.forms['inputNombreAutor']['nombreAutor'].value)" id="editDataAutor" action="autorcp.php" class="form-horizontal" role="form">
+                <form method="post" id="editDataAutor" name="editDataAutor" onsubmit="return tiene_letras(document.forms['editDataAutor']['editar_nombreAutor'].value)" action="autorcp.php" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-lg-2 control-label">ID</label>
                         <div class="col-lg-10">
@@ -40,7 +40,7 @@
                 <h4 class="modal-title" id="addAutorTitle">Agregar autor</h4>
             </div>
             <div class="modal-body">
-                <form method="post" onsubmit="return tiene_letras(document.forms['inputDataAutor']['agregar_nombreAutor'].value)" id="inputDataAutor" name="inputDataAutor" action="autorcp.php" class="form-horizontal" role="form">
+                <form method="post" id="inputDataAutor" name="inputDataAutor"  onsubmit="return tiene_letras(document.forms['inputDataAutor']['agregar_nombreAutor'].value)" action="autorcp.php" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
