@@ -81,6 +81,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
             <div class="row">
                 <div class="col-md-2"></div> 
                 <div class="col-md-8">
+                  <div  style="height:400px;overflow:auto;">
                     <table class="table table-hover table-bordered table-striped" id="lista">
                         <thead>
                             <tr>
@@ -115,6 +116,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             ?>
                         </tbody>
                     </table>
+                  </div>
                 </div>
                 <div class="col-md-2">
                     <button type="button" class="btn btn-default" id="openEditarAutor" onClick="$('#editarAutor').modal('show')">Editar Autor</button>
