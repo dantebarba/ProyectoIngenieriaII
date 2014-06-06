@@ -16,7 +16,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <script src="http://ingenieriaii.url.ph/js/jquery-2.1.1.min.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                var fields = ['idAutor', 'nombreAutor'];
+                var fields = ['idAutor', 'nombreAutor', 'DNIAutor'];
                 var item = {}; // los dict son igual a python
                 $('table.table-striped tbody tr').on('click', function() {
                     $(this).closest('table').find('td').removeClass('bg');
@@ -31,6 +31,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 $(document).on("click", "#openEditarAutor", function() {
                     $(".modal-body #editar_idAutor").val(item['idAutor']);
                     $(".modal-body #editar_nombreAutor").val(item['nombreAutor']);
+                    $(".modal-body #editar_DNIAutor").val(item['DNIAutor']);
                     // anda okey
                     //As pointed out in comments, 
                     //it is superfluous to have to manually call the modal.
@@ -39,6 +40,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 $(document).on("click", "#openEliminarAutor", function() {
                     $(".modal-body #eliminar_idAutor").val(item['idAutor']);
                     $(".modal-body #eliminar_nombreAutor").val(item['nombreAutor']);
+                    $(".modal-body #eliminar_DNIAutor").val(item['DNIAutor']);
 
                 });
             });
@@ -88,6 +90,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 
 
                                 <th>Nombre</th>
+                                
+                                <th>DNI</th>
 
                             </tr>
                         </thead>
@@ -110,6 +114,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
                                 echo '<td style="display:none;" id=' . 'idAutor' . '>' . $row['idAutor'] . '</td>';
                                 echo '<td id=' . 'nombreAutor' . '>' . $row['nombre'] . '</td>';
+                                echo '<td id=' . 'DNIAutor' . '>' . $row['DNI'] . '</td>';
                                 $i++;
                             }
                             mysql_close($link);

@@ -28,8 +28,10 @@ function updateAutor($id, $nombre, $DNI) {
     else
     {
         echo ("<SCRIPT LANGUAGE='JavaScript'>
-           window.alert('Ya existe el Autor');
+           window.alert('Ya existe el Autor');window.location.href=
+           '/administrador/listarAutor.php';
             </SCRIPT>");
+        
     }
     mysql_close($link);
 }

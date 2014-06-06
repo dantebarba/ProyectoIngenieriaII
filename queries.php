@@ -53,8 +53,8 @@ function q_addCategoria($nombre) {
 
 ;
 
-function q_updateAutor($id, $nombre) {
-    $query = "UPDATE autores SET nombre='$nombre' WHERE " . $id . "=idAutor";
+function q_updateAutor($id, $nombre, $DNI) {
+    $query = "UPDATE autores SET nombre='$nombre',DNI='$DNI' WHERE " . $id . "=idAutor";
     mysql_query($query) or die(mysql_error());
 }
 
@@ -64,7 +64,7 @@ function q_updateEditorial($id, $nombre) {
 }
 
 function q_updateCategoria($id, $nombre) {
-    $query = "UPDATE autores SET nombre='$nombre' WHERE " . $id . "=etiqueta";
+    $query = "UPDATE etiquetas SET nombre='$nombre' WHERE " . $id . "=idEtiqueta";
     mysql_query($query) or die(mysql_error());
 }
 

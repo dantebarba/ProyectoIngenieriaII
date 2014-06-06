@@ -81,7 +81,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
-                                echo '<td style="display:none;" id=' . 'idEtiqueta' . '>' . $row['idEtiquetas'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'idEtiqueta' . '>' . $row['idEtiqueta'] . '</td>';
                                 echo '<td id=' . 'nombreEtiqueta' . '>' . $row['nombre'] . '</td>';
                                 $i++;
                             }

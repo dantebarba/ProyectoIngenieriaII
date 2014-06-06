@@ -12,9 +12,6 @@
             <div class="modal-body">
                 <form method="post" name="editDataCategoria" onsubmit="return tiene_letras(document.forms['inputNombreCategoria']['nombreCategoria'].value)" id="editDataCategoria" action="categoriacp.php" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <div class="col-lg-10">
-                            <input type="hidden" class="form-control" id="editar_idEtiqueta" name="editar_idEtiqueta">
-                        </div>
                         <label class="col-lg-2 control-label" >Nombre</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="editar_nombreEtiqueta" name="editar_nombreEtiqueta">

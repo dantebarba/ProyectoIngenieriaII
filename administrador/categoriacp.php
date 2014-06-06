@@ -3,11 +3,13 @@ if (!($_COOKIE['isAdmin'] != '')) {
     echo 'error de permisos';
     die();
 }
-function addEtiqueta($nombre) {
+
+
+function addCategoria($nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    if (!isPresentEtiqueta($nombre)) {
+    if (!q_isPresentCategoria($nombre)) {
         q_addCategoria($nombre);
     }
     else {
@@ -16,20 +18,23 @@ function addEtiqueta($nombre) {
     mysql_close($link);
 }
 
-function updateEtiqueta($id, $nombre) {
+function updateCategoria($id, $nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    if (!isPresentEtiqueta($nombre)) {
+    if (!q_isPresentCategoria($nombre)) {
         q_updateCategoria($id, $nombre);
     }
     else {
-        // ALERT MESSAGE
+        echo ("<SCRIPT LANGUAGE='JavaScript'>
+           window.alert('Ya existe la Categoria');window.location.href=
+           '/administrador/listarCategoria.php';
+            </SCRIPT>");
     }
     mysql_close($link);
 }
 
-function delEtiqueta($id, $nombre) {
+function delCategoria($id, $nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
@@ -40,16 +45,16 @@ function delEtiqueta($id, $nombre) {
 $element = $_POST["element"];
 switch ($element) {
     case 'Etiqueta_add': {
-        addEtiqueta($_POST['agregar_nombreEtiqueta']);
+        addCategoria($_POST['agregar_nombreEtiqueta']);
         header('Location: admincp.php');
         break;
         }
     case 'Etiqueta_edit': {
-        updateEtiqueta($_POST['editar_idEtiqueta'], $_POST['editar_nombreEtiqueta']);
+        updateCategoria($_POST['editar_idEtiqueta'], $_POST['editar_nombreEtiqueta']);
         header('Location: listarCategoria.php');
         }
     case 'Etiqueta_del': {
-        delEtiqueta($_POST['eliminar_idEtiqueta']);
+        delCategoria($_POST['eliminar_idEtiqueta']);
         header('Location: listarCategoria.php');
         }
 }
