@@ -13,11 +13,11 @@ function addEditorial($nombre) {
     mysql_close($link);
 }
 
-function updateEditorial($id) {
+function updateEditorial($id, $nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    q_updateEditorial($id);
+    q_updateEditorial($id, $nombre);
     mysql_close($link);
 }
 
@@ -48,21 +48,4 @@ switch ($element) {
 }
 exit();
 
-/*
-if (isset($_POST["inputDataEditorial"])) { // Para agregar
-    addEditorial($_POST['inputEditorial']);
-    header('Location: admincp.php');
-    exit();
-}
-elseif (isset($_POST["editDataEditorial"])) { // Para editar
-    updateEditorial($_POST['idEditorial'], $_POST['nombreEditorial']);
-    header('Location: listarEditorial.php');
-    exit();
-} 
-elseif (isset($_POST["deleteDataEditorial"])){ // para borrar
-        //$unNom= 'ana';
-        delEditorial($_POST["idEditorial"]); 
-        exit;
-}
- * */
 ?>

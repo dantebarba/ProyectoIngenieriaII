@@ -85,7 +85,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     <table class="table table-hover table-bordered table-striped" id="lista">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                
 
                                 <th>Nombre</th>
 
@@ -108,7 +108,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
-                                echo '<td id=' . 'idAutor' . '>' . $row['idAutor'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'idAutor' . '>' . $row['idAutor'] . '</td>';
                                 echo '<td id=' . 'nombreAutor' . '>' . $row['nombre'] . '</td>';
                                 $i++;
                             }

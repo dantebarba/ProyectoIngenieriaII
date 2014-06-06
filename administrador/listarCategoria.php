@@ -16,7 +16,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <script src="http://ingenieriaii.url.ph/js/jquery-2.1.1.min.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                var fields = ['idEtiqueta'];
+                var fields = ['idEtiqueta', 'nombreEtiqueta'];
                 var item = {}; // los dict son igual a python
                 $('table.table-striped tbody tr').on('click', function() {
                     $(this).closest('table').find('td').removeClass('bg');
@@ -30,12 +30,14 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 //$("#openEditarAutor").click(function () {
                 $(document).on("click", "#openEditarCategoria", function() {
                     $(".modal-body #editar_nombreCategoria").val(item['idEtiqueta']);
+                    $(".modal-body #editar_nombreCategoria").val(item['nombreEtiqueta']);
                     // anda okey
                     //As pointed out in comments, 
                     //it is superfluous to have to manually call the modal.
                     // $('#addBookDialog').modal('show');
                 });
                 $(document).on("click", "#openEliminarAutor", function() {
+                    $(".modal-body #editar_nombreCategoria").val(item['nombreEtiqueta']);
                     $(".modal-body #editar_nombreCategoria").val(item['idEtiqueta']);
 
                 });
@@ -59,7 +61,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     <table class="table table-hover table-bordered table-striped" id="lista">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Nombre de Categoria</th>
                             </tr>
                         </thead>
 
@@ -74,12 +76,13 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             $i = 0;
                             $id = 'row' . $i;
 
-                            $result = q_listCategoria(5) or die('Error en la consulta a la base de datos' . mysql_error());
+                            $result = q_listCategoria() or die('Error en la consulta a la base de datos' . mysql_error());
                             // limitado a 5 por cuestiones de prueba
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
                                 echo '<td id=' . 'idEtiqueta' . '>' . $row['idEtiquetas'] . '</td>';
+                                echo '<td id=' . 'nombreEtiqueta' . '>' . $row['nombre'] . '</td>';
                                 $i++;
                             }
                             mysql_close($link);

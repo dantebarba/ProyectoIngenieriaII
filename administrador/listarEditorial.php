@@ -36,36 +36,11 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     //it is superfluous to have to manually call the modal.
                     // $('#addBookDialog').modal('show');
                 });
-                $(document).on("click", "#openEliminarEditorial", function() {
+                 $(document).on("click", "#openEliminarEditorial", function() {
                     $(".modal-body #eliminar_idEditorial").val(item['idEditorial']);
                     $(".modal-body #eliminar_nombreEditorial").val(item['nombreEditorial']);
-
                 });
             });
-        </script>
-                <script type="text/javascript" language="javascript">
-
-            function tiene_letras(nombre) {
-                var letras = " a b c d e f g h y j k l m n ñ o p q r s t u v wx y z ";
-                nombre = nombre.toLowerCase();
-                for (i = 0; i < nombre.length; i++) {
-                    if (letras.indexOf(nombre.charAt(i), 0) === -1) {
-                        alert('ERROR. Solo se pueden ingresar letras');
-                        return false;
-                    }
-                }
-                return true;
-            }
-            function tiene_numeros(nombre) {
-                var numeros = "0123456789";
-                for (i = 0; i < nombre.length; i++) {
-                    if (numeros.indexOf(numeros.charAt(i), 0) === -1) {
-                        alert('ERROR. Solo se pueden ingresar numeros');
-                        return false;
-                    }
-                }
-                return true;
-            }
         </script>
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
         <link href="http://ingenieriaii.url.ph/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -103,7 +78,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             $i = 0;
                             $id = 'row' . $i;
 
-                            $result = q_listEditorial(5) or die('Error en la consulta a la base de datos' . mysql_error());
+                            $result = q_listEditorial() or die('Error en la consulta a la base de datos' . mysql_error());
                             // limitado a 5 por cuestiones de prueba
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 

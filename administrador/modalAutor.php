@@ -10,13 +10,16 @@
             <div class="modal-body">
                 <form method="post" id="editDataAutor" name="editDataAutor" onsubmit="return tiene_letras(document.forms['editDataAutor']['editar_nombreAutor'].value)" action="autorcp.php" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">ID</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="editar_idAutor" readonly style="background-color:lightgray" name="editar_idAutor">
+                            <input type="hidden" class="form-control" id="editar_idAutor" name="editar_idAutor">
+                            <label class="col-lg-1 control-label" >Nombre</label>
                         </div>
-                        <label class="col-lg-2 control-label" >Nombre</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="editar_nombreAutor" name="editar_nombreAutor">
+                        </div>
+                        <div class="col-lg-10">
+                            <label class="col-lg-1 control-label" >DNI</label>
+                            <input type="text" class="form-control" id="editar_DNIAutor" name="editar_DNIAutor">
                         </div>
                     </div>
                     <input type='hidden' name='element' value='autor_edit'/>

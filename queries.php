@@ -83,8 +83,18 @@ function q_removeCategoria($id) {
     mysql_query($query) or die(mysql_error());
 }
 
-function q_isPresentAutor($nombre) {
-    
+function q_isPresentAutor($DNI) {
+    // devuelve TRUE si esta PRESENTE; devuelve FALSE si no lo esta
+    // Busca solo por DNI
+    $query="SELECT DNI FROM autores WHERE '$DNI'=DNI";
+    $result=mysql_query($query); 
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else {
+        return true;
+    }
 }
 
 ; // devuelve true or false dependiendo si

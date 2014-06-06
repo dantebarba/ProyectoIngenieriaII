@@ -27,20 +27,22 @@ function delEditorial($id) {
     mysql_close($link);
 }
 
+$element = $_POST["element"];
+switch ($element) {
+    case 'Etiqueta_add': {
+        addAutor($_POST['agregar_idEtiqueta'], $_POST['agregar_nombreEtiqueta']);
+        header('Location: admincp.php');
+        break;
+        }
+    case 'Etiqueta_edit': {
+        updateAutor($_POST['editar_idEtiqueta'], $_POST['editar_nombreEtiqueta']);
+        header('Location: listarAutor.php');
+        }
+    case 'Etiqueta_del': {
+        delAutor($_POST['eliminar_idEtiqueta']);
+        header('Location: listarAutor.php');
+        }
+}
+exit();
 
-//if (isset($_POST["inputDataEditorial"])) { // Para agregar
-//   addCategoria($_POST['inputCategoria']);
-//    header('Location: admincp.php');
-//    exit();
-//}
-//elseif (isset($_POST["editDataCategoria"])) { // Para editar
-//    updateEditorial($_POST['idCategoria'], $_POST['nombreCategoria']);
-//    header('Location: listarCategoria.php');
-//    exit();
-//} 
-//elseif (isset($_POST["deleteDataCategoria"])){ // para borrar
-//        //$unNom= 'ana';
-//        delEditorial($_POST["idCategoria"]); 
-//        exit;
-//}
 ?>

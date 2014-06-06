@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">ID</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="editar_idEditorial" name="editar_idEditorial">
+                            <input type="text" class="form-control" id="editar_idEditorial" name="editar_idEditorial" readonly style="background-color:lightgray">
                         </div>
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
@@ -68,11 +68,11 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">ID</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="eliminar_idEditorial" name="eliminar_idEditorial">
+                            <input type="text" class="form-control" id="eliminar_idEditorial" name="eliminar_idEditorial" readonly style="background-color:lightgray">
                         </div>
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="eliminar_nombreEditorial" name="eliminar_nombreEditorial">
+                            <input type="text" class="form-control" id="eliminar_nombreEditorial" name="eliminar_nombreEditorial" readonly style="background-color:lightgray">
                         </div>
                     </div>
                     <input type='hidden' name='elemente' value='editorial_del'/>
