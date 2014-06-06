@@ -51,22 +51,17 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <link href="http://ingenieriaii.url.ph/css/custom.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" language="javascript">
 
-            function tiene_letras(nombre) {
+            function tiene_letras(nombre,numero) {
+                if (nombre === "" || numero === "")
+                {
+                    alert("Por favor no dejar campos vacios");
+                    return false;
+                }
                 var letras = " a b c d e f g h y j k l m n ñ o p q r s t u v w x y z ";
                 nombre = nombre.toLowerCase();
                 for (i = 0; i < nombre.length; i++) {
                     if (letras.indexOf(nombre.charAt(i), 0) === -1) {
                         alert('ERROR. Solo se pueden ingresar letras');
-                        return false;
-                    }
-                }
-                return true;
-            }
-            function tiene_numeros(nombre) {
-                var numeros = "0123456789";
-                for (i = 0; i < nombre.length; i++) {
-                    if (numeros.indexOf(numeros.charAt(i), 0) === -1) {
-                        alert('ERROR. Solo se pueden ingresar numeros');
                         return false;
                     }
                 }
@@ -83,45 +78,45 @@ if (!($_COOKIE['isAdmin'] != '')) {
             <div class="row">
                 <div class="col-md-2"></div> 
                 <div class="col-md-8">
-                  <div  style="height:400px;overflow:auto;">
-                    <table class="table table-hover table-bordered table-striped" id="lista">
-                        <thead>
-                            <tr>
-                                
+                    <div  style="height:400px;overflow:auto;">
+                        <table class="table table-hover table-bordered table-striped" id="lista">
+                            <thead>
+                                <tr>
 
-                                <th>Nombre</th>
-                                
-                                <th>DNI</th>
 
-                            </tr>
-                        </thead>
+                                    <th>Nombre</th>
 
-                        <tbody>
-                            <?php
-                            include '../dbconnection.php';
+                                    <th>DNI</th>
 
-                            $link = connectdb();
+                                </tr>
+                            </thead>
 
-                            include '../queries.php';
+                            <tbody>
+                                <?php
+                                include '../dbconnection.php';
 
-                            $i = 0;
-                            $id = 'row' . $i;
+                                $link = connectdb();
 
-                            $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
-                            // limitado a 5 por cuestiones de prueba
-                            while ($row = mysql_fetch_array($result)) {
-                                //Print out the contents of the entry 
-                                echo '<tr id=' . $id . ' tabindex=' . $i . '>';
-                                echo '<td style="display:none;" id=' . 'idAutor' . '>' . $row['idAutor'] . '</td>';
-                                echo '<td id=' . 'nombreAutor' . '>' . $row['nombre'] . '</td>';
-                                echo '<td id=' . 'DNIAutor' . '>' . $row['DNI'] . '</td>';
-                                $i++;
-                            }
-                            mysql_close($link);
-                            ?>
-                        </tbody>
-                    </table>
-                  </div>
+                                include '../queries.php';
+
+                                $i = 0;
+                                $id = 'row' . $i;
+
+                                $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
+                                // limitado a 5 por cuestiones de prueba
+                                while ($row = mysql_fetch_array($result)) {
+                                    //Print out the contents of the entry 
+                                    echo '<tr id=' . $id . ' tabindex=' . $i . '>';
+                                    echo '<td style="display:none;" id=' . 'idAutor' . '>' . $row['idAutor'] . '</td>';
+                                    echo '<td id=' . 'nombreAutor' . '>' . $row['nombre'] . '</td>';
+                                    echo '<td id=' . 'DNIAutor' . '>' . $row['DNI'] . '</td>';
+                                    $i++;
+                                }
+                                mysql_close($link);
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="col-md-2">
                     <button type="button" class="btn btn-default" id="openEditarAutor" onClick="$('#editarAutor').modal('show')">Editar Autor</button>
