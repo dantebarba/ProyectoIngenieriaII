@@ -101,13 +101,29 @@ function q_isPresentAutor($DNI) {
 // el autor esta presente en la DB o no
 
 function q_isPresentEditorial($nombre) {
-    
+   $query="SELECT nombre FROM editoriales WHERE '$nombre'=nombre";
+    $result=mysql_query($query); 
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else {
+        return true;
+    } 
 }
 
 ;
 
 function q_isPresentCategoria($nombre) {
-    
+    $query="SELECT nombre FROM etiquetas WHERE '$nombre'=nombre";
+    $result=mysql_query($query); 
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else {
+        return true;
+    }
 }
 
 ;

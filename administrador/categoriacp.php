@@ -3,44 +3,54 @@ if (!($_COOKIE['isAdmin'] != '')) {
     echo 'error de permisos';
     die();
 }
-function addCategoria($nombre) {
+function addEtiqueta($nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    q_addCategoria($nombre);
+    if (!isPresentEtiqueta($nombre)) {
+        q_addCategoria($nombre);
+    }
+    else {
+        // ALERT MESSAGE
+    }
     mysql_close($link);
 }
 
-function updateEditorial($id) {
+function updateEtiqueta($id, $nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    q_updateCategoria($id);
+    if (!isPresentEtiqueta($nombre)) {
+        q_updateCategoria($id, $nombre);
+    }
+    else {
+        // ALERT MESSAGE
+    }
     mysql_close($link);
 }
 
-function delEditorial($id) {
+function delEtiqueta($id, $nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    q_removeCategoria($id);
+    q_removeCategoria($id, $nombre);
     mysql_close($link);
 }
 
 $element = $_POST["element"];
 switch ($element) {
     case 'Etiqueta_add': {
-        addAutor($_POST['agregar_idEtiqueta'], $_POST['agregar_nombreEtiqueta']);
+        addEtiqueta($_POST['agregar_nombreEtiqueta']);
         header('Location: admincp.php');
         break;
         }
     case 'Etiqueta_edit': {
-        updateAutor($_POST['editar_idEtiqueta'], $_POST['editar_nombreEtiqueta']);
-        header('Location: listarAutor.php');
+        updateEtiqueta($_POST['editar_idEtiqueta'], $_POST['editar_nombreEtiqueta']);
+        header('Location: listarCategoria.php');
         }
     case 'Etiqueta_del': {
-        delAutor($_POST['eliminar_idEtiqueta']);
-        header('Location: listarAutor.php');
+        delEtiqueta($_POST['eliminar_idEtiqueta']);
+        header('Location: listarCategoria.php');
         }
 }
 exit();

@@ -52,7 +52,6 @@
                         </div>
                     </div>
                     <input type='hidden' name='element' value='Etiqueta_add'/>
-                    <input type='hidden' name='agregar_idEtiqueta' id='agregar_idEtiqueta' />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Agregar</button>

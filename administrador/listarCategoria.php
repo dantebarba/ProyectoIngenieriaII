@@ -29,16 +29,16 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 });
                 //$("#openEditarAutor").click(function () {
                 $(document).on("click", "#openEditarCategoria", function() {
-                    $(".modal-body #editar_nombreCategoria").val(item['idEtiqueta']);
-                    $(".modal-body #editar_nombreCategoria").val(item['nombreEtiqueta']);
+                    $(".modal-body #editar_idEtiqueta").val(item['idEtiqueta']);
+                    $(".modal-body #editar_nombreEtiqueta").val(item['nombreEtiqueta']);
                     // anda okey
                     //As pointed out in comments, 
                     //it is superfluous to have to manually call the modal.
                     // $('#addBookDialog').modal('show');
                 });
                 $(document).on("click", "#openEliminarAutor", function() {
-                    $(".modal-body #editar_nombreCategoria").val(item['nombreEtiqueta']);
-                    $(".modal-body #editar_nombreCategoria").val(item['idEtiqueta']);
+                    $(".modal-body #editar_nombreEtiqueta").val(item['nombreEtiqueta']);
+                    $(".modal-body #editar_idEtiqueta").val(item['idEtiqueta']);
 
                 });
             });
@@ -81,7 +81,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
-                                echo '<td id=' . 'idEtiqueta' . '>' . $row['idEtiquetas'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'idEtiqueta' . '>' . $row['idEtiquetas'] . '</td>';
                                 echo '<td id=' . 'nombreEtiqueta' . '>' . $row['nombre'] . '</td>';
                                 $i++;
                             }
