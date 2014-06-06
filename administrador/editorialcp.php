@@ -25,7 +25,7 @@ function updateEditorial($id, $nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    if (!q_isPresentEditorial($nombre)) {
+    if (!q_isPresentEditorial($nombre, $id)) {
         q_updateEditorial($id, $nombre);
     }
     else {

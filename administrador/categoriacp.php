@@ -25,7 +25,7 @@ function updateCategoria($id, $nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    if (!q_isPresentCategoria($nombre)) {
+    if (!q_isPresentCategoria($nombre, $id)) {
         q_updateCategoria($id, $nombre);
     }
     else {

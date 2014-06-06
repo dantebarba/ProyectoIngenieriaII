@@ -22,7 +22,7 @@ function updateAutor($id, $nombre, $DNI) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    if (!q_isPresentAutor($DNI)) {
+    if (!q_isPresentAutor($DNI, $id)) {
         q_updateAutor($id, $nombre, $DNI);
         
     }

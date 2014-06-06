@@ -83,10 +83,10 @@ function q_removeCategoria($id) {
     mysql_query($query) or die(mysql_error());
 }
 
-function q_isPresentAutor($DNI) {
+function q_isPresentAutor($DNI, $id=-1) {
     // devuelve TRUE si esta PRESENTE; devuelve FALSE si no lo esta
     // Busca solo por DNI
-    $query="SELECT DNI FROM autores WHERE '$DNI'=DNI";
+    $query="SELECT DNI FROM autores WHERE '$DNI'=DNI and '$id' <> idAutor";
     $result=mysql_query($query); 
     if (mysql_num_rows($result) == 0)
     {
@@ -100,8 +100,8 @@ function q_isPresentAutor($DNI) {
 ; // devuelve true or false dependiendo si
 // el autor esta presente en la DB o no
 
-function q_isPresentEditorial($nombre) {
-   $query="SELECT nombre FROM editoriales WHERE '$nombre'=nombre";
+function q_isPresentEditorial($nombre, $id=-1) {
+   $query="SELECT nombre FROM editoriales WHERE '$nombre'=nombre and '$id'<> idEditorial";
     $result=mysql_query($query); 
     if (mysql_num_rows($result) == 0)
     {
@@ -114,8 +114,8 @@ function q_isPresentEditorial($nombre) {
 
 ;
 
-function q_isPresentCategoria($nombre) {
-    $query="SELECT nombre FROM etiquetas WHERE '$nombre'=nombre";
+function q_isPresentCategoria($nombre, $id=-1) {
+    $query="SELECT nombre FROM etiquetas WHERE '$nombre'=nombre and '$id' <> idEtiqueta";
     $result=mysql_query($query); 
     if (mysql_num_rows($result) == 0)
     {
