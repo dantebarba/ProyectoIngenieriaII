@@ -59,7 +59,7 @@ function q_updateAutor($id, $nombre, $DNI) {
 }
 
 function q_updateEditorial($id, $nombre) {
-    $query = "UPDATE autores SET nombre='$nombre' WHERE " . $id . "=idEditorial";
+    $query = "UPDATE editoriales SET nombre='$nombre' WHERE " . $id . "=idEditorial";
     mysql_query($query) or die(mysql_error());
 }
 

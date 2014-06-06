@@ -9,7 +9,15 @@ function addEditorial($nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    q_addEditorial($nombre);
+    if (!q_isPresentEditorial($nombre)) {
+        q_addEditorial($nombre);
+    }
+    else {
+        echo ("<SCRIPT LANGUAGE='JavaScript'>
+           window.alert('Ya existe la Editorial');window.location.href=
+           '/administrador/admincp.php';
+            </SCRIPT>");
+    }
     mysql_close($link);
 }
 
@@ -17,7 +25,15 @@ function updateEditorial($id, $nombre) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
-    q_updateEditorial($id, $nombre);
+    if (!q_isPresentEditorial($nombre)) {
+        q_updateEditorial($id, $nombre);
+    }
+    else {
+        echo ("<SCRIPT LANGUAGE='JavaScript'>
+           window.alert('Ya existe la Editorial');window.location.href=
+           '/administrador/listarEditorial.php';
+            </SCRIPT>");
+    }
     mysql_close($link);
 }
 
@@ -28,6 +44,8 @@ function delEditorial($id) {
     q_removeEditorial($id);
     mysql_close($link);
 }
+
+
 $element = $_POST["elemente"];
 switch ($element) {
     case 'editorial_add': {

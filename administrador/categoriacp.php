@@ -13,7 +13,10 @@ function addCategoria($nombre) {
         q_addCategoria($nombre);
     }
     else {
-        // ALERT MESSAGE
+        echo ("<SCRIPT LANGUAGE='JavaScript'>
+           window.alert('Ya existe la Categoria');window.location.href=
+           '/administrador/admincp.php';
+            </SCRIPT>");
     }
     mysql_close($link);
 }

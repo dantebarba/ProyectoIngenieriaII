@@ -35,16 +35,14 @@
             <div class="modal-body">
                 <form method="post" id="editDataEditorial" onsubmit="return tiene_letras(document.forms['inputNombreEditorial']['editar_nombreEditorial'].value)" action="editorialcp.php" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">ID</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="editar_idEditorial" name="editar_idEditorial" readonly style="background-color:lightgray">
-                        </div>
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="editar_nombreEditorial" name="editar_nombreEditorial">
                         </div>
+                        
                     </div>
                     <input type='hidden' name='elemente' value='editorial_edit'/>
+                    <input type="hidden" id="editar_idEditorial" name="editar_idEditorial" >
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Aceptar</button>
@@ -66,16 +64,13 @@
             <div class="modal-body">
                 <form method="post" id="deleteDataEditorial" action="editorialcp.php" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">ID</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="eliminar_idEditorial" name="eliminar_idEditorial" readonly style="background-color:lightgray">
-                        </div>
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="eliminar_nombreEditorial" name="eliminar_nombreEditorial" readonly style="background-color:lightgray">
                         </div>
                     </div>
                     <input type='hidden' name='elemente' value='editorial_del'/>
+                    <input type="hidden" id="eliminar_idEditorial" name="eliminar_idEditorial" >
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-danger">Eliminar</button>
