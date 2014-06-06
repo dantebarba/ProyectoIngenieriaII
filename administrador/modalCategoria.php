@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label" >Nombre</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="editar_nombreEtiqueta" name="editar_nombreEtiqueta">
+                            <input type="text" class="form-control"  maxlength="15" id="editar_nombreEtiqueta" name="editar_nombreEtiqueta">
                         </div>
                     </div>
                     <input type='hidden' name='element' value='Etiqueta_edit'/>
@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="agregar_nombreEtiqueta" name="agregar_nombreEtiqueta">
+                            <input type="text" class="form-control" maxlength="15" id="agregar_nombreEtiqueta" name="agregar_nombreEtiqueta">
                         </div>
                     </div>
                     <input type='hidden' name='element' value='Etiqueta_add'/>

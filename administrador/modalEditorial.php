@@ -10,7 +10,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="agregar_nombreEditorial" name="agregar_nombreEditorial">
+                            <input type="text" class="form-control" maxlength="45" id="agregar_nombreEditorial" name="agregar_nombreEditorial">
                         </div>
                     </div>
                     <input type='hidden' name='elemente' value='editorial_add'/>
@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="editar_nombreEditorial" name="editar_nombreEditorial">
+                            <input type="text" class="form-control"  maxlength="45" id="editar_nombreEditorial" name="editar_nombreEditorial">
                         </div>
                         
                     </div>

@@ -11,11 +11,8 @@
                 <form method="post" id="editDataAutor" name="editDataAutor" onsubmit="return tiene_letras(document.forms['editDataAutor']['editar_nombreAutor'].value)" action="autorcp.php" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="col-lg-10">
-                            <input type="hidden" class="form-control" id="editar_idAutor" name="editar_idAutor">
                             <label class="col-lg-1 control-label" >Nombre</label>
-                        </div>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="editar_nombreAutor" name="editar_nombreAutor">
+                            <input type="text" class="form-control" maxlength="64" id="editar_nombreAutor" name="editar_nombreAutor">
                         </div>
                         <div class="col-lg-10">
                             <label class="col-lg-1 control-label" >DNI</label>
@@ -23,7 +20,7 @@
                         </div>
                     </div>
                     <input type='hidden' name='element' value='autor_edit'/>
-
+                    <input type="hidden" class="form-control" id="editar_idAutor" name="editar_idAutor">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-primary" >Aceptar</button>
@@ -47,11 +44,11 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="agregar_nombreAutor" name="agregar_nombreAutor">
+                            <input type="text" class="form-control" maxlength="64" id="agregar_nombreAutor" name="agregar_nombreAutor">
                         </div>
                         <label class="col-lg-2 control-label" >DNI</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="agregar_DNIAutor" name="agregar_DNIAutor">
+                            <input type="text" class="form-control" maxlength="32" id="agregar_DNIAutor" name="agregar_DNIAutor">
                         </div>
                     </div>
                     <input type='hidden' name='element' value='autor_add'/>
