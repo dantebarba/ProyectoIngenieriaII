@@ -51,13 +51,13 @@
                     if (isset($_COOKIE['isAdmin']) && ($_COOKIE['isAdmin'] != '')) {
                         echo "<li><a href='"."http://ingenieriaii.url.ph/administrador/admincp.php"."'>Admin CP</a></li>";
                     }
-                    echo "<li><a href="."#".">Carrito</a></li>";
+                    //echo "<li><a href="."#".">Carrito</a></li>";
                     echo '<li><a <span style="float: right;">Bienvenido '.$_COOKIE["username"].' - <button type="button"
                         class="btn btn-success btn-xs" onClick="logout()"'.
                         '>Log out</button></span></a></li>';
                 }
                 else {
-                    echo "<li><a href="."registrar.php".">Registrarse</a></li>";
+                    //echo "<li><a href="."registrar.php".">Registrarse</a></li>";
                     echo'<li><a <span style="float: right;">No est&aacute;s conectado - '
                         . '<button type="button" class="btn btn-success btn-xs" data-toggle="modal" '
                         . 'data-target="#login">Log in</button></span></a></li>';
