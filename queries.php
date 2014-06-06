@@ -34,8 +34,8 @@ function q_getcompra($nombre) {
 
 ;
 
-function q_addAutor($nombre) {
-    $query = "INSERT INTO autores (nombre) VALUES ('$nombre')";
+function q_addAutor($nombre, $DNI) {
+    $query = "INSERT INTO autores (nombre, DNI) VALUES ('$nombre', '$DNI')";
     mysql_query($query) or die(mysql_error());
 }
 
@@ -54,7 +54,7 @@ function q_addCategoria($nombre) {
 ;
 
 function q_updateAutor($id, $nombre, $DNI) {
-    $query = "UPDATE autores SET nombre='$nombre',DNI='$DNI' WHERE " . $id . "=idAutor";
+    $query = "UPDATE autores SET nombre='$nombre',DNI=" . $DNI . " WHERE " . $id . "=idAutor";
     mysql_query($query) or die(mysql_error());
 }
 

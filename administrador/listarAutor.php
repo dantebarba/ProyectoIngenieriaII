@@ -107,7 +107,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             $i = 0;
                             $id = 'row' . $i;
 
-                            $result = q_listAutor(5) or die('Error en la consulta a la base de datos' . mysql_error());
+                            $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
                             // limitado a 5 por cuestiones de prueba
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 

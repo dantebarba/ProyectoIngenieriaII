@@ -49,6 +49,10 @@
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="agregar_nombreAutor" name="agregar_nombreAutor">
                         </div>
+                        <label class="col-lg-2 control-label" >DNI</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="agregar_DNIAutor" name="agregar_DNIAutor">
+                        </div>
                     </div>
                     <input type='hidden' name='element' value='autor_add'/>
                     <div class="modal-footer">
@@ -73,16 +77,13 @@
             <div class="modal-body">
                 <form method="post" id="deleteDataAutor" name="deleteDataAutor" onsubmit="return tiene_letras(document.forms['inputNombreAutor']['nombreAutor'].value)"  action="autorcp.php" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">ID</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="eliminar_idAutor" readonly style="background-color:lightgray" name="eliminar_idAutor">
-                        </div>
                         <label class="col-lg-2 control-label" >Nombre</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="eliminar_nombreAutor" readonly style="background-color:lightgray" name="eliminar_nombreAutor">
                         </div>
                     </div>
                     <input type='hidden' name='element' value='autor_del'/>
+                    <input type="hidden" id="eliminar_idAutor" name="eliminar_idAutor">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-danger"  >Eliminar</button>

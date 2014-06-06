@@ -1,6 +1,6 @@
 <?php
 
-function addAutor($nombre) {
+function addAutor($nombre, $DNI) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
@@ -10,7 +10,8 @@ function addAutor($nombre) {
     else
     {
         echo ("<SCRIPT LANGUAGE='JavaScript'>
-           window.alert('Ya existe el Autor');
+           window.alert('Ya existe el Autor');window.location.href=
+           '/administrador/admincp.php';
             </SCRIPT>");
     }
     

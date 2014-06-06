@@ -43,7 +43,7 @@
             <div class="modal-body">
                 <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreEtiqueta']['nombreEtiqueta'].value)" id="inputNombreEtiqueta" action="categoriacp.php" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">Etiqueta</label>
+                        <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="agregar_nombreEtiqueta" name="agregar_nombreEtiqueta">
                         </div>
