@@ -51,9 +51,9 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     //it is superfluous to have to manually call the modal.
                     // $('#addBookDialog').modal('show');
                 });
-                $(document).on("click", "#openEliminarAutor", function() {
-                    $(".modal-body #editar_nombreEtiqueta").val(item['nombreEtiqueta']);
-                    $(".modal-body #editar_idEtiqueta").val(item['idEtiqueta']);
+                $(document).on("click", "#openEliminarCategoria", function() {
+                    $(".modal-body #eliminar_nombreEtiqueta").val(item['nombreEtiqueta']);
+                    $(".modal-body #eliminar_idEtiqueta").val(item['idEtiqueta']);
 
                 });
             });

@@ -79,7 +79,7 @@ function q_removeEditorial($id) {
 }
 
 function q_removeCategoria($id) {
-    $query = "DELETE FROM etiquetas WHERE nombre='$id'";
+    $query = "DELETE FROM etiquetas WHERE idEtiqueta='$id'";
     mysql_query($query) or die(mysql_error());
 }
 

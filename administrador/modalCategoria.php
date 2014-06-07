@@ -68,7 +68,7 @@
                 <h4 class="modal-title" id="labelEditar">Eliminar Categoria</h4>
             </div>
             <div class="modal-body">
-                <form method="post" id="deleteDataAutor" name="deleteDataCategoria" onsubmit="return tiene_letras(document.forms['inputNombreCategoria']['eliminar_idEtiqueta'].value)"  action="categoriacp.php" class="form-horizontal" role="form">
+                <form method="post" id="deleteDataCategoria" name="deleteDataCategoria" onsubmit="return tiene_letras(document.forms['inputNombreCategoria']['eliminar_idEtiqueta'].value)"  action="categoriacp.php" class="form-horizontal" role="form">
                     <div class="form-group">
 
                         
