@@ -16,8 +16,27 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <title>Cookbook</title>
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
         <script type="text/javascript" language="javascript">
-
+            function tiene_letrass(nombre, numero) {
+                if (nombre === "" || numero === "")
+                {
+                    alert("Por favor no dejar campos vacios");
+                    return false;
+                }
+                var letras = " a b c d e f g h y j k l m n ñ o p q r s t u v w x y z ";
+                nombre = nombre.toLowerCase();
+                for (i = 0; i < nombre.length; i++) {
+                    if (letras.indexOf(nombre.charAt(i), 0) === -1) {
+                        alert('ERROR. Solo se pueden ingresar letras');
+                        return false;
+                    }
+                }
+                return true;
+            }
             function tiene_letras(nombre) {
+                if (nombre === "") {
+                    alert("Por favor no dejar campos vacios");
+                    return false;
+                }
                 var letras = " a b c d e f g h i j k l m n ñ o p q r s t u v w x y z ";
                 nombre = nombre.toLowerCase();
                 for (i = 0; i < nombre.length; i++) {
@@ -43,7 +62,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
             function redirect(target) {
                 window.location.href = target;
             }
-            
+
         </script>
         <div class="page-header">
             <h1>Panel de administrador</h1>

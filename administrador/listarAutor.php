@@ -51,7 +51,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <link href="http://ingenieriaii.url.ph/css/custom.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" language="javascript">
 
-            function tiene_letras(nombre,numero) {
+            function tiene_letrass(nombre,numero) {
                 if (nombre === "" || numero === "")
                 {
                     alert("Por favor no dejar campos vacios");

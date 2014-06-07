@@ -10,7 +10,7 @@
                 <h4 class="modal-title" id="labelEditar">Editar Categoria</h4>
             </div>
             <div class="modal-body">
-                <form method="post" name="editDataCategoria" onsubmit="return tiene_letras(document.forms['inputNombreCategoria']['nombreCategoria'].value)" id="editDataCategoria" action="categoriacp.php" class="form-horizontal" role="form">
+                <form method="post" name="editDataCategoria" id="editDataCategoria" onsubmit="return tiene_letras(document.forms['editDataCategoria']['editar_nombreEtiqueta'].value)"  action="categoriacp.php" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-lg-2 control-label" >Nombre</label>
                         <div class="col-lg-10">
@@ -41,7 +41,7 @@
                 <h4 class="modal-title" id="myModalLabel">Agregar Categoria</h4>
             </div>
             <div class="modal-body">
-                <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreEtiqueta']['nombreEtiqueta'].value)" id="inputNombreEtiqueta" action="categoriacp.php" class="form-horizontal" role="form">
+                <form method="post" onsubmit="return tiene_letras(document.forms['inputNombreEtiqueta']['agregar_nombreEtiqueta'].value)" id="inputNombreEtiqueta" action="categoriacp.php" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">

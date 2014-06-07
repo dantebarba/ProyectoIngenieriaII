@@ -15,6 +15,21 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <title>Listado de Categorias</title><!-- Bootstrap core CSS -->
         <script src="http://ingenieriaii.url.ph/js/jquery-2.1.1.min.js" type="text/javascript"></script>
         <script type="text/javascript">
+            function tiene_letras(nombre) {
+                if (nombre === "") {
+                    alert("Por favor no dejar campos vacios");
+                    return false;
+                }
+                var letras = " a b c d e f g h i j k l m n ñ o p q r s t u v w x y z ";
+                nombre = nombre.toLowerCase();
+                for (i = 0; i < nombre.length; i++) {
+                    if (letras.indexOf(nombre.charAt(i), 0) === -1) {
+                        alert('ERROR. Solo se pueden ingresar letras');
+                        return false;
+                    }
+                }
+                return true;
+            }
             $(document).ready(function() {
                 var fields = ['idEtiqueta', 'nombreEtiqueta'];
                 var item = {}; // los dict son igual a python

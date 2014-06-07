@@ -33,7 +33,7 @@
                 <h4 class="modal-title" id="myModalLabel">Editar Editorial</h4>
             </div>
             <div class="modal-body">
-                <form method="post" id="editDataEditorial" onsubmit="return tiene_letras(document.forms['inputNombreEditorial']['editar_nombreEditorial'].value)" action="editorialcp.php" class="form-horizontal" role="form">
+                <form method="post" id="editDataEditorial" onsubmit="return tiene_letras(document.forms['editDataEditorial']['editar_nombreEditorial'].value)" action="editorialcp.php" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Nombre</label>
                         <div class="col-lg-10">
