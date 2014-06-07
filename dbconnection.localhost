@@ -2,7 +2,7 @@
 
 function connectdb() {
 $server = "localhost";
-$database = "ingenieria2";
+$database = "cookbooks_database_v1.1";
 $username = "root";
 $password = "";
 $mysqlConnection = mysql_connect($server, $username, $password);
