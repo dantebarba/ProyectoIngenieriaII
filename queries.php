@@ -69,7 +69,7 @@ function q_updateCategoria($id, $nombre) {
 }
 
 function q_removeAutor($id) { // elimina el autor segun $ID, no hace
-    $query = "DELETE FROM autores WHERE idAutor='$id'";
+    $query = "UPDATE autores SET isDeleted=1 WHERE idAutor='$id'";
     mysql_query($query) or die(mysql_error());
 }
 
@@ -86,7 +86,8 @@ function q_removeCategoria($id) {
 function q_isPresentAutor($DNI, $id=-1) {
     // devuelve TRUE si esta PRESENTE; devuelve FALSE si no lo esta
     // Busca solo por DNI
-    $query="SELECT DNI FROM autores WHERE '$DNI'=DNI and '$id' <> idAutor";
+    // Se agregó el campo que comprueba si fue eliminado logicamente
+    $query="SELECT DNI FROM autores WHERE '$DNI'=DNI and '$id' <> idAutor and isDeleted=0";
     $result=mysql_query($query); 
     if (mysql_num_rows($result) == 0)
     {
@@ -135,7 +136,7 @@ function q_isPresentLibro($nombre) {
 ;
 
 function q_listAutor($rangemax = 1000) {
-    $query = 'SELECT * FROM autores LIMIT 0 , ' . $rangemax;
+    $query = 'SELECT * FROM autores WHERE isDeleted=0 LIMIT 0 , ' . $rangemax;
     return mysql_query($query);
 }
 

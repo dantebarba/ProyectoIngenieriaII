@@ -1,5 +1,4 @@
---CREATE DATABASE  IF NOT EXISTS `cookbooks_database_v1.2` /*!40100 DEFAULT CHARACTER SET utf8 */;
---USE `cookbooks_database_v1.2`;
+
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: cookbooks_database_v1.2
@@ -323,12 +322,10 @@ CREATE TABLE `usuarios` (
   `genero` varchar(1) DEFAULT NULL,
   `fecha_nac` datetime DEFAULT NULL,
   `email` varchar(45) NOT NULL,
-  `Compras_idCompra` int(11) NOT NULL,
   `isAsoc` tinyint(1) NOT NULL DEFAULT '0',
   `isDeleted` tinyint(1) NOT NULL DEFAULT '0',
-  `isAdmin` tinyint(1) NOT NULL,
-  PRIMARY KEY (`DNI`,`username`),
-  KEY `fk_Usuarios_Compras1_idx` (`Compras_idCompra`)
+  `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`DNI`,`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -340,6 +337,32 @@ LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios_has_compras`
+--
+
+DROP TABLE IF EXISTS `usuarios_has_compras`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios_has_compras` (
+  `Usuarios_DNI` int(10) unsigned NOT NULL,
+  `Usuarios_username` varchar(50) NOT NULL,
+  `Compras_idCompra` int(11) NOT NULL,
+  PRIMARY KEY (`Usuarios_DNI`,`Usuarios_username`,`Compras_idCompra`),
+  KEY `fk_Usuarios_has_Compras_Compras1_idx` (`Compras_idCompra`),
+  KEY `fk_Usuarios_has_Compras_Usuarios1_idx` (`Usuarios_DNI`,`Usuarios_username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios_has_compras`
+--
+
+LOCK TABLES `usuarios_has_compras` WRITE;
+/*!40000 ALTER TABLE `usuarios_has_compras` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuarios_has_compras` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -350,4 +373,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-10  0:06:02
+-- Dump completed on 2014-06-10  0:28:47
