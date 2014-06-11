@@ -74,12 +74,12 @@ function q_removeAutor($id) { // elimina el autor segun $ID, no hace
 }
 
 function q_removeEditorial($id) {
-    $query = "DELETE FROM editoriales WHERE idEditorial='$id'";
+    $query = "UPDATE editoriales SET isDeleted=1 WHERE idEditorial='$id'";
     mysql_query($query) or die(mysql_error());
 }
 
 function q_removeCategoria($id) {
-    $query = "DELETE FROM etiquetas WHERE idEtiqueta='$id'";
+    $query = "UPDATE etiquetas SET isDeleted=1 WHERE idEtiqueta='$id'";
     mysql_query($query) or die(mysql_error());
 }
 
@@ -136,28 +136,33 @@ function q_isPresentLibro($nombre) {
 ;
 
 function q_listAutor($rangemax = 1000) {
-    $query = 'SELECT * FROM autores WHERE isDeleted=0 LIMIT 0 , ' . $rangemax;
+    $query = 'SELECT * FROM autores WHERE isDeleted=0 ORDER BY nombre LIMIT 0 , ' . $rangemax;
     return mysql_query($query);
 }
 
 // lista todos los autores hasta
 // $rangemax, valor por defecto lista toda la base de datos
 function q_listEditorial($rangemax = 1000) {
-    $query = 'SELECT * FROM editoriales LIMIT 0 , ' . $rangemax;
+    $query = 'SELECT * FROM editoriales WHERE isDeleted=0 ORDER BY nombre LIMIT 0 , ' . $rangemax;
     return mysql_query($query);
 }
 
 ;
 
 function q_listCategoria($rangemax = 1000) {
-    $query = 'SELECT * FROM etiquetas LIMIT 0 , ' . $rangemax;
+    $query = 'SELECT * FROM etiquetas WHERE isDeleted=0 ORDER BY nombre LIMIT 0 , ' . $rangemax;
     return mysql_query($query);
 }
 
 ;
 
 function q_isAdminUsuario($username) {
-    
+    $row = q_getusuario($username);
+    $user = mysql_fetch_array($row);
+    if ($row['isAdmin'] == 0) {
+        return false;
+    }
+    else {return true;}
 }
 
 ;
@@ -185,8 +190,6 @@ function q_libroViewCategoria($ISBN) {
 function q_isDisponibleLibro($ISBN) {
     
 }
-
-;
 
 
 

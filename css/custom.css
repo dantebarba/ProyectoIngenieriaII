@@ -35,4 +35,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70c85ec7', e
     padding-top: 70px;
 }
 
-
+.btn {
+    margin: 2px;
+}
+.well {
+    padding: 7px;
+}
