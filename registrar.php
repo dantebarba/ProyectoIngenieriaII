@@ -17,13 +17,33 @@
     <link href="http://ingenieriaii.url.ph/css/custom.css"
     rel="stylesheet">
     <script type="text/javascript">
-        $(document).on("change", "#isDpto", function() {
-           if ($("#isDpto").val() === 'yes') {
-               $("#departamento").prop('disabled', false);
+        $(document).on("change", "#registrarIsDepto", function() {
+           if ($("#registrarIsDepto").val() === 'yes') {
+               $("#registrarDepartamento").prop('disabled', false);
            }
            else {
-               $("#departamento").prop("disabled", true);
+               $("#registrarDepartamento").prop("disabled", true);
            }
+       });
+       $("#registrarForm").sumbit(function(e) {
+         var postData = $(this).serializeArray();
+         var formURL = $(this).attr("action");
+         $.ajax(
+         {
+             url : formURL,
+             type: "POST",
+             data : postData,
+             success:function(data, textStatus, jqXHR) 
+             {
+                 alert("gracias por registrarse");
+             },
+             error: function(jqXHR, textStatus, errorThrown) 
+             {
+                 alert("PHP RETURN HERE");    
+             }
+         });
+         e.preventDefault(); //STOP default action
+         e.unbind(); //unbind. to stop multiple form submit.
        });
     </script>
   </head>
@@ -32,6 +52,7 @@
   <body id="registrarse">
     <div class="container" >
       <div class="row" id="mainForm">
+        <form id="registrarForm" name='registrarForm' action="registrarHandler.php">
           <div class="col-md-2">
               
           </div>
@@ -39,12 +60,12 @@
           <h3>
             Registrar nuevo usuario
           </h3>
-          <form id="mainData">
+            
             <div class="form-group">
               <label>
                 Usuario
               </label>
-              <input type="text" class="form-control" name="username">
+              <input type="text" class="form-control" id="registrarUsername" name="registrarUsername">
             </div>
           
           <div class="form-group">
@@ -94,7 +115,6 @@
             </label>
               <input type="text" class="form-control" placeholder="40555222">
           </div>
-         </form>
         </div>
         <div class="col-md-4">
           <h3>
@@ -103,20 +123,19 @@
           <p>
             Complete los campos.
           </p>
-          <form id="addressData">
             <div class="form-group">
               <label>
                 <div class="form-group">
                   <label>
                     Telefono fijo
                   </label>
-                    <input type="text" class="form-control" placeholder="01143331212" name="tel">
+                    <input type="text" class="form-control" placeholder="01143331212" id="registrarTel_fijo" name="registrarTel_fijo">
                 </div>
                 <div class="form-group">
                   <label>
                     Telefono celular
                   </label>
-                  <input type="text" class="form-control" placeholder="0221552111" name="telcel">
+                  <input type="text" class="form-control" placeholder="0221552111" id="registrarTel_cel" name="registrarTel_cel">
                 </div>
                 Localidad
               </label>
@@ -139,7 +158,7 @@
             <label>
               ¿Su domicilio es un departamento?
             </label>
-            <select class="form-control" name="isDepartamento" id="isDpto" >
+            <select class="form-control" name="registrarIsDepto" id="registrarIsDepto" >
               <option value="no">
                 No
               </option>
@@ -154,7 +173,7 @@
             <label>
               Nro. de departamento
             </label>
-              <input type="text" class="form-control" disabled  id="departamento" name="departamento" placeholder="3A">
+              <input type="text" class="form-control" disabled  id="registrarDepartamento" name="registrarDepartamento" placeholder="3A">
           </div>
           <div class="form-group">
             <label>
@@ -172,11 +191,11 @@
           </div>
           <div class="form-group">
           </div>
-          </form>   
       </div>
           <div class="col-md-4">
               
           </div>
+        </form>
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -187,14 +206,14 @@
           </button>
             <div>
           <span style="float: right;">
-           <button type="submit" class="btn pull-right btn-primary" id="sendForm" name="sendform">Enviar</button>
-          <button type="button" class="btn pull-right btn-danger" id="cancel" name="cancel">
+           <button type="button" class="btn pull-right btn-primary" id="sendForm" name="sendform" onClick='$("#registrarForm").submit();'>Enviar</button>
+           <button type="button" class="btn pull-right btn-danger" id="cancel" name="cancel">
             Canelar
           </button>
             </div>
         </div>
       </div>
-    
+    </div>
   </body>
 </html>
 
