@@ -1,14 +1,23 @@
 <?php
 
-        const database = 'u172127113_ing';
+const database = 'u172127113_ing';
 
+        
+function q_lastID() {
+// esta funcion permite obtener el ultimo autoincremental agregado
+    $query = "SELECT LAST_INSERT_ID()";
+    return mysqli_query($query);
+}
+        
+        
 function q_getusuario($nombre) {
     $query = "SELECT * FROM usuarios WHERE username = '$nombre'";
     $row = mysql_query($query) or die(mysql_error());
     return $row;
 }
 
-;
+
+
 
 function q_getlibro($nombre) {
     
@@ -33,6 +42,32 @@ function q_getcompra($nombre) {
 }
 
 ;
+
+function q_addUser($dataCollection) {
+    $query = "INSERT INTO usuarios ('username', 'DNI', 'password', 'tel_fijo', "
+            . "'tel_cel', 'genero', 'fecha_nac', 'email', 'isAdmin')"
+            . "VALUES ('".$dataCollection['username'].",".$dataCollection['DNI'].","
+            . $dataCollection['password'] . ",".$dataCollection['tel_fijo'].","
+            . $dataCollection['tel_cel'] .",".$dataCollection['genero'].","
+            . $dataCollection['fecha_nac'] .",".$dataCollection['email'].","
+            . $dataCollection['isAdmin'].")";
+    return mysqli_query($query);
+    
+}
+
+function q_addDireccion($dataCollection) {
+    $query = "INSERT INTO direccion ('calle', 'localidad', 'numero', 'provincia', "
+            . "'departamento', 'numDepto') VALUES ("
+            . $dataCollection['calle'].","
+            . $dataCollection['localidad'].","
+            . $dataCollection['numero'].","
+            . $dataCollection['provincia'].","
+            . $dataCollection['departamento'].","
+            . $dataCollection['numDepto'].")";
+    return mysqli_query($query);
+}
+
+
 
 function q_addAutor($nombre, $DNI) {
     $query = "INSERT INTO autores (nombre, DNI) VALUES ('$nombre', '$DNI')";
@@ -191,5 +226,12 @@ function q_isDisponibleLibro($ISBN) {
     
 }
 
+function q_linkUsuarioToDireccion($idDireccion, $username, $DNI)
+// linkea la clave foranea de un usuario con una direccion.    
+{
+    $query = "UPDATE direccion SET usuarios_username='$username',usuarios_DNI='$DNI'"
+            . "WHERE idDireccion = '$idDireccion'";
+    return mysqli_query($query);  
+};
 
-
+function q_linkCompraToUsuario($idCompra, $username, $DNI) {};
