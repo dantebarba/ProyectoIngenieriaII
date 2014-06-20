@@ -3,6 +3,12 @@
 
 #netbeans ignore personal stuff
 nbproject/
+testing/
+_file-manager/
+apache/
+home/
+public_html/
+
 
 ## generic files to ignore
 *~
