@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <?php include 'header.php'; ?>
   <head> 
     <meta charset="utf-8">
     <title>
@@ -10,6 +9,8 @@
     <meta name="author" content="">
     <script src="http://ingenieriaii.url.ph/js/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="http://ingenieriaii.url.ph/js/jquery.form.js" type="text/javascript"></script>
+    <script src="http://ingenieriaii.url.ph/js/jquery.validate.js" type="text/javascript"></script>
+    <script src="http://ingenieriaii.url.ph/js/additional-methods.js"type="text/javascript"></script>
     <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css"
     rel="stylesheet">
     <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js" type="text/javascript"></script>
@@ -18,30 +19,67 @@
     <link href="http://ingenieriaii.url.ph/css/custom.css"
     rel="stylesheet">
     <script type="text/javascript">
-        var options = {
-            success : showMessage,
-            error: showMessage,
-            type : post,
-            datatype : 'json'
-        } 
-        $("#registrarForm").ajaxForm(options);
-        $(document).on("change", "#registrarIsDepto", function() {
-           if ($("#registrarIsDepto").val() === 'yes') {
+    $(document).ready(function() {
+        
+        $(document).on("change", "#registrarIsDpto", function() {
+           if ($("#registrarIsDpto").val() === 'yes') {
                $("#registrarDepartamento").prop('disabled', false);
            }
            else {
                $("#registrarDepartamento").prop("disabled", true);
            }
-       });
-       function showMessage(responseText, statusText, xhr, $form) {
+        });
+        $("#registrarForm").validate(       
+        {
+            rules: {
+            registrarUsername: "required",
+            registrarPassword: {
+                required: true,
+                minlength: 5,
+                equalTo: "#registrarRepeat-password"
+                
+            },
+            registrarEmail: {
+                required: true,
+                email: true,
+                equalTo: "#registrarRepeat-email"
+            }
+        },
+        
+        // Specify the validation error messages
+        messages: {
+            registrarUsername: "Please enter your first name",
+            registrarPassword: {
+                required: "Please provide a password",
+                minlength: "Your password must be at least 5 characters long",
+                equalTo: "Tu contrasenia no coincide"
+            },
+            registrarEmail: "Please enter a valid email address"
+        }
+            
+        }); // close validate
+        
+        var options = {
+            beforeSubmit : valid,
+            success : showMessage,
+            error: showMessage,
+            type : 'post',
+            datatype : 'json'
+        }; 
+        $("#registrarForm").ajaxForm(options); // ajax sumbit
+   });   
+   function showMessage(responseText) {
            alert(responseText.message);
        }
-       
+   function valid() {
+            return $("#registrarForm").validate().form();
+        }
     </script>
   </head>
   
   
   <body id="registrarse">
+    <?php include 'header.php'; ?>
     <div class="container" >
       <div class="row" id="mainForm">
         <form id="registrarForm" name='registrarForm' action="registrarHandler.php">
@@ -64,25 +102,25 @@
             <label>
               Contraseña
             </label>
-            <input type="text" class="form-control" name="password">
+            <input type="text" class="form-control" name="registrarPassword" id="registrarPassword">
           </div>
           <div class="form-group">
             <label>
               Repita Contraseña
             </label>
-            <input type="text" class="form-control" name="password-repeat">
+            <input type="text" class="form-control" name="registrarPassword-repeat" id="registrarPassword-repeat">
           </div>
           <div class="form-group">
             <label>
               E-mail
             </label>
-            <input type="text" class="form-control" name="email">
+            <input type="text" class="form-control" name="registrarEmail" id="registrarEmail">
           </div>
           <div class="form-group">
             <label>
               Repita E-mail
             </label>
-            <input type="text" class="form-control" name="email-repeat">
+            <input type="text" class="form-control" name="registrarEmail-repeat" id="registrarEmail-repeat">
           </div>
           <div class="form-group">
             <label>
@@ -94,8 +132,6 @@
               </option>
               <option value="f">
                 Femenino
-              </option>
-              <option value="">
               </option>
             </select>
           </div>
@@ -150,14 +186,12 @@
             <label>
               ¿Su domicilio es un departamento?
             </label>
-            <select class="form-control" name="registrarIsDepto" id="registrarIsDepto" >
-              <option value="no">
+            <select class="form-control" name="registrarIsDpto" id="registrarIsDpto" >
+              <option value=0>
                 No
               </option>
-              <option value="yes">
+              <option value=1>
                 Si
-              </option>
-              <option value="">
               </option>
             </select>
           </div>

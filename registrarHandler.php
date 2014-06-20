@@ -20,19 +20,19 @@
         $dataCollection['numero'] = $_POST['registrarNumero'];
         $dataCollection['provincia'] = $_POST['registrarProvincia'];
         $dataCollection['departamento'] = $_POST['registrarIsDepto'];
-        $dataCollection['numDepto'] = $_POST['registrarNumDepto'];
+        $dataCollection['numDpto'] = $_POST['registrarNumDpto'];
         
         include 'queries.php';
         
-        (q_addUsuario($dataCollection) and
-        q_addDireccion($dataCollection) and
-        q_linkUsuarioToDireccion(q_lastID(), $dataCollection['username'], $dataCollection['DNI'])) or die(mysqli_error());
+        q_addUsuario($dataCollection);
+        q_addDireccion($dataCollection);
+        q_linkUsuarioToDireccion(q_lastID(), $dataCollection['username'], $dataCollection['DNI']);
         
-        
+        echo '{ "message": Gracias por registrarse }';
     }
     
     else { // ESTARIA BUENO HACER UN JSON RETURN PARA TIRAR ERROR 
         echo '{ "message": ERROR, El usuario ya existe }';
     }
-   mysqli_close($database);
+   mysql_close($database);
 ?>
