@@ -19,7 +19,8 @@
     rel="stylesheet">
     <script type="text/javascript">
         var options = {
-            success : response,
+            success : showMessage,
+            error: showMessage,
             type : post,
             datatype : 'json'
         } 
@@ -32,9 +33,10 @@
                $("#registrarDepartamento").prop("disabled", true);
            }
        });
-       function response(responseText, statusText, xhr, $form) {
+       function showMessage(responseText, statusText, xhr, $form) {
            alert(responseText.message);
        }
+       
     </script>
   </head>
   
