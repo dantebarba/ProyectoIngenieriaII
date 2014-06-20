@@ -3,14 +3,8 @@
 const database = 'u172127113_ing';
 
         
-function q_lastID() {
-// esta funcion permite obtener el ultimo autoincremental agregado
-    $query = "SELECT LAST_INSERT_ID()";
-    return mysqli_query($query);
-}
         
-        
-function q_getusuario($nombre) {
+function q_getUsuario($nombre) {
     $query = "SELECT * FROM usuarios WHERE username = '$nombre'";
     $row = mysql_query($query) or die(mysql_error());
     return $row;
@@ -43,28 +37,34 @@ function q_getcompra($nombre) {
 
 ;
 
-function q_addUser($dataCollection) {
-    $query = "INSERT INTO usuarios ('username', 'DNI', 'password', 'tel_fijo', "
-            . "'tel_cel', 'genero', 'fecha_nac', 'email', 'isAdmin')"
-            . "VALUES ('".$dataCollection['username'].",".$dataCollection['DNI'].","
+function q_addUsuario($dataCollection) {
+    $query = "INSERT INTO `usuarios`(`DNI`, `username`, `password`, `tel_fijo`, `tel_cel`, `genero`,"
+            . " `fecha_nac`, `email`, `isAdmin`) VALUES "
+            . "(".$dataCollection['DNI'].",'".$dataCollection['username']."',"
             . $dataCollection['password'] . ",".$dataCollection['tel_fijo'].","
-            . $dataCollection['tel_cel'] .",".$dataCollection['genero'].","
-            . $dataCollection['fecha_nac'] .",".$dataCollection['email'].","
+            . $dataCollection['tel_cel'] .",'".$dataCollection['genero']."','"
+            . $dataCollection['fecha_nac'] ."', '".$dataCollection['email']."' ,"
             . $dataCollection['isAdmin'].")";
-    return mysqli_query($query);
+    mysql_query($query) or die(mysql_error());
     
 }
 
 function q_addDireccion($dataCollection) {
-    $query = "INSERT INTO direccion ('calle', 'localidad', 'numero', 'provincia', "
-            . "'departamento', 'numDepto') VALUES ("
-            . $dataCollection['calle'].","
-            . $dataCollection['localidad'].","
-            . $dataCollection['numero'].","
-            . $dataCollection['provincia'].","
-            . $dataCollection['departamento'].","
-            . $dataCollection['numDepto'].")";
-    return mysqli_query($query);
+    $query = "INSERT INTO `direccion`(`calle`, `localidad`, `numero`, "
+            . "`provincia`, `departamento`, `numDpto`)"
+            . " VALUES ('"
+            . $dataCollection['calle']."','"
+            . $dataCollection['localidad']."',"
+            . $dataCollection['numero'].",'"
+            . $dataCollection['provincia']."',"
+            . $dataCollection['departamento'].",";
+    if (isset($dataCollection['isDpto'])) {
+        $query = $query . "'".$dataCollection['isDpto']."')";
+    }
+    else {
+        $query = $query . "NULL)";
+    }
+    mysql_query($query) or die(mysql_error());
 }
 
 
@@ -116,6 +116,17 @@ function q_removeEditorial($id) {
 function q_removeCategoria($id) {
     $query = "UPDATE etiquetas SET isDeleted=1 WHERE idEtiqueta='$id'";
     mysql_query($query) or die(mysql_error());
+}
+
+function q_isPresentUsuario($username) {
+    $query="SELECT username FROM usuarios WHERE '$username'=username";
+    $result=mysql_query($query);
+    if (mysql_num_rows($result) == 0) {
+        return false;
+    }
+    else { 
+        return true;
+    }
 }
 
 function q_isPresentAutor($DNI, $id=-1) {
@@ -220,7 +231,7 @@ function q_libroViewCategoria($ISBN) {
     
 }
 
-;
+
 
 function q_isDisponibleLibro($ISBN) {
     
@@ -229,9 +240,9 @@ function q_isDisponibleLibro($ISBN) {
 function q_linkUsuarioToDireccion($idDireccion, $username, $DNI)
 // linkea la clave foranea de un usuario con una direccion.    
 {
-    $query = "UPDATE direccion SET usuarios_username='$username',usuarios_DNI='$DNI'"
+    $query = "UPDATE direccion SET Usuarios_username='$username', Usuarios_DNI='$DNI'"
             . "WHERE idDireccion = '$idDireccion'";
-    return mysqli_query($query);  
-};
+    return mysql_query($query);  
+}
 
-function q_linkCompraToUsuario($idCompra, $username, $DNI) {};
+function q_linkCompraToUsuario($idCompra, $username, $DNI) {}

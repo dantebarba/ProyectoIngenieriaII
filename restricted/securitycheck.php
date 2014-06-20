@@ -14,9 +14,9 @@ function CheckAccess()
 
   {
 
-   header('WWW-Authenticate: Basic realm=“Esta es un area restringida”');
+   //header('WWW-Authenticate: Basic realm=“Esta es un area restringida”');
 
-   header('HTTP/1.0 401 Unauthorized');
+   header('HTTP/1.0 403 Unauthorized');
    exit;
    return false;
 

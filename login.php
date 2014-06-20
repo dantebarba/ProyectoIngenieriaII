@@ -24,7 +24,7 @@ $link = connectdb();
 
 include 'queries.php';
 
-$rows = q_getusuario($user) or die('Error en la consulta a la base de datos' . mysql_error());
+$rows = q_getUsuario($user) or die('Error en la consulta a la base de datos' . mysql_error());
 
 $resultado = mysql_fetch_assoc($rows);
 
