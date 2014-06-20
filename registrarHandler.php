@@ -32,6 +32,7 @@
     }
     
     else { // ESTARIA BUENO HACER UN JSON RETURN PARA TIRAR ERROR 
+        echo '{ "message": ERROR, El usuario ya existe }';
     }
    mysqli_close($database);
 ?>

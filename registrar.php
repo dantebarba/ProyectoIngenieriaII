@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script src="http://ingenieriaii.url.ph/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="http://ingenieriaii.url.ph/js/jquery.form.js" type="text/javascript"></script>
     <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css"
     rel="stylesheet">
     <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js" type="text/javascript"></script>
@@ -17,6 +18,12 @@
     <link href="http://ingenieriaii.url.ph/css/custom.css"
     rel="stylesheet">
     <script type="text/javascript">
+        var options = {
+            success : response,
+            type : post,
+            datatype : 'json'
+        } 
+        $("#registrarForm").ajaxForm(options);
         $(document).on("change", "#registrarIsDepto", function() {
            if ($("#registrarIsDepto").val() === 'yes') {
                $("#registrarDepartamento").prop('disabled', false);
@@ -25,26 +32,9 @@
                $("#registrarDepartamento").prop("disabled", true);
            }
        });
-       $("#registrarForm").sumbit(function(e) {
-         var postData = $(this).serializeArray();
-         var formURL = $(this).attr("action");
-         $.ajax(
-         {
-             url : formURL,
-             type: "POST",
-             data : postData,
-             success:function(data, textStatus, jqXHR) 
-             {
-                 alert("gracias por registrarse");
-             },
-             error: function(jqXHR, textStatus, errorThrown) 
-             {
-                 alert("PHP RETURN HERE");    
-             }
-         });
-         e.preventDefault(); //STOP default action
-         e.unbind(); //unbind. to stop multiple form submit.
-       });
+       function response(responseText, statusText, xhr, $form) {
+           alert(responseText.message);
+       }
     </script>
   </head>
   
