@@ -93,7 +93,7 @@
                 </ul>
             </div></div>
 
-        <!--
+        
         <div class="panel panel-primary"> <div class="panel-heading">
                 <h3 class="panel-title">Libros</h3>
             </div><div class="panel-body">
@@ -102,7 +102,6 @@
                     <button type='button'class="btn btn-warning">Modificar</button>
                    </ul>
             </div></div>
-        -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js"></script>
     </body>
