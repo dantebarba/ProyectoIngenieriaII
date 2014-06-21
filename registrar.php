@@ -95,6 +95,9 @@
                     digits: true,
                     minlength: 5
                 },
+                registrarFecha_nac: {
+                    required: true,
+                },
                 registrarTel_fijo: {
                     digits: true
                 },
@@ -122,15 +125,20 @@
         
         // Specify the validation error messages
         messages: {
-            registrarUsername: "Please enter your first name",
+            registrarUsername: {
+                required: "Se requiere un nombre de usuario",
+                minlength: "La longitud minima es de 5 caracteres",
+                maxlength: "La longitud maxima es de 45 caracteres",
+                
+            },
             registrarPassword: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 5 characters long"
+                required: "Por favor ingrese una contrasenia",
+                minlength: "Tu password debe ser de entre 5 y 32 caracteres"
             },
             registrarPasswordrepeat: {
                 equalTo: "Tu contrasenia no coincide"
             },
-            registrarEmail: "Please enter a valid email address",
+            registrarEmail: "Por favor ingrese un email valido",
             registrarEmailrepeat: "Las direcciones de Email no coinciden",
             registrarDNI: "Se requiere un DNI valido",
             registrarTel_fijo: "Se requiere un telefono fijo, introducir solo numeros",
@@ -139,9 +147,15 @@
             registrarProvincia: "Se requiere seleccionar una provincia",
             registrarLocalidad: "Se requiere ingresar su localidad",
             registrarPostal: "Se requiere su codigo postal",
-            registrarNumero: "Se requiere el numero de la ubicacion"
-        }
-            
+            registrarNumero: "Se requiere el numero de la ubicacion",
+            registrarFecha_nac: "Se requiere una fecha de nacimiento valida"
+        }, 
+        highlight: function(element) {
+            $(element).addClass('error');
+        }, 
+        unhighlight: function(element) {
+            $(element).removeClass('error');
+        }    
         }); // close validate
         
         var options = {

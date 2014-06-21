@@ -42,3 +42,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70c85ec7', e
     padding: 7px;
 }
 
+#registrarForm .error {
+    color:red
+}
