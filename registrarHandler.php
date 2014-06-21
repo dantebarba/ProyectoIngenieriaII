@@ -2,7 +2,8 @@
 // MAIN REGISTER HANDLER
     include 'dbconnection.php';
     $database = connectdb();
-    if (!q_isPresentUsuario($_POST['registrarUsername'])) {
+    include 'queries.php';
+    if (!q_isPresentUsuario($_POST['registrarUsername'], $_POST['registrarDNI'])) {
         // WORK REGISTRATION HERE
         $dataCollection['username'] = $_POST['registrarUsername'];
         $dataCollection['password'] = $_POST['registrarPassword'];
@@ -12,27 +13,31 @@
         $dataCollection['genero'] = $_POST['registrarGenero'];
         $dataCollection['email'] = $_POST['registrarEmail'];
         $dataCollection['isAdmin'] = 0;
-        $dataCollection['fecha_nac'] = $_POST['registarFecha_nac'];
+        $dataCollection['fecha_nac'] = date('Y-m-d', strtotime($_POST['registrarFecha_nac']));
         // DIRECCION
         
         $dataCollection['calle'] = $_POST['registrarCalle'];
         $dataCollection['localidad'] = $_POST['registrarLocalidad'];
         $dataCollection['numero'] = $_POST['registrarNumero'];
         $dataCollection['provincia'] = $_POST['registrarProvincia'];
-        $dataCollection['departamento'] = $_POST['registrarIsDepto'];
-        $dataCollection['numDpto'] = $_POST['registrarNumDpto'];
+        $dataCollection['departamento'] = $_POST['registrarIsDpto'];
         
-        include 'queries.php';
+        if ($dataCollection['departamento'] == 1) {
+            $dataCollection['numDpto'] = $_POST['registrarDepartamento'];
+        }
+        else {
+            $dataCollection['numDpto'] = "NULL";
+        }
         
         q_addUsuario($dataCollection);
         q_addDireccion($dataCollection);
-        q_linkUsuarioToDireccion(q_lastID(), $dataCollection['username'], $dataCollection['DNI']);
+        q_linkUsuarioToDireccion(mysql_insert_id(), $dataCollection['username'], $dataCollection['DNI']);
         
-        echo '{ "message": Gracias por registrarse }';
+        echo '{ "message": "Gracias por registrarse" }';
     }
     
-    else { // ESTARIA BUENO HACER UN JSON RETURN PARA TIRAR ERROR 
-        echo '{ "message": ERROR, El usuario ya existe }';
+    else {
+        echo '{ "message": "ERROR: El usuario ya existe" }';
     }
    mysql_close($database);
 ?>

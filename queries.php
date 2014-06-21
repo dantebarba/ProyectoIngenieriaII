@@ -118,8 +118,8 @@ function q_removeCategoria($id) {
     mysql_query($query) or die(mysql_error());
 }
 
-function q_isPresentUsuario($username) {
-    $query="SELECT username FROM usuarios WHERE '$username'=username";
+function q_isPresentUsuario($username, $DNI) {
+    $query="SELECT username FROM usuarios WHERE '$username'=username or DNI='$DNI'";
     $result=mysql_query($query);
     if (mysql_num_rows($result) == 0) {
         return false;
