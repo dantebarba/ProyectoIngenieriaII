@@ -1,8 +1,9 @@
 <?php
-if (!($_COOKIE['isAdmin'] != '')) {
-    echo 'error de permisos';
-    die();
-}
+    include '../restricted/securitycheck.php';
+    if (!loginCheck() or !adminCheck()) {
+        header('Location: ../403.html');
+        exit();
+    }
 ?>
 <html lang="en">
     <head>

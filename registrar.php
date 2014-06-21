@@ -1,8 +1,18 @@
+<?php 
+    include 'restricted/securitycheck.php';
+    if (loginCheck()) {
+        header('Location: index.php');
+        exit();
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head> 
     <meta charset="utf-8">
     <title>
+        Registrar nuevo usuario
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -27,23 +37,23 @@
     $(document).ready(function() {
         $("#registrarFecha_nac").datepicker();
         
-        var provincia = ['Buenos Aires', 'Rio Negro', 'Mendoza', 'Neuquen', 'San Juan',
-        'Catamarca', 'La Rioja', 'Misiones', 'Chubut', 'Ushuaia', 'La Pampa', 'Salta',
-        'Jujuy', 'Formosa', 'Santiago Del Estero'];
-        
-        var prov = new Bloodhound({
-                        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-                        queryTokenizer: Bloodhound.tokenizers.whitespace,
-                        local: $.map(provincia, function(provincia) { return { value: provincia }; })
-        });
-        
-        prov.initialize();
-        
-        $("#registrarProvincia").typeahead(null, {
-          name: 'provincia',
-          displayKey: 'value',
-          source: prov.ttAdapter()
-        });
+//        var provincia = ['Buenos Aires', 'Rio Negro', 'Mendoza', 'Neuquen', 'San Juan',
+//        'Catamarca', 'La Rioja', 'Misiones', 'Chubut', 'Ushuaia', 'La Pampa', 'Salta',
+//        'Jujuy', 'Formosa', 'Santiago Del Estero'];
+//        
+//        var prov = new Bloodhound({
+//                        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+//                        queryTokenizer: Bloodhound.tokenizers.whitespace,
+//                        local: $.map(provincia, function(provincia) { return { value: provincia }; })
+//        });
+//        
+//        prov.initialize();
+//        
+//        $("#registrarProvincia").typeahead(null, {
+//          name: 'provincia',
+//          displayKey: 'value',
+//          source: prov.ttAdapter()
+//        });
         
         $(document).on("change", "#registrarIsDpto", function() {
            if ($("#registrarIsDpto").val() === "1") {
@@ -225,11 +235,7 @@
           <label>
             Fecha de Nacimiento
           </label>    
-          <input data-format="dd/MM/yyyy" class="form-control" type="text" name="registrarFecha_nac" id="registrarFecha_nac"></input>
-            <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-            </span>
+            <input data-format="dd/MM/yyyy" class="form-control" type="text" name="registrarFecha_nac" id="registrarFecha_nac">
           </div>
         </div>
         <div class="col-md-4">
@@ -240,7 +246,7 @@
             Complete los campos.
           </p>
             <div class="form-group">
-              <label>
+              
                 <div class="form-group">
                   <label>
                     Telefono fijo
@@ -253,8 +259,9 @@
                   </label>
                   <input type="text" class="form-control" placeholder="0221552111" id="registrarTel_cel" name="registrarTel_cel">
                 </div>
-                Localidad
-              </label>
+                <label>
+                    Localidad
+                </label>
               <input type="text" class="form-control" name="registrarLocalidad" id="registrarLocalidad">
             </div>
           
@@ -293,7 +300,7 @@
             <label>
               Provincia
             </label>
-            <input type="text" class="typeahead form-control" name="registrarProvincia" id="registrarProvincia">
+            <input type="text" class="form-control" name="registrarProvincia" id="registrarProvincia">
           </div>
           <div class="form-group pull-left">
             <label>
@@ -315,7 +322,7 @@
         <div class="panel-heading">
         </div>
         <div class="panel-body">
-          <button type="button" class="btn btn-info pull-left" id="clearFields" name="clear">
+          <button type="button" class="btn btn-info pull-left" id="clearFields" onClick='$("#registrarForm").validate().resetForm()' name="clearFields">
               Limpiar formulario
           </button>
             <div>

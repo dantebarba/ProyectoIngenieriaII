@@ -1,31 +1,18 @@
 <?php
 
-function CheckAccess()
-
-{
-
-  $result = (isset($_COOKIE['username']) &&
-
-            $_COOKIE['username'] != '' &&
-
-            $_COOKIE['password'] != '' && $_COOKIE['isAdmin'] == 1);
-
-  if (!$result)
-
-  {
-
-   //header('WWW-Authenticate: Basic realm=“Esta es un area restringida”');
-
-   header('HTTP/1.0 403 Unauthorized');
-   exit;
-   return false;
-
-  }
-
-  else
-
-   return true;
-
+function adminCheck() {
+    if (!isset($_COOKIE) or $_COOKIE['isAdmin'] == 0) {
+        return false;
+    }
+    else { return true; }
 }
+
+function loginCheck() {
+    if (!isset($_COOKIE) or $_COOKIE['username'] == '') {
+        return false;
+    }
+    else {return true;} 
+}
+
 
 
