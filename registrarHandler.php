@@ -3,8 +3,10 @@
     include 'dbconnection.php';
     $database = connectdb();
     include 'queries.php';
+     
     if (!q_isPresentUsuario($_POST['registrarUsername'], $_POST['registrarDNI'])) {
         // WORK REGISTRATION HERE
+        
         $dataCollection['username'] = $_POST['registrarUsername'];
         $dataCollection['password'] = $_POST['registrarPassword'];
         $dataCollection['DNI'] = $_POST['registrarDNI'];
@@ -21,8 +23,8 @@
         $dataCollection['numero'] = $_POST['registrarNumero'];
         $dataCollection['provincia'] = $_POST['registrarProvincia'];
         $dataCollection['departamento'] = $_POST['registrarIsDpto'];
-        
-        if ($dataCollection['departamento'] == 1) {
+       
+        if ($dataCollection['departamento'] == '1') {
             $dataCollection['numDpto'] = $_POST['registrarDepartamento'];
         }
         else {
@@ -34,10 +36,13 @@
         q_linkUsuarioToDireccion(mysql_insert_id(), $dataCollection['username'], $dataCollection['DNI']);
         
         echo '{ "message": "Gracias por registrarse" }';
+        
     }
     
     else {
         echo '{ "message": "ERROR: El usuario ya existe" }';
+        
     }
    mysql_close($database);
+   exit();
 ?>

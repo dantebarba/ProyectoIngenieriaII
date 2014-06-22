@@ -40,8 +40,8 @@ function q_getcompra($nombre) {
 function q_addUsuario($dataCollection) {
     $query = "INSERT INTO `usuarios`(`DNI`, `username`, `password`, `tel_fijo`, `tel_cel`, `genero`,"
             . " `fecha_nac`, `email`, `isAdmin`) VALUES "
-            . "(".$dataCollection['DNI'].",'".$dataCollection['username']."',"
-            . $dataCollection['password'] . ",".$dataCollection['tel_fijo'].","
+            . "(".$dataCollection['DNI'].",'".$dataCollection['username']."','"
+            . $dataCollection['password'] . "',".$dataCollection['tel_fijo'].","
             . $dataCollection['tel_cel'] .",'".$dataCollection['genero']."','"
             . $dataCollection['fecha_nac'] ."', '".$dataCollection['email']."' ,"
             . $dataCollection['isAdmin'].")";
@@ -57,13 +57,9 @@ function q_addDireccion($dataCollection) {
             . $dataCollection['localidad']."',"
             . $dataCollection['numero'].",'"
             . $dataCollection['provincia']."',"
-            . $dataCollection['departamento'].",";
-    if (isset($dataCollection['isDpto'])) {
-        $query = $query . "'".$dataCollection['isDpto']."')";
-    }
-    else {
-        $query = $query . "NULL)";
-    }
+            . $dataCollection['departamento'].",'" // el campo departamento podria
+            // ser borrado
+            . $dataCollection['numDpto']."')";
     mysql_query($query) or die(mysql_error());
 }
 

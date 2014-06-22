@@ -22,160 +22,142 @@
     <script src="http://ingenieriaii.url.ph/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="http://ingenieriaii.url.ph/js/jquery.validate.js" type="text/javascript"></script>
     <script src="http://ingenieriaii.url.ph/js/additional-methods.js" type="text/javascript"></script>
-    <script src="http://ingenieriaii.url.ph/js/typeahead.jquery.js" type="text/javascript"></script>
-    <script src="http://ingenieriaii.url.ph/js/typeahead.bundle.js" type="text/javascript"></script>
     <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js" type="text/javascript"></script>
     <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css"
     rel="stylesheet">
     <link href="http://ingenieriaii.url.ph/css/datepicker.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
           rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/typeaheadjs.css" rel="stylesheet">
     <link href="http://ingenieriaii.url.ph/css/custom.css"
     rel="stylesheet">
     <script type="text/javascript">
-    $(document).ready(function() {
-        $("#registrarFecha_nac").datepicker();
-        
-//        var provincia = ['Buenos Aires', 'Rio Negro', 'Mendoza', 'Neuquen', 'San Juan',
-//        'Catamarca', 'La Rioja', 'Misiones', 'Chubut', 'Ushuaia', 'La Pampa', 'Salta',
-//        'Jujuy', 'Formosa', 'Santiago Del Estero'];
-//        
-//        var prov = new Bloodhound({
-//                        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-//                        queryTokenizer: Bloodhound.tokenizers.whitespace,
-//                        local: $.map(provincia, function(provincia) { return { value: provincia }; })
-//        });
-//        
-//        prov.initialize();
-//        
-//        $("#registrarProvincia").typeahead(null, {
-//          name: 'provincia',
-//          displayKey: 'value',
-//          source: prov.ttAdapter()
-//        });
-        
-        $(document).on("change", "#registrarIsDpto", function() {
-           if ($("#registrarIsDpto").val() === "1") {
-               $("#registrarDepartamento").prop('disabled', false);
-           }
-           else {
-               $("#registrarDepartamento").prop("disabled", true);
-           }
-        });
-        $("#registrarForm").validate(       
-        {
-            rules: {
+        $(document).ready(function() {
+            $("#registrarFecha_nac").datepicker();
+
+
+            $(document).on("change", "#registrarIsDpto", function() {
+               if ($("#registrarIsDpto").val() === "1") {
+                   $("#registrarDepartamento").prop('disabled', false);
+               }
+               else {
+                   $("#registrarDepartamento").prop("disabled", true);
+               }
+            });
+            $("#registrarForm").validate(       
+            {
+                rules: {
+                    registrarUsername: {
+                        required: true,
+                        minlength: 4,
+                        maxlength: 45,
+                        alphanumeric: true
+
+                    },
+                    registrarPassword: {
+                        required: true,
+                        minlength: 5
+                    },
+                    registrarPasswordrepeat: {
+                        required: true,
+                        equalTo: "#registrarPassword"
+                    },
+                    registrarEmail: {
+                        required: true,
+                        email: true
+                    },
+                    registrarEmailrepeat: {
+                        required: true,
+                        email: true,
+                        equalTo: "#registrarEmail"
+                    },
+                    registrarDNI: {
+                        required: true,
+                        digits: true,
+                        minlength: 5
+                    },
+                    registrarFecha_nac: {
+                        required: true
+                    },
+                    registrarTel_fijo: {
+                        digits: true
+                    },
+                    registrarTel_cel: {
+                        digits: true
+                    },
+                    registrarLocalidad: {
+                        required: true
+                    },
+                    registrarCalle: {
+                        required: true
+                    },
+                    registrarNumero: {
+                        required: true,
+                        digits: true
+                    },
+                    registrarProvincia: {
+                        required: true
+                    },
+                    registrarPostal: {
+                        required: true,
+                        digits: true
+                    }
+            },
+
+            // Specify the validation error messages
+            messages: {
                 registrarUsername: {
-                    required: true,
-                    minlength: 4,
-                    maxlength: 45
-                    
+                    required: "Se requiere un nombre de usuario",
+                    minlength: "La longitud minima es de 5 caracteres",
+                    maxlength: "La longitud maxima es de 45 caracteres",
+                    alphanumeric: "Ha ingresado caracteres no validos"
                 },
                 registrarPassword: {
-                    required: true,
-                    minlength: 5
+                    required: "Por favor ingrese una contrasenia",
+                    minlength: "Tu password debe ser de entre 5 y 32 caracteres"
                 },
                 registrarPasswordrepeat: {
-                    required: true,
-                    equalTo: "#registrarPassword"
+                    equalTo: "Tu contrasenia no coincide"
                 },
-                registrarEmail: {
-                    required: true,
-                    email: true,
-                    equalTo: "#registrarEmailrepeat"
-                },
-                registrarEmailrepeat: {
-                    required: true,
-                    email: true,
-                    equalTo: "#registrarEmail"
-                },
-                registrarDNI: {
-                    required: true,
-                    digits: true,
-                    minlength: 5
-                },
-                registrarFecha_nac: {
-                    required: true,
-                },
-                registrarTel_fijo: {
-                    digits: true
-                },
-                registrarTel_cel: {
-                    digits: true
-                },
-                registrarLocalidad: {
-                    required: true
-                },
-                registrarCalle: {
-                    required: true
-                },
-                registrarNumero: {
-                    required: true,
-                    digits: true
-                },
-                registrarProvincia: {
-                    required: true
-                },
-                registrarPostal: {
-                    required: true,
-                    digits: true
-                }
-        },
-        
-        // Specify the validation error messages
-        messages: {
-            registrarUsername: {
-                required: "Se requiere un nombre de usuario",
-                minlength: "La longitud minima es de 5 caracteres",
-                maxlength: "La longitud maxima es de 45 caracteres",
-                
-            },
-            registrarPassword: {
-                required: "Por favor ingrese una contrasenia",
-                minlength: "Tu password debe ser de entre 5 y 32 caracteres"
-            },
-            registrarPasswordrepeat: {
-                equalTo: "Tu contrasenia no coincide"
-            },
-            registrarEmail: "Por favor ingrese un email valido",
-            registrarEmailrepeat: "Las direcciones de Email no coinciden",
-            registrarDNI: "Se requiere un DNI valido",
-            registrarTel_fijo: "Se requiere un telefono fijo, introducir solo numeros",
-            registrarTel_cel: "Solo se admiten numeros",
-            registrarCalle: "Se requiere ingresar una calle",
-            registrarProvincia: "Se requiere seleccionar una provincia",
-            registrarLocalidad: "Se requiere ingresar su localidad",
-            registrarPostal: "Se requiere su codigo postal",
-            registrarNumero: "Se requiere el numero de la ubicacion",
-            registrarFecha_nac: "Se requiere una fecha de nacimiento valida"
-        }, 
-        highlight: function(element) {
-            $(element).addClass('error');
-        }, 
-        unhighlight: function(element) {
-            $(element).removeClass('error');
-        }    
-        }); // close validate
-        
-        var options = {
-            beforeSubmit : valid,
-            success : showMessage,
-            error: showMessageError,
-            type : 'post',
-            dataType : 'json'
-        }; 
-        $("#registrarForm").ajaxForm(options); // ajax sumbit
-   });   
-   function showMessage(responseText) {
-           alert(responseText.message);
+                registrarEmail: "Por favor ingrese un email valido",
+                registrarEmailrepeat: "Las direcciones de Email no coinciden",
+                registrarDNI: "Se requiere un DNI valido",
+                registrarTel_fijo: "Se requiere un telefono fijo, introducir solo numeros",
+                registrarTel_cel: "Solo se admiten numeros",
+                registrarCalle: "Se requiere ingresar una calle",
+                registrarProvincia: "Se requiere seleccionar una provincia",
+                registrarLocalidad: "Se requiere ingresar su localidad",
+                registrarPostal: "Se requiere su codigo postal",
+                registrarNumero: "Se requiere el numero de la ubicacion",
+                registrarFecha_nac: "Se requiere una fecha de nacimiento valida"
+            }, 
+            highlight: function(element) {
+                $(element).addClass('error');
+            }, 
+            unhighlight: function(element) {
+                $(element).removeClass('error');
+            }    
+            }); // close validate
+
+            var options = {
+                beforeSubmit : valid,
+                success : showMessage,
+                error: showMessageError,
+                type : 'post',
+                dataType : 'json'
+            }; 
+            $("#registrarForm").ajaxForm(options); // ajax sumbit
+       });   
+       function showMessage(responseText) {
+               alert(responseText.message);
+               window.location.href='/index.php';
+           }
+       function showMessageError(Error) {
+           console.log(Error);
+           alert('Error: No hubo respuesta del servidor ');
        }
-   function showMessageError(Error) {
-       alert('ERROR');
-   }
-   function valid() {
-            return $("#registrarForm").validate().form();
-        }
+       function valid() {
+                return $("#registrarForm").validate().form();
+            }
     </script>
   </head>
   
