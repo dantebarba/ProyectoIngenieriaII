@@ -30,7 +30,7 @@
                                 include '../queries.php';
                                 $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
                                 while ($row = mysql_fetch_array($result)) {
-                                    echo '  <option value="'.$row['idAutor'].'">'.$row['nombre'].' - '.$row['DNI'].'</option>';
+                                    echo '  <option value="'.$row['DNI'].'">'.$row['nombre'].' - '.$row['DNI'].'</option>';
                                 }
                                 ?>
                             </select>
@@ -44,21 +44,7 @@
                                 $link = connectdb();
                                 $result = q_listEditorial() or die('Error en la consulta a la base de datos' . mysql_error());
                                 while ($row = mysql_fetch_array($result)) {
-                                    echo '  <option value="' . $row['idEditorial'] . '">' . $row['nombre'] . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputCategoria" class="col-lg-2 control-label">Categoria</label>
-                        <div class="col-lg-10">
-                            <select name = 'inputCategoria' class="form-control">
-                                <?php
-                                $link = connectdb();
-                                $result = q_listCategoria() or die('Error en la consulta a la base de datos' . mysql_error());
-                                while ($row = mysql_fetch_array($result)) {
-                                    echo '  <option value="' . $row['idEtiqueta'] . '">' . $row['nombre'] . '</option>';
+                                    echo '  <option value="' . $row['nombre'] . '">' . $row['nombre'] . '</option>';
                                 }
                                 ?>
                             </select>
@@ -148,20 +134,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="editCategoria" class="col-lg-2 control-label">Categoria</label>
-                        <div class="col-lg-10">
-                            <select name = 'editCategoria' class="form-control">
-                                <?php
-                                $link = connectdb();
-                                $result = q_listCategoria() or die('Error en la consulta a la base de datos' . mysql_error());
-                                while ($row = mysql_fetch_array($result)) {
-                                    echo '  <option value="' . $row['idEtiqueta'] . '">' . $row['nombre'] . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
                     <div class="form-group">                      
                         <label for="editPaginas" class="col-lg-2 control-label">Páginas</label>
                         <div class="col-lg-10">
@@ -191,7 +163,7 @@
             <input type='hidden' name='elemente' value='Libro_edit'/>    
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <button type="button" class="btn btn-primary">Agregar</button>
             </div>
         </div>
     </div>
@@ -209,13 +181,13 @@
                     <div class="form-group">
                         <label for="inputISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
-                            <input for="delISBN" type="number" class="form-control" id="delISBN" readonly style="background-color:lightgray">
+                            <input for="delISBN" type="number" class="form-control" id="delISBN">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputTitulo" class="col-lg-2 control-label">Titulo</label>
                         <div class="col-lg-10">
-                            <input for="delTitulo" type="text" class="form-control" id="delTitulo" readonly style="background-color:lightgray">
+                            <input for="inputTitulo" type="text" class="form-control" id="inputTitulo">
                         </div>
                     </div>
                 </form>
@@ -223,7 +195,7 @@
             <input type='hidden' name='elemente' value='Libro_del'/>            
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button>
             </div>
         </div>
     </div>
