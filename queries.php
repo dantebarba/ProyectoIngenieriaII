@@ -75,14 +75,27 @@ function q_addEditorial($nombre) {
     mysql_query($query) or die(mysql_error());
 }
 
-;
+
 
 function q_addCategoria($nombre) {
     $query = "INSERT INTO etiquetas (nombre) VALUES ('$nombre')";
     mysql_query($query) or die(mysql_error());
 }
 
-;
+function q_addLibro($dataCollection) {
+    $query=
+            "INSERT INTO `libros`"
+            . "(`ISBN`, `titulo`, `paginas`, `precio`, `idioma`, `fecha`) "
+            . "VALUES ('"
+            . $dataCollection['ISBN'] . "','"
+            . $dataCollection['titulo'] . "','"
+            . $dataCollection['paginas'] . "','"
+            . $dataCollection['precio']. "','"
+            . $dataCollection['idioma'] . "','"
+            . $dataCollection['fecha'] . "')";
+    
+    mysql_query($query) or die(mysql_error());
+}
 
 function q_updateAutor($id, $nombre, $DNI) {
     $query = "UPDATE autores SET nombre='$nombre',DNI=" . $DNI . " WHERE " . $id . "=idAutor";
@@ -96,6 +109,18 @@ function q_updateEditorial($id, $nombre) {
 
 function q_updateCategoria($id, $nombre) {
     $query = "UPDATE etiquetas SET nombre='$nombre' WHERE " . $id . "=idEtiqueta";
+    mysql_query($query) or die(mysql_error());
+}
+
+function q_updateLibro($dataCollection) {
+    $query = 
+            "UPDATE `libros` SET "
+            . "`titulo`='".$dataCollection['titulo']."',"
+            . "`paginas`=".$dataCollection['paginas'].","
+            . "`precio`=".$dataCollection['precio'].","
+            . "`idioma`='".$dataCollection['idioma']."',"
+            . "`fecha`='".$dataCollection['fecha']."'"
+            . " WHERE ".$dataCollection['ISBN']."=ISBN";
     mysql_query($query) or die(mysql_error());
 }
 
@@ -114,6 +139,11 @@ function q_removeCategoria($id) {
     mysql_query($query) or die(mysql_error());
 }
 
+function q_removeLibro($ISBN) {
+    $query="UPDATE libros SET isDeleted=1 WHERE '$ISBN'=ISBN";
+    mysql_query($query) or die(mysql_error());
+}
+
 function q_isPresentUsuario($username, $DNI) {
     $query="SELECT username FROM usuarios WHERE '$username'=username or DNI='$DNI'";
     $result=mysql_query($query);
@@ -129,7 +159,7 @@ function q_isPresentAutor($DNI, $id=-1) {
     // devuelve TRUE si esta PRESENTE; devuelve FALSE si no lo esta
     // Busca solo por DNI
     // Se agregó el campo que comprueba si fue eliminado logicamente
-    $query="SELECT DNI FROM autores WHERE '$DNI'=DNI and '$id' <> idAutor and isDeleted=0";
+    $query="SELECT DNI FROM autores WHERE '$DNI'=DNI and '$id' <> idAutor";
     $result=mysql_query($query); 
     if (mysql_num_rows($result) == 0)
     {
@@ -171,11 +201,19 @@ function q_isPresentCategoria($nombre, $id=-1) {
 
 ;
 
-function q_isPresentLibro($nombre) {
-    
+function q_isPresentLibro($ISBN) {
+    $query = 'SELECT * FROM libros WHERE ISBN='.$ISBN;
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else {
+        return true;
+    }
 }
 
-;
+
 
 function q_listAutor($rangemax = 1000) {
     $query = 'SELECT * FROM autores WHERE isDeleted=0 ORDER BY nombre LIMIT 0 , ' . $rangemax;
@@ -241,4 +279,42 @@ function q_linkUsuarioToDireccion($idDireccion, $username, $DNI)
     return mysql_query($query);  
 }
 
-function q_linkCompraToUsuario($idCompra, $username, $DNI) {}
+function q_linkAutorToLibro($idAutor, $ISBN) {
+    $query = "SELECT Libros_ISBN FROM libros_has_autores WHERE '$ISBN'=Libros_ISBN";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0) 
+    { 
+        $query = "INSERT INTO `libros_has_autores`"
+                . "(`Libros_ISBN`, `Autores_idAutor`) VALUES ("
+                . $ISBN . "," . $idAutor. ")";
+        mysql_query($query) or die(mysql_error());
+    }
+    else {
+        $query = "UPDATE `libros_has_autores` "
+                . "SET"
+                . "`Autores_idAutor`='$idAutor' WHERE Libros_ISBN=".$ISBN;
+        mysql_query($query) or die(mysql_error());
+    }
+    
+}
+
+function q_linkCompraToUsuario($idCompra, $username, $DNI) {
+    
+}
+
+function q_enableLibro($ISBN) {
+    $query = "UPDATE libros SET isDeleted=0 WHERE '$ISBN'=ISBN";
+    mysql_query($query) or die(mysql_error());
+}
+
+function q_isDeleted($ISBN) {
+    $query = "SELECT isDeleted FROM libros WHERE isDeleted=1";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else { return true;}
+}
+
+
