@@ -1,5 +1,3 @@
- 
-
 <div class="modal fade" id="editarAutor" tabindex="-1" role="dialog" aria-labelledby=editAutor aria-hidden="true">
     <div class="modal-dialog"> 
         <div class="modal-content">
