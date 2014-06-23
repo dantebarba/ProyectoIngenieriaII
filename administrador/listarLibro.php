@@ -55,8 +55,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 return true;
             }
             $(document).ready(function() {
-                var fields = ['ISBN', 'tituloLibro', 'paginasLibro', 'precioLibro', 'idiomaLibro',
-                    'fechaLibro', 'idAutorLibro', 'idEditorialLibro', 'idEtiquetaLibro'];
+                var fields = ['ISBN', 'tituloLibro', 'paginasLibro', 'precioLibro', 'idiomaLibro', 'fechaLibro', 'idAutorLibro'];
                 var item = {}; // los dict son igual a python
                 $('table.table-striped tbody tr').on('click', function() {
                     $(this).closest('table').find('td').removeClass('bg');
@@ -71,8 +70,6 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 $(document).on("click", "#openEditarLibro", function() {
                     $(".modal-body #editISBN").val(item['ISBN']);
                     $(".modal-body #editTitulo").val(item['tituloLibro']);
-                    $(".modal-body #editLinkEditorial").val(item['idEditorialLibro']);
-                    $(".modal-body #editLinkAutor").val(item['idAutorLibro']);
                     // anda okey
                     //As pointed out in comments, 
                     //it is superfluous to have to manually call the modal.
@@ -126,8 +123,6 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<td style="display:none;" id=' . 'idiomaLibro' . '>' . $row['idioma'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'precioLibro' . '>' . $row['precio'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Libros_idAutor'] . '</td>';
-                                echo '<td style="display:none;" id=' . 'idEidotiralLibro' . '>' . $row['Libros_idEditorial'] . '</td>';
-                                echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Libros_idEtiqueta'] . '</td>';
                                 $i++;
                             }
                             mysql_close($link);
