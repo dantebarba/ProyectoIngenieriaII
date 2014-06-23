@@ -11,7 +11,11 @@ function q_getUsuario($nombre) {
 }
 
 
-
+function q_listBetween ($fechaUno, $fechaDos) {
+    $query = "SELECT * FROM libros WHERE fecha BETWEEN '$fechaUno' and '$fechaDos'";
+    $row = mysql_query($query) or die(mysql_error());
+    return $row;
+}
 
 function q_getlibro($nombre) {
     
