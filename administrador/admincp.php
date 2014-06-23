@@ -34,12 +34,12 @@
                 return true;
             }
             function tiene_letrasss(isbn,titulo,paginas,precio,idioma,fecha,autor,editorial){
-                if (isbn === "" || paginas === "" || precio === "" || fecha === "")
+                if (isbn === "" || paginas === "" || precio === "" || fecha === "" || autor === '' || editorial === '')
                 {
                     alert("Por favor no dejar campos vacios");
                     return false;
                 }
-                return (tiene_letras(titulo) && tiene_letras(idioma) && tiene_letras(autor) && tiene_letras(editorial))
+                return (tiene_letras(titulo) && tiene_letras(idioma) && )
             }
             function tiene_letras(nombre) {
                 if (nombre === "") {
@@ -107,7 +107,7 @@
             </div><div class="panel-body">
                 <ul>
                     <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarLibro">Agregar</button>
-                    <button type='button'class="btn btn-primary" onclick="redirect('listarEditorial.php')">Listar</button>
+                    <button type='button'class="btn btn-primary" onclick="redirect('listarLibro.php')">Listar</button>
                    </ul>
             </div></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

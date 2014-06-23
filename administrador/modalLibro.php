@@ -6,7 +6,7 @@
                 <h4 class="modal-title" id="myModalLabel">Agregar Libro</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="inputLibro" onsubmit="return tiene_letrasss((document.forms['inputLibro']['inputISBN'].value),(document.forms['inputLibro']['inputTitulo'].value),(document.forms['inputLibro']['inputPaginas'].value),(document.forms['inputLibro']['inputPrecio'].value),(document.forms['inputLibro']['inputIdioma'].value),(document.forms['inputLibro']['inputFecha'].value),(document.forms['inputLibro']['inputAutor'].value),(document.forms['inputLibro']['inputEditorial'].value))" role="form">
+                <form class="form-horizontal" method="post" id="inputLibro" onsubmit="return tiene_letrasss((document.forms['inputLibro']['inputISBN'].value), (document.forms['inputLibro']['inputTitulo'].value), (document.forms['inputLibro']['inputPaginas'].value), (document.forms['inputLibro']['inputPrecio'].value), (document.forms['inputLibro']['inputIdioma'].value), (document.forms['inputLibro']['inputFecha'].value), (document.forms['inputLibro']['inputAutor'].value), (document.forms['inputLibro']['inputEditorial'].value))" action="librocp.php" role="form">
                     <div class="form-group">
                         <label for="inputISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
@@ -24,14 +24,14 @@
                         <div class="col-lg-10">
                             <select name = 'inputAutor' class="form-control">
                                 <?php
-                                    include '../dbconnection.php';
-                                    $link = connectdb();
-                                    include '../queries.php';
-                                    $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
-                                    while ($row = mysql_fetch_array($result)) {
-                                        echo '  <option value="'. $row['DNI'] .'">'. $row['nombre'] .'</option>';
-                                        }
-                                    ?>
+                                include '../dbconnection.php';
+                                $link = connectdb();
+                                include '../queries.php';
+                                $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
+                                while ($row = mysql_fetch_array($result)) {
+                                    echo '  <option value="'.$row['DNI'].'">'.$row['nombre'].' - '.$row['DNI'].'</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -40,12 +40,12 @@
                         <div class="col-lg-10">
                             <select name = 'inputEditorial' class="form-control">
                                 <?php
-                                    $link = connectdb();
-                                    $result = q_listEditorial() or die('Error en la consulta a la base de datos' . mysql_error());
-                                    while ($row = mysql_fetch_array($result)) {
-                                        echo '  <option value="'. $row['idEditorial'] .'">'. $row['nombre'] .'</option>';
-                                        }
-                                    ?>
+                                $link = connectdb();
+                                $result = q_listEditorial() or die('Error en la consulta a la base de datos' . mysql_error());
+                                while ($row = mysql_fetch_array($result)) {
+                                    echo '  <option value="' . $row['nombre'] . '">' . $row['nombre'] . '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -73,18 +73,18 @@
                             <input type="date" class="form-control" id="inputFecha">
                         </div>
                     </div>
-                </form>
-            </div>
             <input type='hidden' name='elemente' value='Libro_add'/>            
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Agregar</button>
+                <button type="submit" class="btn btn-primary">Agregar</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
+</div>
 
-<div class="modal fade" id="EditarLibro" tabindex="-1" role="dialog" aria-labelledby=editLibro aria-hidden="true">
+<div class="modal fade" id="editarLibro" tabindex="-1" role="dialog" aria-labelledby=editLibro aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -92,7 +92,7 @@
                 <h4 class="modal-title" id="myModalLabel">Editar Libro</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="editLibro" onsubmit="return tiene_letrasss((document.forms['editLibro']['editISBN'].value),(document.forms['editLibro']['editTitulo'].value),(document.forms['editLibro']['editPaginas'].value),(document.forms['editLibro']['editPrecio'].value),(document.forms['editLibro']['editIdioma'].value),(document.forms['editLibro']['editFecha'].value),(document.forms['editLibro']['editAutor'].value),(document.forms['editLibro']['editEditorial'].value))" role="form">
+                <form class="form-horizontal" method="post" action="librocp.php" id="editLibro" onsubmit="return tiene_letrasss((document.forms['editLibro']['editISBN'].value), (document.forms['editLibro']['editTitulo'].value), (document.forms['editLibro']['editPaginas'].value), (document.forms['editLibro']['editPrecio'].value), (document.forms['editLibro']['editIdioma'].value), (document.forms['editLibro']['editFecha'].value), (document.forms['editLibro']['editAutor'].value), (document.forms['editLibro']['editEditorial'].value))" role="form">
                     <div class="form-group">
                         <label for="inputISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
@@ -110,12 +110,12 @@
                         <div class="col-lg-10">
                             <select name = 'editAutor' class="form-control">
                                 <?php
-                                    $link = connectdb();
-                                    $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
-                                    while ($row = mysql_fetch_array($result)) {
-                                        echo '  <option value="'. $row['DNI'] .'">'. $row['nombre'] .'</option>';
-                                        }
-                                    ?>
+                                $link = connectdb();
+                                $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
+                                while ($row = mysql_fetch_array($result)) {
+                                    echo '  <option value="'.$row['DNI'].'">'.$row['nombre'].' - '.$row['DNI'].'</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -124,12 +124,12 @@
                         <div class="col-lg-10">
                             <select name = 'editEditorial' class="form-control">
                                 <?php
-                                    $link = connectdb();
-                                    $result = q_listEditorial() or die('Error en la consulta a la base de datos' . mysql_error());
-                                    while ($row = mysql_fetch_array($result)) {
-                                        echo '  <option value="'. $row['idEditorial'] .'">'. $row['nombre'] .'</option>';
-                                        }
-                                    ?>
+                                $link = connectdb();
+                                $result = q_listEditorial() or die('Error en la consulta a la base de datos' . mysql_error());
+                                while ($row = mysql_fetch_array($result)) {
+                                    echo '  <option value="' . $row['idEditorial'] . '">' . $row['nombre'] . '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -168,7 +168,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="eliminarLibro" tabindex="-1" role="dialog" aria-labelledby=deleteLibro aria-hidden="true">
+<div class="modal fade" method="post" action="librocp.php" id="eliminarLibro" tabindex="-1" role="dialog" aria-labelledby=deleteLibro aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
