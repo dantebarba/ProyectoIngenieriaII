@@ -103,7 +103,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     <table class="table table-hover table-bordered table-striped" id="lista">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
+                                <th>ISBN</th>
+                                <th>Titulo</th>
                             </tr>
                         </thead>
 
@@ -112,22 +113,25 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             include '../dbconnection.php';
                             $link = connectdb();
                             include '../queries.php';
+                            
                             $i = 0;
                             $id = 'row' . $i;
-                            $result = q_listLibro() or die('Error en la consulta a la base de datos' . mysql_error());
+                            
+                            $result = q_listLibros();
+                             
                             // limitado a 5 por cuestiones de prueba
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
                                 echo '<td id=' . 'ISBN' . '>' . $row['ISBN'] . '</td>';
                                 echo '<td id=' . 'tituloLibro' . '>' . $row['titulo'] . '</td>';
-                                echo '<td style="display:none;" id=' . 'paginasLibro' . '>' . $row['paginas'] . '</td>';
-                                echo '<td style="display:none;" id=' . 'fechaLibro' . '>' . $row['fecha'] . '</td>';
-                                echo '<td style="display:none;" id=' . 'idiomaLibro' . '>' . $row['idioma'] . '</td>';
-                                echo '<td style="display:none;" id=' . 'precioLibro' . '>' . $row['precio'] . '</td>';
-                                echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Libros_idAutor'] . '</td>';
-                                echo '<td style="display:none;" id=' . 'idEidotiralLibro' . '>' . $row['Libros_idEditorial'] . '</td>';
-                                echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Libros_idEtiqueta'] . '</td>';
+//                                echo '<td style="display:none;" id=' . 'paginasLibro' . '>' . $row['paginas'] . '</td>';
+//                                echo '<td style="display:none;" id=' . 'fechaLibro' . '>' . $row['fecha'] . '</td>';
+//                                echo '<td style="display:none;" id=' . 'idiomaLibro' . '>' . $row['idioma'] . '</td>';
+//                                echo '<td style="display:none;" id=' . 'precioLibro' . '>' . $row['precio'] . '</td>';
+//                                echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Libros_idAutor'] . '</td>';
+//                                echo '<td style="display:none;" id=' . 'idEidotiralLibro' . '>' . $row['Libros_idEditorial'] . '</td>';
+//                                echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Libros_idEtiqueta'] . '</td>';
                                 $i++;
                             }
                             mysql_close($link);
