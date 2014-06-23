@@ -20,30 +20,30 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputAutor" class="col-lg-2 control-label">Autor</label>
+                        <label for="editLinkAutor" class="col-lg-2 control-label">Autor</label>
                         <div class="col-lg-10">
-                            <select name = 'inputAutor' class="form-control">
+                            <select name = 'editLinkAutor' id='editLinkAutor' class="form-control">
                                 <?php
                                 include '../dbconnection.php';
                                 $link = connectdb();
                                 include '../queries.php';
                                 $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
                                 while ($row = mysql_fetch_array($result)) {
-                                    echo '  <option value="'.$row['DNI'].'">'.$row['nombre'].' - '.$row['DNI'].'</option>';
+                                    echo '  <option value="'.$row['idAutor'].'">'.$row['nombre'].' - '.$row['DNI'].'</option>';
                                 }
                                 ?>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputEditorial" class="col-lg-2 control-label">Editorial</label>
+                        <label for="editLinkEditorial" class="col-lg-2 control-label">Editorial</label>
                         <div class="col-lg-10">
-                            <select name = 'inputEditorial' class="form-control">
+                            <select id="editLinkEditorial" name = 'editLinkEditorial' class="form-control">
                                 <?php
                                 $link = connectdb();
                                 $result = q_listEditorial() or die('Error en la consulta a la base de datos' . mysql_error());
                                 while ($row = mysql_fetch_array($result)) {
-                                    echo '  <option value="' . $row['nombre'] . '">' . $row['nombre'] . '</option>';
+                                    echo '  <option value="' . $row['idEditorial'] . '">' . $row['nombre'] . '</option>';
                                 }
                                 ?>
                             </select>
