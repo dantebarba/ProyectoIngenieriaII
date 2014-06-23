@@ -120,7 +120,11 @@
                 },
                 registrarEmail: "Por favor ingrese un email valido",
                 registrarEmailrepeat: "Las direcciones de Email no coinciden",
-                registrarDNI: "Se requiere un DNI valido",
+                registrarDNI: {
+                    digits: "Solo se pueden ingresar numeros",
+                    required: "Este campo es requerido",
+                    minlength: "Se requieren como minimo cinco digitos"
+                },
                 registrarTel_fijo: "Se requiere un telefono fijo, introducir solo numeros",
                 registrarTel_cel: "Solo se admiten numeros",
                 registrarCalle: "Se requiere ingresar una calle",
