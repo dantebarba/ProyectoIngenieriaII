@@ -110,9 +110,9 @@ if (!($_COOKIE['isAdmin'] != '')) {
 
                         <tbody>
                             <?php
-                            include '../dbconnection.php';
+                            include_once '../dbconnection.php';
                             $link = connectdb();
-                            include '../queries.php';
+                            include_once '../queries.php';
                             
                             $i = 0;
                             $id = 'row' . $i;
@@ -125,7 +125,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
                                 echo '<td id=' . 'ISBN' . '>' . $row['ISBN'] . '</td>';
                                 echo '<td id=' . 'tituloLibro' . '>' . $row['titulo'] . '</td>';
-//                                echo '<td style="display:none;" id=' . 'paginasLibro' . '>' . $row['paginas'] . '</td>';
+                               echo '<td style="display:none;" id=' . 'paginasLibro' . '>' . $row['paginas'] . '</td>';
 //                                echo '<td style="display:none;" id=' . 'fechaLibro' . '>' . $row['fecha'] . '</td>';
 //                                echo '<td style="display:none;" id=' . 'idiomaLibro' . '>' . $row['idioma'] . '</td>';
 //                                echo '<td style="display:none;" id=' . 'precioLibro' . '>' . $row['precio'] . '</td>';
