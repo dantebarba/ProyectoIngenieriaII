@@ -55,7 +55,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 return true;
             }
             $(document).ready(function() {
-                var fields = ['idEditorial', 'nombreEditorial'];
+                var fields = ['ISBN', 'tituloLibro', 'paginasLibro', 'precioLibro', 'idiomaLibro', 'fechaLibro', 'idAutorLibro'];
                 var item = {}; // los dict son igual a python
                 $('table.table-striped tbody tr').on('click', function() {
                     $(this).closest('table').find('td').removeClass('bg');
@@ -68,16 +68,16 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 });
                 //$("#openEditarAutor").click(function () {
                 $(document).on("click", "#openEditarLibro", function() {
-                    $(".modal-body #inputISBN").val(item['ISBN']);
-                    $(".modal-body #inputTitulo").val(item['Titulo']);
+                    $(".modal-body #editISBN").val(item['ISBN']);
+                    $(".modal-body #editTitulo").val(item['tituloLibro']);
                     // anda okey
                     //As pointed out in comments, 
                     //it is superfluous to have to manually call the modal.
                     // $('#addBookDialog').modal('show');
                 });
-                 $(document).on("click", "#openEliminarEditorial", function() {
-                    $(".modal-body #eliminar_idEditorial").val(item['idEditorial']);
-                    $(".modal-body #eliminar_nombreEditorial").val(item['nombreEditorial']);
+                 $(document).on("click", "#openEliminarLibro", function() {
+                    $(".modal-body #eliminar_ISBN").val(item['ISBN']);
+                    $(".modal-body #eliminar_nombreLibro").val(item['nombreLibro']);
                 });
             });
         </script>
@@ -116,8 +116,13 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
-                                echo '<td style="display:none;" id=' . 'ISBN' . '>' . $row['ISBN'] . '</td>';
-                                echo '<td id=' . 'Nombre' . '>' . $row['Nombre'] . '</td>';
+                                echo '<td id=' . 'ISBN' . '>' . $row['ISBN'] . '</td>';
+                                echo '<td id=' . 'tituloLibro' . '>' . $row['titulo'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'paginasLibro' . '>' . $row['paginas'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'fechaLibro' . '>' . $row['fecha'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'idiomaLibro' . '>' . $row['idioma'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'precioLibro' . '>' . $row['precio'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Libros_idAutor'] . '</td>';
                                 $i++;
                             }
                             mysql_close($link);

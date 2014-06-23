@@ -234,7 +234,9 @@ function q_listCategoria($rangemax = 1000) {
     return mysql_query($query);
 }
 
-;
+function q_listLibros($rangemax = 1000) {}
+
+
 
 function q_isAdminUsuario($username) {
     $row = q_getusuario($username);
