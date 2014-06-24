@@ -23,7 +23,7 @@
         $dataCollection['numero'] = $_POST['registrarNumero'];
         $dataCollection['provincia'] = $_POST['registrarProvincia'];
         $dataCollection['departamento'] = $_POST['registrarIsDpto'];
-       
+        
         if ($dataCollection['departamento'] == '1') {
             $dataCollection['numDpto'] = $_POST['registrarDepartamento'];
         }
