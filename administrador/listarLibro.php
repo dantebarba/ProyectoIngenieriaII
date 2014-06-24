@@ -125,11 +125,12 @@ if (!($_COOKIE['isAdmin'] != '')) {
    
                             $fecha1 = $_POST["fecha1Libro"];
                             $fecha2 = $_POST["fecha2Libro"];
+                            
                             if (($fecha1 === "") || ($fecha2 === "")){
-                                $result = q_listLibros() or die('Error en la consulta a la base de datos' . mysql_error());
+                                $result = q_listLibros();
                             }
                             else {
-                                $result = q_listLibrosBetween($fecha1,$fecha2) or die ('Error en la consulta a la base de datos' . mysql_error());
+                                $result = q_listLibrosBetween($fecha1,$fecha2);
                             }                              
                             // limitado a 5 por cuestiones de prueba
                             while ($row = mysql_fetch_array($result)) {
