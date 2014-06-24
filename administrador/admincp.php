@@ -106,10 +106,28 @@
                 <h3 class="panel-title">Libros</h3>
             </div><div class="panel-body">
                 <ul>
-                    <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarLibro">Agregar</button>
-                    <button type='button'class="btn btn-primary" onclick="redirect('listarLibro.php')">Listar</button>
-                   </ul>
+                    <form class="form-horizontal" id="listarUsuario" method="post" action="listarUsuario.php" role="form">
+                        <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarLibro">Agregar</button><p></p> 
+                        <input type="date" class="form-control" id="fecha1Libro" name="fecha1Libro"><p></p>
+                        <input type="date" class="form-control" id="fecha2Libro" name="fecha2Libro"><p></p>
+                        <span class="help-block">En caso de no ingresar alguna de las dos fechas, se listaran todos los usuarios</span><p></p>
+                        <button type='submit'class="btn btn-primary" onclick="redirect('listarLibro.php')">Listar</button>
+                    </form>
+                </ul>
             </div></div>
+        <div class="panel panel-primary"> <div class="panel-heading">
+                <h3 class="panel-title">Usuarios</h3>
+            </div><div class="panel-body">
+                <ul>
+                    <form class="form-horizontal" id="listarUsuario" method="post" action="listarUsuario.php" role="form">
+                        <input type="date" class="form-control" id="fecha1Usuario" name="fecha1Usuario"><p></p>
+                        <input type="date" class="form-control" id="fecha2Usuario" name="fecha2Usuario"><p></p>
+                        <span class="help-block">En caso de no ingresar alguna de las dos fechas, se listaran todos los usuarios</span>
+                        <button type='submit'class="btn btn-primary" onclick="redirect('listarUsuario.php')">Listar</button>
+                    </form>   
+                </ul>
+            </div></div>
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js"></script>
     </body>

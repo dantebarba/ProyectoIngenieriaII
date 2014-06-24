@@ -10,8 +10,20 @@ function q_getUsuario($nombre) {
     return $row;
 }
 
+function q_listUsuarios(){
+    $query = "SELECT * FROM usuarios";
+    $row = mysql_query($query) or die(mysql_error());
+    return $row;
+}
 
-function q_listBetween ($fechaUno, $fechaDos) {
+function q_listUserBetween ($fechaUno, $fechaDos) {
+    $query = "SELECT * FROM usuarios WHERE fecha_registrado BETWEEN '$fechaUno' and '$fechaDos'";
+    $row = mysql_query($query) or die(mysql_error());
+    return $row;
+}
+
+
+function q_listLibrosBetween ($fechaUno, $fechaDos) {
     $query = "SELECT * FROM libros WHERE fecha BETWEEN '$fechaUno' and '$fechaDos'";
     $row = mysql_query($query) or die(mysql_error());
     return $row;
