@@ -123,8 +123,14 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             $i = 0;
                             $id = 'row' . $i;
                             
-                            $result = q_listLibros();
-                             
+                            $fecha1 = $_POST["fecha1Libro"];
+                            $fecha2 = $_POST["fecha2Libro"];
+                            if (($fecha1 === "") || ($fecha2 === "")){
+                                $result = q_listLibros() or die('Error en la consulta a la base de datos' . mysql_error());
+                            }
+                            else {
+                                $result = q_listLibrosBetween($fecha1,$fecha2) or die ('Error en la consulta a la base de datos' . mysql_error());
+                            }                              
                             // limitado a 5 por cuestiones de prueba
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 
