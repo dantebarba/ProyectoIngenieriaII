@@ -16,6 +16,7 @@
         <link href="../theme.css" rel="stylesheet">
         <title>Cookbook</title>
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
+        <script src="http://ingenieriaii.url.ph/js/bootbox.min.js" type="text/javascript"></script>
         <script type="text/javascript" language="javascript">
             function tiene_letrass(nombre, numero) {
                 if (nombre === "" || numero === "")

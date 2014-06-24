@@ -6,23 +6,23 @@
                 <h4 class="modal-title" id="myModalLabel">Agregar Libro</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="post" id="inputLibro" onsubmit="return tiene_letrasss((document.forms['inputLibro']['inputISBN'].value), (document.forms['inputLibro']['inputTitulo'].value), (document.forms['inputLibro']['inputPaginas'].value), (document.forms['inputLibro']['inputPrecio'].value), (document.forms['inputLibro']['inputIdioma'].value), (document.forms['inputLibro']['inputFecha'].value), (document.forms['inputLibro']['inputAutor'].value), (document.forms['inputLibro']['inputEditorial'].value))" action="librocp.php" role="form">
+                <form class="form-horizontal" method="post" name="libro_add" id="inputLibro" onsubmit="return tiene_letrasss((document.forms['inputLibro']['inputISBN'].value), (document.forms['inputLibro']['inputTitulo'].value), (document.forms['inputLibro']['inputPaginas'].value), (document.forms['inputLibro']['inputPrecio'].value), (document.forms['inputLibro']['inputIdioma'].value), (document.forms['inputLibro']['inputFecha'].value), (document.forms['inputLibro']['inputAutor'].value), (document.forms['inputLibro']['inputEditorial'].value))" action="librocp.php" role="form">
                     <div class="form-group">
                         <label for="inputISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
-                            <input for="inputISBN" type="number" class="form-control" id="inputISBN" disabled="true">
+                            <input for="inputISBN" type="number" class="form-control" id="inputISBN"name="inputISBN">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputTitulo" class="col-lg-2 control-label">Titulo</label>
                         <div class="col-lg-10">
-                            <input for="inputTitulo" type="text" class="form-control" id="inputTitulo">
+                            <input for="inputTitulo" type="text" class="form-control" id="inputTitulo" name="inputTitulo">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputLinkAutor" class="col-lg-2 control-label">Autor</label>
                         <div class="col-lg-10">
-                            <select name = 'inputLinkAutor' id='inputLinkAutor' class="form-control">
+                            <select name = 'inputLinkAutor' id='inputLinkAutor' class="form-control" name="inputLinkAutor">
                                 <?php
                                 include '../dbconnection.php';
                                 $link = connectdb();
@@ -49,22 +49,36 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="inputLinkEtiqueta" class="col-lg-2 control-label">Editorial</label>
+                        <div class="col-lg-10">
+                            <select id="inputLinkEtiqueta" name = 'inputLinkEtiqueta' class="form-control">
+                                <?php
+                                $link = connectdb();
+                                $result = q_listCategoria() or die('Error en la consulta a la base de datos' . mysql_error());
+                                while ($row = mysql_fetch_array($result)) {
+                                    echo '  <option value="' . $row['idEtiqueta'] . '">' . $row['nombre'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">                      
                         <label for="inputPaginas" class="col-lg-2 control-label">Páginas</label>
                         <div class="col-lg-10">
-                            <input for="inputPaginas" type="text" class="form-control" id="inputPaginas">
+                            <input for="inputPaginas" type="text" class="form-control" id="inputPaginas" name="inputPaginas">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPrecio" class="col-lg-2 control-label">Precio</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputPrecio">
+                            <input type="text" class="form-control" id="inputPrecio" name="inputPrecio">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputIdioma" class="col-lg-2 control-label">Idioma</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputIdioma">
+                            <input type="text" class="form-control" id="inputIdioma" name="inputIdioma">
                         </div>
                     </div>
                     <div class="form-group">
@@ -73,7 +87,7 @@
                             <input type="date" class="form-control" id="inputFecha" name="inputFecha">
                         </div>
                     </div>
-            <input type='hidden' name='elemente' value='Libro_add'/>            
+            <input type='hidden' name='elemente' value='libro_add'/>            
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Agregar</button>

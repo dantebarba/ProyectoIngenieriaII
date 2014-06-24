@@ -289,7 +289,43 @@ function q_libroViewCategoria($ISBN) {
 
 
 function q_isDisponibleLibro($ISBN) {
-    
+    $query = "SELECT isDeleted FROM libros WHERE '$ISBN'=ISBN and isDeleted=0";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else { return true;} 
+}
+
+function q_isDisponibleAutor($idAutor) {
+    $query = "SELECT isDeleted FROM autores WHERE '$idAutor'=idAutor and isDeleted=0";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else { return true;} 
+}
+
+function q_isDisponibleCategoria($idEtiquetas) {
+    $query = "SELECT isDeleted FROM etiquetas WHERE '$idEtiquetas'=idEtiquetas and isDeleted=0";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else { return true;} 
+}
+
+function q_isDisponibleEditorial($idEditorial) {
+    $query = "SELECT isDeleted FROM editoriales WHERE '$idEditorial'=idEditorial and isDeleted=0";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else { return true;} 
 }
 
 function q_linkUsuarioToDireccion($idDireccion, $username, $DNI)
@@ -319,6 +355,44 @@ function q_linkAutorToLibro($idAutor, $ISBN) {
     
 }
 
+function q_linkCategoriaToLibro($idEtiqueta, $ISBN) {
+    $query = "SELECT Libros_ISBN FROM etiquetas_has_libros WHERE '$ISBN'=Libros_ISBN";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0) 
+    { 
+        $query = "INSERT INTO `etiquetas_has_libros`"
+                . "(`Libros_ISBN`, `Etiquetas_idEtiqueta`) VALUES ("
+                . $ISBN . "," . $idEtiqueta. ")";
+        mysql_query($query) or die(mysql_error());
+    }
+    else {
+        $query = "UPDATE `etiquetas_has_libros` "
+                . "SET"
+                . "`Etiquetas_idEtiqueta`='$idEtiqueta' WHERE Libros_ISBN=".$ISBN;
+        mysql_query($query) or die(mysql_error());
+    }
+    
+}
+
+function q_linkEditorialToLibro($idEditorial, $ISBN) {
+    $query = "SELECT Libros_ISBN FROM libros_has_editoriales WHERE '$ISBN'=Libros_ISBN";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0) 
+    { 
+        $query = "INSERT INTO `libros_has_editoriales`"
+                . "(`Libros_ISBN`, `Editoriales_idEditorial`) VALUES ("
+                . $ISBN . "," . $idEditorial. ")";
+        mysql_query($query) or die(mysql_error());
+    }
+    else {
+        $query = "UPDATE `libros_has_editoriales` "
+                . "SET"
+                . "`Editoriales_idEditorial`='$idEditorial' WHERE Libros_ISBN=".$ISBN;
+        mysql_query($query) or die(mysql_error());
+    }
+    
+}
+
 function q_linkCompraToUsuario($idCompra, $username, $DNI) {
     
 }
@@ -328,14 +402,5 @@ function q_enableLibro($ISBN) {
     mysql_query($query) or die(mysql_error());
 }
 
-function q_isDeleted($ISBN) {
-    $query = "SELECT isDeleted FROM libros WHERE isDeleted=1";
-    $result = mysql_query($query) or die(mysql_error());
-    if (mysql_num_rows($result) == 0)
-    {
-        return false;
-    }
-    else { return true;}
-}
 
 
