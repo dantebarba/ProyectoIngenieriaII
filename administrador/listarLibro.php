@@ -71,8 +71,14 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 $(document).on("click", "#openEditarLibro", function() {
                     $(".modal-body #editISBN").val(item['ISBN']);
                     $(".modal-body #editTitulo").val(item['tituloLibro']);
+                    $(".modal-body #editPaginas").val(item['paginasLibro']);
+                    $(".modal-body #editPrecio").val(item['precioLibro']);
+                    $(".modal-body #editIdioma").val(item['idiomaLibro']);
+                    $(".modal-body #editFecha").val(item['fechaLibro']);
                     $(".modal-body #editLinkEditorial").val(item['idEditorialLibro']);
                     $(".modal-body #editLinkAutor").val(item['idAutorLibro']);
+                    $(".modal-body #editLinkEtiqueta").val(item['idEtiquetaLibro']);
+                    $("#editarLibro").modal('show');
                     // anda okey
                     //As pointed out in comments, 
                     //it is superfluous to have to manually call the modal.
@@ -125,13 +131,13 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
                                 echo '<td id=' . 'ISBN' . '>' . $row['ISBN'] . '</td>';
                                 echo '<td id=' . 'tituloLibro' . '>' . $row['titulo'] . '</td>';
-                               echo '<td style="display:none;" id=' . 'paginasLibro' . '>' . $row['paginas'] . '</td>';
-//                                echo '<td style="display:none;" id=' . 'fechaLibro' . '>' . $row['fecha'] . '</td>';
-//                                echo '<td style="display:none;" id=' . 'idiomaLibro' . '>' . $row['idioma'] . '</td>';
-//                                echo '<td style="display:none;" id=' . 'precioLibro' . '>' . $row['precio'] . '</td>';
-//                                echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Libros_idAutor'] . '</td>';
-//                                echo '<td style="display:none;" id=' . 'idEidotiralLibro' . '>' . $row['Libros_idEditorial'] . '</td>';
-//                                echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Libros_idEtiqueta'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'paginasLibro' . '>' . $row['paginas'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'fechaLibro' . '>' . $row['fecha'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'idiomaLibro' . '>' . $row['idioma'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'precioLibro' . '>' . $row['precio'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Autores_idAutor'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'idEditorialLibro' . '>' . $row['Editoriales_idEditorial'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Etiquetas_idEtiqueta'] . '</td>';
                                 $i++;
                             }
                             mysql_close($link);
@@ -141,7 +147,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                   </div>
                 </div>
                 <div class="col-md-2">
-                    <button type="button" class="btn btn-default" id="openEditarLibro" onClick="$('#editarLibro').modal('show')">Editar Libro</button>
+                    <button type="button" class="btn btn-default" id="openEditarLibro" >Editar Libro</button>
                     <p></p>
                     <button type="button" class="btn btn-danger" id="openEliminarLibro" onClick="$('#eliminarLibro').modal('show')">Eliminar Libro</button> 
                 </div>

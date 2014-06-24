@@ -10,7 +10,7 @@
                     <div class="form-group">
                         <label for="inputISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
-                            <input for="inputISBN" type="number" class="form-control" id="inputISBN">
+                            <input for="inputISBN" type="number" class="form-control" id="inputISBN" disabled="true">
                         </div>
                     </div>
                     <div class="form-group">
@@ -20,9 +20,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="editLinkAutor" class="col-lg-2 control-label">Autor</label>
+                        <label for="inputLinkAutor" class="col-lg-2 control-label">Autor</label>
                         <div class="col-lg-10">
-                            <select name = 'editLinkAutor' id='editLinkAutor' class="form-control">
+                            <select name = 'inputLinkAutor' id='inputLinkAutor' class="form-control">
                                 <?php
                                 include '../dbconnection.php';
                                 $link = connectdb();
@@ -36,9 +36,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="editLinkEditorial" class="col-lg-2 control-label">Editorial</label>
+                        <label for="inputLinkEditorial" class="col-lg-2 control-label">Editorial</label>
                         <div class="col-lg-10">
-                            <select id="editLinkEditorial" name = 'editLinkEditorial' class="form-control">
+                            <select id="inputLinkEditorial" name = 'inputLinkEditorial' class="form-control">
                                 <?php
                                 $link = connectdb();
                                 $result = q_listEditorial() or die('Error en la consulta a la base de datos' . mysql_error());
@@ -70,7 +70,7 @@
                     <div class="form-group">
                         <label for="inputFecha" class="col-lg-2 control-label">Fecha</label>
                         <div class="col-lg-10">
-                            <input type="date" class="form-control" id="inputFecha">
+                            <input type="date" class="form-control" id="inputFecha" name="inputFecha">
                         </div>
                     </div>
             <input type='hidden' name='elemente' value='Libro_add'/>            
@@ -94,35 +94,36 @@
             <div class="modal-body">
                 <form class="form-horizontal" method="post" action="librocp.php" id="editLibro" onsubmit="return tiene_letrasss((document.forms['editLibro']['editISBN'].value), (document.forms['editLibro']['editTitulo'].value), (document.forms['editLibro']['editPaginas'].value), (document.forms['editLibro']['editPrecio'].value), (document.forms['editLibro']['editIdioma'].value), (document.forms['editLibro']['editFecha'].value), (document.forms['editLibro']['editAutor'].value), (document.forms['editLibro']['editEditorial'].value))" role="form">
                     <div class="form-group">
-                        <label for="inputISBN" class="col-lg-2 control-label">ISBN</label>
+                        <label for="editISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
-                            <input for="editISBN" type="text" class="form-control" id="editISBN">
+                            <input for="editISBN" type="text" class="form-control" id="editISBN" disabled="true">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputTitulo" class="col-lg-2 control-label">Titulo</label>
+                        <label for="editTitulo" class="col-lg-2 control-label">Titulo</label>
                         <div class="col-lg-10">
                             <input for="editTitulo" type="text" class="form-control" id="editTitulo">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputAutor" class="col-lg-2 control-label">Autor</label>
+                        <label for="editLinkAutor" class="col-lg-2 control-label">Autor</label>
                         <div class="col-lg-10">
-                            <select name = 'editAutor' class="form-control">
+                            <select name='editLinkAutor' id='editLinkAutor' class="form-control">
                                 <?php
                                 $link = connectdb();
                                 $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
                                 while ($row = mysql_fetch_array($result)) {
-                                    echo '  <option value="'.$row['DNI'].'">'.$row['nombre'].' - '.$row['DNI'].'</option>';
+                                   
+                                        echo '  <option value="'.$row['idAutor'].'">'.$row['nombre'].' - '.$row['DNI'].'</option>'; 
                                 }
                                 ?>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="editEditorial" class="col-lg-2 control-label">Editorial</label>
+                        <label for="editLinkEditorial" class="col-lg-2 control-label">Editorial</label>
                         <div class="col-lg-10">
-                            <select name = 'editEditorial' class="form-control">
+                            <select name = 'editLinkEditorial' id="editLinkEditorial" class="form-control">
                                 <?php
                                 $link = connectdb();
                                 $result = q_listEditorial() or die('Error en la consulta a la base de datos' . mysql_error());
@@ -133,28 +134,42 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="editLinkEtiqueta" class="col-lg-2 control-label">Categoria</label>
+                        <div class="col-lg-10">
+                            <select name = 'editLinkEtiqueta' id="editLinkEtiqueta" class="form-control">
+                                <?php
+                                $link = connectdb();
+                                $result = q_listCategoria() or die('Error en la consulta a la base de datos' . mysql_error());
+                                while ($row = mysql_fetch_array($result)) {
+                                    echo '  <option value="' . $row['idEtiqueta'] . '">' . $row['nombre'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">                      
                         <label for="editPaginas" class="col-lg-2 control-label">Páginas</label>
                         <div class="col-lg-10">
-                            <input for="editPages" type="text" class="form-control" id="editPaginas">
+                            <input for="editPaginas" type="text" class="form-control" id="editPaginas" name="editPaginas">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="editPrecio" class="col-lg-2 control-label">Precio</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="editPrecio">
+                            <input type="text" class="form-control" id="editPrecio" name="editPrecio">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="editIdioma" class="col-lg-2 control-label">Idioma</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="editIdioma">
+                            <input type="text" class="form-control" id="editIdioma" name="editIdioma">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="editFecha" class="col-lg-2 control-label">Fecha</label>
                         <div class="col-lg-10">
-                            <input type="date" class="form-control" id="editFecha">
+                            <input type="date" class="form-control" id="editFecha" name="editFecha">
                         </div>
                     </div>
                 </form>
@@ -162,7 +177,7 @@
             <input type='hidden' name='elemente' value='Libro_edit'/>    
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Agregar</button>
+                <button type="button" class="btn btn-primary">Editar</button>
             </div>
         </div>
     </div>
@@ -178,15 +193,15 @@
             <div class="modal-body">
                 <form class="form-horizontal" id="deleteLibro" role="form">
                     <div class="form-group">
-                        <label for="inputISBN" class="col-lg-2 control-label">ISBN</label>
+                        <label for="deleteISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
-                            <input for="delISBN" type="number" class="form-control" id="delISBN">
+                            <input for="deleteISBN" type="number" class="form-control" id="deleteISBN" name="deleteISBN">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputTitulo" class="col-lg-2 control-label">Titulo</label>
+                        <label for="deleteTitulo" class="col-lg-2 control-label">Titulo</label>
                         <div class="col-lg-10">
-                            <input for="inputTitulo" type="text" class="form-control" id="inputTitulo">
+                            <input for="deleteTitulo" type="text" class="form-control" id="deleteTitulo" name="deleteTitulo">
                         </div>
                     </div>
                 </form>
