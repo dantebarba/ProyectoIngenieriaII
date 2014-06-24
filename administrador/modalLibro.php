@@ -110,13 +110,13 @@
                     <div class="form-group">
                         <label for="editISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
-                            <input for="editISBN" type="text" class="form-control" id="editISBN" readonly>
+                            <input for="editISBN" type="text" class="form-control" id="editISBN" name="editISBN" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="editTitulo" class="col-lg-2 control-label">Titulo</label>
                         <div class="col-lg-10">
-                            <input for="editTitulo" type="text" class="form-control" id="editTitulo">
+                            <input for="editTitulo" type="text" class="form-control" id="editTitulo" name='editTitulo'>
                         </div>
                     </div>
                     <div class="form-group">
