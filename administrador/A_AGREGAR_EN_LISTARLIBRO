@@ -1,8 +1,0 @@
-                            $fecha1 = $_POST["fecha1Libro"];
-                            $fecha2 = $_POST["fecha2Libro"];
-                            if (($fecha1 === "") || ($fecha2 === "")){
-                                $result = q_listLibros() or die('Error en la consulta a la base de datos' . mysql_error());
-                            }
-                            else {
-                                $result = q_listLibrosBetween($fecha1,$fecha2) or die ('Error en la consulta a la base de datos' . mysql_error());
-                            } 

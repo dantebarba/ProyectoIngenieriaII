@@ -122,7 +122,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             
                             $i = 0;
                             $id = 'row' . $i;
-                            
+   
                             $fecha1 = $_POST["fecha1Libro"];
                             $fecha2 = $_POST["fecha2Libro"];
                             if (($fecha1 === "") || ($fecha2 === "")){

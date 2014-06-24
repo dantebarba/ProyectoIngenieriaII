@@ -251,7 +251,7 @@ function q_listCategoria($rangemax = 1000) {
 }
 
 function q_listLibros($rangemax = 1000) {
-    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiquetas FROM libros l LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN) LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) WHERE isDeleted =0 ORDER BY titulo LIMIT 0 , ' . $rangemax;
+    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta FROM libros l LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN) LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) WHERE isDeleted =0 ORDER BY titulo LIMIT 0 , ' . $rangemax;
     return mysql_query($query);
 }
 
@@ -308,8 +308,8 @@ function q_isDisponibleAutor($idAutor) {
     else { return true;} 
 }
 
-function q_isDisponibleCategoria($idEtiquetas) {
-    $query = "SELECT isDeleted FROM etiquetas WHERE '$idEtiquetas'=idEtiquetas and isDeleted=0";
+function q_isDisponibleCategoria($idEtiqueta) {
+    $query = "SELECT isDeleted FROM etiquetas WHERE '$idEtiqueta'=idEtiqueta and isDeleted=0";
     $result = mysql_query($query) or die(mysql_error());
     if (mysql_num_rows($result) == 0)
     {
