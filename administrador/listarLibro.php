@@ -78,15 +78,17 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     $(".modal-body #editLinkEditorial").val(item['idEditorialLibro']);
                     $(".modal-body #editLinkAutor").val(item['idAutorLibro']);
                     $(".modal-body #editLinkEtiqueta").val(item['idEtiquetaLibro']);
-                    $("#editarLibro").modal('show');
+                    $('#editarLibro').modal("show");
+                    
                     // anda okey
                     //As pointed out in comments, 
                     //it is superfluous to have to manually call the modal.
                     // $('#addBookDialog').modal('show');
                 });
                  $(document).on("click", "#openEliminarLibro", function() {
-                    $(".modal-body #eliminar_ISBN").val(item['ISBN']);
-                    $(".modal-body #eliminar_nombreLibro").val(item['nombreLibro']);
+                    $(".modal-body #deleteISBN").val(item['ISBN']);
+                    $(".modal-body #deleteTitulo").val(item['tituloLibro']);
+                    $("#eliminarLibro").modal('show');
                 });
             });
         </script>
@@ -123,14 +125,17 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             $i = 0;
                             $id = 'row' . $i;
    
-                            $fecha1 = $_POST["fecha1Libro"];
-                            $fecha2 = $_POST["fecha2Libro"];
-                            
-                            if (($fecha1 === "") || ($fecha2 === "")){
-                                $result = q_listLibros();
+                            if (isset($_POST['fecha1Libro']) && isset($_POST['fecha2Libro'])) {
+                                $fecha1 = $_POST['fecha1Libro'];
+                                $fecha2 = $_POST['fecha2Libro'];
+                                if (($fecha1 != "") && ($fecha2 != "")) {
+                                    $result = q_listLibrosBetween($fecha1,$fecha2);
+                                    
+                                }
+                                else {$result = q_listLibros();}
                             }
                             else {
-                                $result = q_listLibrosBetween($fecha1,$fecha2);
+                                $result = q_listLibros();
                             }                              
                             // limitado a 5 por cuestiones de prueba
                             while ($row = mysql_fetch_array($result)) {
@@ -156,7 +161,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 <div class="col-md-2">
                     <button type="button" class="btn btn-default" id="openEditarLibro" >Editar Libro</button>
                     <p></p>
-                    <button type="button" class="btn btn-danger" id="openEliminarLibro" onClick="$('#eliminarLibro').modal('show')">Eliminar Libro</button> 
+                    <button type="button" class="btn btn-danger" id="openEliminarLibro">Eliminar Libro</button> 
                 </div>
             </div> <!-- /row -->
         </div><!-- /container -->

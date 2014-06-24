@@ -257,7 +257,7 @@ function q_listLibros($rangemax = 1000) {
     $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta FROM libros l '
             . 'LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)'
             . ' LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN )'
-            . ' WHERE isDeleted =0 ORDER BY titulo LIMIT 0 , ' . $rangemax;
+            . ' WHERE l.isDeleted=0 ORDER BY titulo LIMIT 0 , ' . $rangemax;
     return mysql_query($query);
 }
 

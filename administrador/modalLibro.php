@@ -27,7 +27,7 @@
                                 include '../dbconnection.php';
                                 $link = connectdb();
                                 include '../queries.php';
-                                $result = q_listAutor() or die('Error en la consulta a la base de datos' . mysql_error());
+                                $result = q_listAutor();
                                 while ($row = mysql_fetch_array($result)) {
                                     echo '  <option value="'.$row['idAutor'].'">'.$row['nombre'].' - '.$row['DNI'].'</option>';
                                 }
@@ -106,11 +106,11 @@
                 <h4 class="modal-title" id="myModalLabel">Editar Libro</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="post" action="librocp.php" id="editLibro" onsubmit="return tiene_letrasss((document.forms['editLibro']['editISBN'].value), (document.forms['editLibro']['editTitulo'].value), (document.forms['editLibro']['editPaginas'].value), (document.forms['editLibro']['editPrecio'].value), (document.forms['editLibro']['editIdioma'].value), (document.forms['editLibro']['editFecha'].value), (document.forms['editLibro']['editAutor'].value), (document.forms['editLibro']['editEditorial'].value))" role="form">
+                <form class="form-horizontal" method="post" name='libro_edit' action="librocp.php" id="editLibro" role="form">
                     <div class="form-group">
                         <label for="editISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
-                            <input for="editISBN" type="text" class="form-control" id="editISBN" disabled="true">
+                            <input for="editISBN" type="text" class="form-control" id="editISBN" readonly>
                         </div>
                     </div>
                     <div class="form-group">
@@ -140,7 +140,7 @@
                             <select name = 'editLinkEditorial' id="editLinkEditorial" class="form-control">
                                 <?php
                                 $link = connectdb();
-                                $result = q_listEditorial() or die('Error en la consulta a la base de datos' . mysql_error());
+                                $result = q_listEditorial();
                                 while ($row = mysql_fetch_array($result)) {
                                     echo '  <option value="' . $row['idEditorial'] . '">' . $row['nombre'] . '</option>';
                                 }
@@ -154,7 +154,7 @@
                             <select name = 'editLinkEtiqueta' id="editLinkEtiqueta" class="form-control">
                                 <?php
                                 $link = connectdb();
-                                $result = q_listCategoria() or die('Error en la consulta a la base de datos' . mysql_error());
+                                $result = q_listCategoria();
                                 while ($row = mysql_fetch_array($result)) {
                                     echo '  <option value="' . $row['idEtiqueta'] . '">' . $row['nombre'] . '</option>';
                                 }
@@ -186,45 +186,45 @@
                             <input type="date" class="form-control" id="editFecha" name="editFecha">
                         </div>
                     </div>
+                    <input type='hidden' name='elemente' value='libro_edit'/> 
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                    </div>    
                 </form>
             </div>
-            <input type='hidden' name='elemente' value='Libro_edit'/>    
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Editar</button>
-            </div>
+            
         </div>
     </div>
 </div>
 
-<div class="modal fade" method="post" action="librocp.php" id="eliminarLibro" tabindex="-1" role="dialog" aria-labelledby=deleteLibro aria-hidden="true">
+<div class="modal fade" id="eliminarLibro" tabindex="-1" role="dialog" aria-labelledby=deleteLibro aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Eliminar Libro</h4>
+                <h4 class="modal-title" id="myModalLabel">Editar Editorial</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="deleteLibro" role="form">
+                <form method="post" id="deleteLibro" action="librocp.php" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="deleteISBN" class="col-lg-2 control-label">ISBN</label>
+                        <label class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
-                            <input for="deleteISBN" type="number" class="form-control" id="deleteISBN" name="deleteISBN">
+                            <input type="text" class="form-control" id="deleteISBN" name="deleteISBN" readonly>
+                        </div>
+                        <label class="col-lg-2 control-label">Titulo</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="deleteTitulo" name="deleteTitulo" readonly>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="deleteTitulo" class="col-lg-2 control-label">Titulo</label>
-                        <div class="col-lg-10">
-                            <input for="deleteTitulo" type="text" class="form-control" id="deleteTitulo" name="deleteTitulo">
-                        </div>
+                    <input type='hidden' name='elemente' value='libro_del'/>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
                     </div>
                 </form>
             </div>
-            <input type='hidden' name='elemente' value='Libro_del'/>            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger">Eliminar</button>
-            </div>
+
         </div>
     </div>
 </div>
