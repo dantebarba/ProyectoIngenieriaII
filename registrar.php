@@ -32,6 +32,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#messagebox").hide();
+           
             $(document).on("change", "#registrarIsDpto", function() {
                if ($("#registrarIsDpto").val() === "1") {
                    $("#registrarDepartamento").prop('disabled', false);
@@ -76,9 +77,25 @@
                         required: true
                     },
                     registrarTel_fijo: {
+                        required: function(element) {
+                            if ($("#registrarTel_cel").val() === '') {
+                                return true;
+                            }
+                            else {
+                                return false;
+                            }
+                        },
                         digits: true
                     },
                     registrarTel_cel: {
+                        required: function(element) {
+                            if ($("#registrarTel_fijo").val() === '') {
+                                return true;
+                            }
+                            else {
+                                return false;
+                            }
+                        },
                         digits: true
                     },
                     registrarLocalidad: {
@@ -97,6 +114,16 @@
                     registrarPostal: {
                         required: true,
                         digits: true
+                    },
+                    registrarDepartamento: {
+                        required: function(element) {
+                            if ($("#registrarIsDpto").val() === "1") {
+                                return true;
+                            }
+                            else {
+                                return false;
+                            }
+                        }
                     }
             },
 
@@ -122,14 +149,21 @@
                     required: "Este campo es requerido",
                     minlength: "Se requieren como minimo cinco digitos"
                 },
-                registrarTel_fijo: "Se requiere un telefono fijo, introducir solo numeros",
-                registrarTel_cel: "Solo se admiten numeros",
+                registrarTel_fijo: {
+                    digits:  "Solo se admiten numeros", 
+                    required: "Se requiere un numero telefonico"
+                },
+                registrarTel_cel: {
+                   digits:  "Solo se admiten numeros", 
+                   required: "Se requiere un numero telefonico"
+                },
                 registrarCalle: "Se requiere ingresar una calle",
                 registrarProvincia: "Se requiere seleccionar una provincia",
                 registrarLocalidad: "Se requiere ingresar su localidad",
                 registrarPostal: "Se requiere su codigo postal",
                 registrarNumero: "Se requiere el numero de la ubicacion",
-                registrarFecha_nac: "Se requiere una fecha de nacimiento valida"
+                registrarFecha_nac: "Se requiere una fecha de nacimiento valida",
+                registrarDepartamento: "Se requiere ingresar un numero de departamento"
             }, 
             highlight: function(element) {
                 $(element).addClass('error');
@@ -284,7 +318,6 @@
                   </label>
                   <input type="text" class="form-control" placeholder="0221552111" id="registrarTel_cel" name="registrarTel_cel">
                 </div>
-                <input type="hidden" id="phoneset">
                 <label>
                     Localidad
                 </label>
