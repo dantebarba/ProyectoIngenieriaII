@@ -23,6 +23,7 @@
     <script src="http://ingenieriaii.url.ph/js/jquery.validate.js" type="text/javascript"></script>
     <script src="http://ingenieriaii.url.ph/js/additional-methods.js" type="text/javascript"></script>
     <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://ingenieriaii.url.ph/js/messageBox.js" type="text/javascript"></script>
     <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css"
     rel="stylesheet">
     <link href="http://ingenieriaii.url.ph/css/bootstrap.icon-large.min.css" rel="stylesheet">
@@ -182,50 +183,15 @@
             }; 
             $("#registrarForm").ajaxForm(options); // ajax sumbit
        });   
-       function showMessage(responseText) {
-           if (responseText.status === 'success') {
-              $("#messagebox").addClass('alert-success');
-              $("#messageText").text('');
-              $("#messageText").append($.parseHTML(responseText.message));
-              $("#messagebox").show(2000 , function() {
-               setTimeout(function() {
-                  $("#messagebox").removeClass('alert-success');
-                  window.location.href='/index.php'; 
-               }, 3000);
-              }); 
-          }
-            else if (responseText.status === 'error_userExists'){
-                showMessageError(responseText);
-          }
-       }
-       function showMessageError(Error) {
-           console.log(Error);
-           $("#messagebox").addClass('alert-danger');
-           $("#messageText").text('');
-           $("#messageText").append($.parseHTML(Error.message));
-           $("#messagebox").show(2000 , function() {
-               setTimeout(function() {
-                    $("#messagebox").hide();
-                    $("#messagebox").removeClass("alert-danger");
-                }, 3000);
-            });
-        }
        function valid() {
                 return $("#registrarForm").validate().form();
             }
     </script>
   </head>
-  
+   
   <?php include 'header.php';?>
   <body id="registrarse" >
-    <div class="navbar-fixed-top alert" id="messagebox" style="z-index: 2;">
-                <div class="message">
-                    <div class="message-inside">
-                      <span class="message-text" id='messageText'>  
-                      </span>
-                    </div>
-                 </div>
-    </div>        
+    <?php include 'messagebox.html' ?>       
     <div class="container" id="mainContainer" > 
       <div class="row" id="mainForm">
        <form id="registrarForm" name='registrarForm' action="registrarHandler.php" role="form">
@@ -294,7 +260,7 @@
             Fecha de Nacimiento
           </label> 
             <div class="form-group has-feedback">
-                <input type="text" id="fechaNac" class="form-control" readonly placeholder="dd/mm/yyyy">
+                <input type="text" id="registrarFecha_nac" name="registrarFecha_nac" class="form-control" readonly placeholder="dd/mm/yyyy">
             </div>
         </div>
         <div class="col-md-4">
@@ -394,7 +360,7 @@
         </div>
       </div>
         <script type="text/javascript">
-            $("#fechaNac").datepicker();
+            $("#registrarFecha_nac").datepicker();
         </script>
     </div>
   </body>

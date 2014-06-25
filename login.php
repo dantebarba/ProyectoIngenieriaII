@@ -18,7 +18,6 @@ include 'dbconnection.php';
 
 $user = filter_input(INPUT_POST, 'user');
 $pass = filter_input(INPUT_POST, 'password');
-
 $link = connectdb();
 
 
@@ -65,7 +64,7 @@ elseif  ($user == $resultado['username'] and $pass == $resultado['password']) {
     //die('Contraseña incorrecta - <a href="' . 'http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . '/index.php' . '">reintentar</a>');
     mysqli_close($link);
     echo ("<SCRIPT LANGUAGE='JavaScript'>
-            window.alert('Contraseña incorrecta')
+            alert('Contraseña incorrecta');
             window.location.href='/index.php';
             </SCRIPT>");
     die();
