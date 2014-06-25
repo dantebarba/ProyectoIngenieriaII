@@ -3,7 +3,6 @@
     include 'dbconnection.php';
     $database = connectdb();
     include 'queries.php';
-     
     if (!q_isPresentUsuario($_POST['registrarUsername'], $_POST['registrarDNI'])) {
         // WORK REGISTRATION HERE
         
@@ -35,12 +34,18 @@
         q_addDireccion($dataCollection);
         q_linkUsuarioToDireccion(mysql_insert_id(), $dataCollection['username'], $dataCollection['DNI']);
         
-        echo '{ "message": "Gracias por registrarse" }';
+        $respuesta['status'] = 'success'; 
+        $respuesta['message'] = 'Gracias por registrarse <strong>'.$dataCollection['username'].'!</strong>';
+        header('Content-type: application/json');
+        echo json_encode($respuesta);
         
     }
     
     else {
-        echo '{ "message": "ERROR: El usuario ya existe" }';
+        $respuesta['status'] = 'error_userExists'; 
+        $respuesta['message'] = '<strong>ERROR:</strong> El Usuario ya existe';
+        header('Content-type: application/json');
+        echo json_encode($respuesta);
         
     }
    mysql_close($database);

@@ -12,7 +12,7 @@
   <head> 
     <meta charset="utf-8">
     <title>
-        Registrar nuevo usuario
+        Registrarse
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -25,16 +25,13 @@
     <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js" type="text/javascript"></script>
     <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css"
     rel="stylesheet">
+    <link href="http://ingenieriaii.url.ph/css/bootstrap.icon-large.min.css" rel="stylesheet">
     <link href="http://ingenieriaii.url.ph/css/datepicker.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
-          rel="stylesheet">
     <link href="http://ingenieriaii.url.ph/css/custom.css"
     rel="stylesheet">
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#registrarFecha_nac").datepicker();
-
-
+            $("#messagebox").hide();
             $(document).on("change", "#registrarIsDpto", function() {
                if ($("#registrarIsDpto").val() === "1") {
                    $("#registrarDepartamento").prop('disabled', false);
@@ -143,8 +140,8 @@
             }); // close validate
 
             var options = {
-                beforeSubmit : valid,
-                success : showMessage,
+                beforeSubmit : valid, //checkeamos si la forma es valida
+                success : showMessage, // sucess envia Objeto json
                 error: showMessageError,
                 type : 'post',
                 dataType : 'json'
@@ -152,25 +149,52 @@
             $("#registrarForm").ajaxForm(options); // ajax sumbit
        });   
        function showMessage(responseText) {
-               alert(responseText.message);
-               window.location.href='/index.php';
-           }
+           if (responseText.status === 'success') {
+              $("#messagebox").addClass('alert-success');
+              $("#messageText").text('');
+              $("#messageText").append($.parseHTML(responseText.message));
+              $("#messagebox").show(2000 , function() {
+               setTimeout(function() {
+                  $("#messagebox").removeClass('alert-success');
+                  window.location.href='/index.php'; 
+               }, 3000);
+              }); 
+          }
+            else if (responseText.status === 'error_userExists'){
+                showMessageError(responseText);
+          }
+       }
        function showMessageError(Error) {
            console.log(Error);
-           alert('Error: No hubo respuesta del servidor ');
-       }
+           $("#messagebox").addClass('alert-danger');
+           $("#messageText").text('');
+           $("#messageText").append($.parseHTML(Error.message));
+           $("#messagebox").show(2000 , function() {
+               setTimeout(function() {
+                    $("#messagebox").hide();
+                    $("#messagebox").removeClass("alert-danger");
+                }, 3000);
+            });
+        }
        function valid() {
                 return $("#registrarForm").validate().form();
             }
     </script>
   </head>
   
-  
-  <body id="registrarse">
-    <?php include 'header.php'; ?>
-    <div class="container" >
+  <?php include 'header.php';?>
+  <body id="registrarse" >
+    <div class="navbar-fixed-top alert" id="messagebox" style="z-index: 2;">
+                <div class="message">
+                    <div class="message-inside">
+                      <span class="message-text" id='messageText'>  
+                      </span>
+                    </div>
+                 </div>
+    </div>        
+    <div class="container" id="mainContainer" > 
       <div class="row" id="mainForm">
-       <form id="registrarForm" name='registrarForm' action="registrarHandler.php">
+       <form id="registrarForm" name='registrarForm' action="registrarHandler.php" role="form">
           <div class="col-md-2">
               
           </div>
@@ -183,7 +207,7 @@
               <label>
                 Usuario
               </label>
-              <input type="text" class="form-control" id="registrarUsername" name="registrarUsername">
+              <input type="text" class="form-control" id="registrarUsername" name="registrarUsername" placeholder="NombreDeUsuario">
             </div>
           
           <div class="form-group">
@@ -194,15 +218,16 @@
           </div>
           <div class="form-group">
             <label>
-              Repita Contraseña
+              Repita Contraseña 
             </label>
+              
             <input type="password" class="form-control" name="registrarPasswordrepeat" id="registrarPasswordrepeat">
           </div>
           <div class="form-group">
             <label>
               E-mail
             </label>
-            <input type="text" class="form-control" name="registrarEmail" id="registrarEmail">
+              <input type="text" class="form-control" name="registrarEmail" id="registrarEmail" placeholder="ejemplo@hostejemplo.com">
           </div>
           <div class="form-group">
             <label>
@@ -231,12 +256,12 @@
             </label>
               <input type="text" id="registrarDNI" name="registrarDNI" class="form-control" placeholder="40555222">
           </div>
-          <div id="dateTime" class="form-group">
           <label>
             Fecha de Nacimiento
-          </label>    
-            <input data-format="dd/MM/yyyy" class="form-control" type="text" name="registrarFecha_nac" id="registrarFecha_nac">
-          </div>
+          </label> 
+            <div class="form-group has-feedback">
+                <input type="text" id="fechaNac" class="form-control" readonly placeholder="dd/mm/yyyy">
+            </div>
         </div>
         <div class="col-md-4">
           <h3>
@@ -259,10 +284,11 @@
                   </label>
                   <input type="text" class="form-control" placeholder="0221552111" id="registrarTel_cel" name="registrarTel_cel">
                 </div>
+                <input type="hidden" id="phoneset">
                 <label>
                     Localidad
                 </label>
-              <input type="text" class="form-control" name="registrarLocalidad" id="registrarLocalidad">
+              <input type="text" class="form-control" placeholder="Zarate" name="registrarLocalidad" id="registrarLocalidad">
             </div>
           
           <div class="form-group">
@@ -300,13 +326,13 @@
             <label>
               Provincia
             </label>
-            <input type="text" class="form-control" name="registrarProvincia" id="registrarProvincia">
+            <input type="text" class="form-control" placeholder="Buenos Aires" name="registrarProvincia" id="registrarProvincia">
           </div>
           <div class="form-group pull-left">
             <label>
               Codigo Postal
             </label>
-            <input type="text" class="form-control" name="registrarPostal" id="registrarPostal">
+              <input type="text" class="form-control" placeholder="1900" name="registrarPostal" id="registrarPostal">
           </div>
           <div class="form-group">
           </div>
@@ -334,6 +360,9 @@
             </div>
         </div>
       </div>
+        <script type="text/javascript">
+            $("#fechaNac").datepicker();
+        </script>
     </div>
   </body>
 </html>
