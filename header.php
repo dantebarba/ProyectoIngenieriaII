@@ -1,4 +1,3 @@
-
 <body>
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
         <div class="modal-dialog">
@@ -7,11 +6,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="inciarSesion">Iniciar Sesi&oacute;n</h4>
                 </div>
-                <div class="modal-body">
-
-                    <form method="post" action="login.php" class="form-horizontal" role="form">
+                <div class="modal-body" >
+                    <div class="modal-body" id="loginModal"></div>
+                    <form method="post" action="login.php" class="form-horizontal" id='loginForm' name="loginForm" role="form">
                         <div class="form-group">
-                            <label for="user" class="col-sm-2 control-label">Usuario</label>
+                            <label for="user" class="col-sm-2 control-label" >Usuario</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="user" name="user" placeholder="tu usuario">
                             </div>
@@ -24,7 +23,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary">Conectarse</button>
+                                <button type="button" class="btn btn-primary" id="btnLogIn" onClick='$("#loginForm").submit();'>Conectarse</button>
                             </div>
                         </div>
                     </form>
@@ -64,6 +63,5 @@
                 }
                 ?>
             </ul>
-
         </div>
     </div>

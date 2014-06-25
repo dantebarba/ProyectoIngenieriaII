@@ -23,7 +23,7 @@
     <script src="http://ingenieriaii.url.ph/js/jquery.validate.js" type="text/javascript"></script>
     <script src="http://ingenieriaii.url.ph/js/additional-methods.js" type="text/javascript"></script>
     <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="http://ingenieriaii.url.ph/js/messageBox.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/noty/packaged/jquery.noty.packaged.min.js"></script>
     <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css"
     rel="stylesheet">
     <link href="http://ingenieriaii.url.ph/css/bootstrap.icon-large.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@
     rel="stylesheet">
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#messagebox").hide();
+            
            
             $(document).on("change", "#registrarIsDpto", function() {
                if ($("#registrarIsDpto").val() === "1") {
@@ -175,9 +175,51 @@
             }); // close validate
 
             var options = {
-                beforeSubmit : valid, //checkeamos si la forma es valida
-                success : showMessage, // sucess envia Objeto json
-                error: showMessageError,
+                beforeSubmit : function() {
+                    if (valid()) {
+                        var not = noty({
+                            layout: 'topCenter',
+                            text: 'Por favor espere...',
+                            closeWith: ['button'],
+                            type: 'information'
+                        });
+                    }
+                }, //checkeamos si la forma es valida
+                success : function(element) { 
+                    $.noty.closeAll();
+                    if (element.status === 'success') {
+                                    var not = noty(
+                                        {   layout: 'topCenter',
+                                            text: element.message,
+                                            timeout: '3000',
+                                            type: 'success',
+                                            callback: {
+                                                onClose: function() {
+                                                    window.location.href = 'index.php';
+                                                }
+                                            }
+                                            
+                                        });
+                    }
+                    else if (element.status === 'error_userExists') {
+                                    var not = noty(
+                                        {   layout: 'topCenter',
+                                            text: element.message,
+                                            timeout: '3000',
+                                            type: 'error'
+                                            
+                                        });
+                    }
+                },// sucess envia Objeto json
+                error: function (element) {
+                                    console.log(element);
+                                    var not = noty(
+                                        {   layout: 'topCenter',
+                                            text: 'UNEXPECTED ERROR, TRY AGAIN LATER',
+                                            timeout: '3000',
+                                            type: 'error'
+                                        }); 
+                },
                 type : 'post',
                 dataType : 'json'
             }; 
@@ -191,7 +233,7 @@
    
   <?php include 'header.php';?>
   <body id="registrarse" >
-    <?php include 'messagebox.html' ?>       
+      <div id="messageDiv"></div>
     <div class="container" id="mainContainer" > 
       <div class="row" id="mainForm">
        <form id="registrarForm" name='registrarForm' action="registrarHandler.php" role="form">

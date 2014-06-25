@@ -29,6 +29,12 @@
         else {
             $dataCollection['numDpto'] = "NULL";
         }
+        if ($dataCollection['tel_cel'] === ''){
+            $dataCollection['tel_cel'] = "NULL";
+        }
+        else if ($dataCollection['tel_fijo'] === '') {
+            $dataCollection['tel_fijo'] = "NULL";
+        }
         
         q_addUsuario($dataCollection);
         q_addDireccion($dataCollection);
