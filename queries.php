@@ -11,7 +11,7 @@ function q_getUsuario($nombre) {
 }
 
 function q_listUsuarios(){
-    $query = "SELECT * FROM usuarios";
+    $query = "SELECT * FROM usuarios WHERE isDeleted=0";
     $row = mysql_query($query) or die(mysql_error());
     return $row;
 }
