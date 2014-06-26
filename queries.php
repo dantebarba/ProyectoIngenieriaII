@@ -314,7 +314,7 @@ function q_isDisponibleAutor($idAutor) {
     else { return true;} 
 }
 
-function q_isDisponibleAutorPorNom($dni) {
+function q_isDisponibleAutorPorDni($dni) {
     $query = "SELECT isDeleted FROM autores WHERE '$dni'=DNI and isDeleted=0";
     $result = mysql_query($query) or die(mysql_error());
     if (mysql_num_rows($result) == 0)
