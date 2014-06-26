@@ -10,13 +10,13 @@
                     <div class="form-group">
                         <label for="inputISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
-                            <input for="inputISBN" type="number" class="form-control" id="inputISBN"name="inputISBN">
+                            <input for="inputISBN" type="number" class="form-control" id="inputISBN"name="inputISBN" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputTitulo" class="col-lg-2 control-label">Titulo</label>
                         <div class="col-lg-10">
-                            <input for="inputTitulo" type="text" class="form-control" id="inputTitulo" name="inputTitulo">
+                            <input for="inputTitulo" type="text" class="form-control" id="inputTitulo" name="inputTitulo" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,13 +66,13 @@
                     <div class="form-group">                      
                         <label for="inputPaginas" class="col-lg-2 control-label">Páginas</label>
                         <div class="col-lg-10">
-                            <input for="inputPaginas" type="text" class="form-control" id="inputPaginas" name="inputPaginas">
+                            <input for="inputPaginas" type="number" class="form-control" id="inputPaginas" name="inputPaginas">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPrecio" class="col-lg-2 control-label">Precio</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputPrecio" name="inputPrecio">
+                            <input type="number"  step="0.01" required class="form-control" id="inputPrecio" name="inputPrecio">
                         </div>
                     </div>
                     <div class="form-group">
@@ -84,7 +84,7 @@
                     <div class="form-group">
                         <label for="inputFecha" class="col-lg-2 control-label">Fecha</label>
                         <div class="col-lg-10">
-                            <input type="date" class="form-control" id="inputFecha" name="inputFecha">
+                            <input type="date" required class="form-control" id="inputFecha" name="inputFecha">
                         </div>
                     </div>
             <input type='hidden' name='elemente' value='libro_add'/>            
