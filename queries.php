@@ -418,5 +418,8 @@ function q_enableLibro($ISBN) {
     mysql_query($query) or die(mysql_error());
 }
 
-
+function q_habilitarAutor ($DNI) {
+    $query = "UPDATE autores SET isDeleted=0 WHERE '$DNI'=DNI";
+    mysql_query($query) or die(mysql_error());
+}
 
