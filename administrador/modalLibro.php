@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputLinkEtiqueta" class="col-lg-2 control-label">Editorial</label>
+                        <label for="inputLinkEtiqueta" class="col-lg-2 control-label">Etiqueta</label>
                         <div class="col-lg-10">
                             <select id="inputLinkEtiqueta" name = 'inputLinkEtiqueta' class="form-control">
                                 <?php
