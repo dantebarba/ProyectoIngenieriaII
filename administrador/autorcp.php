@@ -9,11 +9,15 @@ function addAutor($nombre, $DNI) {
     }
     else
     {
-        
-        echo ("<SCRIPT LANGUAGE='JavaScript'>
+        if (q_isDisponibleAutorPorDni($DNI)){
+             echo ("<SCRIPT LANGUAGE='JavaScript'>
            window.alert('Ya existe el Autor');window.location.href=
            '/administrador/admincp.php';
             </SCRIPT>");
+        } else {
+            q_habilitarAutor ($DNI);
+        }
+       
     }
     
     mysql_close($link);
