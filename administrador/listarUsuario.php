@@ -20,11 +20,18 @@
             <div class="row">
                <div class="col-md-2"></div> 
                     <div class="col-md-8">
-                        <div  style="height:400px;overflow:auto;">
-                            <table class="table table-hover table-bordered table-striped" id="lista">
+                        <div  style="height:auto;width:auto;overflow:auto;">
+                            <table class="table table-hover table-bordered table-striped table-condensed" id="lista">
                                 <thead>
                                     <tr>
                                         <th>Usuarios</th>
+                                        <th>DNI</th>
+                                        <th>Fecha Registrado</th>
+                                        <th>Tel. Fijo</th>
+                                        <th>Tel. Celular</th>
+                                        <th>Genero</th>
+                                        <th>Fecha Nacimiento</th>
+                                        <th>E-Mail</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,6 +52,13 @@
                                     while ($row = mysql_fetch_array($result)) {
                                         echo '<tr id=' . $id . ' tabindex=' . $i . '>';
                                         echo '<td id=' . 'username' . '>' . $row['username'] . '</td>';
+                                        echo '<td id=' . 'dni' . '>' . $row['DNI'] . '</td>';
+                                        echo '<td id=' . 'fecha_registrado' . '>' . $row['fecha_registrado'] . '</td>';
+                                        echo '<td id=' . 'tel_fijo' . '>' . $row['tel_fijo'] . '</td>';
+                                        echo '<td id=' . 'tel_celular' . '>' . $row['tel_cel'] . '</td>';
+                                        echo '<td id=' . 'genero' . '>' . $row['genero'] . '</td>';
+                                        echo '<td id=' . 'fecha_nac' . '>' . $row['fecha_nac'] . '</td>';
+                                        echo '<td id=' . 'email' . '>' . $row['email'] . '</td>';
                                         $i++;
                                     }
                                 mysql_close($link);
