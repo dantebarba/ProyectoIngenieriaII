@@ -33,19 +33,10 @@
                 }
                 return true;
             }
-            function tiene_letrasss(isbn,titulo,paginas,precio,idioma,fecha,autor,editorial){
-                if (isbn === "" || paginas === "" || precio === "" || fecha === "" || autor === '' || editorial === '')
-                {
-                    alert("Por favor no dejar campos vacios");
-                    return false;
-                }
-                return (tiene_letras(titulo) && tiene_letras(idioma) && )
+            function tiene_letrasss(titulo,idioma){
+                return (tiene_letras(titulo) && tiene_letras(idioma))
             }
             function tiene_letras(nombre) {
-                if (nombre === "") {
-                    alert("Por favor no dejar campos vacios");
-                    return false;
-                }
                 var letras = " a b c d e f g h i j k l m n ñ o p q r s t u v w x y z ";
                 nombre = nombre.toLowerCase();
                 for (i = 0; i < nombre.length; i++) {

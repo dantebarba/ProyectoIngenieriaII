@@ -6,7 +6,7 @@
                 <h4 class="modal-title" id="myModalLabel">Agregar Libro</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="post" name="libro_add" id="inputLibro" onsubmit="return tiene_letrasss((document.forms['inputLibro']['inputISBN'].value), (document.forms['inputLibro']['inputTitulo'].value), (document.forms['inputLibro']['inputPaginas'].value), (document.forms['inputLibro']['inputPrecio'].value), (document.forms['inputLibro']['inputIdioma'].value), (document.forms['inputLibro']['inputFecha'].value), (document.forms['inputLibro']['inputAutor'].value), (document.forms['inputLibro']['inputEditorial'].value))" action="librocp.php" role="form">
+                <form class="form-horizontal" method="post" name="libro_add" id="inputLibro" onsubmit="return tiene_letrasss((document.forms['inputLibro']['inputTitulo'].value),(document.forms['inputLibro']['inputIdioma'].value))" action="librocp.php" role="form">
                     <div class="form-group">
                         <label for="inputISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
@@ -98,7 +98,7 @@
 </div>
 </div>
 
-<div class="modal fade" id="editarLibro" tabindex="-1" role="dialog" aria-labelledby=editLibro aria-hidden="true">
+<div class="modal fade" id="editarLibro" tabindex="-1" role="dialog" aria-labelledby=editLibro aria-hidden="true"onsubmit="return tiene_letrasss((document.forms['editarLibro']['editTitulo'].value),(document.forms['editarLibro']['editIdioma'].value))">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
