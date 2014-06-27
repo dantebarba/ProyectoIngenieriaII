@@ -4,12 +4,11 @@ $(document).ready( function() {
             var options = {
                         beforeSubmit:
                                 function () {
-                                    notyInlineNotification('.modal-body', 'notification', 'Espere...');
+                                    notyTopNotification('information', 'Espere...');
                                     $(".btn").prop("disabled", true);
                                 },
                         success : function(element) { 
                             // DISMISS MODAL AND PASS VALUE PARAMETER
-                            notyInlineNotification('.modal-body', 'success', element.message);
                             if (element.status === 'success') {
                                 if (($("#fromModal").val()) === "1") {
                                     $("fromModal").val('0');
@@ -25,7 +24,7 @@ $(document).ready( function() {
                                 notyTopNotification('success', element.message); 
                            }
                             else if (element.status === 'error_editorialExists') {
-                                notyInlineNotification('.modal-body', 'error', element.message);
+                                notyTopNotification('error', element.message);
                             }
                             $(".btn").prop("disabled", false);
                         },

@@ -29,8 +29,9 @@
 
         </div>
     </div>
-    <script type="text/javascript" src="/js/autorAjax.js"></script>
 </div>
+
+<script type="text/javascript" src="/js/autorAjax.js"></script>
 <div class="modal fade" id="agregarAutor" tabindex="-1" aria-labelledby=addAutor>
     <div class="modal-dialog">
         <div class="modal-content">
@@ -49,8 +50,9 @@
                         <div class="col-lg-10">
                             <input type="number" class="form-control" maxlength="32" id="agregar_DNIAutor" name="agregar_DNIAutor">
                         </div>
+                        <input type='hidden' name='element' value='autor_add'/>
                     </div>
-                    <input type='hidden' name='element' value='autor_add'/>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Agregar</button>

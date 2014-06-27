@@ -4,7 +4,7 @@ $(document).ready( function() {
             var options = {
                         beforeSubmit:
                                 function () {
-                                    $("#enviarCategoria").prop("disabled", true);
+                                    $(".btn").prop("disabled", true);
                                     notyTopNotification('information', 'Espere...');
                                 },
                         success : function(element) { 
@@ -14,18 +14,19 @@ $(document).ready( function() {
                                     $("#fromModal").val('0');
                                     $("#agregarCategoria").modal("hide");
                                     $("#agregarLibro").modal("show");
-                                    $('#inputLinkCategoria').append($('<option>', {
+                                    $('#inputLinkEtiqueta').append($('<option>', {
                                         value: element.id,
                                         text: element.nombre + '-' + element.dni
                                     }));
-                                    $('#inputLinkCategoria').val(element.id);
-                                    notyTopNotification('success', element.message);
+                                    $('#inputLinkEtiqueta').val(element.id);
+                                   
                                 };
+                                notyTopNotification('success', element.message);
                             }
                             else if (element.status === 'error_categoriaExists') {
-                                notyInlineNotification(".modal-body", 'error', lement.message);
+                                notyTopNotification('error', element.message);
                             }
-                            $("#enviarCategoria").prop("disabled", false);
+                            $(".btn").prop("disabled", false);
                         },
                         error: function (element) {
                             console.log(element);

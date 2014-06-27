@@ -11,14 +11,19 @@ function addEditorial($nombre) {
     include '../queries.php';
     if (!q_isPresentEditorial($nombre)) {
         q_addEditorial($nombre);
+        $response['nombre'] = $nombre;
+        $response['message'] = 'Se ha agregado la Editorial';
+        $response['status'] = 'success';
+        $response['id'] = mysql_insert_id();
     }
     else {
-        echo ("<SCRIPT LANGUAGE='JavaScript'>
-           window.alert('Ya existe la Editorial');window.location.href=
-           '/administrador/admincp.php';
-            </SCRIPT>");
+        $response['message'] = '<strong>ERROR</strong>: Ya existe la Editorial';
+        $response['status'] = 'error_editorialExists';
     }
     mysql_close($link);
+    header('Content-type: application/json');
+    echo json_encode($response);
+    exit();
 }
 
 function updateEditorial($id, $nombre) {
@@ -50,7 +55,6 @@ $element = $_POST["elemente"];
 switch ($element) {
     case 'editorial_add': {
             addEditorial($_POST['agregar_nombreEditorial']);
-            header('Location: admincp.php');
             break;
         }
     case 'editorial_edit': {

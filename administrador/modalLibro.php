@@ -59,11 +59,11 @@
                                 ?>
                             </select>
                         </div>
-                        <button type='button' class='btn btn-sm btn-primary' onClick='callModal("#agregarCategoria")'>Agregar Categoria</button>
+                        <button type='button' class='btn btn-sm btn-primary' onClick='callModal("#agregarEditorial")'>Agregar Editorial</button>
                     </div>
                     <div class="form-group">
                         <label for="inputLinkEtiqueta" class="col-lg-2 control-label">Categoria</label>
-                        <div class="col-lg-10">
+                        <div class="col-xs-4">
                             <select id="inputLinkEtiqueta" name = 'inputLinkEtiqueta' class="form-control">
                                 <?php
                                 $link = connectdb();
@@ -74,6 +74,7 @@
                                 ?>
                             </select>
                         </div>
+                        <button onClick='callModal("#agregarCategoria")' class="btn btn-sm btn-primary" type="button">Agregar Categoria</button>
                     </div>
                     <div class="form-group">                      
                         <label for="inputPaginas" class="col-lg-2 control-label">Páginas</label>
