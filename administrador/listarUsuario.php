@@ -18,8 +18,6 @@
     <body id="listarbody">        
         <div class="container">
             <div class="row">
-               <div class="col-md-2"></div> 
-                    <div class="col-md-8">
                         <div  style="height:auto;width:auto;overflow:auto;">
                             <table class="table table-hover table-bordered table-striped table-condensed" id="lista">
                                 <thead>
@@ -53,7 +51,8 @@
                                         echo '<tr id=' . $id . ' tabindex=' . $i . '>';
                                         echo '<td id=' . 'username' . '>' . $row['username'] . '</td>';
                                         echo '<td id=' . 'dni' . '>' . $row['DNI'] . '</td>';
-                                        echo '<td id=' . 'fecha_registrado' . '>' . $row['fecha_registrado'] . '</td>';
+                                        $caca = sprintf("%04s-%02s-%02s", substr($row['fecha_registrado'],0,4),substr($row['fecha_registrado'],5,2),substr($row['fecha_registrado'],8,2));
+                                        echo '<td id=' . 'fecha_registrado' . '>' . $caca . '</td>';
                                         echo '<td id=' . 'tel_fijo' . '>' . $row['tel_fijo'] . '</td>';
                                         echo '<td id=' . 'tel_celular' . '>' . $row['tel_cel'] . '</td>';
                                         echo '<td id=' . 'genero' . '>' . $row['genero'] . '</td>';
@@ -68,6 +67,5 @@
                         </div>                
                     </div>
                 </div>
-            </div>
     </body>
 </html>
