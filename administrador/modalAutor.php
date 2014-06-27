@@ -29,37 +29,7 @@
 
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready( function() {
-            var options = {
-                        success : function(element) { 
-                            // DISMISS MODAL AND PASS VALUE PARAMETER
-                            console.log(element);
-                            if (element.status === 'success') {
-                                
-                                if ($("#fromModal").val === "1") {
-                                    alert('callback return');
-                                    $("#inputLinkAutor").val(element.id);
-                                    $("#agregarLibro").removeClass('hide');
-                                };
-                            }
-                            else if (element.status === 'error_autorExists') {
-                                alert("ERROR: Ya existe el autor");
-                            }
-                            
-                        },
-                        error: function (element) {
-                            console.log(element);
-                        },
-                        type : 'post',
-                        dataType : 'json'
-            };
-            $("#inputDataAutor").ajaxForm(options);
-    
-    
-        });
-    
-    </script>
+    <script type="text/javascript" src="/js/autorAjax.js"></script>
 </div>
 <div class="modal fade" id="agregarAutor" tabindex="-1" aria-labelledby=addAutor>
     <div class="modal-dialog">
@@ -85,7 +55,7 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </div>
-                    <input type="hidden" value="0">
+                    <input type="hidden" value="0" id="fromModal">
                 </form>
             </div>
 

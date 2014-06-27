@@ -1,3 +1,5 @@
+<script src='/js/editorialAjax.js' type='text/javascript'></script>
+
 <div class="modal fade" id="agregarEditorial" tabindex="-1" role="dialog" aria-labelledby=addEditorial aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -14,6 +16,7 @@
                         </div>
                     </div>
                     <input type='hidden' name='elemente' value='editorial_add'/>
+                    <input type='hidden' id='fromModal' value='0'>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Agregar</button>

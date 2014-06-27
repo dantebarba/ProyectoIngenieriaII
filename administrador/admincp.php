@@ -17,6 +17,8 @@
         <title>Cookbook</title>
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
         <script src="/js/jquery-2.1.1.min.js"></script>
+        <script src="/js/noty/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
+        <script src='/js/notifications.js' type='text/javascript'></script>
         <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js"></script>
         
         <script type="text/javascript" language="javascript">

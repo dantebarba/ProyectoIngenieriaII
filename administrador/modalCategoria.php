@@ -31,7 +31,7 @@
 
 </div>
 
-
+<script src='/js/categoriaAjax.js' type='text/javascript'></script>
 
 <div class="modal fade" id="agregarCategoria" tabindex="-1" role="dialog" aria-labelledby=addCategoria aria-hidden="true">
     <div class="modal-dialog">
@@ -49,6 +49,7 @@
                         </div>
                     </div>
                     <input type='hidden' name='element' value='Etiqueta_add'/>
+                    <input type="hidden" id='fromModal' value='0'>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Agregar</button>

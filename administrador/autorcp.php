@@ -6,6 +6,8 @@ function addAutor($nombre, $DNI) {
     include '../queries.php';
     if (!q_isPresentAutor($DNI)) {
         q_addAutor($nombre, $DNI);
+        $response['dni'] = $DNI;
+        $response['nombre'] = $nombre;
         $response['message'] = 'Se ha agregado el Autor';
         $response['status'] = 'success';
         $response['id'] = mysql_insert_id();
@@ -16,8 +18,6 @@ function addAutor($nombre, $DNI) {
              q_addAutor($nombre, $DNI);
             $response['message'] = '<strong>ERROR: Ya existe el autor</strong>';
             $response['status'] = 'error_autorExists';
-            header('Content-type: application/json');
-            echo json_encode($respuesta);
         } else {
             q_habilitarAutor ($DNI);
         }
@@ -26,7 +26,7 @@ function addAutor($nombre, $DNI) {
     
     mysql_close($link);
     header('Content-type: application/json');
-    echo json_encode($respuesta);
+    echo json_encode($response);
     exit();
 }
 
@@ -61,7 +61,6 @@ $element = $_POST["element"];
 switch ($element) {
     case 'autor_add': {
         addAutor($_POST['agregar_nombreAutor'], $_POST['agregar_DNIAutor']);
-        header('Location: admincp.php');
         break;
         }
     case 'autor_edit': {
