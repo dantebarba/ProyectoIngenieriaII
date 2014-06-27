@@ -4,8 +4,8 @@ const database = 'u172127113_ing';
 
         
         
-function q_getUsuario($nombre) {
-    $query = "SELECT * FROM usuarios WHERE username = '$nombre'";
+function q_getUsuario($nombre, $DNI=-1) {
+    $query = "SELECT * FROM usuarios WHERE username = '$nombre' or DNI='$DNI'";
     $row = mysql_query($query) or die(mysql_error());
     return $row;
 }
@@ -293,6 +293,25 @@ function q_libroViewCategoria($ISBN) {
 }
 
 
+function q_isDisponibleUsuario($username) {
+    $query = "SELECT isDeleted FROM usuarios WHERE '$username'=username and isDeleted=0";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else { return true;}
+};
+
+function q_isDisponibleUsuarioPorDNI($dni) {
+    $query = "SELECT isDeleted FROM usuarios WHERE '$dni'=dni and isDeleted=0";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else { return true;} 
+};
 
 function q_isDisponibleLibro($ISBN) {
     $query = "SELECT isDeleted FROM libros WHERE '$ISBN'=ISBN and isDeleted=0";
@@ -417,6 +436,12 @@ function q_enableLibro($ISBN) {
     $query = "UPDATE libros SET isDeleted=0 WHERE '$ISBN'=ISBN";
     mysql_query($query) or die(mysql_error());
 }
+
+function q_enableUsuario($username, $DNI) {
+    $query = "UPDATE usuarios SET isDeleted=0 WHERE '$username'=ISBN or ".$DNI."=DNI";
+    mysql_query($query) or die(mysql_error());
+}
+
 
 function q_habilitarAutor ($DNI) {
     $query = "UPDATE autores SET isDeleted=0 WHERE '$DNI'=DNI";

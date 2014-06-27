@@ -13,6 +13,30 @@
         header("Location: index.php");
         exit();
     }
+    else if (filter_input(INPUT_GET, 'mode') == 'enableaccount') {
+        include 'dbconnection.php'; 
+        $link = connectdb();
+        include 'queries.php';
+        if (q_isPresentUsuario($_GET['username'], $_GET['DNI'])) {
+            q_enableUsuario($_GET['username'], $_GET['DNI']);
+            $response['status'] = 'success';
+            $response['message'] = 'Se ha habilitado el usuario';
+            $response['redirect'] = '/index.php';
+            header('Content-type: application/json');
+            echo json_encode($response); 
+        }
+        else {
+           $response['status'] = 'error_invalidLogin';
+           $response['message'] = '<strong>ERROR:</strong> No se encuentra el usuario';
+           header('Content-type: application/json');
+           echo json_encode($response); 
+           
+        }
+        exit();
+    }
+    else if (filter_input(INPUT_GET, 'mode') == 'passwordrecover') { // aqui se encuentra el procedimiento de recuperar password};
+        exit();
+    }
     
 include 'dbconnection.php'; 
 
