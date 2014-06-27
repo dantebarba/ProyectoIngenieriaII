@@ -33,7 +33,7 @@
     rel="stylesheet">
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#registrarForm").validate(       
+            $("#recoverForm").validate(       
             {
                 rules: {
                     recoverUsername: 
@@ -45,15 +45,16 @@
                                 return false;
                             }
                         }
-                    }
-                    recoverDNI {
+                    },
+                    recoverDNI: {
                         required: function () {
                             if ($("#recoverUsername").val() === '')
                                 return true;
                             else {
                                 return false;
                             }
-                        }
+                        },           
+                        digits: true
                     }
                 }
             });
@@ -66,9 +67,10 @@
                             closeWith: ['button'],
                             type: 'information'
                         });
+                        $("#sendRecoverForm").prop("disabled", true);
                     }
                 }, //checkeamos si la forma es valida
-                data: { mode: 'enableaccount' } // cuando se utilice el recover password
+                data: { mode: 'enableaccount' }, // cuando se utilice el recover password
                 // mode: deberia seleccionarse diamicamente
                 success : function(element) { 
                     $.noty.closeAll();
@@ -95,6 +97,7 @@
                                             
                                         });
                     }
+                    $("#sendRecoverForm").prop("disabled", false);
                 },// sucess envia Objeto json
                 error: function (element) {
                                     console.log(element);
@@ -125,12 +128,14 @@
             
             <form  name='recoverForm' action="login.php" id="recoverForm" role="form" style="padding-top: 200px;">
                 <div class="form-group">
-                    <label for="recoverUsername"> Usuario </label>
-                    <input type="text" class="form-control" id="recoverUsername" name="recoverUsername" />
-                    <label for="recoverDNI"> DNI </label>
-                    <input type="text" class="form-control" id="recoverDNI" name="recoverDNI" />
-                    <label for="recoverPassword"> Password </label>
-                    <input type="text" class="form-control" id="recoverPassword" name="recoverPassword" />
+                    <div class="form-group">
+                        <label for="recoverUsername"> Usuario </label>
+                        <input type="text" class="form-control" id="recoverUsername" name="recoverUsername" />
+                        </div>
+                        <div class="form-group">
+                        <label for="recoverDNI"> DNI </label>
+                        <input type="number" class="form-control" id="recoverDNI" name="recoverDNI" />
+                    </div>
                 </div>
             </form>
             <div class="panel panel-default">

@@ -210,6 +210,15 @@
                                             
                                         });
                     }
+                    else if (element.status === 'error_userDisabled') {
+                                    var not = noty(
+                                        {   layout: 'topCenter',
+                                            text: element.message,
+                                            timeout: '5000',
+                                            type: 'error'
+                                            
+                                        });
+                    }
                 },// sucess envia Objeto json
                 error: function (element) {
                                     console.log(element);

@@ -17,8 +17,11 @@
         include 'dbconnection.php'; 
         $link = connectdb();
         include 'queries.php';
-        if (q_isPresentUsuario($_GET['username'], $_GET['DNI'])) {
-            q_enableUsuario($_GET['username'], $_GET['DNI']);
+        if ($_GET['recoverDNI'] === '') {
+            $_GET['recoverDNI'] = -1;
+        }
+        if (q_isPresentUsuario($_GET['recoverUsername'], $_GET['recoverDNI'])) {
+            q_enableUsuario($_GET['recoverUsername'], $_GET['recoverDNI']);
             $response['status'] = 'success';
             $response['message'] = 'Se ha habilitado el usuario';
             $response['redirect'] = '/index.php';
@@ -27,7 +30,7 @@
         }
         else {
            $response['status'] = 'error_invalidLogin';
-           $response['message'] = '<strong>ERROR:</strong> No se encuentra el usuario';
+           $response['message'] = '<strong>ERROR:</strong> Username/DNI invalido';
            header('Content-type: application/json');
            echo json_encode($response); 
            
