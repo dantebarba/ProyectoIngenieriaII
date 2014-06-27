@@ -6,14 +6,20 @@ function addAutor($nombre, $DNI) {
     include '../queries.php';
     if (!q_isPresentAutor($DNI)) {
         q_addAutor($nombre, $DNI);
+        $response['message'] = 'Se ha agregado el Autor';
+        $response['status'] = 'success';
+        $response['id'] = mysql_insert_id();
+        header('Content-type: application/json');
+        echo json_encode($respuesta);
     }
     else
     {
         if (q_isDisponibleAutorPorDni($DNI)){
-             echo ("<SCRIPT LANGUAGE='JavaScript'>
-           window.alert('Ya existe el Autor');window.location.href=
-           '/administrador/admincp.php';
-            </SCRIPT>");
+             q_addAutor($nombre, $DNI);
+            $response['message'] = '<strong>ERROR: Ya existe el autor</strong>';
+            $response['status'] = 'error_autorExists';
+            header('Content-type: application/json');
+            echo json_encode($respuesta);
         } else {
             q_habilitarAutor ($DNI);
         }
@@ -33,10 +39,7 @@ function updateAutor($id, $nombre, $DNI) {
     }
     else
     {
-        echo ("<SCRIPT LANGUAGE='JavaScript'>
-           window.alert('Ya existe el Autor');window.location.href=
-           '/administrador/listarAutor.php';
-            </SCRIPT>");
+        
         
     }
     mysql_close($link);

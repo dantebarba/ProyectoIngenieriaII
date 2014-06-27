@@ -2,7 +2,8 @@
     <div class="modal-dialog"> 
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" d
+                        ata-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="labelEditar">Editar Autor</h4>
             </div>
             <div class="modal-body">
@@ -28,7 +29,37 @@
 
         </div>
     </div>
-
+    <script type="text/javascript">
+        $(document).ready( function() {
+            var options = {
+                        success : function(element) { 
+                            // DISMISS MODAL AND PASS VALUE PARAMETER
+                            alert('callback return');
+                            if (element.status === 'success') {
+                                return { 
+                                    nombre: $("#agregar_nombreAutor").val(),
+                                    id: element.id,
+                                    dni: $("#agregar_nombreAutor").val()
+                                };
+                            }
+                            else if (element.status === 'error_autorExists')´ {
+                                alert("ERROR: Ya existe el autor");
+                            }
+                            
+                        },
+                        error: function (element) {
+                            console.log(element);
+                            noty({text: 'ERROR EN EL SERVIDOR', type: 'error'});
+                        },
+                        type : 'post',
+                        dataType : 'json'
+            };
+            $("#inputDataAutor").ajaxForm(options);
+    
+    
+        });
+    
+    </script>
 </div>
 <div class="modal fade" id="agregarAutor" tabindex="-1" role="dialog" aria-labelledby=addAutor aria-hidden="true">
     <div class="modal-dialog">
