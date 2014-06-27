@@ -9,8 +9,6 @@ function addAutor($nombre, $DNI) {
         $response['message'] = 'Se ha agregado el Autor';
         $response['status'] = 'success';
         $response['id'] = mysql_insert_id();
-        header('Content-type: application/json');
-        echo json_encode($respuesta);
     }
     else
     {
@@ -27,6 +25,9 @@ function addAutor($nombre, $DNI) {
     }
     
     mysql_close($link);
+    header('Content-type: application/json');
+    echo json_encode($respuesta);
+    exit();
 }
 
 function updateAutor($id, $nombre, $DNI) {

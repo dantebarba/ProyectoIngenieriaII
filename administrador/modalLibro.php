@@ -1,3 +1,10 @@
+<script>
+    function callModal(modalID) {
+           $(".modal-body #fromModal").val('1');
+           $("#agregarLibro").addClass('hide');
+           $(modalID).modal('show');
+       } 
+</script>
 <div class="modal fade" id="agregarLibro" tabindex="-1" role="dialog" aria-labelledby=addLibro aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -19,9 +26,10 @@
                             <input for="inputTitulo" type="text" class="form-control" id="inputTitulo" name="inputTitulo" required>
                         </div>
                     </div>
+                    
                     <div class="form-group">
                         <label for="inputLinkAutor" class="col-lg-2 control-label">Autor</label>
-                        <div class="col-lg-10">
+                        <div class="col-xs-3">
                             <select name = 'inputLinkAutor' id='inputLinkAutor' class="form-control" name="inputLinkAutor">
                                 <?php
                                 include '../dbconnection.php';
@@ -34,7 +42,9 @@
                                 ?>
                             </select>
                         </div>
+                        <button type="button" class="btn btn-primary" id="openModalAgregarAutor" onClick='callModal("#agregarAutor")'>Agregar Autor</button>
                     </div>
+                        
                     <div class="form-group">
                         <label for="inputLinkEditorial" class="col-lg-2 control-label">Editorial</label>
                         <div class="col-lg-10">

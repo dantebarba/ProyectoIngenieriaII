@@ -1,4 +1,4 @@
-<div class="modal fade" id="editarAutor" tabindex="-1" role="dialog" aria-labelledby=editAutor aria-hidden="true">
+<div class="modal fade" id="editarAutor" tabindex="-1" style="display: none;" aria-labelledby=editAutor >
     <div class="modal-dialog"> 
         <div class="modal-content">
             <div class="modal-header">
@@ -34,22 +34,22 @@
             var options = {
                         success : function(element) { 
                             // DISMISS MODAL AND PASS VALUE PARAMETER
-                            alert('callback return');
+                            console.log(element);
                             if (element.status === 'success') {
-                                return { 
-                                    nombre: $("#agregar_nombreAutor").val(),
-                                    id: element.id,
-                                    dni: $("#agregar_nombreAutor").val()
+                                
+                                if ($("#fromModal").val === "1") {
+                                    alert('callback return');
+                                    $("#inputLinkAutor").val(element.id);
+                                    $("#agregarLibro").removeClass('hide');
                                 };
                             }
-                            else if (element.status === 'error_autorExists')´ {
+                            else if (element.status === 'error_autorExists') {
                                 alert("ERROR: Ya existe el autor");
                             }
                             
                         },
                         error: function (element) {
                             console.log(element);
-                            noty({text: 'ERROR EN EL SERVIDOR', type: 'error'});
                         },
                         type : 'post',
                         dataType : 'json'
@@ -61,7 +61,7 @@
     
     </script>
 </div>
-<div class="modal fade" id="agregarAutor" tabindex="-1" role="dialog" aria-labelledby=addAutor aria-hidden="true">
+<div class="modal fade" id="agregarAutor" tabindex="-1" aria-labelledby=addAutor>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -85,6 +85,7 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </div>
+                    <input type="hidden" value="0">
                 </form>
             </div>
 

@@ -16,6 +16,9 @@
         <link href="../theme.css" rel="stylesheet">
         <title>Cookbook</title>
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
+        <script src="/js/jquery-2.1.1.min.js"></script>
+        <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js"></script>
+        
         <script type="text/javascript" language="javascript">
             function tiene_letrass(nombre, numero) {
                 if (nombre === "" || numero === "")
@@ -119,6 +122,5 @@
                 </ul>
             </div></div>
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js"></script>
+        
     </body>
