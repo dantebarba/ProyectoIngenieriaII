@@ -84,19 +84,21 @@
                         },
                         success : function(element) { 
                             $.noty.closeAll();
-                            if (element.status === 'success') {
-                                window.location.href = element.redirect;
-                            }
-                            else if (element.status === 'error_invalidLogin') {
-                                $('#loginModal').noty(
-                                        {   layout: 'inline',
+                            notyoptions = { layout: 'inline',
                                             text: element.message,
                                             timeout: '3000',
                                             type: 'error'
-                                            
-                                        });
+                                          };
+                            if (element.status === 'success') {
+                                window.location.href = element.redirect;
+                            }
+                            else if ((element.status === 'error_invalidLogin') || 
+                                     (element.status === 'error_userDisabled'))
+                            {
+                                $('#loginModal').noty(notyoptions);
+                            }
                             $("#btnLogIn").prop("disabled", false);
-                            } // sucess envia Objeto json
+                            // sucess envia Objeto json
                         },
                         error: function (element) {
                             console.log(element);

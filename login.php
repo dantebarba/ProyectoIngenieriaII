@@ -17,11 +17,16 @@
         include 'dbconnection.php'; 
         $link = connectdb();
         include 'queries.php';
-        if ($_GET['recoverDNI'] === '') {
-            $_GET['recoverDNI'] = -1;
+        $field['username'] = $_GET['recoverUsername'];
+        if ($_GET['recoverDNI'] == '') {
+            $field['dni'] = "NULL";
         }
-        if (q_isPresentUsuario($_GET['recoverUsername'], $_GET['recoverDNI'])) {
-            q_enableUsuario($_GET['recoverUsername'], $_GET['recoverDNI']);
+        else {
+            $field['dni'] = $_GET['recoverDNI'];
+        }
+        $query = q_isPresentUsuario($field['username'], $field['dni']);
+        if ($query) {
+            q_enableUsuario($field['username'], $field['dni']);
             $response['status'] = 'success';
             $response['message'] = 'Se ha habilitado el usuario';
             $response['redirect'] = '/index.php';
@@ -56,9 +61,16 @@ $resultado = mysql_fetch_assoc($rows);
 
 
 if ((mysql_num_rows($rows) != 0) && ($user == $resultado['username'] and $pass == $resultado['password'])) {
-    //JavaScript redirect on click, no es la forma correcta peeeroo anda.
-
-    
+    if (!q_isDisponibleUsuario($user)) {
+        $respuesta['status'] = 'error_userDisabled'; 
+        $respuesta['message'] = '<strong>ERROR:</strong> El Usuario ya existe pero se encuentra deshabilitado.'
+                    . 'Para habilitarlo haga click <a href="/recover.php"><strong>aqui</strong></a>';
+        header('Content-type: application/json');
+        echo json_encode($respuesta);
+        mysql_close();
+        exit();
+    }
+    else {
         //session_start();
         /* voy a tener que usar Cookies porque el servidor no
          * me permite usar session, puede que haya un problema de permisos
@@ -86,7 +98,7 @@ if ((mysql_num_rows($rows) != 0) && ($user == $resultado['username'] and $pass =
             echo json_encode($response);
             }
         exit();
-    
+    }
 
 } 
 else {

@@ -165,7 +165,7 @@ function q_removeLibro($ISBN) {
 
 function q_isPresentUsuario($username, $DNI=-1) {
     $query="SELECT username,DNI FROM usuarios WHERE ('$username'=username or DNI=".$DNI.")";
-    $result=mysql_query($query);
+    $result=mysql_query($query) or die(mysql_error());
     if (mysql_num_rows($result) == 0) {
         return false;
     }

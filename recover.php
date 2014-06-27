@@ -33,6 +33,22 @@
     rel="stylesheet">
     <script type="text/javascript">
         $(document).ready(function () {
+            $("#recoverUsername").on('blur', function() {
+               if ($(this).val() === '') {
+                   $("#recoverDNI").prop("disabled", false);
+               }
+               else {
+                   $("#recoverDNI").prop("disabled", true);
+               }
+            });
+            $("#recoverDNI").on('blur', function() {
+               if ($(this).val() === '') {
+                   $("#recoverUsername").prop("disabled", false);
+               }
+               else {
+                   $("#recoverUsername").prop("disabled", true);
+               }
+            });
             $("#recoverForm").validate(       
             {
                 rules: {
@@ -128,6 +144,7 @@
             
             <form  name='recoverForm' action="login.php" id="recoverForm" role="form" style="padding-top: 200px;">
                 <div class="form-group">
+                    <h5> Complete con su DNI o su Nombre de Usuario</h5>
                     <div class="form-group">
                         <label for="recoverUsername"> Usuario </label>
                         <input type="text" class="form-control" id="recoverUsername" name="recoverUsername" />
