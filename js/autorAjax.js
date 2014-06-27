@@ -1,4 +1,5 @@
 $(document).ready( function() {
+            callerID = $("#fromModal").val();
             var options = {
                         beforeSubmit:
                                 function () {
@@ -9,15 +10,24 @@ $(document).ready( function() {
                             // DISMISS MODAL AND PASS VALUE PARAMETER
                             
                             if (element.status === 'success') {
-                                if (($("#fromModal").val()) === "1") {
+                                if ($("#fromModal").val() !== "0") {
+                                    $("#fromModal").val("0");
                                     $("#agregarAutor").modal("hide");
                                     $("#agregarLibro").modal("show");
                                     $('#inputLinkAutor').append($('<option>', {
                                         value: element.id,
                                         text: element.nombre + '-' + element.dni
                                     }));
-                                    $('#inputLinkAutor').val(element.id);
-                                    
+                                    $(callerID+ ' #inputLinkAutor').append($('<option>', {
+                                        value: element.id,
+                                        text: element.nombre + '-' + element.dni
+                                    }));
+                                    $(callerID+ ' #editLinkAutor').append($('<option>', {
+                                        value: element.id,
+                                        text: element.nombre + '-' + element.dni
+                                    }));
+                                    $(callerID+ ' #inputLinkAutor').val(element.id);
+                                    $(callerID+ ' #editLinkAutor').val(element.id);
                                 };
                                 notyTopNotification('success', element.message); 
                             }
@@ -33,5 +43,4 @@ $(document).ready( function() {
                         dataType : 'json'
             };
             $("#inputDataAutor").ajaxForm(options);
-    
     });

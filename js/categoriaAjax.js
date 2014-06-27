@@ -1,6 +1,7 @@
 
 
-$(document).ready( function() {
+    $(document).ready( function() {
+            callerID = $("#fromModal").val();
             var options = {
                         beforeSubmit:
                                 function () {
@@ -10,15 +11,20 @@ $(document).ready( function() {
                         success : function(element) { 
                             // DISMISS MODAL AND PASS VALUE PARAMETER
                             if (element.status === 'success') {
-                                if ($("#fromModal").val() === "1") {
-                                    $("#fromModal").val('0');
+                                if ($("#fromModal").val() !== "0") {
+                                    $("#fromModal").val("0");
                                     $("#agregarCategoria").modal("hide");
-                                    $("#agregarLibro").modal("show");
-                                    $('#inputLinkEtiqueta').append($('<option>', {
+                                    $(callerID).modal("show");
+                                    $(callerID+' #editLinkEtiqueta').append($('<option>', {
                                         value: element.id,
                                         text: element.nombre + '-' + element.dni
                                     }));
-                                    $('#inputLinkEtiqueta').val(element.id);
+                                    $(callerID+' #inputLinkEtiqueta').append($('<option>', {
+                                        value: element.id,
+                                        text: element.nombre + '-' + element.dni
+                                    }));
+                                    $(callerID+' #inputLinkEtiqueta').val(element.id);
+                                    $(callerID+' #editLinkEtiqueta').val(element.id);
                                    
                                 };
                                 notyTopNotification('success', element.message);
@@ -37,3 +43,4 @@ $(document).ready( function() {
             $("#inputNombreEtiqueta").ajaxForm(options);
     
     });
+

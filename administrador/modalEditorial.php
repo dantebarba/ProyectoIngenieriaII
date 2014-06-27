@@ -18,7 +18,7 @@
                     <input type='hidden' name='elemente' value='editorial_add'/>
                     <input type='hidden' id='fromModal' value='0'>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onClick='rollbackModal("#fromModal")'>Close</button>
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </div>
                 </form>

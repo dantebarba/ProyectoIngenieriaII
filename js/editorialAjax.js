@@ -1,6 +1,7 @@
 
 
 $(document).ready( function() {
+            callerID = $("#fromModal").val();
             var options = {
                         beforeSubmit:
                                 function () {
@@ -10,8 +11,8 @@ $(document).ready( function() {
                         success : function(element) { 
                             // DISMISS MODAL AND PASS VALUE PARAMETER
                             if (element.status === 'success') {
-                                if (($("#fromModal").val()) === "1") {
-                                    $("fromModal").val('0');
+                                if ($("#fromModal").val() !== "0") {
+                                    $("#fromModal").val("0");
                                     $("#agregarEditorial").modal("hide");
                                     $("#agregarLibro").modal("show");
                                     $('#inputLinkEditorial').append($('<option>', {
@@ -35,5 +36,5 @@ $(document).ready( function() {
                         dataType : 'json'
             };
             $("#inputDataEditorial").ajaxForm(options);
-    
+
     });

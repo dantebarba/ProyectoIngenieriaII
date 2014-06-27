@@ -14,6 +14,9 @@ if (!($_COOKIE['isAdmin'] != '')) {
 
         <title>Listado de Libros</title><!-- Bootstrap core CSS -->
         <script src="http://ingenieriaii.url.ph/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+        <script src="/js/noty/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
+        <script src='/js/modalFunctions.js' type='text/javascript'></script>
+        <script src='/js/notifications.js' type='text/javascript'></script>
         <script type="text/javascript">
                        function tiene_letrass(nombre, numero) {
                 if (nombre === "" || numero === "")
@@ -99,8 +102,11 @@ if (!($_COOKIE['isAdmin'] != '')) {
 
     </head>
 
-    <?php include 'modalLibro.php' ?>
-    <?php include '../header.php' ?>
+    <?php include_once 'modalLibro.php' ?>
+    <?php include_once 'modalAutor.php' ?>
+    <?php include_once 'modalEditorial.php' ?>
+    <?php include_once 'modalCategoria.php' ?>
+    <?php include_once '../header.php' ?>
     <body id="listarBody">
 
         <div class="container">

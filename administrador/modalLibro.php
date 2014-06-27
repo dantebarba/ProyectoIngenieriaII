@@ -1,11 +1,4 @@
-<script>
-    function callModal(modalID) {
-           $(".modal-body #fromModal").val('1');
-           $("#agregarLibro").modal("hide");
-           $(modalID).modal('show');
-       } 
-       
-</script>
+
 <div class="modal fade" id="agregarLibro" tabindex="-1" role="dialog" aria-labelledby=addLibro aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -43,7 +36,7 @@
                                 ?>
                             </select>
                         </div>
-                        <button type="button" class="btn btn-sm btn-primary" id="openModalAgregarAutor" onClick='callModal("#agregarAutor")'>Agregar Autor</button>
+                        <button type="button" class="btn btn-sm btn-primary" onClick='callModal("#agregarAutor")'>Agregar Autor</button>
                     </div>
                         
                     <div class="form-group">
@@ -125,6 +118,7 @@
                         <div class="col-lg-10">
                             <input for="editISBN" type="text" min="0" class="form-control" id="editISBN" name="editISBN" readonly>
                         </div>
+                        
                     </div>
                     <div class="form-group">
                         <label for="editTitulo" class="col-lg-2 control-label">Titulo</label>
@@ -134,7 +128,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editLinkAutor" class="col-lg-2 control-label">Autor</label>
-                        <div class="col-lg-10">
+                        <div class="col-xs-4">
                             <select name='editLinkAutor' id='editLinkAutor' class="form-control">
                                 <?php
                                 $link = connectdb();
@@ -145,11 +139,13 @@
                                 }
                                 ?>
                             </select>
+                            
                         </div>
+                        <button onClick='callModal("#agregarAutor")' class="btn btn-sm btn-primary" type="button">Agregar Categoria</button>
                     </div>
                     <div class="form-group">
                         <label for="editLinkEditorial" class="col-lg-2 control-label">Editorial</label>
-                        <div class="col-lg-10">
+                        <div class="col-xs-4">
                             <select name = 'editLinkEditorial' id="editLinkEditorial" class="form-control">
                                 <?php
                                 $link = connectdb();
@@ -160,6 +156,7 @@
                                 ?>
                             </select>
                         </div>
+                        <button onClick='callModal("#agregarEditorial")' class="btn btn-sm btn-primary" type="button">Agregar Editorial</button>
                     </div>
                     <div class="form-group">
                         <label for="editLinkEtiqueta" class="col-lg-2 control-label">Categoria</label>
@@ -174,7 +171,7 @@
                                 ?>
                             </select>
                         </div>
-                        <input type='button' class='btn btn-sm btn-primary' onClick='callModal("#agregarCategoria")'>
+                        <button onClick='callModal("#agregarCategoria")' class="btn btn-sm btn-primary" type="button">Agregar Categoria</button>
                     </div>
                     <div class="form-group">                      
                         <label for="editPaginas" class="col-lg-2 control-label">Páginas</label>
