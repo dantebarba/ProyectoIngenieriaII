@@ -54,13 +54,17 @@
                     },
                     registrarPassword: {
                         required: true,
-                        minlength: 5
+                        rangelength: [5, 32],
+                        alphanumeric: true
                     },
                     registrarPasswordrepeat: {
                         required: true,
-                        equalTo: "#registrarPassword"
+                        equalTo: "#registrarPassword",
+                        alphanumeric: true
                     },
                     registrarEmail: {
+                        minlength: 5,
+                        maxlength: 40,
                         required: true,
                         email: true
                     },
@@ -72,7 +76,9 @@
                     registrarDNI: {
                         required: true,
                         digits: true,
-                        minlength: 5
+                        minlength: 5,
+                        maxlength: 10,
+                        range: [100, 999999999]
                     },
                     registrarFecha_nac: {
                         required: true
@@ -86,7 +92,8 @@
                                 return false;
                             }
                         },
-                        digits: true
+                        digits: true,
+                        range: [0, 99999999999999]
                     },
                     registrarTel_cel: {
                         required: function(element) {
@@ -97,24 +104,31 @@
                                 return false;
                             }
                         },
-                        digits: true
+                        digits: true,
+                        range: [0, 99999999999999]
                     },
                     registrarLocalidad: {
-                        required: true
+                        required: true,
+                        maxlength: 45
                     },
                     registrarCalle: {
-                        required: true
+                        required: true,
+                        maxlength: 45
                     },
                     registrarNumero: {
                         required: true,
-                        digits: true
+                        digits: true,
+                        range: [1, 999999]
+                        
                     },
                     registrarProvincia: {
-                        required: true
+                        required: true,
+                        maxlength: 40
                     },
                     registrarPostal: {
                         required: true,
-                        digits: true
+                        digits: true,
+                        range: [1, 10000]
                     },
                     registrarDepartamento: {
                         required: function(element) {
@@ -124,7 +138,8 @@
                             else {
                                 return false;
                             }
-                        }
+                        },
+                        maxlength: 5
                     }
             },
 
@@ -138,25 +153,30 @@
                 },
                 registrarPassword: {
                     required: "Por favor ingrese una contrasenia",
-                    minlength: "Tu password debe ser de entre 5 y 32 caracteres"
+                    rangelength: "Tu password debe ser de entre {0} y {1} caracteres"
                 },
                 registrarPasswordrepeat: {
-                    equalTo: "Tu contrasenia no coincide"
+                    equalTo: "Tu contrasenia no coincide",
+                    required: "Se requiere repetir el password"
                 },
                 registrarEmail: "Por favor ingrese un email valido",
                 registrarEmailrepeat: "Las direcciones de Email no coinciden",
                 registrarDNI: {
                     digits: "Solo se pueden ingresar numeros",
                     required: "Este campo es requerido",
-                    minlength: "Se requieren como minimo cinco digitos"
+                    minlength: "Se requieren como minimo cinco digitos",
+                    maxlength: "No ingrese mas de {0} caracteres",
+                    range: "Inserte un DNI valido"
                 },
                 registrarTel_fijo: {
                     digits:  "Solo se admiten numeros", 
-                    required: "Se requiere un numero telefonico"
+                    required: "Se requiere un numero telefonico",
+                    range: "Numero telefonico fuera de rango"
                 },
                 registrarTel_cel: {
                    digits:  "Solo se admiten numeros", 
-                   required: "Se requiere un numero telefonico"
+                   required: "Se requiere un numero telefonico",
+                   range: "Numero telefonico fuera de rango"
                 },
                 registrarCalle: "Se requiere ingresar una calle",
                 registrarProvincia: "Se requiere seleccionar una provincia",
@@ -404,8 +424,8 @@
             <div>
           <span style="float: right;">
            <button type="button" class="btn pull-right btn-primary" id="sendForm" name="sendform" onClick='$("#registrarForm").submit();'>Enviar</button>
-           <button type="button" class="btn pull-right btn-danger" id="cancel" name="cancel">
-            Canelar
+           <a href="index.php" type="button" class="btn pull-right btn-danger" id="cancel" name="cancel" >Cancelar</a>
+            
           </button>
             </div>
         </div>

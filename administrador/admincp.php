@@ -106,9 +106,11 @@
                 <ul>
                     <form class="form-horizontal" id="listarLibro" method="post" action="listarLibro.php" role="form">
                         <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarLibro">Agregar</button><p></p> 
+                        <div class="col-xs-2">
                         <input type="date" class="form-control" id="fecha1Libro" name="fecha1Libro"><p></p>
                         <input type="date" class="form-control" id="fecha2Libro" name="fecha2Libro"><p></p>
-                        <span class="help-block">En caso de no ingresar alguna de las dos fechas, se listaran todos los libros</span><p></p>
+                        </div>
+                        <span class="help-block" style="margin-top:20px;clear:both;">En caso de no ingresar alguna de las dos fechas, se listaran todos los libros</span><p></p>
                         <button type='submit'class="btn btn-primary" onclick="redirect('listarLibro.php')">Listar</button>
                     </form>
                 </ul>
@@ -118,9 +120,12 @@
             </div><div class="panel-body">
                 <ul>
                     <form class="form-horizontal" id="listarUsuario" method="post" action="listarUsuario.php" role="form">
+                       <div class="col-xs-2">
                         <input type="date" class="form-control" id="fecha1Usuario" name="fecha1Usuario"><p></p>
                         <input type="date" class="form-control" id="fecha2Usuario" name="fecha2Usuario"><p></p>
-                        <span class="help-block">En caso de no ingresar alguna de las dos fechas, se listaran todos los usuarios</span>
+                       </div>
+                        <br />
+                        <span class="help-block" style="margin-top:20px;clear:both;">En caso de no ingresar alguna de las dos fechas, se listaran todos los usuarios</span>
                         <button type='submit'class="btn btn-primary" onclick="redirect('listarUsuario.php')">Listar</button>
                     </form>   
                 </ul>
