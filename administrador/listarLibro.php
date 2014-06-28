@@ -156,6 +156,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Autores_idAutor'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEditorialLibro' . '>' . $row['Editoriales_idEditorial'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Etiquetas_idEtiqueta'] . '</td>';
+                                //echo '<td style="display:none;" id=' . 'fechaDeRegistro' . '>' . sprintf("%04s-%02s-%02s", substr($row['fechaDeRegistro'],0,4),substr($row['fechaDeRegistro'],5,2),substr($row['fechaDeRegistro'],8,2)) . '</td>';
                                 $i++;
                             }
                             mysql_close($link);

@@ -24,10 +24,10 @@ function q_listUserBetween ($fechaUno, $fechaDos) {
 
 
 function q_listLibrosBetween ($fechaUno, $fechaDos, $rangemax=1000) {
-    $query = "SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta FROM libros l "
+    $query = "SELECT l.ISBN, l.titulo, l.paginas, l.fechaDeRegistro, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta FROM libros l "
             . "LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)"
             . " LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN )"
-            . " WHERE isDeleted=0 and l.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' ORDER BY l.titulo LIMIT 0 , " . $rangemax;
+            . " WHERE isDeleted=0 and l.fechaDeRegistro BETWEEN '".$fechaUno."' and '".$fechaDos."' ORDER BY l.titulo LIMIT 0 , " . $rangemax;
     $row = mysql_query($query) or die(mysql_error());
     return $row;
 }
