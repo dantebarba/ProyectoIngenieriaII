@@ -15,7 +15,6 @@ function addAutor($nombre, $DNI) {
     else
     {
         if (q_isDisponibleAutorPorDni($DNI)){
-             q_addAutor($nombre, $DNI);
             $response['message'] = '<strong>ERROR: Ya existe el autor</strong>';
             $response['status'] = 'error_autorExists';
         } else {
