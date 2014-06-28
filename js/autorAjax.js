@@ -1,5 +1,4 @@
 $(document).ready( function() {
-            callerID = $("#fromModal").val();
             var options = {
                         beforeSubmit:
                                 function () {
@@ -10,8 +9,7 @@ $(document).ready( function() {
                             // DISMISS MODAL AND PASS VALUE PARAMETER
                             
                             if (element.status === 'success') {
-                                if ($("#fromModal").val() !== "0") {
-                                    $("#fromModal").val("0");
+                                if (callerID !== null) {
                                     $("#agregarAutor").modal("hide");
                                     $("#agregarLibro").modal("show");
                                     $('#inputLinkAutor').append($('<option>', {
@@ -28,6 +26,7 @@ $(document).ready( function() {
                                     }));
                                     $(callerID+ ' #inputLinkAutor').val(element.id);
                                     $(callerID+ ' #editLinkAutor').val(element.id);
+                                    callerID = null;
                                 };
                                 notyTopNotification('success', element.message); 
                             }

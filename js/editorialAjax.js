@@ -1,7 +1,6 @@
 
 
 $(document).ready( function() {
-            callerID = $("#fromModal").val();
             var options = {
                         beforeSubmit:
                                 function () {
@@ -11,16 +10,20 @@ $(document).ready( function() {
                         success : function(element) { 
                             // DISMISS MODAL AND PASS VALUE PARAMETER
                             if (element.status === 'success') {
-                                if ($("#fromModal").val() !== "0") {
-                                    $("#fromModal").val("0");
+                                if (callerID !== null) {
                                     $("#agregarEditorial").modal("hide");
-                                    $("#agregarLibro").modal("show");
-                                    $('#inputLinkEditorial').append($('<option>', {
+                                    $(callerID).modal("show");
+                                    $(callerID + ' #inputLinkEditorial').append($('<option>', {
                                         value: element.id,
                                         text: element.nombre
                                     }));
-                                    $('#inputLinkEditorial').val(element.id);
-                                    
+                                    $(callerID + ' #editLinkEditorial').append($('<option>', {
+                                        value: element.id,
+                                        text: element.nombre
+                                    }));
+                                    $(callerID + ' #editLinkEditorial').val(element.id);
+                                    $(callerID + ' #inputLinkEditorial').val(element.id);
+                                    callerID = null;
                                 };
                                 notyTopNotification('success', element.message); 
                            }
@@ -28,6 +31,7 @@ $(document).ready( function() {
                                 notyTopNotification('error', element.message);
                             }
                             $(".btn").prop("disabled", false);
+                            callerID = null;
                         },
                         error: function (element) {
                             console.log(element);

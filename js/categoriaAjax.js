@@ -1,7 +1,6 @@
 
 
     $(document).ready( function() {
-            callerID = $("#fromModal").val();
             var options = {
                         beforeSubmit:
                                 function () {
@@ -11,7 +10,7 @@
                         success : function(element) { 
                             // DISMISS MODAL AND PASS VALUE PARAMETER
                             if (element.status === 'success') {
-                                if ($("#fromModal").val() !== "0") {
+                                if (callerID !== null) {
                                     $("#fromModal").val("0");
                                     $("#agregarCategoria").modal("hide");
                                     $(callerID).modal("show");
@@ -25,7 +24,7 @@
                                     }));
                                     $(callerID+' #inputLinkEtiqueta').val(element.id);
                                     $(callerID+' #editLinkEtiqueta').val(element.id);
-                                   
+                                    callerID = null;
                                 };
                                 notyTopNotification('success', element.message);
                             }

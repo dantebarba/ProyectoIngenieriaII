@@ -54,10 +54,10 @@
                     </div>
                     
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" onClick='rollbackModal("#formModal")'>Cerrar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onClick='rollbackModal()'>Cerrar</button>
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </div>
-                    <input type="hidden" value="0" id="fromModal" >
+                    
                 </form>
             </div>
 

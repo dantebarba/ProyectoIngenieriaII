@@ -36,7 +36,7 @@
                                 ?>
                             </select>
                         </div>
-                        <button type="button" class="btn btn-sm btn-primary" onClick='callModal("#agregarAutor")'>Agregar Autor</button>
+                        <button type="button" class="btn btn-sm btn-primary" onClick='callModal("#agregarAutor", "#"+$(this).closest(".modal").attr("id"))'>Agregar Autor</button>
                     </div>
                         
                     <div class="form-group">
@@ -52,7 +52,7 @@
                                 ?>
                             </select>
                         </div>
-                        <button type='button' class='btn btn-sm btn-primary' onClick='callModal("#agregarEditorial")'>Agregar Editorial</button>
+                        <button type='button' class='btn btn-sm btn-primary' onClick='callModal("#agregarEditorial", "#"+$(this).closest(".modal").attr("id"))'>Agregar Editorial</button>
                     </div>
                     <div class="form-group">
                         <label for="inputLinkEtiqueta" class="col-lg-2 control-label">Categoria</label>
@@ -67,7 +67,7 @@
                                 ?>
                             </select>
                         </div>
-                        <button onClick='callModal("#agregarCategoria")' class="btn btn-sm btn-primary" type="button">Agregar Categoria</button>
+                        <button onClick='callModal("#agregarCategoria", "#"+$(this).closest(".modal").attr("id"))' class="btn btn-sm btn-primary" type="button">Agregar Categoria</button>
                     </div>
                     <div class="form-group">                      
                         <label for="inputPaginas" class="col-lg-2 control-label">Páginas</label>
@@ -141,7 +141,7 @@
                             </select>
                             
                         </div>
-                        <button onClick='callModal("#agregarAutor")' class="btn btn-sm btn-primary" type="button">Agregar Categoria</button>
+                        <button onClick='callModal("#agregarAutor", "#"+$(this).closest(".modal").attr("id"))' class="btn btn-sm btn-primary" type="button">Agregar Categoria</button>
                     </div>
                     <div class="form-group">
                         <label for="editLinkEditorial" class="col-lg-2 control-label">Editorial</label>
@@ -156,7 +156,7 @@
                                 ?>
                             </select>
                         </div>
-                        <button onClick='callModal("#agregarEditorial")' class="btn btn-sm btn-primary" type="button">Agregar Editorial</button>
+                        <button onClick='callModal("#agregarEditorial", "#"+$(this).closest(".modal").attr("id"))' class="btn btn-sm btn-primary" type="button">Agregar Editorial</button>
                     </div>
                     <div class="form-group">
                         <label for="editLinkEtiqueta" class="col-lg-2 control-label">Categoria</label>
@@ -171,7 +171,7 @@
                                 ?>
                             </select>
                         </div>
-                        <button onClick='callModal("#agregarCategoria")' class="btn btn-sm btn-primary" type="button">Agregar Categoria</button>
+                        <button onClick='callModal("#agregarCategoria", "#"+$(this).closest(".modal").attr("id"))' class="btn btn-sm btn-primary" type="button">Agregar Categoria</button>
                     </div>
                     <div class="form-group">                      
                         <label for="editPaginas" class="col-lg-2 control-label">Páginas</label>
