@@ -11,18 +11,18 @@ $(document).ready( function() {
                             if (element.status === 'success') {
                                 if (callerID !== null) {
                                     $("#agregarAutor").modal("hide");
-                                    $("#agregarLibro").modal("show");
+                                    $(callerID).modal("show");
                                     $('#inputLinkAutor').append($('<option>', {
                                         value: element.id,
-                                        text: element.nombre + '-' + element.dni
+                                        text: element.nombre + '- ' + element.dni
                                     }));
                                     $(callerID+ ' #inputLinkAutor').append($('<option>', {
                                         value: element.id,
-                                        text: element.nombre + '-' + element.dni
+                                        text: element.nombre + ' - ' + element.dni
                                     }));
                                     $(callerID+ ' #editLinkAutor').append($('<option>', {
                                         value: element.id,
-                                        text: element.nombre + '-' + element.dni
+                                        text: element.nombre + ' - ' + element.dni
                                     }));
                                     $(callerID+ ' #inputLinkAutor').val(element.id);
                                     $(callerID+ ' #editLinkAutor').val(element.id);

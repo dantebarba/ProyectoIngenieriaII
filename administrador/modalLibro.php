@@ -23,7 +23,7 @@
                     
                     <div class="form-group">
                         <label for="inputLinkAutor" class="col-lg-2 control-label">Autor</label>
-                        <div class="col-xs-4">
+                        <div class="col-xs-6">
                             <select name = 'inputLinkAutor' id='inputLinkAutor' class="form-control" name="inputLinkAutor">
                                 <?php
                                 include '../dbconnection.php';
@@ -41,7 +41,7 @@
                         
                     <div class="form-group">
                         <label for="inputLinkEditorial" class="col-lg-2 control-label">Editorial</label>
-                        <div class="col-xs-4">
+                        <div class="col-xs-6">
                             <select id="inputLinkEditorial" name = 'inputLinkEditorial' class="form-control">
                                 <?php
                                 $link = connectdb();
@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputLinkEtiqueta" class="col-lg-2 control-label">Categoria</label>
-                        <div class="col-xs-4">
+                        <div class="col-xs-6">
                             <select id="inputLinkEtiqueta" name = 'inputLinkEtiqueta' class="form-control">
                                 <?php
                                 $link = connectdb();
@@ -128,7 +128,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editLinkAutor" class="col-lg-2 control-label">Autor</label>
-                        <div class="col-xs-4">
+                        <div class="col-xs-6">
                             <select name='editLinkAutor' id='editLinkAutor' class="form-control">
                                 <?php
                                 $link = connectdb();
@@ -141,11 +141,11 @@
                             </select>
                             
                         </div>
-                        <button onClick='callModal("#agregarAutor", "#"+$(this).closest(".modal").attr("id"))' class="btn btn-sm btn-primary" type="button">Agregar Categoria</button>
+                        <button onClick='callModal("#agregarAutor", "#"+$(this).closest(".modal").attr("id"))' class="btn btn-sm btn-primary" type="button">Agregar Autor</button>
                     </div>
                     <div class="form-group">
                         <label for="editLinkEditorial" class="col-lg-2 control-label">Editorial</label>
-                        <div class="col-xs-4">
+                        <div class="col-xs-6">
                             <select name = 'editLinkEditorial' id="editLinkEditorial" class="form-control">
                                 <?php
                                 $link = connectdb();
@@ -160,7 +160,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editLinkEtiqueta" class="col-lg-2 control-label">Categoria</label>
-                        <div class="col-xs-4">
+                        <div class="col-xs-6">
                             <select name = 'editLinkEtiqueta' id="editLinkEtiqueta" class="form-control">
                                 <?php
                                 $link = connectdb();

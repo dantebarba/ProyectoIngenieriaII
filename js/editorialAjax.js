@@ -25,13 +25,14 @@ $(document).ready( function() {
                                     $(callerID + ' #inputLinkEditorial').val(element.id);
                                     callerID = null;
                                 };
-                                notyTopNotification('success', element.message); 
+                                notyTopNotification('success', element.message);
+                                callerID = null;
                            }
                             else if (element.status === 'error_editorialExists') {
                                 notyTopNotification('error', element.message);
                             }
                             $(".btn").prop("disabled", false);
-                            callerID = null;
+                            
                         },
                         error: function (element) {
                             console.log(element);

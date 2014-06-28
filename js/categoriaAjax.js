@@ -16,11 +16,11 @@
                                     $(callerID).modal("show");
                                     $(callerID+' #editLinkEtiqueta').append($('<option>', {
                                         value: element.id,
-                                        text: element.nombre + '-' + element.dni
+                                        text: element.nombre
                                     }));
                                     $(callerID+' #inputLinkEtiqueta').append($('<option>', {
                                         value: element.id,
-                                        text: element.nombre + '-' + element.dni
+                                        text: element.nombre
                                     }));
                                     $(callerID+' #inputLinkEtiqueta').val(element.id);
                                     $(callerID+' #editLinkEtiqueta').val(element.id);
