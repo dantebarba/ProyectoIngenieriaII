@@ -19,6 +19,8 @@ function addAutor($nombre, $DNI) {
             $response['status'] = 'error_autorExists';
         } else {
             q_habilitarAutor ($DNI);
+            $response['message'] = 'Se ha habilitado el autor';
+            $response['status'] = 'success';
         }
        
     }
