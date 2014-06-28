@@ -411,7 +411,12 @@
         </div>
       </div>
         <script type="text/javascript">
-            $("#registrarFecha_nac").datepicker();
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+            $("#registrarFecha_nac").datepicker({
+                    onRender: function(date) {
+                              return date.valueOf() > now.valueOf() ? 'disabled' : '';}
+            });
         </script>
     </div>
   </body>
