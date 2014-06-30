@@ -67,7 +67,7 @@ if ((mysql_num_rows($rows) != 0) && ($user == $resultado['username'] and $pass =
                     . 'Para habilitarlo haga click <a href="/recover.php"><strong>aqui</strong></a>';
         header('Content-type: application/json');
         echo json_encode($respuesta);
-        mysql_close();
+        mysql_close($link);
         exit();
     }
     else {
@@ -90,7 +90,7 @@ if ((mysql_num_rows($rows) != 0) && ($user == $resultado['username'] and $pass =
     //        $_SESSION['type'] = 'admin';
         }
         else {
-            mysqli_close($link);
+            mysql_close($link);
             // por ahora te manda al index, hay que ver como hacemos la parte de
             // usuario registrado
             $response['redirect'] = '/index.php';
@@ -103,7 +103,7 @@ if ((mysql_num_rows($rows) != 0) && ($user == $resultado['username'] and $pass =
 } 
 else {
     //die('Contraseña incorrecta - <a href="' . 'http://' . filter_input(INPUT_SERVER, 'HTTP_HOST') . '/index.php' . '">reintentar</a>');
-    mysqli_close($link);
+    mysql_close($link);
     $response['status'] = 'error_invalidLogin';
     $response['message'] = '<strong>ERROR:</strong> Username o password incorrectos';
     header('Content-type: application/json');
