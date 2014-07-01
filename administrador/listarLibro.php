@@ -17,6 +17,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <script src="/js/noty/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
         <script src='/js/modalFunctions.js' type='text/javascript'></script>
         <script src='/js/notifications.js' type='text/javascript'></script>
+        <script src="../js/jquery.dataTables.min.js" type="text/javascript"></script>
+        
         <script type="text/javascript">
                        function tiene_letrass(nombre, numero) {
                 if (nombre === "" || numero === "")
@@ -58,6 +60,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 return true;
             }
             $(document).ready(function() {
+                $('#lista').dataTable();
                 var fields = ['ISBN', 'tituloLibro', 'paginasLibro', 'precioLibro', 'idiomaLibro',
                     'fechaLibro', 'idAutorLibro', 'idEditorialLibro', 'idEtiquetaLibro'];
                 var item = {}; // los dict son igual a python
@@ -93,12 +96,14 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     $(".modal-body #deleteTitulo").val(item['tituloLibro']);
                     $("#eliminarLibro").modal('show');
                 });
+                
             });
         </script>
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
         <link href="http://ingenieriaii.url.ph/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js" type="text/javascript"></script>
         <link href="http://ingenieriaii.url.ph/css/custom.css" rel="stylesheet" type="text/css" />
+        <link href="../css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -114,11 +119,19 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 <div class="col-md-2"></div> 
                 <div class="col-md-8">
                   <div  style="height:400px;overflow:auto;">
-                    <table class="table table-hover table-bordered table-striped" id="lista">
+                    <table class="table table-hover table-bordered table-striped display" id="lista">
                         <thead>
                             <tr>
                                 <th>ISBN</th>
                                 <th>Titulo</th>
+                                <th style="display: none;">Paginas</th>
+                                <th style="display: none;">Fecha</th>
+                                <th style="display: none;">Idioma</th>
+                                <th style="display: none;">Precio</th>
+                                <th style="display: none;">idAutor Libro</th>
+                                <th style="display: none;">idEditorial Libro</th>
+                                <th style="display: none;">idCategoria Libro</th>
+                            
                             </tr>
                         </thead>
 
@@ -156,6 +169,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Autores_idAutor'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEditorialLibro' . '>' . $row['Editoriales_idEditorial'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Etiquetas_idEtiqueta'] . '</td>';
+                                echo '</tr>';
                                 //echo '<td style="display:none;" id=' . 'fechaDeRegistro' . '>' . sprintf("%04s-%02s-%02s", substr($row['fechaDeRegistro'],0,4),substr($row['fechaDeRegistro'],5,2),substr($row['fechaDeRegistro'],8,2)) . '</td>';
                                 $i++;
                             }
