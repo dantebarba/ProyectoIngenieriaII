@@ -16,6 +16,8 @@ public_html/
 *.DS_Store
 *.swp
 *.out
+dbconnection.php
+dbconnection.localhost
 
 # Package Files #
 *.jar
