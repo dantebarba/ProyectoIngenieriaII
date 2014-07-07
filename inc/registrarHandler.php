@@ -1,8 +1,8 @@
 <?php
 // MAIN REGISTER HANDLER
-    include 'dbconnection.php';
+    include '../dbconnection.php';
     $database = connectdb();
-    include 'queries.php';
+    include '../queries.php';
     if (!q_isPresentUsuario($_POST['registrarUsername'], $_POST['registrarDNI'])) {
         // WORK REGISTRATION HERE
             $dataCollection['username'] = $_POST['registrarUsername'];
@@ -49,7 +49,7 @@
         // revisamos si el usuario no esta disponible (fue eliminado) por DNI o por username
             $respuesta['status'] = 'error_userDisabled'; 
             $respuesta['message'] = '<strong>ERROR:</strong> El Usuario ya existe pero se encuentra deshabilitado.'
-                    . 'Para habilitarlo haga click <a href="/recover.php"><strong>aqui</strong></a>;';
+                    . 'Para habilitarlo haga click <a href="'.$_SERVER['DocumentRoot'].'/recover.php"><strong>aqui</strong></a>;';
             header('Content-type: application/json');
             echo json_encode($respuesta);
         }

@@ -99,7 +99,7 @@
                                                 </ul>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                                                <h3><a href="#" title="">'.$row["titulo"].'</a></h3>
+                                                <h3><a href="/libro/ver.php?ISBN='.$row['ISBN'].'" title="">'.$row["titulo"].'</a></h3>
                                                 <p>Descripcion</p>						
                                             <button type="button" onClick="addToCart('.$row['ISBN'].')" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a></button>
                                         </div>
