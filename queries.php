@@ -32,25 +32,35 @@ function q_listLibrosBetween ($fechaUno, $fechaDos, $rangemax=1000) {
     return $row;
 }
 
-function q_getlibro($nombre) {
-    
+function q_getLibro($ISBN) {
+    $query = "SELECT * FROM libros WHERE ".$ISBN."=ISBN";
+    $result = mysql_query($query) or die(mysql_error());
+    return $result;
+}
+
+function q_getCategoria($idEtiqueta) {
+    $query = "SELECT * FROM etiquetas WHERE ".$idEtiqueta."=idEtiqueta";
+    $result = mysql_query($query) or die(mysql_error());
+    return $result;
+}
+
+function q_getEditorial($idEditorial) {
+    $query = "SELECT * FROM editoriales WHERE ".$idEditorial."=idEditorial";
+    $result = mysql_query($query) or die(mysql_error());
+    return $result;
 }
 
 ;
 
-function q_geteditorial($nombre) {
-    
+function q_getAutor($idAutor) {
+    $query = "SELECT * FROM autores WHERE ".$idAutor."=idAutor";
+    $result = mysql_query($query) or die(mysql_error());
+    return $result;
 }
 
 ;
 
-function q_getautor($nombre) {
-    
-}
-
-;
-
-function q_getcompra($nombre) {
+function q_getCompra($idCompra) {
     
 }
 
@@ -447,4 +457,24 @@ function q_habilitarAutor ($DNI) {
     $query = "UPDATE autores SET isDeleted=0 WHERE '$DNI'=DNI";
     mysql_query($query) or die(mysql_error());
 }
+
+function q_searchLibroLike($titulo) {
+    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta FROM libros l '
+            . 'LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)'
+            . ' LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN )'
+            . ' WHERE l.titulo LIKE "%'.$titulo.'%" and l.isDeleted=0 ORDER BY titulo';
+    $result = mysql_query($query) or die(mysql_error());
+    return $result;
+}
+
+function q_searchLibroLikeAutor($nombre) {
+    $query = '';
+    return mysql_query($query) or die(mysql_error());
+}
+
+function q_searchLibroLikeCategoria($nombre) {
+    $query = '';
+    return mysql_query($query) or die(mysql_error());
+}
+
 

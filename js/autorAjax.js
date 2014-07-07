@@ -14,7 +14,7 @@ $(document).ready( function() {
                                     $(callerID).modal("show");
                                     $('#inputLinkAutor').append($('<option>', {
                                         value: element.id,
-                                        text: element.nombre + '- ' + element.dni
+                                        text: element.nombre + ' - ' + element.dni
                                     }));
                                     $(callerID+ ' #inputLinkAutor').append($('<option>', {
                                         value: element.id,
