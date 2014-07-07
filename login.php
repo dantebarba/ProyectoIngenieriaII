@@ -10,6 +10,10 @@
             unset($_COOKIE['isAdmin']);
             setcookie('isAdmin', '', 1);
         }
+        
+        session_destroy();
+        session_unset();
+        $_SESSION = array();
         header("Location: index.php");
         exit();
     }
@@ -71,23 +75,25 @@ if ((mysql_num_rows($rows) != 0) && ($user == $resultado['username'] and $pass =
         exit();
     }
     else {
-        //session_start();
+        session_start();
         /* voy a tener que usar Cookies porque el servidor no
          * me permite usar session, puede que haya un problema de permisos
          * o que la session se cancele por orden del servidor
          */
         setcookie('username', $resultado['username'], time()+3600);
         setcookie('password', $resultado['password'], time()+3600);
-    //    $_SESSION['status'] = 'logged';
-    //    $_SESSION['user'] = $user;
+        $_SESSION['status'] = 'logged';
+        $_SESSION['user'] = $user;
+        
         $response['status'] = 'success';
         if ($resultado['isAdmin']) {
             mysql_close($link);
             setcookie('isAdmin', $resultado['isAdmin'], time()+3600);
+            $_SESSION['type'] = 'admin';
             $response['redirect'] = '/administrador/admincp.php';
             header('Content-type: application/json');
             echo json_encode($response);
-    //        $_SESSION['type'] = 'admin';
+            
         }
         else {
             mysql_close($link);

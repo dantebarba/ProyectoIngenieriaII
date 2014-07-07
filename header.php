@@ -50,7 +50,7 @@
                     if (isset($_COOKIE['isAdmin']) && ($_COOKIE['isAdmin'] != '')) {
                         echo "<li><a href='"."/administrador/admincp.php"."'>Admin CP</a></li>";
                     }
-                    //echo "<li><a href="."#".">Carrito</a></li>";
+                    echo "<li><a href="."/templates/cart.php".">Carrito</a></li>";
                     echo '<li><a <span style="float: right;">Bienvenido '.$_COOKIE["username"].' - <button type="button"
                         class="btn btn-success btn-xs" onClick="logout()"'.
                         '>Log out</button></span></a></li>';

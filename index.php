@@ -1,4 +1,4 @@
-
+<?php session_start();?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +32,7 @@
             <hr>
 
             <footer>
+                <?php echo $_SESSION['user']; ?>
                 <p>&copy; CompumundoHiperMegaRed 2014</p>
             </footer>
         </div> <!-- /container -->
