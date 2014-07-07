@@ -265,7 +265,7 @@
       <div id="messageDiv"></div>
     <div class="container" id="mainContainer" > 
       <div class="row" id="mainForm">
-       <form id="registrarForm" name='registrarForm' action="registrarHandler.php" role="form">
+       <form id="registrarForm" name='registrarForm' action="/inc/registrarHandler.php" role="form">
           <div class="col-md-2">
               
           </div>

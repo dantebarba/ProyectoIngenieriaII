@@ -1,4 +1,6 @@
+
  
+
 <html>
      <head>
         <meta charset="utf-8">
@@ -18,21 +20,7 @@
         <script src="/js/mustache.js" type="text/javascript"></script>
         <link href="/css/custom.css" rel="stylesheet">
         <script type="text/javascript">
-            articulos = { // aqui va el JSON
-                            "items": [
-                            {   id: 1,
-                                titulo: 'Hola',
-                                precio: 20,
-                                descripcion: 'tete',
-                                cantidad: 1
-                            },
-                            {   id: 2,
-                                titulo: 'Chau',
-                                precio: 30,
-                                descripcion: 'casa',
-                                cantidad: 2
-                            }
-                            ]};
+            articulos = ajaxCall();
             
             $(document).ready(function() {
                      

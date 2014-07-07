@@ -17,6 +17,15 @@
         
         <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js"></script>
         <link href='/css/custom.css' rel='stylesheet'>
+        <script src="js/jPaginate.js"></script>
+        <script src="js/cart.js" type="text/javascript"></script>
+            <script type='text/javascript'>
+            
+            $(document).ready(function() {
+                
+                 $("#resultados").jPaginate({items: 2, position: "after"}); 
+            });
+           </script>
     </head>
 
     <?php include 'header.php'; ?>       
@@ -105,30 +114,7 @@
                 <div class='holder'></div>
             </div>        
         
-        <script src="/js/jPaginate.js"></script>  
 
-            <script type='text/javascript'>
-            var items = [];
-            function addToCart(item) {
-                   // script simple para añadir al carrito, aqui ira
-                   // el llamado AJAX
-                   // test example
-                   if (jQuery.inArray(item, items) === -1) {
-                       items.push(item);
-                       alert('Elemento ID:'+item+' Añadido a Carrito');
-                   }
-                   else {
-                       alert('Already on cart');
-                   }
-               }
-            $(document).ready(function() {
-                var itemCounter = 0;
-                $("#resultados").children('.search-result').each(function (){
-                    itemCounter++;
-                });
-                 $("#resultados").jPaginate({items: 1}); 
-            });
-        </script>
     </body>
 </html>
 
