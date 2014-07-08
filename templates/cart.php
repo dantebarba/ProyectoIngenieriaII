@@ -26,7 +26,13 @@
         <script src="/js/cart.js" type="text/javascript"></script>
         <link href="/css/custom.css" rel="stylesheet">
         <script type="text/javascript">
-            
+            function calcTotal(articulos) {
+                        var total = 0;
+                        for (i=0; i < articulos.length; i++) {
+                            total += articulos[i].precio * articulos[i].cantidad;
+                        }
+                        return total;
+                    }
             $(document).ready(function() {
                ajaxGetItems(function (articulos) { 
                     console.log(articulos);
@@ -35,14 +41,17 @@
                              function(d){
                                      var renderedPage = Mustache.to_html( d, {items: articulos});
                                      $("#articuloiFrame").html(renderedPage);
-                             }
+                                 }
                      );
+                     
+                     $("#totalValue").append(calcTotal(articulos));
+                     
                 });
             });
             $(document).on("click", "#itemTrash", function() {
                     $("#itemTrash").closest(".article").remove();
                     
-                });
+            });
         </script>    
     </head>
     
@@ -71,8 +80,8 @@
                                      </div>
                                     <div class="panel-footer">
                                             <div class="row text-center">
-                                                    <div class="col-xs-9">
-                                                            <h4 class="text-right">Total </h4>
+                                                    <div class="col-xs-9" >
+                                                            <h4 class="text-right" id="totalValue">Total $</h4>
                                                     </div>
                                                     <div class="col-xs-3">
                                                             <button type="button" class="btn btn-success btn-block">

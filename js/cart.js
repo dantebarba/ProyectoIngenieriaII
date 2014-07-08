@@ -1,4 +1,4 @@
-
+                
                 function addToCart(item) {
                    // script simple para añadir al carrito, aqui ira
                    // el llamado AJAX
@@ -27,6 +27,7 @@
                
                
                function ajaxGetItems(callback) {
+                   
                    $.post('../inc/cartHandler.php',{tokenID: ''}, function (itemsList){
                        if (itemsList.status === 'success') {
                            callback(itemsList.items);
@@ -37,5 +38,6 @@
                        }
                    }, "json"); 
                }
-
+               
+               
 
