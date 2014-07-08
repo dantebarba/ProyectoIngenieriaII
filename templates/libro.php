@@ -29,10 +29,14 @@
             </div>
             <div class="panel panel-footer">
                 <div class="panel-body" >
-                    
-                        <button type="button" style="float:right;" onClick="addToCart({{ISBN}})" class="btn btn-default btn-primary">
+                    <?php 
+                        include_once '../restricted/securitycheck.php';
+                        if (loginCheck()) {
+                            echo '<button type="button" style="float:right;" onClick="addToCart({{ISBN}})" class="btn btn-default btn-primary">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a></button>
-                       <h4 style="float:right;padding-right:20px;">Precio: ${{precio}}    </h4>     
+                            <h4 style="float:right;padding-right:20px;">Precio: ${{precio}}    </h4> ';
+                        }
+                    ?>        
                 </div>
             </div>
 

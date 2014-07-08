@@ -1,4 +1,9 @@
-
+<?php include_once '../restricted/securitycheck.php';
+      if (!logincheck()) {
+          header('Location: ../403.html');
+          exit();
+      }
+?>
  
 
 <html>
@@ -18,23 +23,25 @@
         <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
         <script src="/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="/js/mustache.js" type="text/javascript"></script>
+        <script src="/js/cart.js" type="text/javascript"></script>
         <link href="/css/custom.css" rel="stylesheet">
         <script type="text/javascript">
-            articulos = ajaxCall();
             
             $(document).ready(function() {
-                     
-               $.get(
-			'articulo.php',
-			function(d){
-				var renderedPage = Mustache.to_html( d, articulos);
-                                $("#articuloiFrame").html(renderedPage);
-			}
-		);
-                
+               ajaxGetItems(function (articulos) { 
+                    console.log(articulos);
+                    $.get(
+                             'articulo.php',
+                             function(d){
+                                     var renderedPage = Mustache.to_html( d, {items: articulos});
+                                     $("#articuloiFrame").html(renderedPage);
+                             }
+                     );
+                });
             });
             $(document).on("click", "#itemTrash", function() {
                     $("#itemTrash").closest(".article").remove();
+                    
                 });
         </script>    
     </head>

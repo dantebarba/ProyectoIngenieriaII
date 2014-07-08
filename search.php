@@ -1,4 +1,18 @@
- 
+<?php 
+    include_once 'restricted/securitycheck.php';
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+        if (!loginCheck()) {
+            $_SESSION['status'] = 'guest';
+        }   
+        else {
+            $_SESSION['status'] = 'logged';
+        }
+    }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -99,12 +113,13 @@
                                                 </ul>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                                                <h3><a href="/libro/ver.php?ISBN='.$row['ISBN'].'" title="">'.$row["titulo"].'</a></h3>
-                                                <p>Descripcion</p>						
-                                            <button type="button" onClick="addToCart('.$row['ISBN'].')" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a></button>
-                                        </div>
-                                            <span class="clearfix borda"></span>
-                                    </div>';
+                                                    <h3><a href="/libro/ver.php?ISBN='.$row['ISBN'].'" title="">'.$row["titulo"].'</a></h3>
+                                                    <p>Descripcion</p>';	
+                                         if ($_SESSION['status'] != 'guest') {
+                                            echo '<button type="button" onClick="addToCart('.$row['ISBN'].')" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a></button>
+                                            ';}
+                                        echo '</div><span class="clearfix borda"></span>
+                                            </div>';
                                 }   
                         }
                          mysql_close($link);

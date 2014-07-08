@@ -56,7 +56,7 @@
                         '>Log out</button></span></a></li>';
                 }
                 else {
-                    echo "<li><a href="."registrar.php".">Registrarse</a></li>";
+                    echo "<li><a href=/registrar.php>Registrarse</a></li>";
                     echo'<li><a <span style="float: right;">No est&aacute;s conectado - '
                         . '<button type="button" class="btn btn-success btn-xs" data-toggle="modal" '
                         . 'data-target="#login">Log in</button></span></a></li>';

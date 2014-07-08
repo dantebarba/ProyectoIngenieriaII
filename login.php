@@ -1,4 +1,10 @@
 <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+   
+
     if (filter_input(INPUT_GET, 'mode') == 'logout'){
         if (isset($_COOKIE['username'])) {
             unset($_COOKIE['username']);
@@ -62,7 +68,7 @@ include 'queries.php';
 $rows = q_getUsuario($user) or die('Error en la consulta a la base de datos' . mysql_error());
 
 $resultado = mysql_fetch_assoc($rows);
-
+$_SESSION['status'] = 'guest';
 
 if ((mysql_num_rows($rows) != 0) && ($user == $resultado['username'] and $pass == $resultado['password'])) {
     if (!q_isDisponibleUsuario($user)) {
@@ -75,7 +81,6 @@ if ((mysql_num_rows($rows) != 0) && ($user == $resultado['username'] and $pass =
         exit();
     }
     else {
-        session_start();
         /* voy a tener que usar Cookies porque el servidor no
          * me permite usar session, puede que haya un problema de permisos
          * o que la session se cancele por orden del servidor
@@ -84,7 +89,6 @@ if ((mysql_num_rows($rows) != 0) && ($user == $resultado['username'] and $pass =
         setcookie('password', $resultado['password'], time()+3600);
         $_SESSION['status'] = 'logged';
         $_SESSION['user'] = $user;
-        
         $response['status'] = 'success';
         if ($resultado['isAdmin']) {
             mysql_close($link);

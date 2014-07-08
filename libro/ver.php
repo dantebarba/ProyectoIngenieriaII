@@ -1,4 +1,5 @@
-  <?php
+  
+<?php
         if (isset($_POST['ajaxCall'])) {
             include_once '../dbconnection.php';
             $link = connectdb();
@@ -19,6 +20,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+     
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +38,7 @@
         <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js"></script>
         <link href='../css/custom.css' rel='stylesheet'>
         <script src="../js/mustache.js" type="text/javascript"></script>
-        
+        <script src="../js/cart.js"></script>
         <script type="text/javascript">
             function getParameterByName( name,href ) // nada importante, solo para
             // obtener los parametros de la URL
@@ -70,8 +72,8 @@
             
         </script>
     </head>
-
-    <?php include '../header.php'; ?>       
+     <?php include '../header.php'; ?> 
+        
     <body>
         <div class='container' style="padding-top: 70px;" id="dataiFrame">
             

@@ -1,4 +1,13 @@
-<?php session_start();?>
+<?php 
+    include_once 'restricted/securitycheck.php';
+    session_start();
+    if (!loginCheck()) {
+        $_SESSION['status'] = 'guest';    
+    }
+    else {
+        $_SESSION['status'] = 'logged';
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
