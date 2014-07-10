@@ -11,18 +11,24 @@ function addAutor($nombre, $DNI) {
         $response['message'] = 'Se ha agregado el Autor';
         $response['status'] = 'success';
         $response['id'] = mysql_insert_id();
-    }
-    else
-    {
+    }else {
         if (q_isDisponibleAutorPorDni($DNI)){
+             //q_addAutor($nombre, $DNI);
             $response['message'] = '<strong>ERROR: Ya existe el autor</strong>';
             $response['status'] = 'error_autorExists';
         } else {
-            q_habilitarAutor ($DNI);
-            $response['message'] = 'Se ha habilitado el autor';
-            $response['status'] = 'success';
+            if (q_mismoAutor($nombre,$DNI)) {
+                q_habilitarAutor ($DNI);
+                $response['dni'] = $DNI;
+                $response['nombre'] = $nombre;
+                $response['message'] = 'Se ha agregado el Autor';
+                $response['status'] = 'success';
+                $response['id'] = mysql_insert_id();
+            }else {
+                $response['message'] = '<strong>ERROR: Ya existe el autor, verificar campos </strong>';
+                $response['status'] = 'error_autorExists';
+            }
         }
-       
     }
     
     mysql_close($link);
