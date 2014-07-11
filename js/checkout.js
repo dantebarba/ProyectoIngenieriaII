@@ -18,8 +18,6 @@ function nextStep(e) {
             $("target").addClass('active');
             getTemplate('checkout_1.html', []);
         }
-    
-}
 
 function resetSteps() {}
 
