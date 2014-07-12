@@ -25,7 +25,7 @@ function addAutor($nombre, $DNI) {
                 $response['status'] = 'success';
                 $response['id'] = mysql_insert_id();
             }else {
-                $response['message'] = '<strong>ERROR: Ya existe el autor, verificar campos </strong>';
+                $response['message'] = '<strong>ERROR: Datos incorrectos. Verificar campos </strong>';
                 $response['status'] = 'error_autorExists';
             }
         }
