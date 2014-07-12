@@ -4,6 +4,7 @@ function addAutor($nombre, $DNI) {
     include '../dbconnection.php';
     $link = connectdb();
     include '../queries.php';
+    // si el autor no existe en la base de datos lo agrega
     if (!q_isPresentAutor($DNI)) {
         q_addAutor($nombre, $DNI);
         $response['dni'] = $DNI;
@@ -12,11 +13,13 @@ function addAutor($nombre, $DNI) {
         $response['status'] = 'success';
         $response['id'] = mysql_insert_id();
     }else {
+    // busca por dni, si esta en la base de datos y no borrado logicamente, cartel de ERROR
         if (q_isDisponibleAutorPorDni($DNI)){
-             //q_addAutor($nombre, $DNI);
+          
             $response['message'] = '<strong>ERROR: Ya existe el autor</strong>';
             $response['status'] = 'error_autorExists';
         } else {
+    // si el dni esta en la bd borrado logicamente, y sus datos coinciden con los del autor, habilita al autor previamente eliminado      
             if (q_mismoAutor($nombre,$DNI)) {
                 q_habilitarAutor ($DNI);
                 $response['dni'] = $DNI;
@@ -25,6 +28,7 @@ function addAutor($nombre, $DNI) {
                 $response['status'] = 'success';
                 $response['id'] = mysql_insert_id();
             }else {
+    // si el dni esta en la bd borrado logicamente, pero los datos no coinciden, cartel de ERROR
                 $response['message'] = '<strong>ERROR: Datos incorrectos. Verificar campos </strong>';
                 $response['status'] = 'error_autorExists';
             }
