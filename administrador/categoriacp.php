@@ -17,8 +17,17 @@ function addCategoria($nombre) {
         $response['id'] = mysql_insert_id();
     }
     else {
-        $response['message'] = '<strong>ERROR</strong>: Ya existe la Categoria';
-        $response['status'] = 'error_categoriaExists';
+        if (q_isDisponibleCategoriaPorNom($nombre)) {
+             $response['message'] = '<strong>ERROR</strong>: Ya existe la Categoria';
+             $response['status'] = 'error_categoriaExists';
+        } else {
+                q_habilitarCategoria ($nombre);
+                 $response['nombre'] = $nombre;
+                 $response['message'] = 'Se ha agregado la Categoria';
+                 $response['status'] = 'success';
+                 $response['id'] = mysql_insert_id();
+        }
+       
     }
     mysql_close($link);
     header('Content-type: application/json');
