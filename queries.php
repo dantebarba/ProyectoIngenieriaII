@@ -362,9 +362,30 @@ function q_isDisponibleCategoria($idEtiqueta) {
     }
     else { return true;} 
 }
+// -------------------
+function q_isDisponibleCategoriaPorNom($nombre) {
+    $query = "SELECT isDeleted FROM etiquetas WHERE '$nombre'=nombre and isDeleted=0";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0) {
+        return false;
+    }
+    else { return true;} 
+    
+}
+// ----------------
 
 function q_isDisponibleEditorial($idEditorial) {
     $query = "SELECT isDeleted FROM editoriales WHERE '$idEditorial'=idEditorial and isDeleted=0";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else { return true;} 
+}
+
+function q_isDisponibleEditorialPorNom($nombre) {
+    $query = "SELECT isDeleted FROM editoriales WHERE '$nombre'=nombre and isDeleted=0";
     $result = mysql_query($query) or die(mysql_error());
     if (mysql_num_rows($result) == 0)
     {
@@ -457,6 +478,26 @@ function q_habilitarAutor ($DNI) {
     $query = "UPDATE autores SET isDeleted=0 WHERE '$DNI'=DNI";
     mysql_query($query) or die(mysql_error());
 }
+function q_habilitarCategoria ($nombre) {
+    $query = "UPDATE etiquetas SET isDeleted=0 WHERE '$nombre'=nombre";
+    mysql_query($query) or die(mysql_error());
+}
+
+function q_habilitarEditorial ($nombre) {
+     $query = "UPDATE editoriales SET isDeleted=0 WHERE '$nombre'=nombre";
+     mysql_query($query) or die(mysql_error());
+}
+
+function q_mismoAutor($nombre,$DNI) {
+    $query = "SELECT nombre FROM autores WHERE '$DNI'=DNI";
+    $result = mysql_query($query) or die(mysql_error());
+    if ($line = mysql_fetch_array($result)) {
+            if ($line['nombre'] == $nombre) 
+                return true;
+    }
+     return false;
+}
+
 
 function q_searchLibroLike($titulo) {
     $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta FROM libros l '
