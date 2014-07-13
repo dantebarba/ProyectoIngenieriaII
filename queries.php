@@ -459,22 +459,84 @@ function q_habilitarAutor ($DNI) {
 }
 
 function q_searchLibroLike($titulo) {
-    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta FROM libros l '
-            . 'LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)'
-            . ' LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN )'
-            . ' WHERE l.titulo LIKE "%'.$titulo.'%" and l.isDeleted=0 ORDER BY titulo';
+    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, 
+	la.Autores_idAutor, 
+	le.Editoriales_idEditorial, 
+	el.Etiquetas_idEtiqueta, 
+	au.idAutor, au.nombre as autor_nombre,
+	eti.nombre as etiqueta_nombre, 
+	ed.nombre as editorial_nombre 
+        FROM libros l 
+        LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) 
+        LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)
+        LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) 
+        LEFT JOIN autores au ON ( la.Autores_idAutor = au.idAutor ) 
+        LEFT JOIN editoriales ed ON ( le.Editoriales_idEditorial = ed.idEditorial )
+        LEFT JOIN etiquetas eti ON ( el.Etiquetas_idEtiqueta = eti.idEtiqueta ) 
+        WHERE l.titulo LIKE "%'.$titulo.'%" and l.isDeleted=0 ORDER BY l.titulo';
+    
     $result = mysql_query($query) or die(mysql_error());
     return $result;
 }
 
 function q_searchLibroLikeAutor($nombre) {
-    $query = '';
-    return mysql_query($query) or die(mysql_error());
+    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, 
+	la.Autores_idAutor, 
+	le.Editoriales_idEditorial, 
+	el.Etiquetas_idEtiqueta, 
+	au.idAutor, au.nombre as autor_nombre,
+	eti.nombre as etiqueta_nombre, 
+	ed.nombre as editorial_nombre 
+        FROM libros l 
+        LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) 
+        LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)
+        LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) 
+        LEFT JOIN autores au ON ( la.Autores_idAutor = au.idAutor ) 
+        LEFT JOIN editoriales ed ON ( le.Editoriales_idEditorial = ed.idEditorial )
+        LEFT JOIN etiquetas eti ON ( el.Etiquetas_idEtiqueta = eti.idEtiqueta ) 
+        WHERE au.nombre LIKE "%'.$nombre.'%" and l.isDeleted=0 ORDER BY l.titulo';
+    $result = mysql_query($query) or die(mysql_error());
+    return $result;
 }
 
 function q_searchLibroLikeCategoria($nombre) {
-    $query = '';
-    return mysql_query($query) or die(mysql_error());
+    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, 
+	la.Autores_idAutor, 
+	le.Editoriales_idEditorial, 
+	el.Etiquetas_idEtiqueta, 
+	au.idAutor, au.nombre as autor_nombre,
+	eti.nombre as etiqueta_nombre, 
+	ed.nombre as editorial_nombre 
+        FROM libros l 
+        LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) 
+        LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)
+        LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) 
+        LEFT JOIN autores au ON ( la.Autores_idAutor = au.idAutor ) 
+        LEFT JOIN editoriales ed ON ( le.Editoriales_idEditorial = ed.idEditorial )
+        LEFT JOIN etiquetas eti ON ( el.Etiquetas_idEtiqueta = eti.idEtiqueta ) 
+        WHERE eti.nombre LIKE "%'.$nombre.'%" and l.isDeleted=0 ORDER BY l.titulo';
+    $result = mysql_query($query) or die(mysql_error());
+    return $result;
+}
+
+function q_searchLibroLikeEditorial($nombre) {
+    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, 
+	la.Autores_idAutor, 
+	le.Editoriales_idEditorial, 
+	el.Etiquetas_idEtiqueta, 
+	au.idAutor, au.nombre as autor_nombre,
+	eti.nombre as etiqueta_nombre, 
+	ed.nombre as editorial_nombre 
+        FROM libros l 
+        LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) 
+        LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)
+        LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) 
+        LEFT JOIN autores au ON ( la.Autores_idAutor = au.idAutor ) 
+        LEFT JOIN editoriales ed ON ( le.Editoriales_idEditorial = ed.idEditorial )
+        LEFT JOIN etiquetas eti ON ( el.Etiquetas_idEtiqueta = eti.idEtiqueta ) 
+        WHERE ed.nombre LIKE "%'.$nombre.'%" and l.isDeleted=0 ORDER BY l.titulo';
+    $result = mysql_query($query) or die(mysql_error());
+    return $result;
 }
 
 

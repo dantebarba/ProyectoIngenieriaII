@@ -37,7 +37,7 @@
             
             $(document).ready(function() {
                 
-                 $("#resultados").jPaginate({items: 2, position: "after"}); 
+                 //$("#resultados").jPaginate({items: 2, position: "after"}); 
             });
            </script>
     </head>
@@ -46,13 +46,13 @@
     <body>
         <div class='container'>
             
-            <div class='col-xs-10'>
+             <div class='col-xs-10'>
                 <h3 class="text-left" >Resultados para: <?php echo $_GET['keyword']; ?> </h3>
                 <hr>
             </div>
             
             <section id='resultados' class="col-xs-12 col-sm-6 col-md-12">
-                
+ 
                 <?php
                     require_once 'dbconnection.php';
 
@@ -60,56 +60,49 @@
 
                     require_once 'queries.php';
 
-                    function searchByTitle ($param) {
-                        return q_searchLibroLike($param);
-                    }
-
-                    function searchByAutor ($param) {
-
-                    }
-
-                    function searchByCategoria($param) {
-
-                    }
-
 
                     $result = null;
                     if (isset($_GET['search_param'])) { // buscamos el parametro de busqueda
                         // si es por titulo, o por categoria, etc...
-                        if ($_GET['search_param'] == 'byTitulo') {
-                            // search books by title
-                            $result = searchByTitle($_GET['keyword']); // invocamos la funcion
-                            // correspondiente con el keyword
-
-                        }
-                        else
-                            if (($_GET['search_param'] == 'byAutor')) {
-                                $result = searchByAutor($_GET['keyword']);
-                            }
-                            else
-                                if ($_GET['search_param'] == 'byCategoria') {
-                                    $result = searchByCategoria($_GET['keyword']);
+                        $param = $_GET['search_param'];
+                        switch ($param) {
+                            case 'byTitulo': {
+                                    $result = q_searchLibroLike($_GET['keyword']);
+                                    break;
                                 }
-
+                            case 'byAutor': {
+                                    $result = q_searchLibroLikeAutor($_GET['keyword']);
+                                    break;
+                                }
+                            case 'byCategoria': {
+                                    $result = q_searchLibroLikeCategoria($_GET['keyword']);
+                                    break;
+                                }
+                            case 'byEditorial': {
+                                    $result = q_searchLibroLikeEditorial($_GET['keyword']);
+                                    break;
+                            }
+                        }  
                             while ($row = mysql_fetch_array($result)) {
                                 // loop sobre todos los elementos encontrados
                                 // NOTA: el array devuelto debe tener siempre los mismos campos 
                                 // para TODOS los casos
                                 // Se genera un html "article" por cada articulo
-                                $autor = mysql_fetch_assoc(q_getAutor($row['Autores_idAutor']));
-                                $editorial = mysql_fetch_assoc(q_getEditorial($row['Editoriales_idEditorial']));
-                                $categoria = mysql_fetch_assoc(q_getCategoria($row['Etiquetas_idEtiqueta']));
+                                $autor = $row['autor_nombre'];
+                                $editorial = $row['editorial_nombre'];
+                                $categoria = $row['etiqueta_nombre'];
                                 // se recupera la informacion necesaria de Autor, Editorial, Categoria 
                                 // y se imprime el articulo
                                 echo '		
-                                    <div id='.$row['ISBN'].' class="search-result row">
+                                    <div id='.$row['ISBN'].' class="search-result row" >
                                         <div class="col-xs-12 col-sm-12 col-md-3">
-                                                <a href="#" title="k" class="thumbnail"><img src="http://lorempixel.com/250/140/people" alt="Lorem ipsum" /></a>
+                                      
                                         </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-2">
+                                        <div class="col-md-4 col-md-2">
                                                 <ul class="meta-search">
-                                                        <li>Autor: <span>'.$autor['nombre'].'</span></li>
-                                                        <li><i class="glyphicon glyphicon-tags"></i> <span><a href="/search.php?search_param=byCategoria&keyword='.$categoria['nombre'].'"</a>'.$categoria['nombre'].'</span></li>
+                                                        <li>Autor: <span>'.$autor.'</span></li>
+                                                        <li>Editorial: <span>'.$editorial.'</span></li>
+                                                        <li><i class="glyphicon glyphicon-tags"></i> <span><a href="/search.php?search_param=byCategoria&keyword='.$categoria.'"</a>'.$categoria.'</span></li>
                                                 </ul>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
@@ -120,7 +113,9 @@
                                             ';}
                                         echo '</div><span class="clearfix borda"></span>
                                             </div>';
-                                }   
+                                        echo '<hr>';
+                                }
+                                
                         }
                          mysql_close($link);
                     ?>  
