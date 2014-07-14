@@ -429,15 +429,12 @@
         </div>
         <div class="panel-body">
           <button type="button" class="btn btn-info pull-left" id="clearFields" onClick='$("#editarForm").validate().resetForm()' name="clearFields">
-              Limpiar formulario
+              Datos previos
           </button>
-            <div>
+            <a href="deluser.php" type="button" class="btn btn-danger" id="eliminarUsuario" name="eliminarUsuario" >Eliminar usuario</a>
           <span style="float: right;">
            <button type="button" class="btn pull-right btn-primary" id="sendForm" name="sendform" onClick='$("#editarForm").submit();'>Enviar</button>
            <a href="index.php" type="button" class="btn pull-right btn-danger" id="cancel" name="cancel" >Cancelar</a>
-            
-          </button>
-            </div>
         </div>
       </div>
         <script type="text/javascript">

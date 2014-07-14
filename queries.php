@@ -108,13 +108,13 @@ function q_updateUsuario($dataCollection) {
 function q_updateDireccion($dataCollection) {
     $query =
             "UPDATE `direccion` SET "
-            ."`calle`=". $dataCollection['calle'].","
-            ."`localidad`='". $dataCollection['localidad']."',"
-            ."`numero`=". $dataCollection['numero'].","
-            ."`provincia`='". $dataCollection['provincia']."',"
-            ."`departamento`='". $dataCollection['departamento']."',"
-            ."`numDpto`=". $dataCollection['numDpto'].""
-            ."WHERE ".$dataCollection['DNI']."=Usuarios_DNI";
+            . "`calle`=". $dataCollection['calle'].","
+            . "`localidad`='". $dataCollection['localidad']."',"
+            . "`numero`=". $dataCollection['numero'].","
+            . "`provincia`='". $dataCollection['provincia']."',"
+            . "`departamento`=". $dataCollection['departamento'].","
+            . "`numDpto`=". $dataCollection['numDpto'].""
+            . "WHERE ".$dataCollection['DNI']."=Usuarios_DNI";
     mysql_query($query) or die(mysql_error());
 }
 
@@ -204,7 +204,10 @@ function q_removeLibro($ISBN) {
     $query="UPDATE libros SET isDeleted=1 WHERE '$ISBN'=ISBN";
     mysql_query($query) or die(mysql_error());
 }
-
+function q_removeUsuario($username) {
+    $query = "UPDATE usuarios SET isDeleted=1 WHERE username='$username'";
+    mysql_query($query) or die(mysql_error());
+}
 function q_isPresentUsuario($username, $DNI=-1) {
     $query="SELECT username,DNI FROM usuarios WHERE ('$username'=username or DNI=".$DNI.")";
     $result=mysql_query($query) or die(mysql_error());
