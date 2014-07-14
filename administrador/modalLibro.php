@@ -116,7 +116,7 @@
                     <div class="form-group">
                         <label for="editISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
-                            <input for="editISBN" type="text" min="0" class="form-control" id="editISBN" name="editISBN" readonly>
+                            <input for="editISBN" type="number" min="0" class="form-control" id="editISBN" name="editISBN">
                         </div>
                         
                     </div>

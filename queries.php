@@ -66,6 +66,17 @@ function q_getCompra($idCompra) {
 
 ;
 
+function q_updateLibro($dataCollection) {
+    $query = 
+            "UPDATE `libros` SET "
+            . "`titulo`='".$dataCollection['titulo']."',"
+            . "`paginas`=".$dataCollection['paginas'].","
+            . "`precio`=".$dataCollection['precio'].","
+            . "`idioma`='".$dataCollection['idioma']."',"
+            . "`fecha`='".$dataCollection['fecha']."'"
+            . " WHERE ".$dataCollection['ISBN']."=ISBN";
+    mysql_query($query) or die(mysql_error());
+}
 function q_addUsuario($dataCollection) {
     $query = "INSERT INTO `usuarios`(`DNI`, `username`, `password`, `tel_fijo`, `tel_cel`, `genero`,"
             . " `fecha_nac`, `email`, `isAdmin`) VALUES "
@@ -76,6 +87,35 @@ function q_addUsuario($dataCollection) {
             . $dataCollection['isAdmin'].")";
     mysql_query($query) or die(mysql_error());
     
+}
+
+function q_updateUsuario($dataCollection) {
+    $query = 
+            "UPDATE `usuarios` SET "
+            . "`DNI`=".$dataCollection['DNI'].","
+            . "`username`='".$dataCollection['username']."',"
+            . "`password`='". $dataCollection['password'] ."',"
+            . "`tel_fijo`=".$dataCollection['tel_fijo'].","
+            . "`tel_cel`=".$dataCollection['tel_cel'].","
+            . "`genero`='".$dataCollection['genero']."',"
+            . "`fecha_nac`='". $dataCollection['fecha_nac'] ."',"
+            . "`email`='".$dataCollection['email']."'"
+            . "WHERE ".$dataCollection['DNI']."=DNI";
+    mysql_query($query) or die(mysql_error());
+    
+}
+
+function q_updateDireccion($dataCollection) {
+    $query =
+            "UPDATE `direccion` SET "
+            . "`calle`=". $dataCollection['calle'].","
+            . "`localidad`='". $dataCollection['localidad']."',"
+            . "`numero`=". $dataCollection['numero'].","
+            . "`provincia`='". $dataCollection['provincia']."'"
+    //        . "`departamento`=". $dataCollection['departamento'].","
+    //        . "`numDpto`=". $dataCollection['numDpto'].""
+            . "WHERE ".$dataCollection['DNI']."=Usuarios_DNI";
+    mysql_query($query) or die(mysql_error());
 }
 
 function q_addDireccion($dataCollection) {
@@ -92,7 +132,11 @@ function q_addDireccion($dataCollection) {
     mysql_query($query) or die(mysql_error());
 }
 
-
+function q_getDireccion($usuario) {
+    $query = "SELECT * FROM direccion WHERE '".$usuario."'=Usuarios_username";
+    $result = mysql_query($query) or die(mysql_error());
+    return $result;
+}
 
 function q_addAutor($nombre, $DNI) {
     $query = "INSERT INTO autores (nombre, DNI) VALUES ('$nombre', '$DNI')";
@@ -141,18 +185,6 @@ function q_updateCategoria($id, $nombre) {
     mysql_query($query) or die(mysql_error());
 }
 
-function q_updateLibro($dataCollection) {
-    $query = 
-            "UPDATE `libros` SET "
-            . "`titulo`='".$dataCollection['titulo']."',"
-            . "`paginas`=".$dataCollection['paginas'].","
-            . "`precio`=".$dataCollection['precio'].","
-            . "`idioma`='".$dataCollection['idioma']."',"
-            . "`fecha`='".$dataCollection['fecha']."'"
-            . " WHERE ".$dataCollection['ISBN']."=ISBN";
-    mysql_query($query) or die(mysql_error());
-}
-
 function q_removeAutor($id) { // elimina el autor segun $ID, no hace
     $query = "UPDATE autores SET isDeleted=1 WHERE idAutor='$id'";
     mysql_query($query) or die(mysql_error());
@@ -172,7 +204,10 @@ function q_removeLibro($ISBN) {
     $query="UPDATE libros SET isDeleted=1 WHERE '$ISBN'=ISBN";
     mysql_query($query) or die(mysql_error());
 }
-
+function q_removeUsuario($username) {
+    $query = "UPDATE usuarios SET isDeleted=1 WHERE username='$username'";
+    mysql_query($query) or die(mysql_error());
+}
 function q_isPresentUsuario($username, $DNI=-1) {
     $query="SELECT username,DNI FROM usuarios WHERE ('$username'=username or DNI=".$DNI.")";
     $result=mysql_query($query) or die(mysql_error());
@@ -362,9 +397,30 @@ function q_isDisponibleCategoria($idEtiqueta) {
     }
     else { return true;} 
 }
+// -------------------
+function q_isDisponibleCategoriaPorNom($nombre) {
+    $query = "SELECT isDeleted FROM etiquetas WHERE '$nombre'=nombre and isDeleted=0";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0) {
+        return false;
+    }
+    else { return true;} 
+    
+}
+// ----------------
 
 function q_isDisponibleEditorial($idEditorial) {
     $query = "SELECT isDeleted FROM editoriales WHERE '$idEditorial'=idEditorial and isDeleted=0";
+    $result = mysql_query($query) or die(mysql_error());
+    if (mysql_num_rows($result) == 0)
+    {
+        return false;
+    }
+    else { return true;} 
+}
+
+function q_isDisponibleEditorialPorNom($nombre) {
+    $query = "SELECT isDeleted FROM editoriales WHERE '$nombre'=nombre and isDeleted=0";
     $result = mysql_query($query) or die(mysql_error());
     if (mysql_num_rows($result) == 0)
     {
@@ -457,6 +513,25 @@ function q_habilitarAutor ($DNI) {
     $query = "UPDATE autores SET isDeleted=0 WHERE '$DNI'=DNI";
     mysql_query($query) or die(mysql_error());
 }
+function q_habilitarCategoria ($nombre) {
+    $query = "UPDATE etiquetas SET isDeleted=0 WHERE '$nombre'=nombre";
+    mysql_query($query) or die(mysql_error());
+}
+
+function q_habilitarEditorial ($nombre) {
+     $query = "UPDATE editoriales SET isDeleted=0 WHERE '$nombre'=nombre";
+     mysql_query($query) or die(mysql_error());
+}
+
+function q_mismoAutor($nombre,$DNI) {
+    $query = "SELECT nombre FROM autores WHERE '$DNI'=DNI";
+    $result = mysql_query($query) or die(mysql_error());
+    if ($line = mysql_fetch_array($result)) {
+            if ($line['nombre'] == $nombre) 
+                return true;
+    }
+     return false;
+}
 
 function q_searchLibroLike($titulo) {
     $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, 
@@ -538,5 +613,4 @@ function q_searchLibroLikeEditorial($nombre) {
     $result = mysql_query($query) or die(mysql_error());
     return $result;
 }
-
 

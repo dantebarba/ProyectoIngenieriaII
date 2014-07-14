@@ -51,11 +51,13 @@
                         echo "<li><a href='"."/administrador/admincp.php"."'>Admin CP</a></li>";
                     }
                     echo "<li><a href="."/templates/cart.php".">Carrito</a></li>";
+                    echo "<li><a href="."/usercp.php".">Editar usuario</a></li>";
                     echo '<li><a <span style="float: right;">Bienvenido '.$_COOKIE["username"].' - <button type="button"
                         class="btn btn-success btn-xs" onClick="logout()"'.
                         '>Log out</button></span></a></li>';
                 }
                 else {
+                    echo "<li><a href=/recover.php>Recuperar Usuario</a></li>";
                     echo "<li><a href=/registrar.php>Registrarse</a></li>";
                     echo'<li><a <span style="float: right;">No est&aacute;s conectado - '
                         . '<button type="button" class="btn btn-success btn-xs" data-toggle="modal" '

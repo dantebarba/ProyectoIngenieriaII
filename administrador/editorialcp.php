@@ -17,8 +17,17 @@ function addEditorial($nombre) {
         $response['id'] = mysql_insert_id();
     }
     else {
-        $response['message'] = '<strong>ERROR</strong>: Ya existe la Editorial';
-        $response['status'] = 'error_editorialExists';
+        if (q_isDisponibleEditorialPorNom($nombre)){
+            $response['message'] = '<strong>ERROR</strong>: Ya existe la Editorial';
+            $response['status'] = 'error_editorialExists';
+        } else {
+            q_habilitarEditorial ($nombre);
+            $response['nombre'] = $nombre;
+            $response['message'] = 'Se ha agregado la Editorial';
+            $response['status'] = 'success';
+            $response['id'] = mysql_insert_id();
+        }
+        
     }
     mysql_close($link);
     header('Content-type: application/json');
