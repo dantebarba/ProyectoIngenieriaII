@@ -15,7 +15,7 @@
             $dataCollection['isAdmin'] = 0;
             $dataCollection['fecha_nac'] = date('Y-m-d', strtotime($_POST['registrarFecha_nac']));
             // DIRECCION
-
+            $dataCollection['codPostal'] = $_POST['registrarPostal'];
             $dataCollection['calle'] = $_POST['registrarCalle'];
             $dataCollection['localidad'] = $_POST['registrarLocalidad'];
             $dataCollection['numero'] = $_POST['registrarNumero'];
