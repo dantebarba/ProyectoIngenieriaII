@@ -13,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-        <title>Cookbook - Carrito</title>
+        <title>Cookbook - Checkout</title>
 
         <!-- Bootstrap core CSS -->
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
@@ -23,10 +23,17 @@
         <script src="/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="/js/mustache.js" type="text/javascript"></script>
         <script src="/js/checkout.js" type="text/javascript"></script>
+        <script src="/js/jquery.steps.js" type="text/javascript"></script>
+        <link href="/css/jquery.steps.css" rel="stylesheet">
         <link href="/css/custom.css" rel="stylesheet">
         <script type="text/javascript">
             $(document).ready(function() {
-                
+                $("#wizard").steps({
+                    headerTag: "h2",
+                    transitionEffect: "slideLeft",
+                    bodyTag: "section"
+                }
+                );
             });
         </script>
     </head>
@@ -36,8 +43,17 @@
 
      
             <div class="container">
-                <div class="row form-group">
-                    <div class="col-xs-12">
+                <div id="wizard">
+                     <h2>Paso 1</h2>
+                     <section data-mode="async" data-url="/templates/checkout_1.html"></section>
+                     <h2>Paso 2</h2>
+                     <section data-mode="async" data-url="/templates/checkout_2.html"></section>
+                     <h2>Paso 3</h2>
+                     <section data-mode="async" data-url="/templates/checkout_3.html"></section>
+                </div>
+                
+<!--                <div class="row form-group">
+                    <div class="col-xs-12" id="wizard">
                         <ul class="nav nav-pills nav-justified thumbnail setup-panel">
                             <li class="active" ><a href="#step-1">
                                 <h4 class="list-group-item-heading">Confirmar Carrito</h4>
@@ -53,15 +69,15 @@
                             </a></li>
                         </ul>
                     </div>
-                </div>
-                <div id="stepiFrame">
+                </div>-->
+<!--                <div id="stepiFrame">
 
                 </div>
                 <div class="panel">
                     <div class="panel-footer">
                         <button style="float:right;" disabled type="button" name="nextStep" id="nextStep" class="btn btn-default">Next</button>
                     </div>
-                </div>
+                </div>-->
         </div>
     </body>
 </html>

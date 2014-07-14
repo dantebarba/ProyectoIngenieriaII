@@ -11,12 +11,13 @@ function getTemplate(temp, data)
      );
 }
 
-function nextStep(e) {
-    e.preventDefault();
-        var $target = $($(this).closest('li a').attr('href')),
-            $item = $(this).closest('li .active');
+function nextStep(e, target) {
+        e.preventDefault();
+        alert($(target).closest('li a .active').attr('href'));
+        var $target = $($(target).closest('li a').attr('href')),
+            $item = $target.closest('li .active');
             $item.closest('li .active').removeClass('active');
-            $("target").addClass('active');
+            $target.addClass('active');
         }
 
 
