@@ -30,7 +30,6 @@ if ($dataCollection['tel_cel'] === '') {
 } else if ($dataCollection['tel_fijo'] === '') {
     $dataCollection['tel_fijo'] = "NULL";
 }
-
 q_updateUsuario($dataCollection);
 q_updateDireccion($dataCollection);
 $respuesta['status'] = 'success';

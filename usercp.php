@@ -264,7 +264,7 @@
       <div id="messageDiv"></div>
     <div class="container" id="mainContainer" > 
       <div class="row" id="mainForm">
-       <form id="editarForm" name='editarForm' action="/inc/editarHandler.php" role="form">
+          <form id="editarForm" name='editarForm' onsubmit="alert(document.forms['editarForm']['editarIsDpto'].values)" action="/inc/editarHandler.php" role="form">
           <div class="col-md-2">
               
           </div>
@@ -387,11 +387,11 @@
             <label>
               ¿Su domicilio es un departamento?
             </label>
-            <select class="form-control" value="<?php echo $rowdir[departamento]; ?>" name="editarIsDpto" id="editarIsDpto" >
-              <option value=0>
+            <select class="form-control" name="editarIsDpto" id="editarIsDpto" >
+              <option value=0 name="no" id="no">
                 No
               </option>
-              <option value=1>
+              <option value=1 name="si" id="si">
                 Si
               </option>
             </select>

@@ -111,9 +111,9 @@ function q_updateDireccion($dataCollection) {
             . "`calle`=". $dataCollection['calle'].","
             . "`localidad`='". $dataCollection['localidad']."',"
             . "`numero`=". $dataCollection['numero'].","
-            . "`provincia`='". $dataCollection['provincia']."',"
-            . "`departamento`=". $dataCollection['departamento'].","
-            . "`numDpto`=". $dataCollection['numDpto'].""
+            . "`provincia`='". $dataCollection['provincia']."'"
+    //        . "`departamento`=". $dataCollection['departamento'].","
+    //        . "`numDpto`=". $dataCollection['numDpto'].""
             . "WHERE ".$dataCollection['DNI']."=Usuarios_DNI";
     mysql_query($query) or die(mysql_error());
 }
