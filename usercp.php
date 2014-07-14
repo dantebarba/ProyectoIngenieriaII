@@ -255,8 +255,10 @@
     include 'dbconnection.php'; 
     $link = connectdb();
     include 'queries.php';
-    $a=q_getUsuario($_COOKIE['username']);
-    $row= mysql_fetch_array($a);
+    $usuario=q_getUsuario($_COOKIE['username']);
+    $direccion=q_getDireccion($_COOKIE['username']);
+    $rowdir=mysql_fetch_array($direccion);
+    $row= mysql_fetch_array($usuario);
     ?>
   <body id="editarse" >
       <div id="messageDiv"></div>
@@ -354,26 +356,26 @@
                 <label>
                     Localidad
                 </label>
-              <input type="text" class="form-control" placeholder="Zarate" name="editarLocalidad" id="editarLocalidad">
+              <input type="text" value="<?php echo $rowdir[localidad]; ?>" class="form-control" placeholder="Zarate" name="editarLocalidad" id="editarLocalidad">
             </div>
           
           <div class="form-group">
             <label>
               Calle
             </label>
-            <input type="text" class="form-control" id="editarCalle" name="editarCalle" placeholder="Av. Libertador">
+            <input type="text" value="<?php echo $rowdir[calle]; ?>" class="form-control" id="editarCalle" name="editarCalle" placeholder="Av. Libertador">
           </div>
           <div class="form-group">
             <label>
               Numero
             </label>
-            <input type="text" class="form-control" id="editarNumero" name="editarNumero" placeholder="4311">
+            <input type="text" value="<?php echo $rowdir[numero]; ?>" class="form-control" id="editarNumero" name="editarNumero" placeholder="4311">
           </div>
           <div class="form-group">
             <label>
               ¿Su domicilio es un departamento?
             </label>
-            <select class="form-control" name="editarIsDpto" id="editarIsDpto" >
+            <select class="form-control" value="<?php echo $rowdir[departamento]; ?>" name="editarIsDpto" id="editarIsDpto" >
               <option value=0>
                 No
               </option>
@@ -386,19 +388,19 @@
             <label>
               Nro. de departamento
             </label>
-              <input type="text" class="form-control" disabled  id="editarDepartamento" name="editarDepartamento" placeholder="3A">
+              <input type="text" value="<?php echo $rowdir[numDpto]; ?>" class="form-control" disabled  id="editarDepartamento" name="editarDepartamento" placeholder="3A">
           </div>
           <div class="form-group">
             <label>
               Provincia
             </label>
-            <input type="text" class="form-control" placeholder="Buenos Aires" name="editarProvincia" id="editarProvincia">
+            <input type="text" value="<?php echo $rowdir[provincia]; ?>" class="form-control" placeholder="Buenos Aires" name="editarProvincia" id="editarProvincia">
           </div>
           <div class="form-group pull-left">
             <label>
               Codigo Postal
             </label>
-              <input type="text" class="form-control" placeholder="1900" name="editarPostal" id="editarPostal">
+              <input type="text"  class="form-control" placeholder="1900" name="editarPostal" id="editarPostal">
           </div>
           <div class="form-group">
           </div>

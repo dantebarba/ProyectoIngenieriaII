@@ -87,6 +87,17 @@ function q_addUsuario($dataCollection) {
     
 }
 
+function q_updateDireccion($dataCollection) {
+    $query = "UPDATE `direccion` SET
+            calle=". $dataCollection['calle']."','
+            localidad=". $dataCollection['localidad']."',
+            numero=". $dataCollection['numero'].",'
+            provincia=". $dataCollection['provincia']."',
+            departamento=". $dataCollection['departamento'].",'
+            numDpto=". $dataCollection['numDpto']."')";
+    mysql_query($query) or die(mysql_error());
+}
+
 function q_addDireccion($dataCollection) {
     $query = "INSERT INTO `direccion`(`calle`, `localidad`, `numero`, "
             . "`provincia`, `departamento`, `numDpto`)"
@@ -102,7 +113,7 @@ function q_addDireccion($dataCollection) {
 }
 
 function q_getDireccion($usuario) {
-    $query = "SELECT * FROM direccion WHERE ".$usuario."=Usuarios_username";
+    $query = "SELECT * FROM direccion WHERE '".$usuario."'=Usuarios_username";
     $result = mysql_query($query) or die(mysql_error());
     return $result;
 }
