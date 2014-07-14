@@ -1,6 +1,7 @@
+
+
 function getTemplate(temp, data)
 {
-    
     $.get(
              temp,
              function(d){
@@ -16,15 +17,8 @@ function nextStep(e) {
             $item = $(this).closest('li .active');
             $item.closest('li .active').removeClass('active');
             $("target").addClass('active');
-            getTemplate('checkout_1.html', []);
         }
 
-function resetSteps() {}
 
 
-$(document).ready(function() {
-    
-    getTemplate('checkout_1.html', []);
-    var navListItems = $('ul.setup-panel li a');
-    $("#nextStep").on("click", nextStep);
- });
+

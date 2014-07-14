@@ -82,7 +82,10 @@
                                     $result = q_searchLibroLikeEditorial($_GET['keyword']);
                                     break;
                             }
-                        }  
+                            default: {
+                                die('Parametro incorrecto');
+                            }
+                        }
                             while ($row = mysql_fetch_array($result)) {
                                 // loop sobre todos los elementos encontrados
                                 // NOTA: el array devuelto debe tener siempre los mismos campos 
