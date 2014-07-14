@@ -32,9 +32,9 @@ if ($dataCollection['tel_cel'] === '') {
 }
 
 q_updateUsuario($dataCollection);
-//q_updateDireccion($dataCollection);
+q_updateDireccion($dataCollection);
 $respuesta['status'] = 'success';
-$respuesta['message'] = 'Datos actualizados, muchas gracias! <strong>' . $dataCollection['username'] . '!</strong>';
+$respuesta['message'] = 'Datos actualizados, muchas gracias <strong>' . $dataCollection['username'] . '!</strong>';
 header('Content-type: application/json');
 echo json_encode($respuesta);
 mysql_close($database);

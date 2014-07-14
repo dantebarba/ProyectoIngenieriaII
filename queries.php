@@ -65,21 +65,7 @@ function q_getCompra($idCompra) {
 }
 
 ;
-function q_updateUsuario($dataCollection) {
-    $query = 
-            "UPDATE `usuarios` SET "
-            . "`DNI`=".$dataCollection['DNI'].","
-            . "`username`='".$dataCollection['username']."',"
-            . "`password`='". $dataCollection['password'] ."',"
-            . "`tel_fijo`=".$dataCollection['tel_fijo'].","
-            . "`tel_cel`=".$dataCollection['tel_cel'].","
-            . "`genero`='".$dataCollection['genero']."',"
-            . "`fecha_nac`='". $dataCollection['fecha_nac'] ."',"
-            . "`email`='".$dataCollection['email']."'"
-            . "WHERE ".$dataCollection['DNI']."=DNI";
-    mysql_query($query) or die(mysql_error());
-    
-}
+
 function q_updateLibro($dataCollection) {
     $query = 
             "UPDATE `libros` SET "
@@ -103,14 +89,32 @@ function q_addUsuario($dataCollection) {
     
 }
 
+function q_updateUsuario($dataCollection) {
+    $query = 
+            "UPDATE `usuarios` SET "
+            . "`DNI`=".$dataCollection['DNI'].","
+            . "`username`='".$dataCollection['username']."',"
+            . "`password`='". $dataCollection['password'] ."',"
+            . "`tel_fijo`=".$dataCollection['tel_fijo'].","
+            . "`tel_cel`=".$dataCollection['tel_cel'].","
+            . "`genero`='".$dataCollection['genero']."',"
+            . "`fecha_nac`='". $dataCollection['fecha_nac'] ."',"
+            . "`email`='".$dataCollection['email']."'"
+            . "WHERE ".$dataCollection['DNI']."=DNI";
+    mysql_query($query) or die(mysql_error());
+    
+}
+
 function q_updateDireccion($dataCollection) {
-    $query = "UPDATE `direccion` SET
-            calle=". $dataCollection['calle']."','
-            localidad=". $dataCollection['localidad']."',
-            numero=". $dataCollection['numero'].",'
-            provincia=". $dataCollection['provincia']."',
-            departamento=". $dataCollection['departamento'].",'
-            numDpto=". $dataCollection['numDpto']."')";
+    $query =
+            "UPDATE `direccion` SET "
+            ."`calle`=". $dataCollection['calle'].","
+            ."`localidad`='". $dataCollection['localidad']."',"
+            ."`numero`=". $dataCollection['numero'].","
+            ."`provincia`='". $dataCollection['provincia']."',"
+            ."`departamento`='". $dataCollection['departamento']."',"
+            ."`numDpto`=". $dataCollection['numDpto'].""
+            ."WHERE ".$dataCollection['DNI']."=Usuarios_DNI";
     mysql_query($query) or die(mysql_error());
 }
 
