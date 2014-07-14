@@ -66,14 +66,30 @@ function q_getCompra($idCompra) {
 
 ;
 function q_updateUsuario($dataCollection) {
-    $query = "UPDATE `usuarios` SET
-             DNI=". "(".$dataCollection['DNI'].",'username=".$dataCollection['username']."','
-             password=". $dataCollection['password'] . "',tel_fijo=".$dataCollection['tel_fijo'].",
-             tel_cel=". $dataCollection['tel_cel'] .",'genero=".$dataCollection['genero']."','
-             fecha_nac=". $dataCollection['fecha_nac'] ."', 'email=".$dataCollection['email']."' ,
-             isAdmin=". $dataCollection['isAdmin'].")";
+    $query = 
+            "UPDATE `usuarios` SET "
+            . "`DNI`=".$dataCollection['DNI'].","
+            . "`username`='".$dataCollection['username']."',"
+            . "`password`='". $dataCollection['password'] ."',"
+            . "`tel_fijo`=".$dataCollection['tel_fijo'].","
+            . "`tel_cel`=".$dataCollection['tel_cel'].","
+            . "`genero`='".$dataCollection['genero']."',"
+            . "`fecha_nac`='". $dataCollection['fecha_nac'] ."',"
+            . "`email`='".$dataCollection['email']."'"
+            . "WHERE ".$dataCollection['DNI']."=DNI";
     mysql_query($query) or die(mysql_error());
     
+}
+function q_updateLibro($dataCollection) {
+    $query = 
+            "UPDATE `libros` SET "
+            . "`titulo`='".$dataCollection['titulo']."',"
+            . "`paginas`=".$dataCollection['paginas'].","
+            . "`precio`=".$dataCollection['precio'].","
+            . "`idioma`='".$dataCollection['idioma']."',"
+            . "`fecha`='".$dataCollection['fecha']."'"
+            . " WHERE ".$dataCollection['ISBN']."=ISBN";
+    mysql_query($query) or die(mysql_error());
 }
 function q_addUsuario($dataCollection) {
     $query = "INSERT INTO `usuarios`(`DNI`, `username`, `password`, `tel_fijo`, `tel_cel`, `genero`,"
@@ -162,18 +178,6 @@ function q_updateEditorial($id, $nombre) {
 
 function q_updateCategoria($id, $nombre) {
     $query = "UPDATE etiquetas SET nombre='$nombre' WHERE " . $id . "=idEtiqueta";
-    mysql_query($query) or die(mysql_error());
-}
-
-function q_updateLibro($dataCollection) {
-    $query = 
-            "UPDATE `libros` SET "
-            . "`titulo`='".$dataCollection['titulo']."',"
-            . "`paginas`=".$dataCollection['paginas'].","
-            . "`precio`=".$dataCollection['precio'].","
-            . "`idioma`='".$dataCollection['idioma']."',"
-            . "`fecha`='".$dataCollection['fecha']."'"
-            . " WHERE ".$dataCollection['ISBN']."=ISBN";
     mysql_query($query) or die(mysql_error());
 }
 

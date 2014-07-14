@@ -220,7 +220,7 @@
                                             type: 'error'
                                             
                                         });
-                    }
+                }
                     else if (element.status === 'error_userDisabled') {
                                     var not = noty(
                                         {   layout: 'topCenter',
@@ -264,7 +264,7 @@
       <div id="messageDiv"></div>
     <div class="container" id="mainContainer" > 
       <div class="row" id="mainForm">
-       <form id="editarForm" name='editarForm' action="/inc/editHandler.php" role="form">
+       <form id="editarForm" name='editarForm' action="/inc/editarHandler.php" role="form">
           <div class="col-md-2">
               
           </div>
@@ -308,13 +308,25 @@
             <label>
               Género
             </label>
-            <select class="form-control" value="<?php echo $row[genero]; ?>" id="editarGenero" name="editarGenero">
-              <option value="m">
+            <select class="form-control"  id="editarGenero" name="editarGenero">
+              <?php 
+                    if ($row[genero] == "f") {
+                    echo'
+              <option value="m" id="masc" name="masc">
                 Masculino
               </option>
-              <option value="f">
+              <option selected value="f" id="fem" name="fem">
                 Femenino
+                    </option>';}
+              else{
+                  echo '<option selected value="m" id="masc" name="masc">
+                Masculino
               </option>
+              <option value="f" id="fem" name="fem">
+                Femenino
+              </option>'
+              ;}   
+                      ?>
             </select>
           </div>
           <h3>
