@@ -65,7 +65,16 @@ function q_getCompra($idCompra) {
 }
 
 ;
-
+function q_updateUsuario($dataCollection) {
+    $query = "UPDATE `usuarios` SET
+             DNI=". "(".$dataCollection['DNI'].",'username=".$dataCollection['username']."','
+             password=". $dataCollection['password'] . "',tel_fijo=".$dataCollection['tel_fijo'].",
+             tel_cel=". $dataCollection['tel_cel'] .",'genero=".$dataCollection['genero']."','
+             fecha_nac=". $dataCollection['fecha_nac'] ."', 'email=".$dataCollection['email']."' ,
+             isAdmin=". $dataCollection['isAdmin'].")";
+    mysql_query($query) or die(mysql_error());
+    
+}
 function q_addUsuario($dataCollection) {
     $query = "INSERT INTO `usuarios`(`DNI`, `username`, `password`, `tel_fijo`, `tel_cel`, `genero`,"
             . " `fecha_nac`, `email`, `isAdmin`) VALUES "
@@ -92,7 +101,11 @@ function q_addDireccion($dataCollection) {
     mysql_query($query) or die(mysql_error());
 }
 
-
+function q_getDireccion($usuario) {
+    $query = "SELECT * FROM direccion WHERE ".$usuario."=Usuarios_username";
+    $result = mysql_query($query) or die(mysql_error());
+    return $result;
+}
 
 function q_addAutor($nombre, $DNI) {
     $query = "INSERT INTO autores (nombre, DNI) VALUES ('$nombre', '$DNI')";
