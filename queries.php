@@ -100,7 +100,7 @@ function q_updateUsuario($dataCollection) {
             . "`genero`='".$dataCollection['genero']."',"
             . "`fecha_nac`='". $dataCollection['fecha_nac'] ."',"
             . "`email`='".$dataCollection['email']."'"
-            . "WHERE ".$dataCollection['DNI']."=DNI";
+            . " WHERE ".$dataCollection['DNI']."=DNI";
     mysql_query($query) or die(mysql_error());
     
 }
