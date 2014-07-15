@@ -1,11 +1,13 @@
-function newRow(elementData, indexes) {
+function newTable(elementData, indexes) {
     var data = '';
     for (j=0; j < elementData.length; j++) {
+        data += '<tr>';
         for (i=0; i < indexes.length; i++) {
             data += '<td>'+elementData[j][indexes[i]]+'</td>';
         }
+        data += '</tr>';
     }
-    return '<tr>'+data+'</tr>';
+    return data;
 }
  
 function getTemplate(temp, data)

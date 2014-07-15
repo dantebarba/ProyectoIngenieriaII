@@ -80,11 +80,14 @@
                                      </div>
                                     <div class="panel-footer">
                                             <div class="row text-center">
-                                                    <div class="col-xs-9" >
+                                                    <div class="col-xs-3">
+                                                        <button type="button" class="btn btn-warning btn-block" onClick="cleanCart();">Limpiar Carrito</button>
+                                                    </div>
+                                                    <div class="col-xs-6" >
                                                             <h4 class="text-right" id="totalValue">Total $</h4>
                                                     </div>
                                                     <div class="col-xs-3">
-                                                            <button type="button" class="btn btn-success btn-block">
+                                                            <button type="button" class="btn btn-success btn-block" onClick="window.location.href('/templates/checkout.php');">
                                                                     Checkout
                                                             </button>
                                                     </div>

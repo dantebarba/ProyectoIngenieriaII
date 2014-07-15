@@ -39,5 +39,13 @@
                    }, "json"); 
                }
                
+               function cleanCart() {
+                   $.post('/inc/cartHandler.php', {tokenID: '', cleanCart: true}, function (response){
+                       if (response.status === 'success') {
+                           location.reload();
+                       }
+                   }, "json");
+               }
+               
                
 

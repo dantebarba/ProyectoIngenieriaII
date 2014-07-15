@@ -48,6 +48,9 @@
                     onCanceled: function() {
                         window.location.href = '/index.php';
                     },
+                    onFinished: function() {
+                        window.location.href = '/index.php';
+                    },
                     enableFinishButton: true,
                     enableCancelButton: true,
                     enableAllSteps: false,

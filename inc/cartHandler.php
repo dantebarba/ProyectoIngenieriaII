@@ -74,8 +74,11 @@ function generarOrden() {
 
 $respuesta['status'] = 'error_validationError';
 if (isset($_POST['tokenID'])) {
-    
-    if (isset($_POST['getItems'])) {
+    if (isset($_POST['cleanCart'])) {
+        clearCart();
+        $respuesta['status'] = 'success';
+    }
+    else if (isset($_POST['getItems'])) {
        $respuesta['status'] = 'success';
        $respuesta['items'] = getItem();
        unset($_POST['tokenID']);
@@ -117,5 +120,3 @@ if (isset($_POST['tokenID'])) {
 }
 
 mysql_close($link);
-
-echo 'hola';
