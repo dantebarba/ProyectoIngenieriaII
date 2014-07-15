@@ -104,15 +104,15 @@
                 <h3 class="panel-title">Libros</h3>
             </div><div class="panel-body">
                 <ul>
-                    <form class="form-horizontal" id="listarLibro" method="post" action="listarLibro.php" role="form">
+                  <!--    <form class="form-horizontal" id="listarLibro" method="post" action="listarLibro.php" role="form"> -->
                         <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarLibro">Agregar</button><p></p> 
-                        <div class="col-xs-2">
+                 <!--       <div class="col-xs-2">
                         <input type="date" class="form-control" id="fecha1Libro" name="fecha1Libro"><p></p>
                         <input type="date" class="form-control" id="fecha2Libro" name="fecha2Libro"><p></p>
                         </div>
-                        <span class="help-block" style="margin-top:20px;clear:both;">En caso de no ingresar alguna de las dos fechas, se listaran todos los libros</span><p></p>
+                        <span class="help-block" style="margin-top:20px;clear:both;">En caso de no ingresar alguna de las dos fechas, se listaran todos los libros</span><p></p> -->
                         <button type='submit'class="btn btn-primary" onclick="redirect('listarLibro.php')">Listar</button>
-                    </form>
+                <!--    </form> -->
                 </ul>
             </div></div>
         <div class="panel panel-primary"> <div class="panel-heading">
