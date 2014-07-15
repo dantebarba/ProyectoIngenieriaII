@@ -2,6 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+    
 
 include_once '../dbconnection.php';    
 
@@ -9,11 +10,6 @@ $link = connectdb();
 
 include_once '../queries.php';
 
-function generarOrden() {
-    // Aqui se genera la orden con su ID
-    
-    return mysql_insert_id();
-}
 
 function addItemToCart($ISBN) {
     $respuesta['status'] = 'error';
@@ -21,22 +17,25 @@ function addItemToCart($ISBN) {
         $_SESSION['cart'][$ISBN]++; 
         $respuesta['status'] = 'success';
     }
-    echo json_encode($respuesta);
-    exit();
+    
 }
 
 function updateQty($ISBN, $value) {
     $respuesta['status'] = 'success';
     $_SESSION['cart'][$ISBN] = $value;
-    json_encode($respuesta);
-    exit();
+    
 }
 
 function removeItemFromCart($ISBN) {
     $respuesta['status'] = 'success';
     unset($_SESSION['cart'][$ISBN]);
-    json_encode($respuesta);
-    exit();
+    
+}
+
+function clearCart() {
+    foreach ($_SESSION['cart'] as $key => $value) {
+        removeItemFromCart($key);
+    }
 }
 
 function getItem() {
@@ -49,10 +48,33 @@ function getItem() {
     return $param['items'];
 }
 
+function generarOrden() {
+    // Aqui se genera la orden con su ID
+   
+    foreach ($_SESSION['cart'] as $key => $value) {
+        $libro = mysql_fetch_assoc(q_getLibro($key));
+        $valorTotal = $libro['precio'] * $value;
+        
+    }
+    $idPedido = q_newPedido($valorTotal);
+    foreach ($_SESSION['cart'] as $key => $value) {
+        q_linkCompraToLibro($idPedido, $key);
+        
+    }
+    $usuario = mysql_fetch_assoc(q_getUsuario($_COOKIE['username']));
+    q_linkCompraToUsuario($idPedido, $usuario['DNI']);
+    clearCart();
+    return $idPedido;
+}
+
+generarOrden();
+
 
 
 $respuesta['status'] = 'error_validationError';
 if (isset($_POST['tokenID'])) {
+    
+    if (isset($_POST['getItems'])) {
        $respuesta['status'] = 'success';
        $respuesta['items'] = getItem();
        unset($_POST['tokenID']);
@@ -61,29 +83,36 @@ if (isset($_POST['tokenID'])) {
     } 
     else if (isset($_POST['addItemToCart'])) {
         addItemToCart($_POST['ISBN']);
+        echo json_encode($respuesta);
+        exit();
     }
     else if (isset($_POST['removeItemFromCart'])) {
         removeItemFromCart($_POST['ISBN']);
+        json_encode($respuesta);
+        exit();
     }
     else if (isset($_POST['updateQty'])) {
         updateQty($_POST['ISBN'], $_POST['value']);
+        json_encode($respuesta);
+        exit();   
     }
-    else if (isset($_POST['creditCardForm'])) {
+    else if (isset($_POST['tokenID'])) {
         $respuesta['status'] = 'success';
         $respuesta['message'] = 'Se ha procesado el pago correctamente';
         json_encode($respuesta);
         exit();
     }
-    else if (isset($_POST['nuevoPedido'])) {
+    else if (isset($_POST['card-number'])) {
         $respuesta['orderID'] = generarOrden();
         $respuesta['status'] = 'success';
         $respuesta['message'] = 'Su orden ha sido procesada';
-        unset($_POST['tokenID']);
         // unset($_SESSION['tokenID']);
         json_encode($respuesta);
+        exit();
     }
+    unset($_POST['tokenID']);
+    json_encode($respuesta);
+    exit();
+}
 
 mysql_close($link);
-
-
-

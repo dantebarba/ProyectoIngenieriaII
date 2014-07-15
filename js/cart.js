@@ -3,7 +3,7 @@
                    // script simple para añadir al carrito, aqui ira
                    // el llamado AJAX
                    // test example
-                   $.post('../inc/cartHandler.php', {addItemToCart: true,ISBN: item}, function(data) {
+                   $.post('../inc/cartHandler.php', {tokenID: '', addItemToCart: true,ISBN: item}, function(data) {
                        console.log(data);
                    }, "json");
                }
@@ -12,7 +12,7 @@
                    // script simple para añadir al carrito, aqui ira
                    // el llamado AJAX
                    // test example
-                   $.post('../inc/cartHandler.php', {removeItemFromCart: true,ISBN: item}, function(data) {
+                   $.post('../inc/cartHandler.php', {tokenID: '', removeItemFromCart: true,ISBN: item}, function(data) {
                        console.log(data);
                    }, "json");
                }
@@ -20,7 +20,7 @@
                function updateQty(item, value) {
                    // actualiza la cantidad de unidades
                    // pedidas de un elemento
-                   $.post('../inc/cartHandler.php', {updateQty: true,ISBN: item, value: value}, function(data) {
+                   $.post('../inc/cartHandler.php', {tokenID: '', updateQty: true,ISBN: item, value: value}, function(data) {
                        console.log(data);
                    }, "json");
                }
@@ -28,7 +28,7 @@
                
                function ajaxGetItems(callback) {
                    
-                   $.post('../inc/cartHandler.php',{tokenID: ''}, function (itemsList){
+                   $.post('../inc/cartHandler.php',{tokenID: '', getItems: true}, function (itemsList){
                        if (itemsList.status === 'success') {
                            callback(itemsList.items);
                        }
