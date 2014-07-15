@@ -19,7 +19,10 @@
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
+        
         <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+        <script type="text/javascript" src="/js/notifications.js"></script>
         <script src="/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="/js/checkout.js" type="text/javascript"></script>
         <script src="/js/cart.js" type="text/javascript"></script>
@@ -27,12 +30,35 @@
         <link href="/css/jquery.steps.css" rel="stylesheet">
         <link href="/css/custom.css" rel="stylesheet">
         <script type="text/javascript">
+            pass=false;
             $(document).ready(function() {
                 $("#wizard").steps({
                     headerTag: "h2",
                     transitionEffect: "slideLeft",
-                    bodyTag: "section"
-                }
+                    bodyTag: "section",
+                    onStepChanging: function () {
+                            if (!pass) {
+                               notyBottomNotification('error', 'Revise el formulario');
+                               return pass;
+                            }
+                            else {
+                                return pass;
+                            }  
+                        },
+                    onCanceled: function() {
+                        window.location.href = '/index.php';
+                    },
+                    enableFinishButton: true,
+                    enableCancelButton: true,
+                    enableAllSteps: false,
+                    forceMoveForward: true,
+                    labels: {
+                        cancel: "Cancelar",
+                        finish: "Finalizar Pedido",
+                        next: "Siguiente"
+                        }
+                        
+                    }
                 );
                 
                 
@@ -50,11 +76,11 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <div id="wizard">
-                         <h2>Paso 1</h2>
+                         <h2>Confirmar Carrito</h2>
                          <section data-mode="async" data-url="/templates/checkout_1.html"></section>
-                         <h2>Paso 2</h2>
+                         <h2>Pagar</h2>
                          <section data-mode="async" data-url="/templates/checkout_2.html"></section>
-                         <h2>Paso 3</h2>
+                         <h2>Finalizar pedido</h2>
                          <section data-mode="async" data-url="/templates/checkout_3.html"></section>
                     </div>
                 </div>

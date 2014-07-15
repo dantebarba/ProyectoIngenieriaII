@@ -9,6 +9,12 @@ $link = connectdb();
 
 include_once '../queries.php';
 
+function generarOrden() {
+    // Aqui se genera la orden con su ID
+    
+    return mysql_insert_id();
+}
+
 function addItemToCart($ISBN) {
     $respuesta['status'] = 'error';
     if (q_isPresentLibro($ISBN) && q_isDisponibleLibro($ISBN)) {
@@ -61,6 +67,20 @@ if (isset($_POST['tokenID'])) {
     }
     else if (isset($_POST['updateQty'])) {
         updateQty($_POST['ISBN'], $_POST['value']);
+    }
+    else if (isset($_POST['creditCardForm'])) {
+        $respuesta['status'] = 'success';
+        $respuesta['message'] = 'Se ha procesado el pago correctamente';
+        json_encode($respuesta);
+        exit();
+    }
+    else if (isset($_POST['nuevoPedido'])) {
+        $respuesta['orderID'] = generarOrden();
+        $respuesta['status'] = 'success';
+        $respuesta['message'] = 'Su orden ha sido procesada';
+        unset($_POST['tokenID']);
+        // unset($_SESSION['tokenID']);
+        json_encode($respuesta);
     }
 
 mysql_close($link);

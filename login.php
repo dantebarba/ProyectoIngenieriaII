@@ -27,14 +27,13 @@
         include 'dbconnection.php'; 
         $link = connectdb();
         include 'queries.php';
-        $field['username'] = $_GET['recoverUsername'];
-        if ($_GET['recoverDNI'] == '') {
-            $field['dni'] = "NULL";
+        if (isset($_GET['recoverUsername'])) {
+            $query = q_isPresentUsuario($_GET['recoverUsername']);
         }
-        else {
-            $field['dni'] = $_GET['recoverDNI'];
-        }
-        $query = q_isPresentUsuario($field['username'], $field['dni']);
+        else
+            if (isset($_GET['recoverDNI']) && ($_GET['recoverDNI'] != '')) {
+                $query = q_isPresentUsuario('', $_GET['recoverDNI']);
+            }
         if ($query) {
             q_enableUsuario($field['username'], $field['dni']);
             $response['status'] = 'success';

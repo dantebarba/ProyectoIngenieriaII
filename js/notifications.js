@@ -27,4 +27,15 @@ function notyTopNotification(type, text, callback) {
                 });
 };
 
+function notyBottomNotification(type, text, callback) {
+    return noty({   layout: 'bottomCenter',
+                    text: text,
+                    timeout: '3000',
+                    type: type,
+                    callback: {
+                        onClose: callback
+                    }
+                });
+};
+
 
