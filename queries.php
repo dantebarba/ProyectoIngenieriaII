@@ -220,12 +220,8 @@ function q_removeUsuario($username) {
 }
 
 function q_removeCompra($idCompra){
-        //echo "entro al delCompra, datacollection tiene";
-        $query= "DELETE FROM `compras_has_libros` WHERE Compras_idCompra = '$idCompra'";
+        $query= "UPDATE compras SET isDeleted=1 WHERE idCompra = '$idCompra'";
         mysql_query($query) or die(mysql_error());
-        $query= "DELETE FROM `compras` WHERE idCompra = '$idCompra'";
-        mysql_query($query) or die(mysql_error());
-        
  }
  
 function q_isPresentUsuario($username, $DNI=-1) {
@@ -327,17 +323,20 @@ function q_listLibros($rangemax = 1000) {
 }
 
 function q_listCompras() {
-  $query = "SELECT c.Compras_idCompra, com.precio, com.fecha, com.envio, com.estado, l.ISBN, l.titulo, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta"
+  $query = "SELECT c.Compras_idCompra, com.precio, com.fecha, com.envio, com.estado, l.ISBN, l.titulo, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, us.Usuarios_DNI , us.Usuarios_username"
 ." FROM compras_has_libros c "
 ." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
 ." LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) "
 ." LEFT JOIN etiquetas_has_libros el ON ( l.ISBN = el.Libros_ISBN ) "
 ." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
-." LEFT JOIN compras com ON ( idCompra = c.Compras_idCompra ) ";
+." LEFT JOIN compras com ON ( idCompra = c.Compras_idCompra ) "
+." LEFT JOIN usuarios_has_compras us ON ( us.Compras_idCompra = c.Compras_idCompra ) "
+." WHERE com.isDeleted=0 ";
 
  $row = mysql_query($query) or die(mysql_error());
  return $row;
 }
+
 
 
 function q_isAdminUsuario($username) {
