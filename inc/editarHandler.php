@@ -13,7 +13,7 @@ $dataCollection['email'] = $_POST['editarEmail'];
 $dataCollection['isAdmin'] = 0;
 $dataCollection['fecha_nac'] = date('Y-m-d', strtotime($_POST['editarFecha_nac']));
 // DIRECCION
-
+$dataCollection['codPostal'] = $_POST['editarPostal'];
 $dataCollection['calle'] = $_POST['editarCalle'];
 $dataCollection['localidad'] = $_POST['editarLocalidad'];
 $dataCollection['numero'] = $_POST['editarNumero'];

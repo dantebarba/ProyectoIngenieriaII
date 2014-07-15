@@ -111,16 +111,17 @@ function q_updateDireccion($dataCollection) {
             . "`calle`=". $dataCollection['calle'].","
             . "`localidad`='". $dataCollection['localidad']."',"
             . "`numero`=". $dataCollection['numero'].","
-            . "`provincia`='". $dataCollection['provincia']."'"
-    //        . "`departamento`=". $dataCollection['departamento'].","
-    //        . "`numDpto`=". $dataCollection['numDpto'].""
-            . "WHERE ".$dataCollection['DNI']."=Usuarios_DNI";
+            . "`provincia`='". $dataCollection['provincia']."',"
+            . "`departamento`=". $dataCollection['departamento'].","
+            . "`codPostal`=". $dataCollection['codPostal'].","
+            . "`numDpto`='". $dataCollection['numDpto']."'"
+            . " WHERE ".$dataCollection['DNI']."=Usuarios_DNI";
     mysql_query($query) or die(mysql_error());
 }
 
 function q_addDireccion($dataCollection) {
     $query = "INSERT INTO `direccion`(`calle`, `localidad`, `numero`, "
-            . "`provincia`, `departamento`, `numDpto`)"
+            . "`provincia`, `departamento`,`codPostal` `numDpto`)"
             . " VALUES ('"
             . $dataCollection['calle']."','"
             . $dataCollection['localidad']."',"
@@ -128,6 +129,7 @@ function q_addDireccion($dataCollection) {
             . $dataCollection['provincia']."',"
             . $dataCollection['departamento'].",'" // el campo departamento podria
             // ser borrado
+            . $dataCollection['codPostal']
             . $dataCollection['numDpto']."')";
     mysql_query($query) or die(mysql_error());
 }
