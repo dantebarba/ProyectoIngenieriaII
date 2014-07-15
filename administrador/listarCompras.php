@@ -59,7 +59,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
             }
             $(document).ready(function() {
                 var fields = ['idCompra', 'precioCompra' ,'fechaCompra', 'envio', 'estado' , 'ISBN', 'tituloLibro',
-                    'idAutorLibro', 'idEditorialLibro', 'idEtiquetaLibro'];
+                    'idAutorLibro', 'idEditorialLibro', 'idEtiquetaLibro', 'usuarioDNI', 'usuarioUsername'];
                 var item = {}; // los dict son igual a python
                 $('table.table-striped tbody tr').on('click', function() {
                     $(this).closest('table').find('td').removeClass('bg');
@@ -165,6 +165,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Autores_idAutor'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEditorialLibro' . '>' . $row['Editoriales_idEditorial'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Etiquetas_idEtiqueta'] . '</td>';
+                                echo '<td id=' . 'usuarioDNI' . '>' . $row['Usuarios_DNI'] . '</td>';
+                                echo '<td id=' . 'usuarioUsername' . '>' . $row['Usuarios_username'] . '</td>';
                                 $i++;
                             }
                             mysql_close($link);
