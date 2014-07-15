@@ -527,14 +527,14 @@ function q_linkEditorialToLibro($idEditorial, $ISBN) {
 }
 
 function q_linkCompraToUsuario($idCompra, $username, $DNI) {
-    $query="INSERT INTO 'usuarios_has_compras' ('Usuarios_username', 'Usuarios_DNI', 
-        'Compras_idCompra')
-        VALUES (".$username.", ".$DNI.",".$idCompra.")";
+    $query="INSERT INTO usuarios_has_compras (Usuarios_username, Usuarios_DNI, 
+        Compras_idCompra)
+        VALUES ('".$username."', ".$DNI.",".$idCompra.")";
     mysql_query($query) or die(mysql_error());
 }
 
 function q_linkCompraToLibro($idCompra, $ISBN) {
-    $query="INSERT INTO 'compras_has_libros' ('Libros_ISBN', 'Compras_idCompra')
+    $query="INSERT INTO compras_has_libros (Libros_ISBN, Compras_idCompra)
         VALUES (".$ISBN.", ".$idCompra.")";
     mysql_query($query) or die(mysql_error());
 }

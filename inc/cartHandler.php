@@ -4,11 +4,14 @@ if (session_status() == PHP_SESSION_NONE) {
     }
     
 
+
 include_once '../dbconnection.php';    
 
 $link = connectdb();
 
 include_once '../queries.php';
+
+
 
 
 function addItemToCart($ISBN) {
@@ -62,12 +65,10 @@ function generarOrden() {
         
     }
     $usuario = mysql_fetch_assoc(q_getUsuario($_COOKIE['username']));
-    q_linkCompraToUsuario($idPedido, $usuario['DNI']);
+    q_linkCompraToUsuario($idPedido, $usuario['username'], $usuario['DNI']);
     clearCart();
     return $idPedido;
 }
-
-generarOrden();
 
 
 
@@ -88,31 +89,33 @@ if (isset($_POST['tokenID'])) {
     }
     else if (isset($_POST['removeItemFromCart'])) {
         removeItemFromCart($_POST['ISBN']);
-        json_encode($respuesta);
+        echo json_encode($respuesta);
         exit();
     }
     else if (isset($_POST['updateQty'])) {
         updateQty($_POST['ISBN'], $_POST['value']);
-        json_encode($respuesta);
+        echo json_encode($respuesta);
         exit();   
     }
-    else if (isset($_POST['tokenID'])) {
+    else if (isset($_POST['cvv'])) {
         $respuesta['status'] = 'success';
         $respuesta['message'] = 'Se ha procesado el pago correctamente';
-        json_encode($respuesta);
+        echo json_encode($respuesta);
         exit();
     }
-    else if (isset($_POST['card-number'])) {
+    else if (isset($_POST['nuevoPedido'])) {
         $respuesta['orderID'] = generarOrden();
         $respuesta['status'] = 'success';
         $respuesta['message'] = 'Su orden ha sido procesada';
         // unset($_SESSION['tokenID']);
-        json_encode($respuesta);
+        echo json_encode($respuesta);
         exit();
     }
     unset($_POST['tokenID']);
-    json_encode($respuesta);
+    echo json_encode($respuesta);
     exit();
 }
 
 mysql_close($link);
+
+echo 'hola';
