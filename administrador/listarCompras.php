@@ -121,6 +121,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 <th>Fecha</th>
                                 <th>Envio</th>
                                 <th>Estado</th>
+                                <th>Usuario DNI</th>
+                                <th>Username</th>
                                 
                             </tr>
                         </thead>
