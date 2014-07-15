@@ -47,5 +47,12 @@
                    }, "json");
                }
                
+               function calcTotal(articulos) {
+                        var total = 0;
+                        for (i=0; i < articulos.length; i++) {
+                            total += articulos[i].precio * articulos[i].cantidad;
+                        }
+                        return total;
+                    }
                
 

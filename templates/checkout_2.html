@@ -63,7 +63,7 @@
           </div>
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
-              <button type="submit" class="btn btn-success">Pagar ahora</button>
+              <button type="submit" class="btn btn-success" id="paynow">Pagar ahora</button>
             </div>
           </div>
         </fieldset>
@@ -86,6 +86,7 @@
                 if (element.status === 'success') {
                     notyTopNotification('success', element.message);
                     $("#orden").val(element.orderID);
+                    $("#paynow").prop("disabled", true);
                 }
                 pass=true;
                 };

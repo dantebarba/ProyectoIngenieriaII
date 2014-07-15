@@ -32,7 +32,12 @@
                             total += articulos[i].precio * articulos[i].cantidad;
                         }
                         return total;
-                    }
+                    };
+            function refreshTotal() {
+                    ajaxGetItems(function (articulos) {
+                        $("#totalValue").html('Total $'+calcTotal(articulos));
+                    });
+            };
             $(document).ready(function() {
                ajaxGetItems(function (articulos) { 
                     console.log(articulos);
@@ -44,14 +49,16 @@
                                  }
                      );
                      
-                     $("#totalValue").append(calcTotal(articulos));
+                     $("#totalValue").html('Total $'+calcTotal(articulos));
+                     
                      
                 });
             });
-            $(document).on("click", "#itemTrash", function() {
-                    $("#itemTrash").closest(".article").remove();
-                    
-            });
+            function removeFromDisplay(element) {
+                $(element).closest(".article").remove();
+            };
+
+            
         </script>    
     </head>
     
@@ -84,10 +91,10 @@
                                                         <button type="button" class="btn btn-warning btn-block" onClick="cleanCart();">Limpiar Carrito</button>
                                                     </div>
                                                     <div class="col-xs-6" >
-                                                            <h4 class="text-right" id="totalValue">Total $</h4>
+                                                        <h4 class="text-right" id="totalValue"></h4>
                                                     </div>
                                                     <div class="col-xs-3">
-                                                            <button type="button" class="btn btn-success btn-block" onClick="window.location.href('/templates/checkout.php');">
+                                                            <button type="button" class="btn btn-success btn-block" onClick="window.location.href = '/templates/checkout.php';">
                                                                     Checkout
                                                             </button>
                                                     </div>

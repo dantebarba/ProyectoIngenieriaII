@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
     
-
+$respuesta['status'] = 'error_validationError';
 
 include_once '../dbconnection.php';    
 
@@ -15,30 +15,29 @@ include_once '../queries.php';
 
 
 function addItemToCart($ISBN) {
-    $respuesta['status'] = 'error';
     if (q_isPresentLibro($ISBN) && q_isDisponibleLibro($ISBN)) {
         $_SESSION['cart'][$ISBN]++; 
-        $respuesta['status'] = 'success';
     }
-    
+    return 'success';
 }
 
 function updateQty($ISBN, $value) {
-    $respuesta['status'] = 'success';
-    $_SESSION['cart'][$ISBN] = $value;
     
+    $_SESSION['cart'][$ISBN] = $value;
+    return 'success';
 }
 
 function removeItemFromCart($ISBN) {
-    $respuesta['status'] = 'success';
+   
     unset($_SESSION['cart'][$ISBN]);
-    
+    return 'success';
 }
 
 function clearCart() {
     foreach ($_SESSION['cart'] as $key => $value) {
         removeItemFromCart($key);
     }
+    return 'success';
 }
 
 function getItem() {
@@ -72,7 +71,7 @@ function generarOrden() {
 
 
 
-$respuesta['status'] = 'error_validationError';
+
 if (isset($_POST['tokenID'])) {
     if (isset($_POST['cleanCart'])) {
         clearCart();
@@ -86,17 +85,17 @@ if (isset($_POST['tokenID'])) {
        exit();
     } 
     else if (isset($_POST['addItemToCart'])) {
-        addItemToCart($_POST['ISBN']);
+        $respuesta['status'] = addItemToCart($_POST['ISBN']);
         echo json_encode($respuesta);
         exit();
     }
     else if (isset($_POST['removeItemFromCart'])) {
-        removeItemFromCart($_POST['ISBN']);
+        $respuesta['status'] = removeItemFromCart($_POST['ISBN']);
         echo json_encode($respuesta);
         exit();
     }
     else if (isset($_POST['updateQty'])) {
-        updateQty($_POST['ISBN'], $_POST['value']);
+        $respuesta['status'] = updateQty($_POST['ISBN'], $_POST['value']);
         echo json_encode($respuesta);
         exit();   
     }
@@ -109,14 +108,14 @@ if (isset($_POST['tokenID'])) {
     else if (isset($_POST['nuevoPedido'])) {
         $respuesta['orderID'] = generarOrden();
         $respuesta['status'] = 'success';
-        $respuesta['message'] = 'Su orden ha sido procesada';
+        $respuesta['message'] = 'Order ID: '.$respuesta['orderID'];
         // unset($_SESSION['tokenID']);
         echo json_encode($respuesta);
         exit();
     }
     unset($_POST['tokenID']);
     echo json_encode($respuesta);
-    exit();
+    die();
 }
 
 mysql_close($link);
