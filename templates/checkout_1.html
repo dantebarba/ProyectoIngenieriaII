@@ -5,13 +5,42 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
     <div class="row setup-content" id="step-1">
-        <div class="col-xs-12">
-            <div class="col-md-12 well text-center">
-                <h1> STEP 1</h1>
-                <button id="activate-step-2" class="btn btn-primary btn-lg">Activate Step 2</button>
-            </div>
-        </div>
+        <table class="table table-bordered table-hover" id="itemsTable">
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>titulo</th>
+                    <th>precio</th>
+                    <th>cantidad</th>
+                </tr>
+            </thead>
+            <tbody id="itemsBody">
+                
+            </tbody>
+        </table>
+        <span style="position: absolute; right: 50px; bottom: 20px;">
+            <h4 id="totalToPay">Total a pagar: </h4>
+        </span>
     </div>
+    <script>
+        function calcTotal(articulos) {
+                        var total = 0;
+                        for (i=0; i < articulos.length; i++) {
+                            total += articulos[i].precio * articulos[i].cantidad;
+                        }
+                        return total;
+                    }
+        ajaxGetItems(function (items) {
+                        var first = $("#itemsTable").find("tr");
+                        var indexes = [];
+                        $("#itemsTable th").each(function() {
+                            indexes.push($(this).text());
+                          });
+                        $("#itemsBody").append(newRow(items, indexes));
+                        $("#totalToPay").append('$'+calcTotal(items));
+                    });
+    </script>
+
 
 
 

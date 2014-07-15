@@ -1,5 +1,13 @@
-
-
+function newRow(elementData, indexes) {
+    var data = '';
+    for (j=0; j < elementData.length; j++) {
+        for (i=0; i < indexes.length; i++) {
+            data += '<td>'+elementData[j][indexes[i]]+'</td>';
+        }
+    }
+    return '<tr>'+data+'</tr>';
+}
+ 
 function getTemplate(temp, data)
 {
     $.get(

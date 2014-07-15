@@ -21,8 +21,8 @@
         <!-- Custom styles for this template -->
         <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
         <script src="/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="/js/mustache.js" type="text/javascript"></script>
         <script src="/js/checkout.js" type="text/javascript"></script>
+        <script src="/js/cart.js" type="text/javascript"></script>
         <script src="/js/jquery.steps.js" type="text/javascript"></script>
         <link href="/css/jquery.steps.css" rel="stylesheet">
         <link href="/css/custom.css" rel="stylesheet">
@@ -34,8 +34,12 @@
                     bodyTag: "section"
                 }
                 );
+                
+                
             });
+            
         </script>
+
     </head>
     
     <?php include '../header.php'; ?>
@@ -43,15 +47,17 @@
 
      
             <div class="container">
-                <div id="wizard">
-                     <h2>Paso 1</h2>
-                     <section data-mode="async" data-url="/templates/checkout_1.html"></section>
-                     <h2>Paso 2</h2>
-                     <section data-mode="async" data-url="/templates/checkout_2.html"></section>
-                     <h2>Paso 3</h2>
-                     <section data-mode="async" data-url="/templates/checkout_3.html"></section>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div id="wizard">
+                         <h2>Paso 1</h2>
+                         <section data-mode="async" data-url="/templates/checkout_1.html"></section>
+                         <h2>Paso 2</h2>
+                         <section data-mode="async" data-url="/templates/checkout_2.html"></section>
+                         <h2>Paso 3</h2>
+                         <section data-mode="async" data-url="/templates/checkout_3.html"></section>
+                    </div>
                 </div>
-                
 <!--                <div class="row form-group">
                     <div class="col-xs-12" id="wizard">
                         <ul class="nav nav-pills nav-justified thumbnail setup-panel">
