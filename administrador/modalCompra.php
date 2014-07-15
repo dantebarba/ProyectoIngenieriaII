@@ -65,10 +65,14 @@
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="deleteIdCompra" name="deleteIdCompra" readonly>
                         </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-lg-2 control-label">ISBN Libro</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="deleteISBN" name="deleteISBN" readonly>
                         </div>
+                    </div>>
+                    <div class="form-group">
                         <label class="col-lg-2 control-label">Titulo</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="deleteTitulo" name="deleteTitulo" readonly>
