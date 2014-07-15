@@ -77,6 +77,14 @@ function q_updateLibro($dataCollection) {
             . " WHERE ".$dataCollection['ISBN']."=ISBN";
     mysql_query($query) or die(mysql_error());
 }
+
+function q_updateCompra($dataCollection) {
+    $query= "UPDATE compras SET "
+            . "`estado`='".$dataCollection['estado']."'"
+            . " WHERE ".$dataCollection['idCompra']."=idCompra";
+    mysql_query($query) or die(mysql_error());
+}
+
 function q_addUsuario($dataCollection) {
     $query = "INSERT INTO `usuarios`(`DNI`, `username`, `password`, `tel_fijo`, `tel_cel`, `genero`,"
             . " `fecha_nac`, `email`, `isAdmin`) VALUES "
@@ -210,6 +218,16 @@ function q_removeUsuario($username) {
     $query = "UPDATE usuarios SET isDeleted=1 WHERE username='$username'";
     mysql_query($query) or die(mysql_error());
 }
+
+function q_removeCompra($idCompra){
+        //echo "entro al delCompra, datacollection tiene";
+        $query= "DELETE FROM `compras_has_libros` WHERE Compras_idCompra = '$idCompra'";
+        mysql_query($query) or die(mysql_error());
+        $query= "DELETE FROM `compras` WHERE idCompra = '$idCompra'";
+        mysql_query($query) or die(mysql_error());
+        
+ }
+ 
 function q_isPresentUsuario($username, $DNI=-1) {
     $query="SELECT username,DNI FROM usuarios WHERE ('$username'=username or DNI=".$DNI.")";
     $result=mysql_query($query) or die(mysql_error());
