@@ -131,5 +131,12 @@
                 </ul>
             </div></div>
         
+          <div class="panel panel-primary"> <div class="panel-heading">
+                <h3 class="panel-title">Compras</h3>
+            </div><div class="panel-body">
+                <ul>
+                    <button type="button"class="btn btn-primary" onclick="redirect('listarCompras.php')">Listar</button>
+                </ul>
+            </div></div>
         
     </body>
