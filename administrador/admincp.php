@@ -105,7 +105,7 @@
             </div><div class="panel-body">
                 <ul>
                   <!--    <form class="form-horizontal" id="listarLibro" method="post" action="listarLibro.php" role="form"> -->
-                        <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarLibro">Agregar</button><p></p> 
+                        <button type='button'class="btn btn-success" data-toggle="modal" data-target="#agregarLibro">Agregar</button>
                  <!--       <div class="col-xs-2">
                         <input type="date" class="form-control" id="fecha1Libro" name="fecha1Libro"><p></p>
                         <input type="date" class="form-control" id="fecha2Libro" name="fecha2Libro"><p></p>
