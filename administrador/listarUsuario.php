@@ -39,12 +39,15 @@
                             include '../queries.php';
                             $i = 0;
                             $id = 'row' . $i;
-                            $fecha1 = $_POST["fecha1Usuario"];
-                            $fecha2 = $_POST["fecha2Usuario"];
-                            if (($fecha1 === "") || ($fecha2 === "")) {
-                                $result = q_listUsuarios() or die('Error en la consulta a la base de datos' . mysql_error());
+                            if (isset($_POST['fecha1Libro']) && isset($_POST['fecha2Libro'])) {
+                                $fecha1 = $_POST["fecha1Usuario"];
+                                $fecha2 = $_POST["fecha2Usuario"];
+                                if (($fecha1 != "") || ($fecha2 != "")) {
+                                    $result = q_listUserBetween($fecha1, $fecha2) or die('Error en la consulta a la base de datos' . mysql_error());                                    
+                                }
                             } else {
-                                $result = q_listUserBetween($fecha1, $fecha2) or die('Error en la consulta a la base de datos' . mysql_error());
+                                $result = q_listUsuarios() or die('Error en la consulta a la base de datos' . mysql_error());
+
                             }
                             while ($row = mysql_fetch_array($result)) {
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';

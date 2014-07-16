@@ -120,12 +120,7 @@
             </div><div class="panel-body">
                 <ul>
                     <form class="form-horizontal" id="listarUsuario" method="post" action="listarUsuario.php" role="form">
-                       <div class="col-xs-2">
-                        <input type="date" class="form-control" id="fecha1Usuario" name="fecha1Usuario"><p></p>
-                        <input type="date" class="form-control" id="fecha2Usuario" name="fecha2Usuario"><p></p>
-                       </div>
-                        <br />
-                        <span class="help-block" style="margin-top:20px;clear:both;">En caso de no ingresar alguna de las dos fechas, se listaran todos los usuarios</span>
+                      
                         <button type='submit'class="btn btn-primary" onclick="redirect('listarUsuario.php')">Listar</button>
                     </form>   
                 </ul>
