@@ -32,6 +32,56 @@ function q_listLibrosBetween ($fechaUno, $fechaDos, $rangemax=1000) {
     return $row;
 }
 
+function  q_listLibrosMasComprados($fechaUno, $fechaDos, $rangemax=1000) {
+    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, COUNT( l.ISBN ) AS cont "
+." FROM compras_has_libros c "
+." LEFT JOIN compras com ON (c.Compras_idCompra = com.idCompra)"            
+." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
+." LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) "
+." LEFT JOIN etiquetas_has_libros el ON ( l.ISBN = el.Libros_ISBN ) "
+." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
+." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' "
+." GROUP BY l.ISBN "
+." ORDER BY cont DESC "; 
+    
+    $row = mysql_query($query) or die(mysql_error());
+    return $row;
+    
+}
+
+function  q_listLibrosMasCompradosRegistrados($fechaUno, $fechaDos, $fechaTres, $fechaCuatro, $rangemax=1000) {
+    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, COUNT( l.ISBN ) AS cont "
+." FROM compras_has_libros c "
+." LEFT JOIN compras com ON (c.Compras_idCompra = com.idCompra)"            
+." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
+." LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) "
+." LEFT JOIN etiquetas_has_libros el ON ( l.ISBN = el.Libros_ISBN ) "
+." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
+." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' and l.fechaDeRegistro BETWEEN '".$fechaTres."' and '".$fechaCuatro."'"
+." GROUP BY l.ISBN "
+." ORDER BY cont DESC "; 
+    
+    $row = mysql_query($query) or die(mysql_error());
+    return $row;
+    
+}
+
+function q_listComprasBetween ($fechaUno, $fechaDos, $rangemax=1000) {
+    $query = "SELECT c.Compras_idCompra, com.precio, com.fecha, com.envio, com.estado, l.ISBN, l.titulo, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, us.Usuarios_DNI , us.Usuarios_username"
+." FROM compras_has_libros c "
+." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
+." LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) "
+." LEFT JOIN etiquetas_has_libros el ON ( l.ISBN = el.Libros_ISBN ) "
+." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
+." LEFT JOIN compras com ON ( idCompra = c.Compras_idCompra ) "
+." LEFT JOIN usuarios_has_compras us ON ( us.Compras_idCompra = c.Compras_idCompra ) "
+." WHERE com.isDeleted=0 and com.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' ORDER BY com.fecha LIMIT 0 , " . $rangemax;
+    $row = mysql_query($query) or die(mysql_error());
+    return $row;
+    
+}
+
+
 function q_getLibro($ISBN) {
     $query = "SELECT * FROM libros WHERE ".$ISBN."=ISBN";
     $result = mysql_query($query) or die(mysql_error());
