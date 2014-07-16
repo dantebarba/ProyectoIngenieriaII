@@ -230,13 +230,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     <p></p>
                     <button type="button" class="btn btn-danger" id="openEliminarLibro">Eliminar Libro</button> 
                     <p></p>
-                    <form class="form-horizontal" id="listarLibro" method="post" action="listarLibro.php" role="form"> 
-                    <button type='submit'class="btn btn-primary" onclick="redirect('listarLibro.php')">Listar Entre Fechas</button><p></p>
-                        <input type="date" class="form-control" id="fecha1Libro" name="fecha1Libro"><p></p>
-                        <input type="date" class="form-control" id="fecha2Libro" name="fecha2Libro"><p></p>
-                        <span class="help-block">En caso de no ingresar alguna de las dos fechas, se listaran todos los libros</span><p></p>
-                        
-                    </form>
+                   
                 </div>
             </div> <!-- /row -->
         </div><!-- /container -->
