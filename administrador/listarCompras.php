@@ -108,7 +108,15 @@ if (!($_COOKIE['isAdmin'] != '')) {
 
         <div class="container">
             <div class="row">
-                <div class="col-md-2"></div> 
+                <div class="col-md-2">
+                    <form class="form-horizontal" id="listarCompras" method="post" action="listarCompras.php" role="form"> 
+                    <button type='submit'class="btn btn-primary" onclick="redirect('listarCompras.php')">Listar Entre Fechas</button><p></p>
+                        <input type="date" class="form-control" id="fecha1Compra" name="fecha1Compra"><p></p>
+                        <input type="date" class="form-control" id="fecha2Compra" name="fecha2Compra"><p></p>
+                        <span class="help-block">En caso de no ingresar alguna de las dos fechas, se listaran todas las compras</span><p></p>
+                        
+                    </form>
+                </div> 
                 <div class="col-md-8">
                   <div  style="height:400px;overflow:auto;">
                     <table class="table table-hover table-bordered table-striped" id="lista">
@@ -135,23 +143,21 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             
                             $i = 0;
                             $id = 'row' . $i;
-                         /*
-                            if (isset($_POST['fecha1Libro']) && isset($_POST['fecha2Libro'])) {
-                                $fecha1 = $_POST['fecha1Libro'];
-                                $fecha2 = $_POST['fecha2Libro'];
+                       
+                            if (isset($_POST['fecha1Compra']) && isset($_POST['fecha2Compra'])) {
+                                $fecha1 = $_POST['fecha1Compra'];
+                                $fecha2 = $_POST['fecha2Compra'];
                                 if (($fecha1 != "") && ($fecha2 != "")) {
-                                    $result = q_listLibrosBetween($fecha1,$fecha2);
+                                    $result = q_listComprasBetween($fecha1,$fecha2);
                                     
                                 }
-                                else {$result = q_listLibros();}
+                                else {$result = q_listCompras();}
                             }
                             else {
-                                $result = q_listLibros();
+                                $result = q_listCompras();
                             }                              
-                           
-                          *  // limitado a 5 por cuestiones de prueba
-                          */
-                            $result = q_listCompras();
+                        
+                            
                             while ($row = mysql_fetch_array($result)) {
                                 //Print out the contents of the entry 
                                 echo '<tr id=' . $id . ' tabindex=' . $i . '>';
