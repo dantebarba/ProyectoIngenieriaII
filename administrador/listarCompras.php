@@ -113,7 +113,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     <button type='submit'class="btn btn-primary" onclick="redirect('listarCompras.php')">Listar Entre Fechas</button><p></p>
                         <input type="date" class="form-control" id="fecha1Compra" name="fecha1Compra"><p></p>
                         <input type="date" class="form-control" id="fecha2Compra" name="fecha2Compra"><p></p>
-                        <span class="help-block">En caso de no ingresar alguna de las dos fechas, se listaran todas las compras</span><p></p>
+                      
                         
                     </form>
                 </div> 
