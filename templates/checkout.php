@@ -1,5 +1,10 @@
 <?php
+    include_once '../restricted/securitycheck.php';
 
+    if (!loginCheck()) {
+        header("Location: ../403.html");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
