@@ -58,7 +58,7 @@ function  q_listLibrosMasCompradosRegistrados($fechaUno, $fechaDos, $fechaTres, 
 ." LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) "
 ." LEFT JOIN etiquetas_has_libros el ON ( l.ISBN = el.Libros_ISBN ) "
 ." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
-." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' and l.fechaDeRegistro BETWEEN '".$fechaTres."' and '".$fechaCuatro."'"
+." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaTres."' and '".$fechaCuatro."' and l.fechaDeRegistro BETWEEN '".$fechaUno."' and '".$fechaDos."'"
 ." GROUP BY l.ISBN "
 ." ORDER BY cont DESC "
 ." LIMIT 10";
