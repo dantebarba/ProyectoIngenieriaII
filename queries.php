@@ -42,7 +42,8 @@ function  q_listLibrosMasComprados($fechaUno, $fechaDos, $rangemax=1000) {
 ." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
 ." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' "
 ." GROUP BY l.ISBN "
-." ORDER BY cont DESC "; 
+." ORDER BY cont DESC "
+." LIMIT 10"; 
     
     $row = mysql_query($query) or die(mysql_error());
     return $row;
@@ -59,7 +60,8 @@ function  q_listLibrosMasCompradosRegistrados($fechaUno, $fechaDos, $fechaTres, 
 ." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
 ." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' and l.fechaDeRegistro BETWEEN '".$fechaTres."' and '".$fechaCuatro."'"
 ." GROUP BY l.ISBN "
-." ORDER BY cont DESC "; 
+." ORDER BY cont DESC "
+." LIMIT 10";
     
     $row = mysql_query($query) or die(mysql_error());
     return $row;
