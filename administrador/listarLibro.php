@@ -60,7 +60,11 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 return true;
             }
             $(document).ready(function() {
-                $('#lista').dataTable();
+                $('#lista').dataTable({
+                        "language": {
+                            "url": "http://cdn.datatables.net/plug-ins/be7019ee387/i18n/Spanish.json"
+                        }
+                    });
                 var fields = ['ISBN', 'tituloLibro', 'paginasLibro', 'precioLibro', 'idiomaLibro',
                     'fechaLibro', 'idAutorLibro', 'idEditorialLibro', 'idEtiquetaLibro'];
                 var item = {}; // los dict son igual a python
