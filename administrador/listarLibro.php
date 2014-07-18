@@ -98,6 +98,13 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 });
                 
             });
+             function mostrar(grupo){
+                  var obj = document.getElementById(grupo)
+                     if(obj.style.display == "none")  obj.style.display = "block";
+                    else obj.style.display = "none";
+                       
+             
+            }
         </script>
         <link href="http://ingenieriaii.url.ph/css/bootstrap.min.css" rel="stylesheet">
         <link href="http://ingenieriaii.url.ph/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -121,16 +128,19 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     <form class="form-horizontal" id="listarLibro" method="post" action="listarLibro.php" role="form"> 
                         <button type='submit'class="btn btn-primary form-control" onclick="redirect('listarLibro.php')">Listar Entre Fechas</button><p></p>    
                         <span class="input-radio-addon">
-                                <input type="checkbox" name="registrados"> Registrados 
+                                <input type="checkbox" name="registrados" href="#" onClick="mostrar('grupoUno')"> Registrados 
                         </span><p></p>
+                        <div id="grupoUno" name="grupoUno" style="display:none">
                         <input type="date" class="form-control" id="fecha1Libro" name="fecha1Libro"><p></p>
                         <input type="date" class="form-control" id="fecha2Libro" name="fecha2Libro"><p></p>
+                        </div>
                         <span class="input-radio-addon">
-                                <input type="checkbox" name="masComprados"> Mas comprados 
+                                <input type="checkbox" name="masComprados" href="#" onClick="mostrar('grupoDos')"> Mas comprados 
                         </span><p></p>
-                        <input type="date" class="form-control" id="fecha3Libro" name="fecha3Libro"><p></p>
-                        <input type="date" class="form-control" id="fecha4Libro" name="fecha4Libro"><p></p>
-                        
+                        <div id="grupoDos" name="grupoDos" style="display:none">
+                            <input type="date" class="form-control" id="fecha3Libro" name="fecha3Libro"><p></p>
+                            <input type="date" class="form-control" id="fecha4Libro" name="fecha4Libro"><p></p>
+                        </div>        
                     
                     </form>
                <!-- Fin COLUMNA FILTROS-->
