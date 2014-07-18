@@ -66,7 +66,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                         }
                     });
                 var fields = ['ISBN', 'tituloLibro', 'paginasLibro', 'precioLibro', 'idiomaLibro',
-                    'fechaLibro', 'idAutorLibro', 'idEditorialLibro', 'idEtiquetaLibro'];
+                    'fechaLibro', 'idAutorLibro', 'idEditorialLibro', 'idEtiquetaLibro','autor', 'etiqueta', 'editorial', 'cantCompras'];
                 var item = {}; // los dict son igual a python
                 $('table.table-striped tbody tr').on('click', function() {
                     $(this).closest('table').find('td').removeClass('bg');
@@ -163,6 +163,10 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 <th style="display: none;">idAutor Libro</th>
                                 <th style="display: none;">idEditorial Libro</th>
                                 <th style="display: none;">idCategoria Libro</th>
+                                <th>Autor</th>
+                                <th>Categoria</th>
+                                <th>Editorial</th>
+                                <th>Compras</th>
                             
                             </tr>
                         </thead>
@@ -229,6 +233,10 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Autores_idAutor'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEditorialLibro' . '>' . $row['Editoriales_idEditorial'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Etiquetas_idEtiqueta'] . '</td>';
+                                echo '<td id=' . 'autor' . '>' . $row['autorNombre'] . '</td>';
+                                echo '<td id=' . 'etiqueta' . '>' . $row['etiquetaNombre'] . '</td>';
+                                echo '<td id=' . 'editorial' . '>' . $row['editorialNombre'] . '</td>';
+                                echo '<td id=' . 'cantCompras' . '>' . $row['cont'] . '</td>';
                                 echo '</tr>';
                                 //echo '<td style="display:none;" id=' . 'fechaDeRegistro' . '>' . sprintf("%04s-%02s-%02s", substr($row['fechaDeRegistro'],0,4),substr($row['fechaDeRegistro'],5,2),substr($row['fechaDeRegistro'],8,2)) . '</td>';
                                 $i++;
