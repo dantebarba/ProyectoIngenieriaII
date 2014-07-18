@@ -49,6 +49,8 @@
                 if (isset($_COOKIE['username']) and ($_COOKIE['username'] != '')) {
                     if (isset($_COOKIE['isAdmin']) && ($_COOKIE['isAdmin'] != '')) {
                         echo "<li><a href='"."/administrador/admincp.php"."'>Admin CP</a></li>";
+                    } else {
+                             echo "<li><a href='"."/ayuda.php"."'>Ayuda</a></li>";
                     }
                     echo "<li><a href="."/templates/cart.php".">Carrito</a></li>";
                     echo "<li><a href="."/usercp.php".">Editar usuario</a></li>";
@@ -57,6 +59,7 @@
                         '>Log out</button></span></a></li>';
                 }
                 else {
+                    echo "<li><a href='"."/ayuda.php"."'>Ayuda</a></li>";
                     echo "<li><a href=/recover.php>Recuperar Usuario</a></li>";
                     echo "<li><a href=/registrar.php>Registrarse</a></li>";
                     echo'<li><a <span style="float: right;">No est&aacute;s conectado - '
