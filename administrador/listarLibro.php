@@ -131,8 +131,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 <input type="checkbox" name="registrados" href="#" onClick="mostrar('grupoUno')"> Registrados 
                         </span><p></p>
                         <div id="grupoUno" name="grupoUno" style="display:none">
-                        <input type="date" class="form-control" id="fecha1Libro" name="fecha1Libro"><p></p>
-                        <input type="date" class="form-control" id="fecha2Libro" name="fecha2Libro"><p></p>
+                            <input type="date" class="form-control" id="fecha1Libro" name="fecha1Libro"><p></p>
+                            <input type="date" class="form-control" id="fecha2Libro" name="fecha2Libro"><p></p>
                         </div>
                         <span class="input-radio-addon">
                                 <input type="checkbox" name="masComprados" href="#" onClick="mostrar('grupoDos')"> Mas comprados 
