@@ -65,7 +65,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             "url": "http://cdn.datatables.net/plug-ins/be7019ee387/i18n/Spanish.json"
                         }
                     });
-                var fields = ['ISBN', 'tituloLibro', 'paginasLibro', 'precioLibro', 'idiomaLibro',
+                var fields = ['ISBN', 'tituloLibro', 'paginasLibro', 'precioLibro', 'idiomaLibro', 'descripcionLibro',
                     'fechaLibro', 'idAutorLibro', 'idEditorialLibro', 'idEtiquetaLibro','autor', 'etiqueta', 'editorial', 'cantCompras'];
                 var item = {}; // los dict son igual a python
                 $('table.table-striped tbody tr').on('click', function() {
@@ -85,6 +85,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     $(".modal-body #editPrecio").val(item['precioLibro']);
                     $(".modal-body #editIdioma").val(item['idiomaLibro']);
                     $(".modal-body #editFecha").val(item['fechaLibro']);
+                    
+                    $(".modal-body #editDescripcion").val(item['descripcionLibro']);
                     $(".modal-body #editLinkEditorial").val(item['idEditorialLibro']);
                     $(".modal-body #editLinkAutor").val(item['idAutorLibro']);
                     $(".modal-body #editLinkEtiqueta").val(item['idEtiquetaLibro']);
@@ -234,7 +236,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Autores_idAutor'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEditorialLibro' . '>' . $row['Editoriales_idEditorial'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Etiquetas_idEtiqueta'] . '</td>';
-                                echo '<td style="display:none;" id=' . 'descripcion' . '>' . $row['descripcion'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'descripcionLibro' . '>' . $row['descripcion'] . '</td>';
                                 echo '<td id=' . 'autor' . '>' . $row['autorNombre'] . '</td>';
                                 echo '<td id=' . 'etiqueta' . '>' . $row['etiquetaNombre'] . '</td>';
                                 echo '<td id=' . 'editorial' . '>' . $row['editorialNombre'] . '</td>';

@@ -141,7 +141,7 @@ function q_updateLibro($dataCollection) {
             . "`paginas`=".$dataCollection['paginas'].","
             . "`precio`=".$dataCollection['precio'].","
             . "`idioma`='".$dataCollection['idioma']."',"
-            . "`fecha`='".$dataCollection['fecha']."'"
+            . "`fecha`='".$dataCollection['fecha']."',"
             . "`descripcion`='".$dataCollection['descripcion']."'"
             . " WHERE ".$dataCollection['ISBN']."=ISBN";
     mysql_query($query) or die(mysql_error());
