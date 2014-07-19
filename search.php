@@ -122,7 +122,7 @@
                                                     <h3><a href="/libro/ver.php?ISBN='.$row['ISBN'].'" title="">'.$row["titulo"].'</a></h3>
                                                     <p>'.$row['descripcion'].'</p>';	
                                          if (($_SESSION['status'] != 'guest') && !(isset($_COOKIE['isAdmin']))) {
-                                            echo '<button type="button" onClick="addToCart('.$row['ISBN'].')" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a></button>
+                                            echo '<button type="button" onClick="addToCart('.$row['ISBN'].')" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar al Carrito</a></button>
                                             ';}
                                         echo '</div><span class="clearfix borda"></span>
                                             </div>';

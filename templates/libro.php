@@ -24,7 +24,7 @@
                         include_once '../restricted/securitycheck.php';
                         if (loginCheck() && !adminCheck()) {
                             echo '<button type="button" style="float:right;" onClick="addToCart({{ISBN}})" class="btn btn-default btn-primary">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a></button>
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Agregar al Carrito</a></button>
                             <h4 style="float:right;padding-right:20px;">Precio: ${{precio}}    </h4> ';
                         }
                     ?>        
