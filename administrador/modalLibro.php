@@ -93,6 +93,12 @@
                             <input type="date" required class="form-control" id="inputFecha" name="inputFecha">
                         </div>
                     </div>
+                    <div class="form-group" >
+                        <label class="col-lg-2 control-label" for="inputDescripcion">Descripcion:</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" name="inputDescripcion" id="inputDescripcion" maxlength="512" rows="3" placeholder="Descripcion del Libro"></textarea>
+                        </div>
+                    </div>
             <input type='hidden' name='elemente' value='libro_add'/>            
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -195,6 +201,12 @@
                         <label for="editFecha" class="col-lg-2 control-label">Fecha</label>
                         <div class="col-xs-4">
                             <input type="date" class="form-control" id="editFecha" name="editFecha" >
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label class="col-lg-2 control-label" for="editDescripcion">Descripcion:</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" name="editDescripcion" id="editDescripcion" maxlength="512" rows="3" placeholder="Descripcion del Libro"></textarea>
                         </div>
                     </div>
                     <input type='hidden' name='elemente' value='libro_edit'/> 

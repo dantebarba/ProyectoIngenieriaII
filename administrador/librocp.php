@@ -60,6 +60,7 @@ switch ($element) {
            $dataCollection['idAutor'] = $_POST['inputLinkAutor'];
            $dataCollection['idEditorial'] = $_POST['inputLinkEditorial'];
            $dataCollection['idEtiqueta'] = $_POST['inputLinkEtiqueta'];
+           $dataCollection['descripcion'] = $_POST['inputDescripcion'];
             addLibro($dataCollection);
             header('Location: admincp.php');
             break;
@@ -71,6 +72,7 @@ switch ($element) {
             $dataCollection['precio'] = $_POST['editPrecio'];
             $dataCollection['idioma'] = $_POST['editIdioma'];
             $dataCollection['fecha'] = $_POST['editFecha'];
+            $dataCollection['descripcion'] = $_POST['editDescripcion'];
             $dataCollection['idAutor'] = $_POST['editLinkAutor'];
             $dataCollection['idEditorial'] = $_POST['editLinkEditorial'];
             $dataCollection['idEtiqueta'] = $_POST['editLinkEtiqueta'];

@@ -163,6 +163,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 <th style="display: none;">idAutor Libro</th>
                                 <th style="display: none;">idEditorial Libro</th>
                                 <th style="display: none;">idCategoria Libro</th>
+                                <th style="display: none;">Descripcion</th>
                                 <th>Autor</th>
                                 <th>Categoria</th>
                                 <th>Editorial</th>
@@ -233,6 +234,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Autores_idAutor'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEditorialLibro' . '>' . $row['Editoriales_idEditorial'] . '</td>';
                                 echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Etiquetas_idEtiqueta'] . '</td>';
+                                echo '<td style="display:none;" id=' . 'descripcion' . '>' . $row['descripcion'] . '</td>';
                                 echo '<td id=' . 'autor' . '>' . $row['autorNombre'] . '</td>';
                                 echo '<td id=' . 'etiqueta' . '>' . $row['etiquetaNombre'] . '</td>';
                                 echo '<td id=' . 'editorial' . '>' . $row['editorialNombre'] . '</td>';
