@@ -62,8 +62,10 @@ if (!($_COOKIE['isAdmin'] != '')) {
             $(document).ready(function() {
                 $('#lista').dataTable({
                         "language": {
-                            "url": "http://cdn.datatables.net/plug-ins/be7019ee387/i18n/Spanish.json"
-                        }
+                            "url": "http://cdn.datatables.net/plug-ins/be7019ee387/i18n/Spanish.json" 
+                        },
+                         order: [[ 1, "desc" ]]
+                        
                     });
                 var fields = ['ISBN', 'tituloLibro', 'paginasLibro', 'precioLibro', 'idiomaLibro', 'descripcionLibro',
                     'fechaLibro', 'idAutorLibro', 'idEditorialLibro', 'idEtiquetaLibro','autor', 'etiqueta', 'editorial', 'cantCompras'];
