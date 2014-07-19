@@ -84,20 +84,14 @@
                                 Si tenes alg&uacute;n problema de f&aacute;brica te hacemos el cambio directo o se repara el producto seg&uacute;n el caso.&nbsp;</strong><br />
                                 <br />
                       </div> 
-                      <a href="#" onClick="mostrar('respuesta7')" style="font-size:19px;">&iquest;Hacen env&iacute;os a domicilio en La Plata y alrededores?</a>&nbsp;<br />
+                      <a href="#" onClick="mostrar('respuesta7')" style="font-size:19px;">&iquest;Hacen env&iacute;os a domicilio?</a>&nbsp;<br />
                       <br />
                       <div id="respuesta7" name="respuesta7" style="display:none; font-size:16px;">
-                                <strong>Si, todos nuestros productos tienen garant&iacute;a, esta es de 6 meses para las memorias y 3 meses para lo dem&aacute;s art&iacute;culos .<br />
-                                Si tenes alg&uacute;n problema de f&aacute;brica te hacemos el cambio directo o se repara el producto seg&uacute;n el caso.&nbsp;</strong><br />
+                                <strong>Si hacemos envíos a domicilio, recuerde que para que los productos lleguen a destino debe introducir
+                                los datos correctos de su domicilio a la hora de registrarse.</strong><br />
                                 <br />
                       </div>
-                      <a href="#" onClick="mostrar('respuesta8')" style="font-size:19px;">&iquest;Hacen env&iacute;os al interior del pa&iacute;s?</a>&nbsp;<br />
-                      <br />
-                      <div id="respuesta8" name="respuesta8" style="display:none; font-size:16px;">
-                                <strong>Si, todos nuestros productos tienen garant&iacute;a, esta es de 6 meses para las memorias y 3 meses para lo dem&aacute;s art&iacute;culos .<br />
-                                Si tenes alg&uacute;n problema de f&aacute;brica te hacemos el cambio directo o se repara el producto seg&uacute;n el caso.&nbsp;</strong><br />
-                                <br />
-                      </div>
+                      
                       
                     
                   </div>

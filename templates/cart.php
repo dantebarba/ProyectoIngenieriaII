@@ -50,7 +50,9 @@
                      );
                      
                      $("#totalValue").html('Total $'+calcTotal(articulos));
-                     
+                     if (articulos.length === 0) {
+                         $("#buynow").prop("disabled", true);
+                     }
                      
                 });
             });
@@ -73,11 +75,11 @@
                                             <div class="panel-title" id='articulosPanel'>
                                                     <div class="row">
                                                             <div class="col-xs-6">
-                                                                    <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+                                                                    <h5><span class="glyphicon glyphicon-shopping-cart"></span> Carrito de compras</h5>
                                                             </div>
                                                             <div class="col-xs-6">
                                                                 <a href="../index.php" ><button type="button" class="btn btn-primary btn-sm btn-block">
-                                                                            <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+                                                                            <span class="glyphicon glyphicon-share-alt"></span> Continuar comprando
                                                                     </button></a>
                                                             </div>
                                                     </div>
@@ -94,8 +96,8 @@
                                                         <h4 class="text-right" id="totalValue"></h4>
                                                     </div>
                                                     <div class="col-xs-3">
-                                                            <button type="button" class="btn btn-success btn-block" onClick="window.location.href = '/templates/checkout.php';">
-                                                                    Checkout
+                                                            <button type="button" id="buynow" class="btn btn-success btn-block" onClick="window.location.href = '/templates/checkout.php';">
+                                                                    Comprar
                                                             </button>
                                                     </div>
                                             </div>

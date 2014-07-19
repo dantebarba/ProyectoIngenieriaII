@@ -51,8 +51,8 @@
                         echo "<li><a href='"."/administrador/admincp.php"."'>Admin CP</a></li>";
                     } else {
                              echo "<li><a href='"."/ayuda.php"."'>Ayuda</a></li>";
+                             echo "<li><a href="."/templates/cart.php".">Carrito</a></li>";
                     }
-                    echo "<li><a href="."/templates/cart.php".">Carrito</a></li>";
                     echo "<li><a href="."/usercp.php".">Editar usuario</a></li>";
                     echo '<li><a <span style="float: right;">Bienvenido '.$_COOKIE["username"].' - <button type="button"
                         class="btn btn-success btn-xs" onClick="logout()"'.

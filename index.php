@@ -52,8 +52,8 @@
                               <li><a href="#byAutor">Autor</a></li>
                               <li><a href="#byCategoria">Categoria</a></li>
                               <li><a href="#byEditorial">Editorial</a></li>
-                              <li class="divider"></li>
-                              <li><a href="#all">Cualquiera</a></li>
+                              
+                              
                             </ul>
                         </div>
 

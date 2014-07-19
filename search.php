@@ -33,6 +33,8 @@
         <link href='/css/custom.css' rel='stylesheet'>
         <script src="js/jPaginate.js"></script>
         <script src="js/cart.js" type="text/javascript"></script>
+        <script src="js/noty/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
+        <script src="js/notifications.js"></script>
             <script type='text/javascript'>
             
             $(document).ready(function() {
@@ -83,9 +85,13 @@
                                     break;
                             }
                             default: {
-                                die('Parametro incorrecto');
+                                die('<h2>No se obtuvieron resultados</h2>');
                             }
                         }
+                        if (mysql_num_rows($result) < 1) {
+                            die('<h2>No se obtuvieron resultados para '.$_GET['keyword'].'</h2>');
+                        }
+                        else{
                             while ($row = mysql_fetch_array($result)) {
                                 // loop sobre todos los elementos encontrados
                                 // NOTA: el array devuelto debe tener siempre los mismos campos 
@@ -101,17 +107,20 @@
                                         <div class="col-xs-12 col-sm-12 col-md-3">
                                       
                                         </div>
-                                        <div class="col-md-4 col-md-2">
-                                                <ul class="meta-search">
+                                        <div class="col-md-4 col-md-2">';
+                                            // chequeamos de no imprimir editorial autor y etiquetas
+                                            if ($_SESSION['status'] != 'guest') {
+                                                echo '<ul class="meta-search">
                                                         <li>Autor: <span>'.$autor.'</span></li>
                                                         <li>Editorial: <span>'.$editorial.'</span></li>
                                                         <li><i class="glyphicon glyphicon-tags"></i> <span><a href="/search.php?search_param=byCategoria&keyword='.$categoria.'"</a>'.$categoria.'</span></li>
-                                                </ul>
-                                        </div>
+                                            </ul>'; }
+                                            
+                                        echo '</div>
                                         <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
                                                     <h3><a href="/libro/ver.php?ISBN='.$row['ISBN'].'" title="">'.$row["titulo"].'</a></h3>
                                                     <p>Descripcion</p>';	
-                                         if ($_SESSION['status'] != 'guest') {
+                                         if (($_SESSION['status'] != 'guest') && !(isset($_COOKIE['isAdmin']))) {
                                             echo '<button type="button" onClick="addToCart('.$row['ISBN'].')" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a></button>
                                             ';}
                                         echo '</div><span class="clearfix borda"></span>
@@ -120,6 +129,7 @@
                                 }
                                 
                         }
+                    }
                          mysql_close($link);
                     ?>  
                         

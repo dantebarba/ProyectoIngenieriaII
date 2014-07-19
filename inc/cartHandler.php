@@ -108,7 +108,6 @@ if (isset($_POST['tokenID'])) {
     else if (isset($_POST['nuevoPedido'])) {
         $respuesta['orderID'] = generarOrden();
         $respuesta['status'] = 'success';
-        $respuesta['message'] = 'Order ID: '.$respuesta['orderID'];
         // unset($_SESSION['tokenID']);
         echo json_encode($respuesta);
         exit();

@@ -4,7 +4,7 @@ function addToCart(item) {
    // el llamado AJAX
    // test example
    $.post('../inc/cartHandler.php', {tokenID: '', addItemToCart: true,ISBN: item}, function(data) {
-       console.log(data);
+       notyTopNotification('success', 'Producto añadido al carrito');
    }, "json");
 }
 

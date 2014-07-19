@@ -36,20 +36,43 @@
         <link href="/css/custom.css" rel="stylesheet">
         <script type="text/javascript">
             pass=false;
+            message='';
+            function stepValidation() {
+                    if (!pass) {
+                       notyBottomNotification('error', message);
+                       return pass;
+                    }
+                    else {
+                        return pass;
+                    }  
+                }
+            
             $(document).ready(function() {
                 $("#wizard").steps({
                     headerTag: "h2",
                     transitionEffect: "slideLeft",
                     bodyTag: "section",
-                    onStepChanging: function () {
-                            if (!pass) {
-                               notyBottomNotification('error', 'Revise el formulario');
-                               return pass;
+                    onStepChanging: function(event, currIndex, newIndex) {
+                        if (currIndex === 1) {
+                            if (validData()) {
+                                var not = noty({
+                                    layout: 'topCenter',
+                                    text: 'Por favor espere...',
+                                    closeWith: ['button'],
+                                    type: 'information'
+                                });
+                                return $("#creditCardForm").ajaxSubmit(options);
                             }
                             else {
-                                return pass;
-                            }  
-                        },
+                                    notyBottomNotification('error', message);
+                                    return false;
+                                }
+                            }
+                        
+                        else {
+                            return pass;
+                        }
+                    },
                     onCanceled: function() {
                         window.location.href = '/index.php';
                     },
