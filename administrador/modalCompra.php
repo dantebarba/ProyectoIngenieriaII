@@ -43,7 +43,7 @@
                         
                     </div>
                    <div class="form-group">
-                        <label for="editTitular" class="col-lg-2 control-label">Titulo</label>
+                        <label for="editTitular" class="col-lg-2 control-label">Titular</label>
                         <div class="col-lg-10">
                             <input for="editTitular" type="text" min="0" class="form-control" id="editTitular" name="editTitular" readonly>
                         </div>
