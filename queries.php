@@ -17,7 +17,7 @@ function q_listUsuarios(){
 }
 
 function q_listUserBetween ($fechaUno, $fechaDos) {
-    $query = "SELECT * FROM usuarios WHERE (isDeleted=0) and fecha_registrado BETWEEN '$fechaUno' and '$fechaDos'";
+    $query = "SELECT * FROM usuarios WHERE (isDeleted=0) and isAdmin=0 and fecha_registrado BETWEEN '$fechaUno' and '$fechaDos'";
     $row = mysql_query($query) or die(mysql_error());
     return $row;
 }
@@ -55,8 +55,7 @@ function  q_listLibrosMasComprados($fechaUno, $fechaDos, $rangemax=1000) {
 ." LEFT JOIN tarjetascredito tar ON (tar.Compras_idCompra = c.Compras_idCompra ) "
 ." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' "
 ." GROUP BY l.ISBN "
-." ORDER BY cont DESC "
-." LIMIT 10"; 
+." ORDER BY cont DESC "; 
     
     $row = mysql_query($query) or die(mysql_error());
     return $row;
@@ -78,8 +77,7 @@ function  q_listLibrosMasCompradosRegistrados($fechaUno, $fechaDos, $fechaTres, 
 ." LEFT JOIN tarjetascredito tar ON (tar.Compras_idCompra = c.Compras_idCompra ) "
 ." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaTres."' and '".$fechaCuatro."' and l.fechaDeRegistro BETWEEN '".$fechaUno."' and '".$fechaDos."'"
 ." GROUP BY l.ISBN "
-." ORDER BY cont DESC "
-." LIMIT 10";    
+." ORDER BY cont DESC ";    
     
     $row = mysql_query($query) or die(mysql_error());
     return $row;
