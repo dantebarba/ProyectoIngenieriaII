@@ -753,7 +753,7 @@ function q_searchLibroLikeEditorial($nombre) {
 }
 
 function q_newPedido($total) {
-    $query = 'INSERT INTO compras (precio) VALUES ('.$total.')';
+    $query = 'INSERT INTO compras (precio, estado) VALUES ('.$total.', "Enviando")';
     mysql_query($query) or die(mysql_error());
     return mysql_insert_id();
 }
