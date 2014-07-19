@@ -216,15 +216,15 @@ function q_updateDireccion($dataCollection) {
 
 function q_addDireccion($dataCollection) {
     $query = "INSERT INTO `direccion`(`calle`, `localidad`, `numero`, "
-            . "`provincia`, `departamento`,`codPostal` `numDpto`)"
+            . "`provincia`, `departamento`,`codPostal`, `numDpto`)"
             . " VALUES ('"
             . $dataCollection['calle']."','"
             . $dataCollection['localidad']."',"
             . $dataCollection['numero'].",'"
             . $dataCollection['provincia']."',"
-            . $dataCollection['departamento'].",'" // el campo departamento podria
+            . $dataCollection['departamento']."," // el campo departamento podria
             // ser borrado
-            . $dataCollection['codPostal']
+            . $dataCollection['codPostal'].",'"
             . $dataCollection['numDpto']."')";
     mysql_query($query) or die(mysql_error());
 }
