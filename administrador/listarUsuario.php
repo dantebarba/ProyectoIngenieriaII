@@ -44,6 +44,8 @@
                                 $fecha2 = $_POST["fecha2Usuario"];
                                 if (($fecha1 != "") && ($fecha2 != "")) {
                                     $result = q_listUserBetween($fecha1, $fecha2) or die('Error en la consulta a la base de datos' . mysql_error());                                    
+                                } else {
+                                        $result = q_listUsuarios() or die('Error en la consulta a la base de datos' . mysql_error());
                                 }
                             } else {
                                 $result = q_listUsuarios() or die('Error en la consulta a la base de datos' . mysql_error());
