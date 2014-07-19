@@ -39,7 +39,7 @@
                             include '../queries.php';
                             $i = 0;
                             $id = 'row' . $i;
-                            if (isset($_POST['fecha1Libro']) && isset($_POST['fecha2Libro'])) {
+                            if (isset($_POST['fecha1Usuario']) && isset($_POST['fecha2Usuario'])) {
                                 $fecha1 = $_POST["fecha1Usuario"];
                                 $fecha2 = $_POST["fecha2Usuario"];
                                 if (($fecha1 != "") && ($fecha2 != "")) {
