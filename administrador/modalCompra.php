@@ -33,7 +33,12 @@
                    <div class="form-group">
                         <label class="col-lg-2 control-label">Estado de Compra</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control"  maxlength="45" id="editEstado" name="editEstado">
+                         <!--   <input type="text" class="form-control"  maxlength="45" id="editEstado" name="editEstado"> -->
+                           <select name='editEstado' id='editEstado' class="form-control" maxlength="45">
+                                <option value="Entregado">Entregado</option>
+                                <option value="Enviando">Enviando</option>
+                                <option value="Esperando retiro">Esperando retiro</option>
+                           </select> 
                         </div>
                         
                     </div>
