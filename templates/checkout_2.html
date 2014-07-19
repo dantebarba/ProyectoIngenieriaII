@@ -82,13 +82,13 @@
             };
             function success(element) {
                 if (element.status === 'success') {
-                    return element.orderID;
+                    
                 }
                 };
             $.post(url, data, success, "json");
         }
         pass = false;
-        message = 'No se pudo realizar el pago';
+        message = 'Verifique los datos';
         $("#creditCardForm").validate(       
                 { 
                     rules:
@@ -127,15 +127,14 @@
             success: function(element) {
                 $.noty.closeAll();
                 if (element.status === 'success') {
-                                var not = noty(
-                                    {   layout: 'topCenter',
-                                        text: element.message,
-                                        timeout: '3000',
-                                        type: 'success',
-
-                                    });
-                                message = generateOrder();
+                                notyTopNotification('success', element.message);
+                                $("#orderID").append('<b>'+$(element.orderID).val()+'</b>');
+                                alert(element.orderID);
                                 return true;
+                }
+                else {
+                    notyBottomNotification('error', element.message);
+                    return false;
                 }
             },
             error: function (element) {

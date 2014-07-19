@@ -58,7 +58,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 return true;
             }
             $(document).ready(function() {
-                var fields = ['idCompra', 'precioCompra' ,'fechaCompra', 'envio', 'estado' , 'ISBN', 'tituloLibro',
+                var fields = ['idCompra','titularTarjeta', 'precioCompra' ,'fechaCompra', 'envio', 'estado' , 'ISBN', 'tituloLibro',
                     'idAutorLibro', 'idEditorialLibro', 'idEtiquetaLibro', 'usuarioDNI', 'usuarioUsername'];
                 var item = {}; // los dict son igual a python
                 $('table.table-striped tbody tr').on('click', function() {
@@ -76,6 +76,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                     $(".modal-body #editISBN").val(item['ISBN']);
                     $(".modal-body #editTitulo").val(item['tituloLibro']);
                     $(".modal-body #editEstado").val(item['estado']);
+                    $(".modal-body #editTitular").val(item['titularTarjeta']);
                     $('#editarCompra').modal("show");
                     
                     // anda okey
@@ -127,10 +128,10 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 <th>Titulo</th>
                                 <th>Precio</th>
                                 <th>Fecha</th>
-                                <th>Envio</th>
                                 <th>Estado</th>
                                 <th>Usuario DNI</th>
                                 <th>Username</th>
+                                <th>Titular Tarjeta</th>
                                 
                             </tr>
                         </thead>
@@ -167,7 +168,6 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<td id=' . 'tituloLibro' . '>' . $row['titulo'] . '</td>';
                                 echo '<td id=' . 'precioCompra' . '>' . $row['precio'] . '</td>';
                                 echo '<td id=' . 'fechaCompra' . '>' . $row['fecha'] . '</td>';
-                                echo '<td id=' . 'envio' . '>' . $row['envio'] . '</td>';
                                 echo '<td id=' . 'estado' . '>' . $row['estado'] . '</td>';
                                
                                 echo '<td style="display:none;" id=' . 'idAutorLibro' . '>' . $row['Autores_idAutor'] . '</td>';
@@ -175,6 +175,7 @@ if (!($_COOKIE['isAdmin'] != '')) {
                                 echo '<td style="display:none;" id=' . 'idEtiquetaLibro' . '>' . $row['Etiquetas_idEtiqueta'] . '</td>';
                                 echo '<td id=' . 'usuarioDNI' . '>' . $row['Usuarios_DNI'] . '</td>';
                                 echo '<td id=' . 'usuarioUsername' . '>' . $row['Usuarios_username'] . '</td>';
+                                echo '<td id=' . 'titularTarjeta' . '>' . $row['titular'] . '</td>';
                                 $i++;
                             }
                             mysql_close($link);

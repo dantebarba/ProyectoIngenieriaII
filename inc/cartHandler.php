@@ -50,7 +50,7 @@ function getItem() {
     return $param['items'];
 }
 
-function generarOrden() {
+function generarOrden($datosTarjeta) {
     // Aqui se genera la orden con su ID
    
     foreach ($_SESSION['cart'] as $key => $value) {
@@ -65,6 +65,7 @@ function generarOrden() {
     }
     $usuario = mysql_fetch_assoc(q_getUsuario($_COOKIE['username']));
     q_linkCompraToUsuario($idPedido, $usuario['username'], $usuario['DNI']);
+    q_linkTarjetaToCompra($idPedido, $datosTarjeta);
     clearCart();
     return $idPedido;
 }
@@ -102,13 +103,9 @@ if (isset($_POST['tokenID'])) {
     else if (isset($_POST['cvv'])) {
         $respuesta['status'] = 'success';
         $respuesta['message'] = 'Se ha procesado el pago correctamente';
-        echo json_encode($respuesta);
-        exit();
-    }
-    else if (isset($_POST['nuevoPedido'])) {
-        $respuesta['orderID'] = generarOrden();
-        $respuesta['status'] = 'success';
-        // unset($_SESSION['tokenID']);
+        $datosTarjeta['titular'] = $_POST['card-holder-name'];
+        $datosTarjeta['numero'] = $_POST['card-number'];
+        $respuesta['orderID'] = generarOrden($datosTarjeta);
         echo json_encode($respuesta);
         exit();
     }

@@ -42,6 +42,13 @@
                         </div>
                         
                     </div>
+                   <div class="form-group">
+                        <label for="editTitular" class="col-lg-2 control-label">Titulo</label>
+                        <div class="col-lg-10">
+                            <input for="editTitular" type="text" min="0" class="form-control" id="editTitular" name="editTitular" readonly>
+                        </div>
+                        
+                   </div>
                     <input type='hidden' name='elemente' value='compra_edit'/>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

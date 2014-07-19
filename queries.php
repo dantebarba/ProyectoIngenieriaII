@@ -42,7 +42,7 @@ function q_listLibrosBetween ($fechaUno, $fechaDos, $rangemax=1000) {
 }
 
 function  q_listLibrosMasComprados($fechaUno, $fechaDos, $rangemax=1000) {
-    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.descripcion, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta,aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( l.ISBN ) AS cont "
+    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, tar.titular, l.descripcion, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta,aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( l.ISBN ) AS cont "
 ." FROM compras_has_libros c "
 ." LEFT JOIN compras com ON (c.Compras_idCompra = com.idCompra)"            
 ." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
@@ -52,6 +52,7 @@ function  q_listLibrosMasComprados($fechaUno, $fechaDos, $rangemax=1000) {
 ." LEFT JOIN etiquetas etiq ON (etiq.idEtiqueta = el.Etiquetas_idEtiqueta)"
 ." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
 ." LEFT JOIN editoriales edit ON (edit.idEditorial = le.Editoriales_idEditorial)"
+." LEFT JOIN tarjetascredito tar ON (tar.Compras_idCompra = c.Compras_idCompra ) "
 ." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' "
 ." GROUP BY l.ISBN "
 ." ORDER BY cont DESC "
@@ -64,7 +65,7 @@ function  q_listLibrosMasComprados($fechaUno, $fechaDos, $rangemax=1000) {
 
 
 function  q_listLibrosMasCompradosRegistrados($fechaUno, $fechaDos, $fechaTres, $fechaCuatro, $rangemax=1000) {
-    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.descripcion, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre, COUNT( l.ISBN ) AS cont "
+    $query = " SELECT l.ISBN, l.titulo, l.paginas, tar.titular, l.precio, l.descripcion, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre, COUNT( l.ISBN ) AS cont "
 ." FROM compras_has_libros c "
 ." LEFT JOIN compras com ON (c.Compras_idCompra = com.idCompra)"            
 ." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
@@ -74,6 +75,7 @@ function  q_listLibrosMasCompradosRegistrados($fechaUno, $fechaDos, $fechaTres, 
 ." LEFT JOIN etiquetas etiq ON (etiq.idEtiqueta = el.Etiquetas_idEtiqueta)"
 ." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
 ." LEFT JOIN editoriales edit ON (edit.idEditorial = le.Editoriales_idEditorial)"
+." LEFT JOIN tarjetascredito tar ON (tar.Compras_idCompra = c.Compras_idCompra ) "
 ." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaTres."' and '".$fechaCuatro."' and l.fechaDeRegistro BETWEEN '".$fechaUno."' and '".$fechaDos."'"
 ." GROUP BY l.ISBN "
 ." ORDER BY cont DESC "
@@ -85,7 +87,7 @@ function  q_listLibrosMasCompradosRegistrados($fechaUno, $fechaDos, $fechaTres, 
 }
 
 function q_listComprasBetween ($fechaUno, $fechaDos, $rangemax=1000) {
-    $query = "SELECT c.Compras_idCompra, com.precio, com.fecha, com.envio, com.estado, l.ISBN, l.titulo, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, us.Usuarios_DNI , us.Usuarios_username"
+    $query = "SELECT c.Compras_idCompra, com.precio, tar.titular, com.fecha, com.envio, com.estado, l.ISBN, l.titulo, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, us.Usuarios_DNI , us.Usuarios_username"
 ." FROM compras_has_libros c "
 ." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
 ." LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) "
@@ -93,6 +95,7 @@ function q_listComprasBetween ($fechaUno, $fechaDos, $rangemax=1000) {
 ." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
 ." LEFT JOIN compras com ON ( idCompra = c.Compras_idCompra ) "
 ." LEFT JOIN usuarios_has_compras us ON ( us.Compras_idCompra = c.Compras_idCompra ) "
+." LEFT JOIN tarjetascredito tar ON (tar.Compras_idCompra = c.Compras_idCompra ) "
 ." WHERE com.isDeleted=0 and com.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' ORDER BY com.fecha LIMIT 0 , " . $rangemax;
     $row = mysql_query($query) or die(mysql_error());
     return $row;
@@ -400,7 +403,7 @@ function q_listLibros($rangemax = 1000) {
 }
 
 function q_listCompras() {
-  $query = "SELECT c.Compras_idCompra, com.precio, com.fecha, com.envio, com.estado, l.ISBN, l.titulo, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, us.Usuarios_DNI , us.Usuarios_username"
+  $query = "SELECT c.Compras_idCompra, com.precio, com.fecha, com.envio, com.estado, l.ISBN, l.titulo, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, us.Usuarios_DNI , us.Usuarios_username, tar.titular"
 ." FROM compras_has_libros c "
 ." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
 ." LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) "
@@ -408,6 +411,7 @@ function q_listCompras() {
 ." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
 ." LEFT JOIN compras com ON ( idCompra = c.Compras_idCompra ) "
 ." LEFT JOIN usuarios_has_compras us ON ( us.Compras_idCompra = c.Compras_idCompra ) "
+." LEFT JOIN tarjetascredito tar ON (tar.Compras_idCompra = c.Compras_idCompra ) "
 ." WHERE com.isDeleted=0 ";
 
  $row = mysql_query($query) or die(mysql_error());
@@ -735,4 +739,11 @@ function q_newPedido($total) {
     $query = 'INSERT INTO compras (precio) VALUES ('.$total.')';
     mysql_query($query) or die(mysql_error());
     return mysql_insert_id();
+}
+
+function q_linkTarjetaToCompra($idPedido, $datosTarjeta) {
+    $query = 
+            "INSERT INTO tarjetascredito (numero, titular, Compras_idCompra)"
+            . "VALUES (".$datosTarjeta['numero'].",'".$datosTarjeta['titular']."',".$idPedido.")";
+    mysql_query($query) or die(mysql_error());
 }
