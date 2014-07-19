@@ -203,7 +203,7 @@ function q_updateUsuario($dataCollection) {
 function q_updateDireccion($dataCollection) {
     $query =
             "UPDATE `direccion` SET "
-            . "`calle`=". $dataCollection['calle'].","
+            . "`calle`='". $dataCollection['calle']."',"
             . "`localidad`='". $dataCollection['localidad']."',"
             . "`numero`=". $dataCollection['numero'].","
             . "`provincia`='". $dataCollection['provincia']."',"
