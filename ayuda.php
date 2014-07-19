@@ -80,8 +80,7 @@
                       <a href="#" onClick="mostrar('respuesta6')" style="font-size:19px;">&iquest;Cual&eacute;s son las formas de pago?</a>&nbsp;<br />
                       <br />
                       <div id="respuesta6" name="respuesta6" style="display:none; font-size:16px;">
-                                <strong>Si, todos nuestros productos tienen garant&iacute;a, esta es de 6 meses para las memorias y 3 meses para lo dem&aacute;s art&iacute;culos .<br />
-                                Si tenes alg&uacute;n problema de f&aacute;brica te hacemos el cambio directo o se repara el producto seg&uacute;n el caso.&nbsp;</strong><br />
+                                <strong>Podr&aacute; pagar mediante tarjeta de cr&eacute;dito o de d&eacute;bito. Para ello deber&aacute; ingresar el nombre del titular, n&uacute;mero de tarjeta, fecha de expiraci&oacute;n y el c&oacute;digo CVV de la misma.</strong><br />
                                 <br />
                       </div> 
                       <a href="#" onClick="mostrar('respuesta7')" style="font-size:19px;">&iquest;Hacen env&iacute;os a domicilio?</a>&nbsp;<br />
