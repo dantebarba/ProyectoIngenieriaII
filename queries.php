@@ -24,22 +24,34 @@ function q_listUserBetween ($fechaUno, $fechaDos) {
 
 
 function q_listLibrosBetween ($fechaUno, $fechaDos, $rangemax=1000) {
-    $query = "SELECT l.ISBN, l.titulo, l.paginas, l.fechaDeRegistro, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta FROM libros l "
-            . "LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)"
-            . " LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN )"
-            . " WHERE isDeleted=0 and l.fechaDeRegistro BETWEEN '".$fechaUno."' and '".$fechaDos."' ORDER BY l.titulo LIMIT 0 , " . $rangemax;
+    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( c.Libros_ISBN ) AS cont  FROM libros l '
+            . 'LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN )'
+            . 'LEFT JOIN autores aut ON (la.Autores_idAutor = aut.idAutor)'
+            . 'LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)'
+            . 'LEFT JOIN etiquetas etiq ON (etiq.idEtiqueta = el.Etiquetas_idEtiqueta)'
+            . 'LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN )'
+            . 'LEFT JOIN editoriales edit ON (edit.idEditorial = le.Editoriales_idEditorial)'
+            . 'LEFT JOIN compras_has_libros c ON ( l.ISBN = c.Libros_ISBN )'
+            . " WHERE l.isDeleted=0 and l.fechaDeRegistro BETWEEN '".$fechaUno."' and '".$fechaDos."' "
+            . ' GROUP BY l.ISBN'
+            . ' ORDER BY titulo LIMIT 0 , ' . $rangemax;
+            
     $row = mysql_query($query) or die(mysql_error());
     return $row;
+    
 }
 
 function  q_listLibrosMasComprados($fechaUno, $fechaDos, $rangemax=1000) {
-    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, COUNT( l.ISBN ) AS cont "
+    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta,aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( l.ISBN ) AS cont "
 ." FROM compras_has_libros c "
 ." LEFT JOIN compras com ON (c.Compras_idCompra = com.idCompra)"            
 ." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
 ." LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) "
+." LEFT JOIN autores aut ON (la.Autores_idAutor = aut.idAutor)"
 ." LEFT JOIN etiquetas_has_libros el ON ( l.ISBN = el.Libros_ISBN ) "
+." LEFT JOIN etiquetas etiq ON (etiq.idEtiqueta = el.Etiquetas_idEtiqueta)"
 ." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
+." LEFT JOIN editoriales edit ON (edit.idEditorial = le.Editoriales_idEditorial)"
 ." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaUno."' and '".$fechaDos."' "
 ." GROUP BY l.ISBN "
 ." ORDER BY cont DESC "
@@ -50,18 +62,22 @@ function  q_listLibrosMasComprados($fechaUno, $fechaDos, $rangemax=1000) {
     
 }
 
+
 function  q_listLibrosMasCompradosRegistrados($fechaUno, $fechaDos, $fechaTres, $fechaCuatro, $rangemax=1000) {
-    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, COUNT( l.ISBN ) AS cont "
+    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre, COUNT( l.ISBN ) AS cont "
 ." FROM compras_has_libros c "
 ." LEFT JOIN compras com ON (c.Compras_idCompra = com.idCompra)"            
 ." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
 ." LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) "
+." LEFT JOIN autores aut ON (la.Autores_idAutor = aut.idAutor)"
 ." LEFT JOIN etiquetas_has_libros el ON ( l.ISBN = el.Libros_ISBN ) "
+." LEFT JOIN etiquetas etiq ON (etiq.idEtiqueta = el.Etiquetas_idEtiqueta)"
 ." LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN ) "
+." LEFT JOIN editoriales edit ON (edit.idEditorial = le.Editoriales_idEditorial)"
 ." WHERE l.isDeleted =0 and com.fecha BETWEEN '".$fechaTres."' and '".$fechaCuatro."' and l.fechaDeRegistro BETWEEN '".$fechaUno."' and '".$fechaDos."'"
 ." GROUP BY l.ISBN "
 ." ORDER BY cont DESC "
-." LIMIT 10";
+." LIMIT 10";    
     
     $row = mysql_query($query) or die(mysql_error());
     return $row;
@@ -367,10 +383,17 @@ function q_listCategoria($rangemax = 1000) {
 }
 
 function q_listLibros($rangemax = 1000) {
-    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta FROM libros l '
-            . 'LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN ) LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)'
-            . ' LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN )'
-            . ' WHERE l.isDeleted=0 ORDER BY titulo LIMIT 0 , ' . $rangemax;
+    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( c.Libros_ISBN ) AS cont  FROM libros l '
+            . 'LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN )'
+            . 'LEFT JOIN autores aut ON (la.Autores_idAutor = aut.idAutor)'
+            . 'LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)'
+            . 'LEFT JOIN etiquetas etiq ON (etiq.idEtiqueta = el.Etiquetas_idEtiqueta)'
+            . 'LEFT JOIN libros_has_editoriales le ON ( l.ISBN = le.Libros_ISBN )'
+            . 'LEFT JOIN editoriales edit ON (edit.idEditorial = le.Editoriales_idEditorial)'
+            . 'LEFT JOIN compras_has_libros c ON ( l.ISBN = c.Libros_ISBN )' 
+            . ' WHERE l.isDeleted=0 '
+            . ' GROUP BY l.ISBN'
+            . ' ORDER BY titulo LIMIT 0 , ' . $rangemax;
     return mysql_query($query);
 }
 
