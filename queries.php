@@ -24,7 +24,7 @@ function q_listUserBetween ($fechaUno, $fechaDos) {
 
 
 function q_listLibrosBetween ($fechaUno, $fechaDos, $rangemax=1000) {
-    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( c.Libros_ISBN ) AS cont  FROM libros l '
+    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, l.descripcion, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( c.Libros_ISBN ) AS cont  FROM libros l '
             . 'LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN )'
             . 'LEFT JOIN autores aut ON (la.Autores_idAutor = aut.idAutor)'
             . 'LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)'
@@ -42,7 +42,7 @@ function q_listLibrosBetween ($fechaUno, $fechaDos, $rangemax=1000) {
 }
 
 function  q_listLibrosMasComprados($fechaUno, $fechaDos, $rangemax=1000) {
-    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta,aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( l.ISBN ) AS cont "
+    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.descripcion, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta,aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( l.ISBN ) AS cont "
 ." FROM compras_has_libros c "
 ." LEFT JOIN compras com ON (c.Compras_idCompra = com.idCompra)"            
 ." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
@@ -64,7 +64,7 @@ function  q_listLibrosMasComprados($fechaUno, $fechaDos, $rangemax=1000) {
 
 
 function  q_listLibrosMasCompradosRegistrados($fechaUno, $fechaDos, $fechaTres, $fechaCuatro, $rangemax=1000) {
-    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre, COUNT( l.ISBN ) AS cont "
+    $query = " SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.descripcion, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre, COUNT( l.ISBN ) AS cont "
 ." FROM compras_has_libros c "
 ." LEFT JOIN compras com ON (c.Compras_idCompra = com.idCompra)"            
 ." LEFT JOIN libros l ON ( l.ISBN = c.Libros_ISBN ) "
@@ -142,6 +142,7 @@ function q_updateLibro($dataCollection) {
             . "`precio`=".$dataCollection['precio'].","
             . "`idioma`='".$dataCollection['idioma']."',"
             . "`fecha`='".$dataCollection['fecha']."'"
+            . "`descripcion`='".$dataCollection['descripcion']."'"
             . " WHERE ".$dataCollection['ISBN']."=ISBN";
     mysql_query($query) or die(mysql_error());
 }
@@ -236,8 +237,9 @@ function q_addCategoria($nombre) {
 function q_addLibro($dataCollection) {
     $query=
             "INSERT INTO `libros`"
-            . "(`ISBN`, `titulo`, `paginas`, `precio`, `idioma`, `fecha`) "
+            . "(`descripcion`, `ISBN`, `titulo`, `paginas`, `precio`, `idioma`, `fecha`) "
             . "VALUES ('"
+            . $dataCollection['descripcion'] . "','"
             . $dataCollection['ISBN'] . "','"
             . $dataCollection['titulo'] . "','"
             . $dataCollection['paginas'] . "','"
@@ -383,7 +385,7 @@ function q_listCategoria($rangemax = 1000) {
 }
 
 function q_listLibros($rangemax = 1000) {
-    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( c.Libros_ISBN ) AS cont  FROM libros l '
+    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.descripcion, l.precio, l.idioma, l.fecha, la.Autores_idAutor, le.Editoriales_idEditorial, el.Etiquetas_idEtiqueta, aut.nombre AS autorNombre, etiq.nombre AS etiquetaNombre , edit.nombre AS editorialNombre ,COUNT( c.Libros_ISBN ) AS cont  FROM libros l '
             . 'LEFT JOIN libros_has_autores la ON ( l.ISBN = la.Libros_ISBN )'
             . 'LEFT JOIN autores aut ON (la.Autores_idAutor = aut.idAutor)'
             . 'LEFT JOIN etiquetas_has_libros el ON (l.ISBN = el.Libros_ISBN)'
@@ -649,7 +651,7 @@ function q_mismoAutor($nombre,$DNI) {
 }
 
 function q_searchLibroLike($titulo) {
-    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, 
+    $query = 'SELECT l.ISBN, l.titulo, l.descripcion, l.paginas, l.precio, l.idioma, l.fecha, 
 	la.Autores_idAutor, 
 	le.Editoriales_idEditorial, 
 	el.Etiquetas_idEtiqueta, 
@@ -670,7 +672,7 @@ function q_searchLibroLike($titulo) {
 }
 
 function q_searchLibroLikeAutor($nombre) {
-    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, 
+    $query = 'SELECT l.ISBN, l.titulo, l.descripcion,l.paginas, l.precio, l.idioma, l.fecha, 
 	la.Autores_idAutor, 
 	le.Editoriales_idEditorial, 
 	el.Etiquetas_idEtiqueta, 
@@ -690,7 +692,7 @@ function q_searchLibroLikeAutor($nombre) {
 }
 
 function q_searchLibroLikeCategoria($nombre) {
-    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, 
+    $query = 'SELECT l.ISBN, l.titulo, l.descripcion, l.paginas, l.precio, l.idioma, l.fecha, 
 	la.Autores_idAutor, 
 	le.Editoriales_idEditorial, 
 	el.Etiquetas_idEtiqueta, 
@@ -710,7 +712,7 @@ function q_searchLibroLikeCategoria($nombre) {
 }
 
 function q_searchLibroLikeEditorial($nombre) {
-    $query = 'SELECT l.ISBN, l.titulo, l.paginas, l.precio, l.idioma, l.fecha, 
+    $query = 'SELECT l.ISBN, l.titulo, l.descripcion, l.paginas, l.precio, l.idioma, l.fecha, 
 	la.Autores_idAutor, 
 	le.Editoriales_idEditorial, 
 	el.Etiquetas_idEtiqueta, 
