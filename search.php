@@ -32,9 +32,10 @@
         <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js"></script>
         <link href='/css/custom.css' rel='stylesheet'>
         <script src="js/jPaginate.js"></script>
+        <script type="text/javascript" src="/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+        <script src="/js/notifications.js" type="text/javascript"></script>
         <script src="js/cart.js" type="text/javascript"></script>
-        <script src="js/noty/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
-        <script src="js/notifications.js"></script>
+
             <script type='text/javascript'>
             
             $(document).ready(function() {

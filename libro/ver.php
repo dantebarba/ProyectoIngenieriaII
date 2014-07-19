@@ -38,7 +38,10 @@
         <script src="http://ingenieriaii.url.ph/js/bootstrap.min.js"></script>
         <link href='../css/custom.css' rel='stylesheet'>
         <script src="../js/mustache.js" type="text/javascript"></script>
-        <script src="../js/cart.js"></script>
+        <script src="../js/jquery.hotkeys.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+        <script src="/js/notifications.js" type="text/javascript"></script>
+        <script src="../js/cart.js" type="text/javascript"></script>
         <script type="text/javascript">
             function getParameterByName( name,href ) // nada importante, solo para
             // obtener los parametros de la URL
@@ -53,6 +56,7 @@
                     return decodeURIComponent(results[1].replace(/\+/g, " "));
                 }
             $(document).ready(function() {
+                
                 $.post('./ver.php',{ISBN: getParameterByName('ISBN', window.location.href),ajaxCall: 'yes'}, function(ajaxData) {
                     template = '../templates/libro.php';
                     if (ajaxData.status === 'success') {

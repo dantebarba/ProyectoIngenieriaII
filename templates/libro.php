@@ -22,7 +22,7 @@
                 <div class="panel-body" >
                     <?php 
                         include_once '../restricted/securitycheck.php';
-                        if (loginCheck()) {
+                        if (loginCheck() && !adminCheck()) {
                             echo '<button type="button" style="float:right;" onClick="addToCart({{ISBN}})" class="btn btn-default btn-primary">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a></button>
                             <h4 style="float:right;padding-right:20px;">Precio: ${{precio}}    </h4> ';
@@ -30,6 +30,11 @@
                     ?>        
                 </div>
             </div>
+            <script>
+                $(document).bind("keydown", "ctrl+shift+l", function (){
+                    addToCart("{{ISBN}}");
+                });
+            </script>
 
 
             

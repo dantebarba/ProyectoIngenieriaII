@@ -1,4 +1,5 @@
 
+
 function addToCart(item) {
    // script simple para añadir al carrito, aqui ira
    // el llamado AJAX
