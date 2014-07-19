@@ -28,11 +28,15 @@
         $link = connectdb();
         include 'queries.php';
         if (isset($_GET['recoverUsername'])) {
-            $query = q_isPresentUsuario($_GET['recoverUsername']);
+            $query = q_isPresentUsuario($_GET['recoverUsername'], "NULL");
+            $field['dni'] = "NULL";
+            $field['username'] = $_GET['recoverUsername'];
         }
         else
             if (isset($_GET['recoverDNI']) && ($_GET['recoverDNI'] != '')) {
                 $query = q_isPresentUsuario('', $_GET['recoverDNI']);
+                $field['dni'] = $_GET['recoverDNI'];
+                $field['username'] = '';
             }
         if ($query) {
             q_enableUsuario($field['username'], $field['dni']);

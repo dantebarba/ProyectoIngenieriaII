@@ -250,14 +250,14 @@
         </script>
     </head>
     <?php
-    include 'header.php';
-    include 'dbconnection.php';
-    $link = connectdb();
-    include 'queries.php';
-    $usuario = q_getUsuario($_COOKIE['username']);
-    $direccion = q_getDireccion($_COOKIE['username']);
-    $rowdir = mysql_fetch_array($direccion);
-    $row = mysql_fetch_array($usuario);
+        include 'header.php';
+        include 'dbconnection.php';
+        $link = connectdb();
+        include 'queries.php';
+        $usuario = q_getUsuario($_COOKIE['username']);
+        $direccion = q_getDireccion($_COOKIE['username']);
+        $rowdir = mysql_fetch_array($direccion);
+        $row = mysql_fetch_array($usuario);
     ?>
     <body id="editarse" >
         <div id="messageDiv"></div>
