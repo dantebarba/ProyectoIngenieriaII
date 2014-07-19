@@ -150,20 +150,20 @@ function q_updateLibro($dataCollection) {
             . " WHERE ".$dataCollection['oldISBN']."=ISBN";
     mysql_query($query) or die(mysql_error());
     $query = 
-            "UPDATE 'compras_has_libros' SET"
-            . "Libros_ISBN=".$dataCollection["ISBN"]."WHERE ".$dataCollection["oldISBN"]." = ISBN";
+            "UPDATE compras_has_libros SET "
+            . "Libros_ISBN=".$dataCollection["ISBN"]." WHERE ".$dataCollection["oldISBN"]." = Libros_ISBN";
     mysql_query($query) or die(mysql_error());
     $query = 
-            "UPDATE 'etiquetas_has_libros' SET"
-            . "Libros_ISBN=".$dataCollection["ISBN"]."WHERE ".$dataCollection["oldISBN"]." = ISBN";
+            "UPDATE etiquetas_has_libros SET "
+            . "Libros_ISBN=".$dataCollection["ISBN"]." WHERE ".$dataCollection["oldISBN"]." = Libros_ISBN";
     mysql_query($query) or die(mysql_error());
     $query = 
-            "UPDATE 'libros_has_autores' SET"
-            . "Libros_ISBN=".$dataCollection["ISBN"]."WHERE ".$dataCollection["oldISBN"]." = ISBN";
+            "UPDATE libros_has_autores SET "
+            . "Libros_ISBN=".$dataCollection["ISBN"]." WHERE ".$dataCollection["oldISBN"]." = Libros_ISBN";
     mysql_query($query) or die(mysql_error());
     $query = 
-            "UPDATE 'compras_has_editoriales' SET"
-            . "Libros_ISBN=".$dataCollection["ISBN"]."WHERE ".$dataCollection["oldISBN"]." = ISBN";
+            "UPDATE libros_has_editoriales SET "
+            . "Libros_ISBN=".$dataCollection["ISBN"]." WHERE ".$dataCollection["oldISBN"]." = Libros_ISBN";
     mysql_query($query) or die(mysql_error());
 }
 
