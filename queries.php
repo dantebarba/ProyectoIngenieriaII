@@ -140,13 +140,14 @@ function q_getCompra($idCompra) {
 function q_updateLibro($dataCollection) {
     $query = 
             "UPDATE `libros` SET "
+            . "`ISBN`='".$dataCollection['ISBN']."',"
             . "`titulo`='".$dataCollection['titulo']."',"
             . "`paginas`=".$dataCollection['paginas'].","
             . "`precio`=".$dataCollection['precio'].","
             . "`idioma`='".$dataCollection['idioma']."',"
             . "`fecha`='".$dataCollection['fecha']."',"
             . "`descripcion`='".$dataCollection['descripcion']."'"
-            . " WHERE ".$dataCollection['ISBN']."=ISBN";
+            . " WHERE ".$dataCollection['oldISBN']."=ISBN";
     mysql_query($query) or die(mysql_error());
 }
 

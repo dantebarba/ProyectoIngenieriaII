@@ -123,6 +123,7 @@
                         <label for="editISBN" class="col-lg-2 control-label">ISBN</label>
                         <div class="col-lg-10">
                             <input for="editISBN" type="number" min="0" class="form-control" id="editISBN" name="editISBN">
+                            <input id='oldISBN' name='oldISBN' type='hidden'>
                         </div>
                         
                     </div>

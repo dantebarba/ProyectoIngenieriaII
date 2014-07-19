@@ -7,7 +7,6 @@ if (!($_COOKIE['isAdmin'] != '')) {
 include '../dbconnection.php';
 include '../queries.php';
 
-
 function addLibro($dataCollection) {
     $database = connectdb();
     if (!q_isPresentLibro($dataCollection['ISBN'])) {
@@ -34,11 +33,34 @@ function addLibro($dataCollection) {
 
 function updateLibro($dataCollection) {
     $database = connectdb();
-    q_updateLibro($dataCollection);
-    q_linkAutorToLibro($dataCollection['idAutor'], $dataCollection['ISBN']);
-    q_linkEditorialToLibro($dataCollection['idEditorial'], $dataCollection['ISBN']);
-    q_linkCategoriaToLibro($dataCollection['idEtiqueta'], $dataCollection['ISBN']);
-    mysql_close($database);
+    if ($dataCollection['oldISBN'] === $dataCollection['ISBN']) {
+        q_updateLibro($dataCollection);
+        q_linkAutorToLibro($dataCollection['idAutor'], $dataCollection['ISBN']);
+        q_linkEditorialToLibro($dataCollection['idEditorial'], $dataCollection['ISBN']);
+        q_linkCategoriaToLibro($dataCollection['idEtiqueta'], $dataCollection['ISBN']);
+        mysql_close($database);
+    }
+    else if (q_isDisponibleLibro($dataCollection['ISBN'])) {
+       echo "<SCRIPT LANGUAGE='JavaScript'>
+           window.alert('Ya existe el Libro');window.location.href=
+           '/administrador/listarLibro.php';
+            </SCRIPT>";
+       exit();
+    }
+    else if (q_isPresentLibro($dataCollection['ISBN'])) {
+        echo "<SCRIPT LANGUAGE='JavaScript'>
+           window.alert('El libro ya existe pero no esta disponible');window.location.href=
+           '/administrador/listarLibro.php';
+            </SCRIPT>";
+        exit();
+    }
+    else {
+        q_updateLibro($dataCollection);
+        q_linkAutorToLibro($dataCollection['idAutor'], $dataCollection['ISBN']);
+        q_linkEditorialToLibro($dataCollection['idEditorial'], $dataCollection['ISBN']);
+        q_linkCategoriaToLibro($dataCollection['idEtiqueta'], $dataCollection['ISBN']);
+        mysql_close($database);
+    }
 }
 
 function delLibro($dataCollection) {
@@ -67,6 +89,7 @@ switch ($element) {
         }
     case 'libro_edit': {
             $dataCollection['ISBN'] = $_POST['editISBN'];
+            $dataCollection['oldISBN'] = $_POST['oldISBN'];
             $dataCollection['titulo'] = $_POST['editTitulo'];
             $dataCollection['paginas'] = $_POST['editPaginas'];
             $dataCollection['precio'] = $_POST['editPrecio'];

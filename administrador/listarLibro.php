@@ -100,6 +100,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 //$("#openEditarAutor").click(function () {
                 $(document).on("click", "#openEditarLibro", function() {
                     $(".modal-body #editISBN").val(item['ISBN']);
+                    $(".modal-body #oldISBN").val(item['ISBN']);
+                    
                     $(".modal-body #editTitulo").val(item['tituloLibro']);
                     $(".modal-body #editPaginas").val(item['paginasLibro']);
                     $(".modal-body #editPrecio").val(item['precioLibro']);
