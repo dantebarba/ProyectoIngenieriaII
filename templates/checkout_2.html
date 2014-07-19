@@ -6,7 +6,7 @@
           <div class="form-group">
             <label class="col-sm-3 control-label" for="card-holder-name">Nombre del titular</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Nombre del Titular">
+              <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Nombre del Titulars">
               <input type="hidden" id="tokenID" name="tokenID" value=''>
             </div>
           </div>
@@ -128,8 +128,8 @@
                 $.noty.closeAll();
                 if (element.status === 'success') {
                                 notyTopNotification('success', element.message);
-                                //$("#orderID").append('<b>'+$(element.orderID).val()+'</b>');
                                 
+                                $("#tokenID").val(element.orderID);
                                 return true;
                 }
                 else {

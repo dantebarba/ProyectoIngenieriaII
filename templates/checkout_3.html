@@ -3,12 +3,12 @@
 <div class="row setup-content">
     <div class="col-xs-10">
         <p>Gracias por su pedido</p>
-        <p id="orderID">Su numero de orden es:</p>
+        <div id='orderID'><p>Su numero de orden es:</p></div>
     </div>
 </div>
 <script>
     $(document).ready(function() {
-        alert($('#tokenID').val());
+        $("#orderID").append('<b>#'+$("#tokenID").val()+'</b>');
     });
     
 </script>
