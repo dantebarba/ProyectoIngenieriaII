@@ -6,14 +6,14 @@
           <div class="form-group">
             <label class="col-sm-3 control-label" for="card-holder-name">Nombre del titular</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
-              <input type="hidden" id="tokenID" name="tokenID" value="true">
+              <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Nombre del Titular">
+              <input type="hidden" id="tokenID" name="tokenID" value=''>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label" for="card-number" >Numero de Tarjeta</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
+              <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Tarjeta de debito/credito">
             </div>
           </div>
           <div class="form-group">
@@ -128,8 +128,8 @@
                 $.noty.closeAll();
                 if (element.status === 'success') {
                                 notyTopNotification('success', element.message);
-                                $("#orderID").append('<b>'+$(element.orderID).val()+'</b>');
-                                alert(element.orderID);
+                                //$("#orderID").append('<b>'+$(element.orderID).val()+'</b>');
+                                
                                 return true;
                 }
                 else {
