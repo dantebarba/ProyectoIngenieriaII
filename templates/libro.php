@@ -11,7 +11,7 @@
                         <h3>{{titulo}}</h3>
                     </div>
                     <div class="panel-body">
-                        Descripcion
+                        {{descripcion}}
                     </div>
                 </div>
             </div>
