@@ -76,7 +76,8 @@
                     labels: {
                         cancel: "Cancelar",
                         finish: "Finalizar Pedido",
-                        next: "Siguiente"
+                        next: "Siguiente",
+                        loading: "Cargando..."
                         }
                         
                     }

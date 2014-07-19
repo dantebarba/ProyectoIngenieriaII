@@ -57,7 +57,7 @@
           <div class="form-group">
             <label class="col-sm-3 control-label" for="cvv">Codigo CVV</label>
             <div class="col-sm-6">
-                <input type="number" class="form-control" name="cvv" id="cvv" max="9999" placeholder="Security Code">
+                <input type="number" class="form-control" name="cvv" id="cvv" max="9999" placeholder="Codigo de seguridad">
             </div>
           </div>
           <div class="form-group">
@@ -94,7 +94,6 @@
                     rules:
                     { 
                         "card-holder-name": {
-                            lettersonly: true,
                             maxlength: 50,
                             minlength: 4
                         },
@@ -114,7 +113,7 @@
                     messages:
                             {
                                 "card-holder-name": {
-                                    lettersonly: "Ingrese solo letras",
+                                    
                                     minlength: "Por favor ingrese al menos {0} caracteres"
                                 },
                                 "card-number": "Numero de tarjeta invalido",

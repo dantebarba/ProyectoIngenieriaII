@@ -55,12 +55,14 @@ function generarOrden($datosTarjeta) {
    
     foreach ($_SESSION['cart'] as $key => $value) {
         $libro = mysql_fetch_assoc(q_getLibro($key));
-        $valorTotal = $libro['precio'] * $value;
+        $valorTotal = $libro['precio'];
         
     }
     $idPedido = q_newPedido($valorTotal);
     foreach ($_SESSION['cart'] as $key => $value) {
-        q_linkCompraToLibro($idPedido, $key);
+        for ( $i=0; $i < $value;$i++ ) {
+            q_linkCompraToLibro($idPedido, $key);
+        }
         
     }
     $usuario = mysql_fetch_assoc(q_getUsuario($_COOKIE['username']));
