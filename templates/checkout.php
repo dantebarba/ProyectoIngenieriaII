@@ -37,16 +37,6 @@
         <script type="text/javascript">
             pass=false;
             message='';
-            function stepValidation() {
-                    if (!pass) {
-                       notyBottomNotification('error', message);
-                       return pass;
-                    }
-                    else {
-                        return pass;
-                    }  
-                }
-            
             $(document).ready(function() {
                 $("#wizard").steps({
                     headerTag: "h2",

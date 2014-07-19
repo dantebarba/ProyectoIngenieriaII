@@ -275,33 +275,33 @@
                             <label>
                                 Usuario
                             </label>
-                            <input type="text" readonly value="<?php echo $row[username]; ?>" class="form-control" id="editarUsername" name="editarUsername" placeholder="NombreDeUsuario">
+                            <input type="text" readonly value="<?php echo $row['username']; ?>" class="form-control" id="editarUsername" name="editarUsername" placeholder="NombreDeUsuario">
                         </div>
 
                         <div class="form-group">
                             <label>
                                 Contraseña
                             </label>
-                            <input type="password" value="<?php echo $row[password]; ?>" class="form-control" name="editarPassword" id="editarPassword">
+                            <input type="password" value="<?php echo $row['password']; ?>" class="form-control" name="editarPassword" id="editarPassword">
                         </div>
                         <div class="form-group">
                             <label>
                                 Repita Contraseña 
                             </label>
 
-                            <input type="password" value="<?php echo $row[password]; ?>" class="form-control" name="editarPasswordrepeat" id="editarPasswordrepeat">
+                            <input type="password" value="<?php echo $row['password']; ?>" class="form-control" name="editarPasswordrepeat" id="editarPasswordrepeat">
                         </div>
                         <div class="form-group">
                             <label>
                                 E-mail
                             </label>
-                            <input type="text" class="form-control" value="<?php echo $row[email]; ?>"name="editarEmail" id="editarEmail" placeholder="ejemplo@hostejemplo.com">
+                            <input type="text" class="form-control" value="<?php echo $row['email']; ?>"name="editarEmail" id="editarEmail" placeholder="ejemplo@hostejemplo.com">
                         </div>
                         <div class="form-group">
                             <label>
                                 Repita E-mail
                             </label>
-                            <input type="text" class="form-control" value="<?php echo $row[email]; ?>"name="editarEmailrepeat" id="editarEmailrepeat">
+                            <input type="text" class="form-control" value="<?php echo $row['email']; ?>"name="editarEmailrepeat" id="editarEmailrepeat">
                         </div>
                         <div class="form-group">
                             <label>
@@ -309,7 +309,7 @@
                             </label>
                             <select class="form-control"  id="editarGenero" name="editarGenero">
                                 <?php
-                                if ($row[genero] == "f") {
+                                if ($row['genero'] == "f") {
                                     echo'
               <option value="m" id="masc" name="masc">
                 Masculino
@@ -335,13 +335,13 @@
                             <label>
                                 DNI
                             </label>
-                            <input type="text" readonly value="<?php echo $row[DNI]; ?>" id="editarDNI" name="editarDNI" class="form-control" placeholder="40555222">
+                            <input type="text" readonly value="<?php echo $row['DNI']; ?>" id="editarDNI" name="editarDNI" class="form-control" placeholder="40555222">
                         </div>
                         <label>
                             Fecha de Nacimiento
                         </label> 
                         <div class="form-group has-feedback">
-                            <input type="text" value="<?php echo $row[fecha_nac]; ?>" id="editarFecha_nac" name="editarFecha_nac" class="form-control" readonly placeholder="dd/mm/yyyy">
+                            <input type="text" value="<?php echo $row['fecha_nac']; ?>" id="editarFecha_nac" name="editarFecha_nac" class="form-control" readonly placeholder="dd/mm/yyyy">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -357,31 +357,31 @@
                                 <label>
                                     Telefono fijo
                                 </label>
-                                <input type="text" value="<?php echo $row[tel_fijo]; ?>" class="form-control" placeholder="01143331212" id="editarTel_fijo" name="editarTel_fijo">
+                                <input type="text" value="<?php echo $row['tel_fijo']; ?>" class="form-control" placeholder="01143331212" id="editarTel_fijo" name="editarTel_fijo">
                             </div>
                             <div class="form-group">
                                 <label>
                                     Telefono celular
                                 </label>
-                                <input type="text" value="<?php echo $row[tel_cel]; ?>" class="form-control" placeholder="0221552111" id="editarTel_cel" name="editarTel_cel">
+                                <input type="text" value="<?php echo $row["tel_cel"]; ?>" class="form-control" placeholder="0221552111" id="editarTel_cel" name="editarTel_cel">
                             </div>
                             <label>
                                 Localidad
                             </label>
-                            <input type="text" value="<?php echo $rowdir[localidad]; ?>" class="form-control" placeholder="Zarate" name="editarLocalidad" id="editarLocalidad">
+                            <input type="text" value="<?php echo $rowdir["localidad"]; ?>" class="form-control" placeholder="Zarate" name="editarLocalidad" id="editarLocalidad">
                         </div>
 
                         <div class="form-group">
                             <label>
                                 Calle
                             </label>
-                            <input type="text" value="<?php echo $rowdir[calle]; ?>" class="form-control" id="editarCalle" name="editarCalle" placeholder="Av. Libertador">
+                            <input type="text" value="<?php echo $rowdir['calle']; ?>" class="form-control" id="editarCalle" name="editarCalle" placeholder="Av. Libertador">
                         </div>
                         <div class="form-group">
                             <label>
                                 Numero
                             </label>
-                            <input type="text" value="<?php echo $rowdir[numero]; ?>" class="form-control" id="editarNumero" name="editarNumero" placeholder="4311">
+                            <input type="text" value="<?php echo $rowdir['numero']; ?>" class="form-control" id="editarNumero" name="editarNumero" placeholder="4311">
                         </div>
                         <div class="form-group">
                             <label>
@@ -412,10 +412,10 @@
                                 Nro. de departamento
                             </label>
                             <?php
-                            if ($rowdir[departamento] == "0") {
+                            if ($rowdir['departamento'] == "0") {
                                 echo'<input type="text" class="form-control" disabled  id="editarDepartamento" name="editarDepartamento">';
                             } else {
-                                echo '<input type="text" value="' . $rowdir[numDpto] . '" class="form-control" id="editarDepartamento" name="editarDepartamento" >';
+                                echo '<input type="text" value="' . $rowdir['numDpto'] . '" class="form-control" id="editarDepartamento" name="editarDepartamento" >';
                             }
                             ?>
                         </div>
@@ -423,13 +423,13 @@
                             <label>
                                 Provincia
                             </label>
-                            <input type="text" value="<?php echo $rowdir[provincia]; ?>" class="form-control" placeholder="Buenos Aires" name="editarProvincia" id="editarProvincia">
+                            <input type="text" value="<?php echo $rowdir['provincia']; ?>" class="form-control" placeholder="Buenos Aires" name="editarProvincia" id="editarProvincia">
                         </div>
                         <div class="form-group pull-left">
                             <label>
                                 Codigo Postal
                             </label>
-                            <input type="text" value="<?php echo $rowdir[codPostal]; ?>" class="form-control" placeholder="1900" name="editarPostal" id="editarPostal">
+                            <input type="text" value="<?php echo $rowdir['codPostal']; ?>" class="form-control" placeholder="1900" name="editarPostal" id="editarPostal">
                         </div>
                         <div class="form-group">
                         </div>

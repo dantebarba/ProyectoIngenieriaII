@@ -20,6 +20,18 @@ if (!($_COOKIE['isAdmin'] != '')) {
         <script src="../js/jquery.dataTables.min.js" type="text/javascript"></script>
         
         <script type="text/javascript">
+            function getParameterByName( name,href ) // nada importante, solo para
+            // obtener los parametros de la URL
+                {
+                  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+                  var regexS = "[\\?&]"+name+"=([^&#]*)";
+                  var regex = new RegExp( regexS );
+                  var results = regex.exec( href );
+                  if( results == null )
+                    return "";
+                  else
+                    return decodeURIComponent(results[1].replace(/\+/g, " "));
+                }
                        function tiene_letrass(nombre, numero) {
                 if (nombre === "" || numero === "")
                 {
@@ -60,11 +72,17 @@ if (!($_COOKIE['isAdmin'] != '')) {
                 return true;
             }
             $(document).ready(function() {
+                var dataOrder = [[1, 'desc']];
+                
+                if (getParameterByName('masComprados', window.location.href)) {
+                    var dataOrder = [[13, 'desc']];
+                }
+                
                 $('#lista').dataTable({
                         "language": {
                             "url": "http://cdn.datatables.net/plug-ins/be7019ee387/i18n/Spanish.json" 
                         },
-                         order: [[ 1, "desc" ]]
+                         order: dataOrder
                         
                     });
                 var fields = ['ISBN', 'tituloLibro', 'paginasLibro', 'precioLibro', 'idiomaLibro', 'descripcionLibro',
@@ -133,8 +151,8 @@ if (!($_COOKIE['isAdmin'] != '')) {
             <div class="row">
                 <div class="col-md-2">
                 <!-- COLUMNA FILTROS -->
-                    <form class="form-horizontal" id="listarLibro" method="post" action="listarLibro.php" role="form"> 
-                        <button type='submit'class="btn btn-primary form-control" onclick="redirect('listarLibro.php')">Listar Entre Fechas</button><p></p>    
+                    <form class="form-horizontal" id="listarLibro" method="get" action="listarLibro.php" role="form"> 
+                        <button type='submit'class="btn btn-primary form-control">Listar Entre Fechas</button><p></p>    
                         <span class="input-radio-addon">
                                 <input type="checkbox" name="registrados" href="#" onClick="mostrar('grupoUno')"> Registrados 
                         </span><p></p>
@@ -185,18 +203,18 @@ if (!($_COOKIE['isAdmin'] != '')) {
                             $i = 0;
                             $id = 'row' . $i;
    
-                             if (isset($_POST['registrados']) || isset($_POST['masComprados'])) {
-                                    $fecha1 = $_POST['fecha1Libro'];
-                                    $fecha2 = $_POST['fecha2Libro'];
-                                    $fecha3 = $_POST['fecha3Libro'];   
-                                    $fecha4 = $_POST['fecha4Libro'];   
+                             if (isset($_GET['registrados']) || isset($_GET['masComprados'])) {
+                                    $fecha1 = $_GET['fecha1Libro'];
+                                    $fecha2 = $_GET['fecha2Libro'];
+                                    $fecha3 = $_GET['fecha3Libro'];   
+                                    $fecha4 = $_GET['fecha4Libro'];   
                                       
-                                    if (isset($_POST['registrados']) && isset($_POST['masComprados'])){
+                                    if (isset($_GET['registrados']) && isset($_GET['masComprados'])){
                                             if (($fecha1 != "") && ($fecha2 != "")&& ($fecha3 != "")&& ($fecha4 != "")) {
                                                    $result = q_listLibrosMasCompradosRegistrados($fecha1, $fecha2, $fecha3, $fecha4);
                                             } else { $result = q_listLibros(); }
                                     } else {
-                                             if (isset($_POST['registrados'])) {
+                                             if (isset($_GET['registrados'])) {
                                                     if (($fecha1 != "") && ($fecha2 != "")) {
                                                         $result = q_listLibrosBetween ($fecha1, $fecha2);
                                                     } else { $result = q_listLibros(); }
